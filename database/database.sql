@@ -11,7 +11,6 @@ CREATE TABLE `customers` (
 
 -- --------------------------------------------------------
 
---
 -- Table structure for table `employees`
 
 CREATE TABLE `employees` (
