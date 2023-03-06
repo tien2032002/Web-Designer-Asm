@@ -3,6 +3,8 @@ CREATE TABLE `customers` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `email` varchar(100) NOT NULL,
+  `username` varchar(10) NOT NULL,
+  `password` varchar(10) NOT NULL,
   `address` varchar(200) NOT NULL,
   `phone` varchar(20) NOT NULL,
   `gender` varchar(10) NOT NULL,
@@ -19,9 +21,11 @@ CREATE TABLE `employees` (
   `cmnd` varchar(4) NOT NULL,
   `gender` varchar(2) NOT NULL,
   `email` varchar(200) NOT NULL,
+  `username` varchar(10) NOT NULL,
   `password` varchar(10) NOT NULL,
   `is_admin` int(1) NOT NULL,
-  `address` varchar(50) NOT NULL
+  `address` varchar(50) NOT NULL,
+  `birthday` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
