@@ -1,8 +1,8 @@
 <?php
-function login() {
-    $username = stripslashes($_REQUEST['username']);
+function login($username, $password) {
+    $username = stripslashes($username);
     $username = mysqli_real_escape_string($con,$username);
-    $password = stripslashes($_REQUEST['password']);
+    $password = stripslashes($password);
     $password = mysqli_real_escape_string($con,$password);
 
     $query = "SELECT * FROM user WHERE userName == $username AND password == $password";
