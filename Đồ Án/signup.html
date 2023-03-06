@@ -5,6 +5,72 @@
     <link rel="stylesheet" type="text/css" href="style_trangchu.css">
     <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
     <title>Sign up</title>
+    <script>
+        function validation_signup(){
+            var username=document.getElementById('username');
+            var password=document.getElementById('password');
+            var email=document.getElementById('email');
+            var phone=document.getElementById('phone');
+            
+            if(username.value == ""){
+                alert('Vui lòng điền tên đăng nhập');
+                username.focus();
+                return false;
+            }
+
+            if(username.value.length<2 || username.value.length>10){
+                alert('Tên đăng nhập phải có độ dài từ 2-10 kí tự');
+                username.focus();
+                return false;
+            }
+
+            if(password.value == ""){
+                alert('Vui lòng điền mật khẩu');
+                password.focus();
+                return false;
+            }
+
+            if(password.value.length<2 || password.value.length>10){
+                alert('Mật khẩu phải có độ dài từ 2-10 kí tự');
+                password.focus();
+                return false;
+            }
+
+            ValidateEmail(email.value);
+            
+            ValidatePhone(phone.value);
+
+            
+            return true;    
+        }
+
+        function ValidateEmail(inputText)
+        {
+            var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            if(inputText.match(mailformat))
+            {
+                return true;
+            }
+            else
+            {
+                alert("Vui lòng nhập một địa chỉ mail hợp lệ");
+                return false;
+            }
+        }
+
+        function ValidatePhone(inputPhone){
+            var phoneformat= /((09|03|07|08|05)+([0-9]{8})\b)/g;
+            if(inputPhone.match(phoneformat))
+            {
+                return true;
+            }
+            else
+            {
+                alert("Vui lòng nhập số điện thoại hợp lệ");
+                return false;
+            }
+        }
+    </script>
 </head>
 <body>
     <nav class="navbar navbar-expand-md navbar-light nav1">
@@ -99,7 +165,7 @@
                       <div class="row">
                         <h6 class="text-center">Đăng ký tài khoản</h6>
                         <div class="container">
-                            <form>
+                            <form onsubmit="return(validation_signup());">
                                 <div class="form-row d-flex ">
                                     <div class="form-group col-md-6" style="margin-right: 30px;">
                                         <label for="username" class="mb-2 mt-1">Tên đăng nhập:</label>
