@@ -21,7 +21,8 @@ CREATE TABLE `employees` (
   `email` varchar(200) NOT NULL,
   `password` varchar(10) NOT NULL,
   `is_admin` int(1) NOT NULL,
-  `address` varchar(50) NOT NULL
+  `address` varchar(50) NOT NULL,
+  `birthday` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
