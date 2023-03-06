@@ -7,6 +7,21 @@
     <title>Sign up</title>
 </head>
 <body>
+    <?php
+        require("../control/register.php");
+        if (!isset($_POST["username"]) || !isset($_POST["email"]) || !isset($_POST["password"]) || !isset($_POST["phone"])) {
+            $userNameErr = 'first';
+            $emailErr = 'fisrt';
+            $passwordErr = 'fisrt';
+            $phoneErr = "fisrt";
+        }
+        else {
+            $userNameErr = checkUserName($_POST["username"]);
+            $emailErr = checkEmail($_POST["email"]);
+            $passwordErr = checkPassword($_POST["password"]);
+            $phoneErr = checkPhone($_POST["phone"]);
+        }
+    ?>
     <nav class="navbar navbar-expand-md navbar-light nav1">
         <div class="container">
             <a href="trangchu.html" class="navbar-brand">
@@ -99,21 +114,54 @@
                       <div class="row">
                         <h6 class="text-center">Đăng ký tài khoản</h6>
                         <div class="container">
-                            <form>
+                            <form action="?php echo $_SERVER['PHP_SELF'];?>" method="post">
                                 <div class="form-row d-flex ">
                                     <div class="form-group col-md-6" style="margin-right: 30px;">
                                         <label for="username" class="mb-2 mt-1">Tên đăng nhập:</label>
                                         <input 
                                             type="text" class="form-control" id="username"
-                                            placeholder="Nhập tên đăng nhập"
+                                            placeholder="Nhập tên đăng nhập" name="username"
                                         >
+                                        <?php
+                                            switch ($userNameErr) {
+                                                case "missing":
+                                                    echo "<p class='text-danger'>Hãy nhập tên đăng nhập!</p>";
+                                                    break;
+                                                case "length":
+                                                    echo "<p class='text-danger'>Tên đăng nhập phải có 8-16 ký tự!</p>";
+                                                    break;
+                                                case "hasUsed":
+                                                    echo "<p class='text-danger'>Tên đăng nhập đã được sử dụng!</p>";
+                                                    break;
+                                                default: 
+                                                    break;
+                                            }
+                                        ?>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="email" class="mb-2 mt-1">Email:</label>
                                         <input 
                                             type="email" class="form-control" id="email"
-                                            placeholder="Nhập email"
+                                            placeholder="Nhập email" name="email"
                                         >
+                                        <?php
+                                            switch ($emailErr) {
+                                                case "missing":
+                                                    echo "<p class='text-danger'>Hãy nhập Email!</p>";
+                                                    break;
+                                                case "length":
+                                                    echo "<p class='text-danger'>Email phải có 8-16 ký tự!</p>";
+                                                    break;
+                                                case "hasUsed":
+                                                    echo "<p class='text-danger'>Email đã được sử dụng!</p>";
+                                                    break;
+                                                case "invalid":
+                                                    echo "<p class='text-danger'>Email không chính xác!</p>";
+                                                    break;
+                                                default: 
+                                                    break;
+                                            }
+                                        ?>
                                     </div>
                                 </div>
 
@@ -121,14 +169,38 @@
                                     <div class="form-group col-md-6" style="margin-right: 30px;">
                                       <label for="password" class="mb-2 mt-3">Mật khẩu:</label>
                                       <input type="password" class="form-control" id="password"
-                                            placeholder="Nhập mật khẩu"
+                                            placeholder="Nhập mật khẩu" name="password"
                                       >
+                                      <?php
+                                            switch ($passwordErr) {
+                                                case "missing":
+                                                    echo "<p class='text-danger'>Hãy nhập mật khẩu!</p>";
+                                                    break;
+                                                case "length":
+                                                    echo "<p class='text-danger'>Mật khẩu phải có 8-16 ký tự!</p>";
+                                                    break;
+                                                default: 
+                                                    break;
+                                            }
+                                        ?>
                                     </div>
                                     <div class="form-group col-md-6">
                                       <label for="phone" class="mb-2 mt-3">Số điện thoại:</label>
                                       <input type="tel" class="form-control" id="phone"
-                                            placeholder="Nhập số điện thoại"
+                                            placeholder="Nhập số điện thoại" name="phone"
                                       >
+                                      <?php
+                                            switch ($phoneErr) {
+                                                case "missing":
+                                                    echo "<p class='text-danger'>Hãy nhập số điện thoại!</p>";
+                                                    break;
+                                                case "invalid":
+                                                    echo "<p class='text-danger'>Hãy nhập đúng số điện thoại!</p>";
+                                                    break;
+                                                default: 
+                                                    break;
+                                            }
+                                        ?>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary mt-4">Đăng ký</button>
@@ -159,6 +231,16 @@
             </ul>
         </div>
     </footer>
+
+    <?php
+        if ($userNameErr == "good" &&
+            $emailErr == "good" &&
+            $passwordErr == "good" &&
+            $phoneErr == "good") {
+                $addInfo = 'INSERT INTO customers (username, password, email, phone)
+                            Value ($_POST["username"], $_POST["password"], $_POST["email"], $_POST["phone"])';
+            }
+    ?>
 
 </body>
 </html>

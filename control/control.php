@@ -1,5 +1,6 @@
 <?php
 function login($username, $password) {
+    require("../model/db.php");
     $username = stripslashes($username);
     $username = mysqli_real_escape_string($con,$username);
     $password = stripslashes($password);
