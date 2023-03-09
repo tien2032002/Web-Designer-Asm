@@ -2,6 +2,6 @@
 <?php
 session_start();
 if(!isset($_SESSION["username"])){
-header("location: view/trangchu.html");
+header("location: view/trangchu.php");
 exit(); }
 ?>

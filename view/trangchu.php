@@ -33,7 +33,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="login.html" class="nav-link">
+                        <a href="login.php" class="nav-link">
                             <img 
                                 src="images/user.png" alt="user"
                                 style="width: 18px; padding-bottom: 2px;" 
@@ -42,7 +42,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="signup.html" class="nav-link">
+                        <a href="signup.php" class="nav-link">
                             <img 
                                 src="images/register.png" alt="register"
                                 style="width: 15px; padding-bottom: 2px;"

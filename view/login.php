@@ -5,11 +5,20 @@
     <link rel="stylesheet" type="text/css" href="style_trangchu.css">
     <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
     <title>Login</title>
+    <script src="login.js"></script>
 </head>
+
 <body>
+    <?php
+        require("../control/checkLogin.php");
+        if (!isset($_POST["username"]) || !isset($_POST["password"])) {
+            $loginErr = 'first';
+        }
+        else $loginErr = checkLogin($_POST["username"], $_POST["password"]);
+    ?>
     <nav class="navbar navbar-expand-md navbar-light nav1">
         <div class="container">
-            <a href="trangchu.html" class="navbar-brand">
+            <a href="trangchu.php" class="navbar-brand">
                 <img src="images/logo.png" alt="logo" style="width: 200px;">
             </a>
             <div class="navbar-collapse">
@@ -33,7 +42,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="login.html" class="nav-link">
+                        <a href="login.php" class="nav-link">
                             <img 
                                 src="images/user.png" alt="user"
                                 style="width: 18px; padding-bottom: 2px;" 
@@ -68,7 +77,7 @@
                 <div class="navbar-collapse">
                     <ul class="navbar-nav">
                         <li>
-                            <a href="trangchu.html" class="nav-link">TRANG CHỦ</a>
+                            <a href="trangchu.php" class="nav-link">TRANG CHỦ</a>
                         </li>
                         <li>
                             <a href="#" class="nav-link">GIỚI THIỆU</a>
@@ -91,21 +100,55 @@
             <div class="row">
                 <nav style="margin-top: 20px;">
                     <ol class="breadcrumb">
-                      <li class="breadcrumb-item"><a href="trangchu.html">Trang chủ</a></li>
+                      <li class="breadcrumb-item"><a href="trangchu.php">Trang chủ</a></li>
                       <li class="breadcrumb-item active" aria-current="page" a href="#">Đăng nhập</a></li>
                     </ol>
                   </nav>
                 <div class="col-md-6">
                       <div class="row">
                         <h6 class="text-center">Đăng nhập tài khoản</h6>
-                        <form action="../control/checkLogin.php" method="post">
+                        <form action="?php echo $_SERVER['PHP_SELF'];?>" method="post">
                             <div class="form-group">
-                              <label for="username" class="mb-2 mt-1">Tên đăng nhập:</label>
-                              <input type="text" class="form-control" id="username" placeholder="Nhập tên đăng nhập" name="username">
+                                <label for="username" class="mb-2 mt-1">Tên đăng nhập:</label>
+                                <input type="text" class="form-control" id="username" placeholder="Nhập tên đăng nhập" name="username" onfocusout="ValidateUserName(this.value)">
+                                <p class='text-danger' id="userNameWarning">
+                                    <?php
+                                        switch ($loginErr) {
+                                            case "missingBoth":
+                                                echo "Hãy nhập tên đăng nhập!";
+                                                break;
+                                            case "missingUserName":
+                                                echo "Hãy nhập tên đăng nhập!";
+                                                break;
+                                            case "userNameErr":
+                                                echo "Tên đăng nhập chưa được đăng ký!";
+                                                break;
+                                            default: 
+                                                break;
+                                        }
+                                    ?>
+                                </p>
                             </div>
                             <div class="form-group">
                               <label for="password" class="mb-2 mt-3">Mật khẩu:</label>
-                              <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu" name="password">
+                              <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu" name="password" onfocusout="ValidatePassword(this.value)">
+                              <p class='text-danger' id="passwordWarning">
+                                    <?php
+                                        switch ($loginErr) {
+                                            case "missingBoth":
+                                                echo "Hãy nhập mật khẩu!";
+                                                break;
+                                            case "missingPassword":
+                                                echo "Hãy nhập mật khẩu!";
+                                                break;
+                                            case "passwordErr":
+                                                echo "Mật khẩu không chính xác!";
+                                                break;
+                                            default: 
+                                                break;
+                                        }
+                                    ?>
+                                </p>
                             </div>
                             <div class="row mt-3 mb-2">
                                 <a href="#">Quên mật khẩu?</a>
@@ -122,6 +165,9 @@
             </div>
         </div>
     </section>
+    <?php
+    if($loginErr == 'good') echo "Đăng nhập thành công!"
+    ?>
 
     <footer class="p-3 text-dark text-center mt-5" style="background-color: #e4d2ca;">
         <div class="container">
@@ -141,4 +187,5 @@
     </footer>
 
 </body>
+
 </html>

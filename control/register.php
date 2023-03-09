@@ -29,7 +29,7 @@
             //check invalid
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) return "invalid";
             //check if user name has been used 
-            $query = "SELECT * FROM customers WHERE email == $email";
+            $query = "SELECT * FROM customers WHERE email = '$email'";
             $result = mysqli_query($con, $query);
             if (mysqli_num_rows($result) == true) return "hasUsed";
             return "good"; 
