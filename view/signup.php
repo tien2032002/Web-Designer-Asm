@@ -204,6 +204,9 @@
                                                     case "invalid":
                                                         echo "Hãy nhập đúng số điện thoại!";
                                                         break;
+                                                    case "hasUsed":
+                                                        echo "Số điện thoại đã được sử dụng!";
+                                                        break;
                                                     default: 
                                                         break;
                                                 }

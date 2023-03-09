@@ -49,8 +49,12 @@
     }
 
     function checkPhone($phone) {
+        require("../model/db.php");
         if ($phone == "") return "missing";
         if(!preg_match('/^[0-9]{10}+$/', $phone) || strlen($phone) < 8) return "invalid";
+        $query = "SELECT * FROM customers WHERE phone = '$phone'";
+        $result = mysqli_query($con, $query);
+        if (mysqli_num_rows($result) == true) return "hasUsed";
         return "good";
     } 
 ?>
