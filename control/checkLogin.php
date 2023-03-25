@@ -7,17 +7,18 @@
 //userNameErr: cannot found any userName match
 //passwordErr: wrong password of that userName
 //good: found userName and password in database
-    function checkLogin($email, $password) {
-        require_once("../model/db.php");
-        if ($email == '' && $password == '') return 'missingBoth';
-        if ($email == '') return 'missingemail';
+
+    function checkLogin($phone, $password) {
+        require_once('../../../model/db.php');
+        if ($phone == '' && $password == '') return 'missingBoth';
+        if ($phone == '') return 'missingPhone';
         if ($password == '') return 'missingPassword';
         //search for email in database
-        $searchEmail = "SELECT * FROM customers WHERE name = '$email'";
-        $resultEmail = mysqli_query($con, $searchemail);
-        if (mysqli_num_rows($resultEmail) == 0) return "emailErr";
-        $emailObj = mysqli_fetch_object($resultEmail);
-        if ($emailObj->password != $password) return "passwordErr";
+        $searchPhone = "SELECT * FROM customers WHERE phone = '$phone'";
+        $resultPhone = mysqli_query($con, $searchPhone);
+        if (mysqli_num_rows($resultPhone) == 0) return "phoneErr";
+        $phoneObj = mysqli_fetch_object($resultPhone);
+        if ($phoneObj->password != $password) return "passwordErr";
         return "good";
         // if (!isset($_POST["username"]) || !isset($_POST["password"])) echo "enter username & password";
         // else  {

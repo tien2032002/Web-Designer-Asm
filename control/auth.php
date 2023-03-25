@@ -2,6 +2,8 @@
 <?php
 session_start();
 if(!isset($_SESSION["username"])){
-header("location: view/trangchu.php");
-exit(); }
+header("Location: ../view/html/UI_user/home_page.php");
+exit;
+ }
+else header("Location: ../view/html/UI_user/home_page_user.php")
 ?>
