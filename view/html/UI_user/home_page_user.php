@@ -1,3 +1,7 @@
+<?php
+session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -9,19 +13,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
      <!--  style -->
-    <link rel="stylesheet" type="text/css" href="../../css/UI_user/style_navbar_homepage.css">
-    <link rel="stylesheet" type="text/css" href="../../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="view/css/UI_user/style_navbar_homepage.css">
+    <link rel="stylesheet" type="text/css" href="view/bootstrap/css/bootstrap.min.css">
     <!-- ======= Scripts ====== -->
-    <script src="../../bootstrap/js/bootstrap.min.js"></script>
-    <script src="../../jquery/jquery-3.6.4.js"></script>
+    <script src="view/bootstrap/js/bootstrap.min.js"></script>
+    <script src="view/jquery/jquery-3.6.4.js"></script>
 
 </head>
 <body>
     <div class="container-fluid">
         <div class="row align-items-center py-3 pd_mobile" style="background-color: #f2f2f2;">
             <div class="col-lg-3 d-none d-lg-block px-5">
-                <a href="home_page_user.html">
-                    <img src="../../images/logo.jpg" style="width: 70%;" alt="logo">
+                <a href="index.php?controller=user&action=home_page_user">
+                    <img src="view/images/logo.jpg" style="width: 70%;" alt="logo">
                 </a>
             </div>
             <div class="col-lg-9">
@@ -74,8 +78,8 @@
             </div>
             <div class="col-lg-9">
                 <nav class="navbar navbar-expand-lg bg-light navbar-light p-2" style="height: 62px;">
-                    <a href="home_page_user.html" class="d-block d-lg-none">
-                        <img src="../../images/logo.jpg" style="width: 100px;" alt="logo">
+                    <a href="index.php?controller=user&action=home_page_user" class="d-block d-lg-none">
+                        <img src="view/images/logo.jpg" style="width: 100px;" alt="logo">
                     </a>
                     <button type="button" 
                             class="navbar-toggler" 
@@ -86,7 +90,7 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav">
-                            <a href="home_page_user.html" class="nav-item nav-link active">Trang Chủ</a>
+                            <a href="index.php?controller=user&action=home_page_user" class="nav-item nav-link active">Trang Chủ</a>
                             <a href="#" class="nav-item nav-link">Thực Đơn</a>
                             <a href="#" class="nav-item nav-link">Đặt Bàn</a>
                             <a href="#" class="nav-item nav-link">Tin Tức</a>
@@ -96,19 +100,19 @@
                                 <a href="#" class="nav-item nav-link">
                                     <div style="display: inline-block;">
                                         <div style="display: inline-block; margin-right: 10px;">
-                                            <img src="../../images/avt_user.jpg" 
+                                            <img src="view/images/avt_user.jpg" 
                                                 style="width: 30px; height: 30px; border-radius: 50%; 
                                                         object-fit: cover; margin-bottom: 3px;" 
                                                 alt="avatar">
                                         </div>
                                         <div style="display: inline-block; font-weight: 500; margin-top: 7px;">
-                                            Chào, Minh Lee
+                                            Chào, <?php echo $_SESSION['name'];?>
                                         </div>
                                     </div>
                                 </a>
                             </div>
                             <div>
-                                <a href="home_page.html" class="nav-item nav-link">
+                                <a href="index.php?controller=user&action=logout" class="nav-item nav-link">
                                     <i class="bi bi-box-arrow-right text-dark"></i>
                                     Đăng xuất
                                 </a>
@@ -119,7 +123,7 @@
                 <div id="header-carousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active" style="height: 380px;">
-                            <img class="img-fluid" src="../../images/carousel-1.jpg" alt="carousel-1">
+                            <img class="img-fluid" src="view/images/carousel-1.jpg" alt="carousel-1">
                             <div class="carousel-caption d-none d-md-block">
                                 <div class="p-3" style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
                                     <h4 class="text-uppercase font-weight-large mb-3">10% Off Your First Order</h4>
@@ -129,7 +133,7 @@
                             </div>
                         </div>
                         <div class="carousel-item" style="height: 380px;">
-                            <img class="img-fluid" src="../../images/carousel-2.jpg" alt="carousel-2">
+                            <img class="img-fluid" src="view/images/carousel-2.jpg" alt="carousel-2">
                             <div class="carousel-caption d-none d-md-block">
                                 <div class="p-3" style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
                                     <h4 class="text-uppercase font-weight-large mb-3">10% Off Your First Order</h4>
@@ -152,6 +156,6 @@
         </div>
     </div>
     <!-- ======= Scripts ====== -->
-    <script src="../../script/user_navbar.js"></script>
+    <script src="view/script/user_navbar.js"></script>
 </body>
 </html>

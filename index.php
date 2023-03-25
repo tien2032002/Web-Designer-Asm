@@ -1,4 +1,18 @@
 <?php
-    require ("model/db.php");
-    include ("control/auth.php");
+    // include_once ("model/db.php");
+    // include_once ("control/auth.php");
+    require('model/db.php');
+
+    if (isset($_GET['controller'])) {
+        $controller = $_GET['controller'];
+        if (isset($_GET['action'])) {
+          $action = $_GET['action'];
+        } else {
+          $action = 'index';
+        }
+      } else {
+        $controller = 'user';
+        $action = 'home_page';
+      }
+      require_once('route.php');
 ?>

@@ -9,24 +9,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
      <!--  style -->
-    <link rel="stylesheet" type="text/css" href="../../css/UI_user/style_navbar_homepage.css">
-    <link rel="stylesheet" type="text/css" href="../../css/UI_user/style_login.css">
-    <link rel="stylesheet" type="text/css" href="../../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="view/css/UI_user/style_navbar_homepage.css">
+    <link rel="stylesheet" type="text/css" href="view/css/UI_user/style_login.css">
+    <link rel="stylesheet" type="text/css" href="view/bootstrap/css/bootstrap.min.css">
     <!-- ======= Scripts ====== -->
-    <script src="../../bootstrap/js/bootstrap.min.js"></script>
-    <script src="../../jquery/jquery-3.6.4.js"></script>
+    <script src="view/bootstrap/js/bootstrap.min.js"></script>
+    <script src="view/jquery/jquery-3.6.4.js"></script>
 </head>
 <body>
-    <?php
-        require_once("../../../control/checkLogin.php");
-        if (!isset($_POST["phone"]) || !isset($_POST["password"])) $loginErr = 'first';
-        else $loginErr = checkLogin($_POST["phone"], $_POST["password"]);
-    ?>
+
     <div class="container-fluid">
         <div class="row align-items-center py-3 pd_mobile" style="background-color: #f2f2f2;">
             <div class="col-lg-3 d-none d-lg-block px-5">
-                <a href="home_page.php">
-                    <img src="../../images/logo.jpg" style="width: 70%;" alt="logo">
+                <a href="index.php?controller=user&action=home_page">
+                    <img src="view/images/logo.jpg" style="width: 70%;" alt="logo">
                 </a>
             </div>
             <div class="col-lg-9">
@@ -63,7 +59,7 @@
             <div class="col-lg-12">
                 <nav class="navbar navbar-expand-lg bg-light navbar-light p-2" style="height: 62px;">
                     <a href="" class="d-block d-lg-none">
-                        <img src="../../images/logo.jpg" style="width: 100px;" alt="logo">
+                        <img src="view/images/logo.jpg" style="width: 100px;" alt="logo">
                     </a>
                     <button type="button" 
                             class="navbar-toggler" 
@@ -74,21 +70,21 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav">
-                            <a href="home_page.php" class="nav-item nav-link">Trang Chủ</a>
+                            <a href="index.php?controller=user&action=home_page" class="nav-item nav-link">Trang Chủ</a>
                             <a href="#" class="nav-item nav-link">Thực Đơn</a>
                             <a href="#" class="nav-item nav-link">Đặt Bàn</a>
                             <a href="#" class="nav-item nav-link">Tin Tức</a>
-                            <a href="login_manager.php" class="nav-item nav-link">Quản Trị Viên</a>
+                            <a href="index.php?controller=manager&action=login" class="nav-item nav-link">Quản Trị Viên</a>
                         </div>
                         <div class="navbar-nav ml-auto nav_main">
                             <div>
-                                <a href="login.php" class="nav-item nav-link active">
+                                <a href="index.php?controller=user&action=login" class="nav-item nav-link active">
                                     <i class="bi bi-person text-dark"></i>
                                     Đăng Nhập
                                 </a>
                             </div>
                             <div>
-                                <a href="signup.php" class="nav-item nav-link">
+                                <a href="index.php?controller=user&action=signup" class="nav-item nav-link">
                                     <i class="bi bi-person-plus text-dark"></i>
                                     Đăng Ký
                                 </a>
@@ -99,7 +95,7 @@
                 <div class="row mt-3 px-3">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                          <li class="breadcrumb-item"><a href="home_page.php">Trang chủ</a></li>
+                          <li class="breadcrumb-item"><a href="index.php?controller=user&action=home_page">Trang chủ</a></li>
                           <li class="breadcrumb-item active" aria-current="page">Đăng Nhập</li>
                         </ol>
                     </nav>
@@ -109,7 +105,7 @@
                         <div class="frame_login">
                                 <h4 style="font-weight: 700;">LOGIN TO YOUR ACCOUNT</h4>
                                 <h6 class="mt-3 text-muted text-white" style="font-weight: 500;">Enter your details to login</h6>
-                                <form action="?php echo $_SERVER['PHP_SELF'];?>" method="post">
+                                <form action="index.php?controller=user&action=login" method="post">
                                     <div class="form-group mt-5">
                                         <label for="phonenumber" style="font-weight: 700;">SỐ ĐIỆN THOẠI</label>
                                         <div class="input-group">
@@ -175,7 +171,7 @@
                                     </button>
                                 </form>
                                 <p class="mt-3 text-muted" style="font-weight: 400;">Bạn chưa có tài khoản?
-                                    <a href="signup.php" style="color: rgb(247, 66, 66);font-weight: 500;">Đăng ký tại đây</a>
+                                    <a href="index.php?controller=user&action=signup" style="color: rgb(247, 66, 66);font-weight: 500;">Đăng ký tại đây</a>
                                 </p>
                         </div>
                     </div>
@@ -187,10 +183,7 @@
 
     </footer>
     <!-- ======= Scripts ====== -->
-    <script src="../../script/user_navbar.js"></script>
-    <script src="../../script/login_form.js"></script>
-    <?php
-        if ($loginErr == 'good') header("Location:../../../view/html/UI_user/home_page_user.php");
-    ?>
+    <script src="view/script/user_navbar.js"></script>
+    <script src="view/script/login_form.js"></script>
 </body>
 </html>
