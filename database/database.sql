@@ -48,12 +48,14 @@ CREATE TABLE `employees` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `cmnd` varchar(4) NOT NULL,
-  `gender` varchar(2) NOT NULL,
   `image` varchar(200) NOT NULL,
   `email` varchar(200) NOT NULL,
   `password` varchar(10) NOT NULL,
   `is_admin` int(1) NOT NULL,
   `address` varchar(20) NOT NULL
+  `phone` varchar(20) NOT NULL,
+  `gender` varchar(10),
+  `birthday` date 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
