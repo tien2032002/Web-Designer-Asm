@@ -90,7 +90,7 @@
                             <a href="#" class="nav-item nav-link">Thực Đơn</a>
                             <a href="#" class="nav-item nav-link">Đặt Bàn</a>
                             <a href="#" class="nav-item nav-link">Tin Tức</a>
-                            <a href="login_manager.php" class="nav-item nav-link">Quản Trị Viên</a>
+                            <a href="index.php?controller=manager&action=login" class="nav-item nav-link">Quản Trị Viên</a>
                         </div>
                         <div class="navbar-nav ml-auto nav_main">
                             <div>

@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
       <!-- style -->
-    <link rel="stylesheet" type="text/css" href="../../bootstrap/css/bootstrap.css"/>
-    <link rel="stylesheet" type="text/css" href="../../css/UI_manager/style_manager.css"/>
-    <link rel="stylesheet" type="text/css" href="../../css/UI_manager/style_navbar_manager.css"/>
+    <link rel="stylesheet" type="text/css" href="view/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="view/css/UI_manager/style_manager.css"/>
+    <link rel="stylesheet" type="text/css" href="view/css/UI_manager/style_navbar_manager.css"/>
     
 </head>
 
@@ -33,7 +33,7 @@
                                   </a>
                               </li>
                               <li class="nav-item">
-                                  <a class="nav-link nav-link-top btn border-white text-white ms-2" href="#">Đăng xuất
+                                  <a class="nav-link nav-link-top btn border-white text-white ms-2" href="index.php?controller=manager&action=logout">Đăng xuất
                                     <span class="underline-white"></span>
                                   </a>
                               </li>
@@ -50,10 +50,10 @@
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link active" href="manager.html">Thông tin chung</a>
+                <a class="nav-link active" href="index.php?controller=manager&action=home_page_manager">Thông tin chung</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="manage_employee.html">Nhân viên</a>
+                <a class="nav-link" href="index.php?controller=manager&action=manage_employee">Nhân viên</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Sản phẩm</a>

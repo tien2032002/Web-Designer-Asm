@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,18 +8,19 @@
       <!--  icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
       <!--  style -->
-    <link rel="stylesheet" type="text/css" href="../../bootstrap/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="../../css/UI_manager/style_navbar_manager.css"/>
+    <link rel="stylesheet" type="text/css" href="view/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="view/css/UI_manager/style_navbar_manager.css"/>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="../../css/UI_employee/style_table_employee.css">
+    <link rel="stylesheet" href="view/css/UI_employee/style_table_employee.css">
     <!-- ======= Scripts ====== -->
-    <script src="../../jquery/jquery-3.6.4.js"></script>
-    <script src="../../bootstrap/js/bootstrap.min.js"></script>
+    <script src="view/jquery/jquery-3.6.4.js"></script>
+    <script src="view/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
     
 </head>
 
 <body>
+
     <div class="container-fluid">
         <!-- nav top -->
         <div class="row">
@@ -36,7 +36,7 @@
                                   </a>
                               </li>
                               <li class="nav-item">
-                                  <a class="nav-link nav-link-top btn border-white text-white ms-2" href="#">Đăng xuất
+                                  <a class="nav-link nav-link-top btn border-white text-white ms-2" href="index.php?controller=manager&action=logout">Đăng xuất
                                     <span class="underline-white"></span>
                                   </a>
                               </li>
@@ -52,10 +52,10 @@
               <div class="sidebar-sticky">
                 <ul class="nav flex-column">
                   <li class="nav-item">
-                    <a class="nav-link" href="manager.html">Thông tin chung</a>
+                    <a class="nav-link" href="index.php?controller=manage&action=home_page_manager">Thông tin chung</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link active" href="manage_employee.html">Nhân viên</a>
+                    <a class="nav-link active" href="index.php?controller=manager&action=manage_employee">Nhân viên</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#">Sản phẩm</a>
@@ -88,83 +88,50 @@
                                     <tr>
                                       <th>Mã Nhân Viên</th>
                                       <th>Tên</th>
+                                      <th>Giới tính</th>
                                       <th>CMND</th>
                                       <th>Địa chỉ</th>
-                                      <th>Tuổi</th>
-                                      <th>Ngày Vào</th>
-                                      <th>Lương</th>
+                                      <th>Email</th>
+                                      <th>Số điện thoại</th>
                                       <th>Đánh Giá</th>
                                       <th>Button</th>
                                     </tr>
                                   </thead>
                                   <tbody>
-                                    <tr>
-                                      <td>001</td>
-                                      <td>Nguyen Van A</td>
-                                      <td>123456789</td>
-                                      <td>Ha Noi</td>
-                                      <td>25</td>
-                                      <td>2020-01-01</td>
-                                      <td>5000000</td>
-                                      <td>Good</td>
+                                    <?php
+                                      $employeeList = json_decode($employeeList);
+                                      if (count($employeeList)==0) echo '<h2 class="text-center text-danger">M đuổi hết cmn nhân viên r !!!</h2>';
+                                      foreach($employeeList as $employee) {
+                                          $employee = json_decode($employee);
+                                          echo '
+                                          <tr">
+                                      <td class="text-center">'.$employee->id.'</td>
+                                      <td class="text-center">'.$employee->name.'</td>
+                                      <td class="text-center">'.$employee->gender.'</td>
+                                      <td class="text-center">'.$employee->cmnd.'</td>
+                                      <td class="text-center">'.$employee->address.'</td>
+                                      <td class="text-center">'.$employee->email.'</td>
+                                      <td class="text-center">'.$employee->phone.'</td>
+                                      <td class="text-center">good</td>
                                       <td>
-                                        <button class="btn btn-sm btn-dark edit-btn">Edit</button>
-                                        <button class="btn btn-sm btn-danger delete-btn">Delete</button>
+                                        <a href="index.php?controller=manager&action=editEmployee&employeeID='.$employee->id.'"><button class="btn btn-sm btn-dark edit-btn">Edit</button></a>
+                                        <a href="index.php?controller=manager&action=delete_employee&employeeID='.$employee->id.'"><button class="btn btn-sm btn-danger delete-btn">Delete</button></a>
                                       </td>
-                                    </tr>
-                                    <tr>
-                                      <td>002</td>
-                                      <td>Tran Thi B</td>
-                                      <td>987654321</td>
-                                      <td>Ho Chi Minh</td>
-                                      <td>30</td>
-                                      <td>2019-06-01</td>
-                                      <td>7000000</td>
-                                      <td>Excellent</td>
-                                      <td>
-                                        <button class="btn btn-sm btn-dark edit-btn">Edit</button>
-                                        <button class="btn btn-sm btn-danger delete-btn">Delete</button>
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <td>003</td>
-                                      <td>Le Van C</td>
-                                      <td>567890123</td>
-                                      <td>Da Nang</td>
-                                      <td>28</td>
-                                      <td>2018-02-01</td>
-                                      <td>6000000</td>
-                                      <td>Good</td>
-                                      <td>
-                                        <button class="btn btn-sm btn-dark edit-btn">Edit</button>
-                                        <button class="btn btn-sm btn-danger delete-btn">Delete</button>
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <td>004</td>
-                                      <td>Pham Thi D</td>
-                                      <td>345678912</td>
-                                      <td>Binh Duong</td>
-                                      <td>35</td>
-                                      <td>2017-11-01</td>
-                                      <td>8000000</td>
-                                      <td>Excellent</td>
-                                      <td>
-                                        <button class="btn btn-sm btn-dark edit-btn">Edit</button>
-                                        <button class="btn btn-sm btn-danger delete-btn">Delete</button>
-                                      </td>
-                                    </tr>
+                                    </tr>';
+                                      }
+                                    ?>
                                   </tbody>
                                   <tfoot>
                                     <tr>
                                       <th>Mã Nhân Viên</th>
                                       <th>Tên</th>
+                                      <th>Giới tính</th>
                                       <th>CMND</th>
                                       <th>Địa chỉ</th>
-                                      <th>Tuổi</th>
-                                      <th>Ngày Vào</th>
-                                      <th>Lương</th>
+                                      <th>Email</th>
+                                      <th>Số điện thoại</th>
                                       <th>Đánh Giá</th>
+                                      <th>Button</th>
                                     </tr>
                                   </tfoot>
                                 </table>
@@ -179,9 +146,10 @@
             </div>
         </div>
     </div>
-
+    <?php
+    ?>
     <!-- ======= Scripts ====== -->
-    <script src="../../script/employee_table.js"></script>
+    <script src="view/script/employee_table.js"></script>
 
 </body>
 
