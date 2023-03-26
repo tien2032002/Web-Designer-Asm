@@ -1,5 +1,5 @@
 <?php
-    //this function will return login's error code
+    //this function will return login's error code aaaa
     //error code:
     //missingUserName
     //missingPassword
