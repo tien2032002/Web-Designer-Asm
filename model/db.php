@@ -1,8 +1,13 @@
 <!-- database -->
 <?php
     $servername = "localhost";
+<<<<<<< Updated upstream
     $username = "root";
     $password = "";
+=======
+    $username_db = "root";
+    $password_db = "";
+>>>>>>> Stashed changes
     $dbName = "database";
 
     $con = mysqli_connect($servername, $username, $password, $dbName);
