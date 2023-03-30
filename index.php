@@ -9,7 +9,7 @@
           $action = 'index';
         }
       } else {
-        $controller = 'user';
+        $controller = 'guest';
         $action = 'home_page';
       }
       require_once('route.php');

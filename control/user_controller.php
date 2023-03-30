@@ -9,7 +9,6 @@
         
         //login form
         function login() {
-
             //if user has filled login form
             if (isset($_POST['phone']) && isset($_POST['password'])) {
                 
@@ -21,7 +20,7 @@
                 //if login infomation not correct, redirect to login page with error code
                 if ($checkLogin!='good') {
                     $data = array('loginErr' => $checkLogin);
-                    $this->render('view/html/UI_user/login', $data);
+                    $this->render('view/html/UI_guest/login', $data);
                 }
                 //login infomation correct => go to home page for user
                 else {
@@ -30,7 +29,8 @@
             }
             else {
                 $data = array('loginErr' => 'first');
-                $this->render('view/html/UI_user/login', $data);
+                echo "dp";
+                $this->render('view/html/UI_guest/login', $data);
             }
         }
 
@@ -88,17 +88,5 @@
             header("Location: index.php?controller=user&action=home_page");
         }
 
-        function menu() {
-            include("model/product_db.php");
-            if (isset($_GET['type'])) {
-                $data = array('type' => "starter",
-                              'productList' => getProductList($_GET['type']));
-                $this->render("view/html/UI_user/starter");
-            }
-        }
-
-        function getDiscount(){
-            $this->render('view/html/UI_user/discount');
-        }
     }
 ?>

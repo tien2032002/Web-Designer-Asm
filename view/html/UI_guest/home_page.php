@@ -49,11 +49,11 @@
     </script>
 
 </head>
-<body onload='getMainContent("index.php?controller=user&action=getDiscount")'>
+<body onload='getMainContent("index.php?controller=guest&action=getDiscount")'>
     <div class="container-fluid">
         <div class="row align-items-center py-3 pd_mobile" style="background-color: #f2f2f2;">
             <div class="col-lg-3 d-none d-lg-block px-5">
-                <a href="index.php?controller=user&action=home_page">
+                <a href="index.php?controller=guest&action=home_page">
                     <img src="/view/images/logo.jpg" style="width: 70%;" alt="logo">
                 </a>
             </div>
@@ -97,7 +97,7 @@
                 </a>
                 <nav class="collapse show navbar" id="navbar-vertical" style="margin-top: -9px;">
                     <div class="navbar-nav w-100">
-                        <a onclick="getMainContent('index.php?controller=user&action=menu&type=starter')" class="nav-item nav-link border">Khai Vị</a>
+                        <a onclick="getMainContent('index.php?controller=guest&action=menu&type=starter')" class="nav-item nav-link border">Khai Vị</a>
                         <a href="#" class="nav-item nav-link border">Món Chính</a>
                         <a href="#" class="nav-item nav-link border">Tráng Miệng</a>
                         <a href="#" class="nav-item nav-link border">Đồ Ngọt</a>
@@ -107,7 +107,7 @@
             </div>
             <div class="col-lg-9">
                 <nav class="navbar navbar-expand-lg bg-light navbar-light p-2" style="height: 62px;">
-                    <a href="index.php?controller=user&action=home_page" class="d-block d-lg-none">
+                    <a href="index.php?controller=guest&action=home_page" class="d-block d-lg-none">
                         <img src="/view/images/logo.jpg" style="width: 100px;" alt="logo">
                     </a>
                     <button type="button" 
@@ -120,7 +120,7 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse" >
                         <div class="navbar-nav">
-                            <a href="index.php?controller=user&action=home_page" class="nav-item nav-link">Trang Chủ</a>
+                            <a href="index.php?controller=guest&action=home_page" class="nav-item nav-link">Trang Chủ</a>
                             <a href="#" class="nav-item nav-link active">Thực Đơn</a>
                             <a href="#" class="nav-item nav-link">Đặt Bàn</a>
                             <a href="#" class="nav-item nav-link">Tin Tức</a>
@@ -129,13 +129,13 @@
                         
                         <div class="navbar-nav ml-auto nav_main">
                             <div>
-                                <a href="index.php?controller=user&action=login" class="nav-item nav-link">
+                                <a href="index.php?controller=guest&action=login" class="nav-item nav-link">
                                     <i class="bi bi-person text-dark"></i>
                                     Đăng Nhập
                                 </a>
                             </div>
                             <div>
-                                <a href="index.php?controller=user&action=signup" class="nav-item nav-link">
+                                <a href="index.php?controller=guest&action=signup" class="nav-item nav-link">
                                     <i class="bi bi-person-plus text-dark"></i>
                                     Đăng Ký
                                 </a>
