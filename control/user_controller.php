@@ -56,7 +56,7 @@
                             header("Location: index.php?controller=user&action=home_page_user");
                        }
 
-                    else $this->render('view/html/UI_user/signup', $errArr);
+                    else $this->render('view/html/UI_guest/signup', $errArr);
             }
             else {
                 $errArr = array('firstNameErr' => 'first',
@@ -65,7 +65,7 @@
                 'emailErr' => 'first',
                 'passwordErr' => 'first',
                 'password2Err' => 'first');
-                $this->render('view/html/UI_user/signup', $errArr);
+                $this->render('view/html/UI_guest/signup', $errArr);
             }
         }
 
@@ -85,7 +85,7 @@
         function logout() {
             session_start();
             session_destroy();
-            header("Location: index.php?controller=user&action=home_page");
+            header("Location: index.php?controller=guest&action=home_page");
         }
 
     }

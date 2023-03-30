@@ -50,7 +50,7 @@
         }
     </script>
 </head>
-<body onload='getMainContent("index.php?controller=user&action=getDiscount")'>
+<body onload='getMainContent("index.php?controller=guest&action=getDiscount")'>
     <?php
     //decode json
         $userObj = json_decode($userObj);
@@ -102,7 +102,7 @@
                 </a>
                 <nav class="collapse show navbar" id="navbar-vertical" style="margin-top: -9px;">
                     <div class="navbar-nav w-100">
-                        <a onclick="getMainContent('index.php?controller=user&action=menu&type=starter')" class="nav-item nav-link border">Khai Vị</a>
+                        <a onclick="getMainContent('index.php?controller=guest&action=menu&type=starter')" class="nav-item nav-link border">Khai Vị</a>
                         <a href="#" class="nav-item nav-link border">Món Chính</a>
                         <a href="#" class="nav-item nav-link border">Tráng Miệng</a>
                         <a href="#" class="nav-item nav-link border">Đồ Ngọt</a>

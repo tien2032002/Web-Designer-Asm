@@ -1,7 +1,7 @@
 <?php
     //list of controllers and action
     $controllers = array('guest' => ['home_page', 'login', 'signup', 'menu', 'getDiscount', 'login_manager'],
-                         'user' => ['home_page_user', 'signUp', 'login', 'logout'],
+                         'user' => ['home_page_user', 'signup', 'login', 'logout'],
                          'manager' => ['home_page_manager', 'manage_employee', 'login', 'logout', 'delete_employee', 'edit_employee'],
                          'employee');
 

@@ -25,5 +25,9 @@
         function login_manager() {
             $this->render("view\html\UI_guest\login_manager");
         }
+
+        function signup() {
+            $this->render('view\html\UI_guest\signup');
+        }
     }
 ?>
