@@ -14,7 +14,7 @@
             if (isset($_GET['type'])) {
                 $data = array('type' => "starter",
                               'productList' => getProductList($_GET['type']));
-                $this->render("view/html/UI_user/starter");
+                $this->render("view/html/UI_guest/starter");
             }
         }
 
