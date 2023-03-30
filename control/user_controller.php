@@ -53,7 +53,6 @@
                                         $_POST['password'], $_POST['password2']);
                             session_start();
                             $_SESSION['phone'] = $_POST['phone'];
-                            $_SESSION['name'] = $_POST['firstName']. ' ' .$_POST['lastName'];
                             header("Location: index.php?controller=user&action=home_page_user");
                        }
 
@@ -71,12 +70,35 @@
         }
 
         function home_page_user() {
-            $this->render('view/html/UI_user/home_page_user');
+            session_start();
+            if (isset($_SESSION['phone'])) {
+                include("model/customer_db.php");
+                $data = array("userObj" => getCustomerByPhone($_SESSION['phone']));
+                $this->render("view/html/UI_user/home_page_user", $data);
+            }
+            else {
+                echo "error";
+                exit;
+            }
         }
 
         function logout() {
+            session_start();
             session_destroy();
             header("Location: index.php?controller=user&action=home_page");
+        }
+
+        function menu() {
+            include("model/product_db.php");
+            if (isset($_GET['type'])) {
+                $data = array('type' => "starter",
+                              'productList' => getProductList($_GET['type']));
+                $this->render("view/html/UI_user/starter");
+            }
+        }
+
+        function getDiscount(){
+            $this->render('view/html/UI_user/discount');
         }
     }
 ?>

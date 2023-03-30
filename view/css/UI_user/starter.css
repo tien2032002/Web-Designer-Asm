@@ -1,6 +1,6 @@
 .card-img{
   height: 150px;
-  object-fit: contain;
+  object-fit: cover;
   
 }
 
@@ -32,6 +32,7 @@
 #menu .menu__item .item-img{
   height: 100px;
   border-radius: 5px;
+  object-fit: cover;
 }
 
 #menu .menu__item .item-description{

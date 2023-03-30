@@ -1,6 +1,6 @@
 <?php
     //list of controllers and action
-    $controllers = array('user' => ['home_page', 'home_page_user', 'login', 'signup', 'logout'],
+    $controllers = array('user' => ['home_page', 'home_page_user', 'login', 'signup', 'logout', 'menu', 'getDiscount'],
                          'manager' => ['home_page_manager', 'login', 'manage_employee', 'logout', 'delete_employee', 'edit_employee'],
                          'employee');
 
