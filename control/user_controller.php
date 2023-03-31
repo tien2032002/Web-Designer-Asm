@@ -14,7 +14,7 @@
                 
                 include_once('model/customer_db.php');
                 
-                //check login infomation
+                //check login infomation, get login error
                 $checkLogin = checkLogin($_POST['phone'], $_POST['password']);
 
                 //if login infomation not correct, redirect to login page with error code
@@ -28,8 +28,8 @@
                 }
             }
             else {
+                //if not filled form yet
                 $data = array('loginErr' => 'first');
-                echo "dp";
                 $this->render('view/html/UI_guest/login', $data);
             }
         }
@@ -37,14 +37,18 @@
         //register form
 
         function signup() {
+            //include model
             include_once('model/customer_db.php');
             if (isset($_POST['firstName']) && isset($_POST['lastName']) &&
                 isset($_POST['phone']) && isset($_POST['email']) &&
-                isset($_POST['password']) && isset($_POST['password2'])){      
+                isset($_POST['password']) && isset($_POST['password2'])){     
+                    //get error code 
                     $errArr = checkSignUp($_POST['firstName'], $_POST['lastName'],
                                 $_POST['phone'], $_POST['email'], 
                                 $_POST['password'], $_POST['password2']);
                     extract($errArr);
+                    //if all information are good=> start session
+                    //save user info and go to home page for user
                     if($firstNameErr == 'good' && $lastNameErr == 'good' &&
                        $phoneErr == 'good' && $emailErr == 'good' && 
                        $passwordErr == 'good' && $password2Err == 'good') {
@@ -55,7 +59,7 @@
                             $_SESSION['phone'] = $_POST['phone'];
                             header("Location: index.php?controller=user&action=home_page_user");
                        }
-
+                       //if have error, go back to signup page and display warning
                     else $this->render('view/html/UI_guest/signup', $errArr);
             }
             else {
@@ -69,7 +73,10 @@
             }
         }
 
+        //display user home page
         function home_page_user() {
+            //check session
+            //if dont have session, display error and exit
             session_start();
             if (isset($_SESSION['phone'])) {
                 include("model/customer_db.php");
@@ -83,6 +90,7 @@
         }
 
         function logout() {
+            //logout, destroy session and go to home page for guest
             session_start();
             session_destroy();
             header("Location: index.php?controller=guest&action=home_page");

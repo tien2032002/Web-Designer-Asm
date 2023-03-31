@@ -1,3 +1,5 @@
+<!-- get discount banner -->
+
 <div id="header-carousel" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active" style="height: 380px;">

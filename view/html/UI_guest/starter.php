@@ -1,18 +1,7 @@
 <script>
-    function getMainContent(link) {
-        $.ajax({
-            // The link we are accessing.
-            url: link,
-                
-            // The type of request.
-            type: "get",
-                
-            // The type of data that is getting returned.
-            dataType: "html",
-
-            success: function( strData ){
-                document.getElementById("mainContent").innerHTML = strData;
-                const items = document.querySelectorAll(".carousel-item");
+    //function for display multiple item carousel
+    function carousel() {
+        const items = document.querySelectorAll(".carousel-item");
 
                 items.forEach((el) => {
                     const minPerSlide = 4
@@ -28,8 +17,6 @@
                         next = next.nextElementSibling
                     }
                 })
-            }
-        });
     }
 </script>
 

@@ -2,8 +2,11 @@
     include_once('base_controller.php');
     class managerController extends baseController {
 
-        //home page for guest (not login yet)
+        //home page for manager
         function home_page_manager() {
+            //check session
+            //if exist session, go to home page UI for manager
+            //if not, display error and exit
             session_start();
             if (!isset($_SESSION['phone'])) {
                 echo "error";
@@ -48,6 +51,7 @@
             }
         }
 
+        //get employee data and render manage employee UI
         function manage_employee() {
             include_once('model/employee_db.php');
             $employeeList = getEmployeeList();
@@ -56,12 +60,14 @@
             $this->render('view/html/UI_manager/manage_employee', $data);
         }
 
+        //delete employee
         function delete_employee() {
             include_once('model/employee_db.php');
             deleteEmployee($_GET['employeeID']);
             header("Location: index.php?controller=manager&action=manage_employee");
         }
 
+        //logout
         function logout() {
             session_start();
             session_destroy();
