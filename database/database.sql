@@ -48,7 +48,9 @@ CREATE TABLE `employees` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `cmnd` varchar(4) NOT NULL,
-  `gender` varchar(2) NOT NULL,
+  `gender` varchar(10) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `birthday` date,
   `image` varchar(200) NOT NULL,
   `email` varchar(200) NOT NULL,
   `password` varchar(10) NOT NULL,
@@ -56,8 +58,30 @@ CREATE TABLE `employees` (
   `address` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+---insert data---
+INSERT INTO `employees` (`name`, `cmnd`, `gender`, `phone`, `birthday`, `image`, `email`, `password`, `is_admin`, `address`)
+VALUES 
+('Nguyễn Văn A', '123445675678', 'Nam', '0901234567', '1990-01-01', 'img1.jpg', 'a@gmail.com', '123456', 0, 'Hà Nội'),
+('Trần Thị B', '567812345678', 'Nữ', '0912345678', '1991-02-02', 'img2.jpg', 'b@gmail.com', '123456', 0, 'TP Hồ Chí Minh'),
+('Lê Văn C', '910112345678', 'Nam', '0923456789', '1992-03-03', 'img3.jpg', 'c@gmail.com', '123456', 0, 'Đà Nẵng'),
+('Phạm Thị D', '234512345678', 'Nữ', '0934567890', '1993-04-04', 'img4.jpg', 'd@gmail.com', '123456', 0, 'Nha Trang'),
+('Vũ Văn E', '678912345678', 'Nam', '0945678901', '1994-05-05', 'img5.jpg', 'e@gmail.com', '123456', 0, 'Hải Phòng'),
+('Đỗ Thị F', '101112345678', 'Nữ', '0956789012', '1995-06-06', 'img6.jpg', 'f@gmail.com', '123456', 0, 'Huế'),
+('Nguyễn Văn G', '111212345678', 'Nam', '0967890123', '1996-07-07', 'img7.jpg', 'g@gmail.com', '123456', 0, 'Quảng Bình'),
+('Trần Thị H', '131412131415', 'Nữ', '0978901234', '1997-08-08', 'img8.jpg', 'h@gmail.com', '123456', 0, 'Cần Thơ'),
+('Lê Văn I', '151623242526', 'Nam', '0989012345', '1998-09-09', 'img9.jpg', 'i@gmail.com', '123456', 0, 'Hạ Long'),
+('Phạm Thị K', '17183132333435', 'Nữ', '0990123456', '1999-10-10', 'img10.jpg', 'k@gmail.com', '123456', 0, 'Sapa'),
+('Vũ Văn L', '19204142434445', 'Nam', '0911123456', '2000-11-11', 'img11.jpg', 'l@gmail.com', '123456', 0, 'Đà Lạt'),
+('Đỗ Thị M', '2120414243442', 'Nữ', '0922234567', '2001-12-12', 'img12.jpg', 'm@gmail.com', '123456', 0, 'Hội An'),
+('Nguyễn Văn N', '2304142434424', 'Nam', '0933345678', '2002-01-01', 'img13.jpg', 'n@gmail.com', '123456', 0, 'Ninh Bình'),
+('Trần Thị O', '2504142434426', 'Nữ', '0944456789', '2003-02-02', 'img14.jpg', 'o@gmail.com', '123456', 0, 'Hà Giang'),
+('Lê Văn P', '2720414243448', 'Nam', '0955567890', '2004-03-03', 'img15.jpg', 'p@gmail.com', '123456', 0, 'Quảng Ninh'),
+('Phạm Thị Q', '2904142434430', 'Nữ', '0966678901', '2005-04-04', 'img16.jpg', 'q@gmail.com', '123456', 0, 'Ninh Bình'),
+('Vũ Văn R', '3104142434432', 'Nam', '0977789012', '2006-05-05', 'img17.jpg', 'r@gmail.com', '123456', 0, 'Thái Bình'),
+('Đỗ Thị S', '331412131434', 'Nữ', '0988890123', '2007-06-06', 'img18.jpg', 's@gmail.com', '123456', 0, 'Thanh Hóa'),
+('Nguyễn Văn T', '314121314536', 'Nam', '0999901234', '2008-07-07', 'img19.jpg', 't@gmail.com', '123456', 0, 'Hải Dương'),
+('Trần Thị U', '314121314738', 'Nữ', '0911112345', '2009-08-08', 'img20.jpg', 'u@gmail.com', '123456', 0, 'Phú Yên')
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `orders`
 --
