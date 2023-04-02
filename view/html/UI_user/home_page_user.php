@@ -1,7 +1,4 @@
-<?php
-session_start();
 
-?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -18,9 +15,46 @@ session_start();
     <!-- ======= Scripts ====== -->
     <script src="view/bootstrap/js/bootstrap.min.js"></script>
     <script src="view/jquery/jquery-3.6.4.js"></script>
+    <script>
+        function getMainContent(link) {
+            $.ajax({
+                // The link we are accessing.
+                url: link,
+                    
+                // The type of request.
+                type: "get",
+                    
+                // The type of data that is getting returned.
+                dataType: "html",
 
+                success: function( strData ){
+                    document.getElementById("mainContent").innerHTML = strData;
+                    const items = document.querySelectorAll(".carousel-item");
+
+                    items.forEach((el) => {
+                        const minPerSlide = 4
+                        let next = el.nextElementSibling
+                        for (var i=1; i<minPerSlide; i++) {
+                            if (!next) {
+                                // wrap carousel by using first child
+                                next = items[0]
+                                
+                            }
+                            let cloneChild = next.cloneNode(true)
+                            el.appendChild(cloneChild.children[0])
+                            next = next.nextElementSibling
+                        }
+                    })
+                }
+            });
+        }
+    </script>
 </head>
-<body>
+<body onload='getMainContent("index.php?controller=guest&action=getDiscount")'>
+    <?php
+    //decode json
+        $userObj = json_decode($userObj);
+    ?>
     <div class="container-fluid">
         <div class="row align-items-center py-3 pd_mobile" style="background-color: #f2f2f2;">
             <div class="col-lg-3 d-none d-lg-block px-5">
@@ -68,7 +102,7 @@ session_start();
                 </a>
                 <nav class="collapse show navbar" id="navbar-vertical" style="margin-top: -9px;">
                     <div class="navbar-nav w-100">
-                        <a href="#" class="nav-item nav-link border">Khai Vị</a>
+                        <a onclick="getMainContent('index.php?controller=guest&action=menu&type=starter')" class="nav-item nav-link border">Khai Vị</a>
                         <a href="#" class="nav-item nav-link border">Món Chính</a>
                         <a href="#" class="nav-item nav-link border">Tráng Miệng</a>
                         <a href="#" class="nav-item nav-link border">Đồ Ngọt</a>
@@ -100,13 +134,13 @@ session_start();
                                 <a href="#" class="nav-item nav-link">
                                     <div style="display: inline-block;">
                                         <div style="display: inline-block; margin-right: 10px;">
-                                            <img src="view/images/avt_user.jpg" 
+                                            <img src="<?php echo $userObj->avatar?>" 
                                                 style="width: 30px; height: 30px; border-radius: 50%; 
                                                         object-fit: cover; margin-bottom: 3px;" 
                                                 alt="avatar">
                                         </div>
                                         <div style="display: inline-block; font-weight: 500; margin-top: 7px;">
-                                            Chào, <?php echo $_SESSION['name'];?>
+                                            Chào, <?php echo $userObj->name;?>
                                         </div>
                                     </div>
                                 </a>
@@ -120,38 +154,7 @@ session_start();
                         </div>
                     </div>
                 </nav>
-                <div id="header-carousel" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active" style="height: 380px;">
-                            <img class="img-fluid" src="view/images/carousel-1.jpg" alt="carousel-1">
-                            <div class="carousel-caption d-none d-md-block">
-                                <div class="p-3" style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
-                                    <h4 class="text-uppercase font-weight-large mb-3">10% Off Your First Order</h4>
-                                    <h3 class="display-2 font-weight-bold mb-4">Variety Of Models</h3>
-                                    <a href="#" class="btn btn-light py-2 px-3">Shop Now</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item" style="height: 380px;">
-                            <img class="img-fluid" src="view/images/carousel-2.jpg" alt="carousel-2">
-                            <div class="carousel-caption d-none d-md-block">
-                                <div class="p-3" style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
-                                    <h4 class="text-uppercase font-weight-large mb-3">10% Off Your First Order</h4>
-                                    <h3 class="display-2 font-weight-bold mb-4">Resonable Price</h3>
-                                    <a href="#" class="btn btn-light py-2 px-3">Shop Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#header-carousel" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
+                <div id="mainContent"></div>
             </div>
         </div>
     </div>

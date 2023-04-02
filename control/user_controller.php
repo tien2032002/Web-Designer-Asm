@@ -9,19 +9,18 @@
         
         //login form
         function login() {
-
             //if user has filled login form
             if (isset($_POST['phone']) && isset($_POST['password'])) {
                 
                 include_once('model/customer_db.php');
                 
-                //check login infomation
+                //check login infomation, get login error
                 $checkLogin = checkLogin($_POST['phone'], $_POST['password']);
 
                 //if login infomation not correct, redirect to login page with error code
                 if ($checkLogin!='good') {
                     $data = array('loginErr' => $checkLogin);
-                    $this->render('view/html/UI_user/login', $data);
+                    $this->render('view/html/UI_guest/login', $data);
                 }
                 //login infomation correct => go to home page for user
                 else {
@@ -29,22 +28,27 @@
                 }
             }
             else {
+                //if not filled form yet
                 $data = array('loginErr' => 'first');
-                $this->render('view/html/UI_user/login', $data);
+                $this->render('view/html/UI_guest/login', $data);
             }
         }
 
         //register form
 
         function signup() {
+            //include model
             include_once('model/customer_db.php');
             if (isset($_POST['firstName']) && isset($_POST['lastName']) &&
                 isset($_POST['phone']) && isset($_POST['email']) &&
-                isset($_POST['password']) && isset($_POST['password2'])){      
+                isset($_POST['password']) && isset($_POST['password2'])){     
+                    //get error code 
                     $errArr = checkSignUp($_POST['firstName'], $_POST['lastName'],
                                 $_POST['phone'], $_POST['email'], 
                                 $_POST['password'], $_POST['password2']);
                     extract($errArr);
+                    //if all information are good=> start session
+                    //save user info and go to home page for user
                     if($firstNameErr == 'good' && $lastNameErr == 'good' &&
                        $phoneErr == 'good' && $emailErr == 'good' && 
                        $passwordErr == 'good' && $password2Err == 'good') {
@@ -53,11 +57,10 @@
                                         $_POST['password'], $_POST['password2']);
                             session_start();
                             $_SESSION['phone'] = $_POST['phone'];
-                            $_SESSION['name'] = $_POST['firstName']. ' ' .$_POST['lastName'];
                             header("Location: index.php?controller=user&action=home_page_user");
                        }
-
-                    else $this->render('view/html/UI_user/signup', $errArr);
+                       //if have error, go back to signup page and display warning
+                    else $this->render('view/html/UI_guest/signup', $errArr);
             }
             else {
                 $errArr = array('firstNameErr' => 'first',
@@ -66,17 +69,32 @@
                 'emailErr' => 'first',
                 'passwordErr' => 'first',
                 'password2Err' => 'first');
-                $this->render('view/html/UI_user/signup', $errArr);
+                $this->render('view/html/UI_guest/signup', $errArr);
             }
         }
 
+        //display user home page
         function home_page_user() {
-            $this->render('view/html/UI_user/home_page_user');
+            //check session
+            //if dont have session, display error and exit
+            session_start();
+            if (isset($_SESSION['phone'])) {
+                include("model/customer_db.php");
+                $data = array("userObj" => getCustomerByPhone($_SESSION['phone']));
+                $this->render("view/html/UI_user/home_page_user", $data);
+            }
+            else {
+                echo "error";
+                exit;
+            }
         }
 
         function logout() {
+            //logout, destroy session and go to home page for guest
+            session_start();
             session_destroy();
-            header("Location: index.php?controller=user&action=home_page");
+            header("Location: index.php?controller=guest&action=home_page");
         }
+
     }
 ?>
