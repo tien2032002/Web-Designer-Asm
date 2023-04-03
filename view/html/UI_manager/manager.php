@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
       <!-- style -->
-    <link rel="stylesheet" type="text/css" href="view/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="view/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="view/css/UI_manager/style_manager.css"/>
     <link rel="stylesheet" type="text/css" href="view/css/UI_manager/style_navbar_manager.css"/>
     

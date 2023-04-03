@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="view/bootstrap/css/bootstrap.min.css">
     <!-- ======= Scripts ====== -->
     <script src="view/bootstrap/js/bootstrap.min.js"></script>
-    <script src="view/jquery/jquery-3.6.4.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
 <body>
