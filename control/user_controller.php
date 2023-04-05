@@ -96,5 +96,9 @@
             header("Location: index.php?controller=guest&action=home_page");
         }
 
+         //display profile user
+        function profile_user(){
+            $this->render('view/html/UI_user/profile_user');
+        }
     }
 ?>

@@ -131,7 +131,7 @@
                         </div>
                         <div class="navbar-nav ml-auto nav_main">
                             <div>
-                                <a href="#" class="nav-item nav-link">
+                                <a href="index.php?controller=user&action=profile_user" class="nav-item nav-link">
                                     <div style="display: inline-block;">
                                         <div style="display: inline-block; margin-right: 10px;">
                                             <img src="<?php echo $userObj->avatar?>" 
