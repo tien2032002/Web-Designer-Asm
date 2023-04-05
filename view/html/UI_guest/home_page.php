@@ -14,30 +14,14 @@
     <!-- ======= Scripts ====== -->
     <script src="view/bootstrap/js/bootstrap.min.js"></script>
     <script src="view/jquery/jquery-3.6.4.js"></script>
-    <script>
-        //get content using ajax
-        function getMainContent(link) {
-            $.ajax({
-                // The link we are accessing.
-                url: link,
-                    
-                // The type of request.
-                type: "get",
-                    
-                // The type of data that is getting returned.
-                dataType: "html",
-                success: function( strData ){
-                    document.getElementById("mainContent").innerHTML = strData;
-                }
-            });
-        }
-    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 </head>
-<body onload='getMainContent("index.php?controller=guest&action=getDiscount")'>
+<body>
+    <!-- Topbar Start -->
     <div class="container-fluid">
         <div class="row align-items-center py-3 pd_mobile" style="background-color: #f2f2f2;">
             <div class="col-lg-3 d-none d-lg-block px-5">
-                <a href="index.php?controller=user&action=home_page">
+                <a href="#">
                     <img src="view/images/logo.jpg" style="width: 70%;" alt="logo">
                 </a>
             </div>
@@ -69,28 +53,32 @@
             </div>
         </div>
     </div>
-    
+    <!-- Topbar End -->
+
     <div class="container-fluid">
         <div class="row border-top px-3">
+            <!-- Sidebar Large Start -->
             <div class="col-lg-3 d-none d-lg-block navbar_left">
                 <a class="btn d-flex align-items-center justify-content-between" 
                     data-toggle="collapse" href="#navbar-vertical" 
-                    style="height: 65px; padding: 0 30px;">
+                    style="height: 60px; padding: 0 30px;">
                     <h6 class="m-0">Danh Mục Món Ăn</h6>
                     <i class="fa fa-angle-down text-dark"></i>
                 </a>
                 <nav class="collapse show navbar" id="navbar-vertical" style="margin-top: -9px;">
-                    <div class="navbar-nav w-100">
-                        <a onclick="getMainContent('index.php?controller=guest&action=menu&type=starter'); carousel();" class="nav-item nav-link border">Khai Vị</a>
-                        <a href="#" class="nav-item nav-link border">Món Chính</a>
-                        <a href="#" class="nav-item nav-link border">Tráng Miệng</a>
-                        <a href="#" class="nav-item nav-link border">Đồ Ngọt</a>
-                        <a href="#" class="nav-item nav-link border">Các Món Ăn Khác</a>
+                    <div class="list-group w-100" id="myList">
+                        <a class="list-group-item list-group-item-action" data-toggle="list" href="#tab1">Khai vị</a>
+                        <a class="list-group-item list-group-item-action active" data-toggle="list" href="#tab2">Món Chính</a>
+                        <a class="list-group-item list-group-item-action" data-toggle="list" href="#tab3">Tráng Miệng</a>
+                        <a class="list-group-item list-group-item-action" data-toggle="list" href="#tab4">Đồ Ngọt</a>
+                        <a class="list-group-item list-group-item-action" data-toggle="list" href="#tab5">Các Món Ăn Khác</a>
                     </div>
                 </nav>
             </div>
+            <!-- Sidebar Large End -->
             <div class="col-lg-9">
-                <nav class="navbar navbar-expand-lg bg-light navbar-light p-2" style="height: 62px;">
+                <!-- Navbar Start -->
+                <nav class="navbar navbar-expand-lg bg-light navbar-light p-2">
                     <a href="index.php?controller=user&action=home_page" class="d-block d-lg-none">
                         <img src="view/images/logo.jpg" style="width: 100px;" alt="logo">
                     </a>
@@ -103,7 +91,7 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav">
-                            <a href="index.php?controller=user&action=home_page" class="nav-item nav-link active">Trang Chủ</a>
+                            <a href="#" class="nav-item nav-link active">Trang Chủ</a>
                             <a href="#" class="nav-item nav-link" >Thực Đơn</a>
                             <a href="#" class="nav-item nav-link">Đặt Bàn</a>
                             <a href="#" class="nav-item nav-link">Tin Tức</a>
@@ -125,12 +113,159 @@
                         </div>
                     </div>
                 </nav>
-                <div id="mainContent">
+                <!-- Navbar End -->
 
+                <!-- Sidebar None Large Start -->
+                <div class="d-block d-lg-none navbar_left">
+                    <a class="btn d-flex align-items-center justify-content-between" 
+                        data-toggle="collapse" href="#navbar-vertical1" 
+                        style="height: 60px; padding: 0 30px;">
+                        <h6 class="m-0">Danh Mục Món Ăn</h6>
+                        <i class="fa fa-angle-down text-dark"></i>
+                    </a>
+                    <nav class="collapse show navbar" id="navbar-vertical1" style="margin-top: -9px;">
+                        <div class="navbar-nav w-100">
+                            <a href="#" class="nav-item nav-link border">Khai Vị</a>
+                            <a href="#" class="nav-item nav-link border">Món Chính</a>
+                            <a href="#" class="nav-item nav-link border">Tráng Miệng</a>
+                            <a href="#" class="nav-item nav-link border">Đồ Ngọt</a>
+                            <a href="#" class="nav-item nav-link border">Các Món Ăn Khác</a>
+                        </div>
+                    </nav>
+                </div>
+                <!-- Sidebar None Large Start -->
+
+                <!-- Carousel Start -->
+                <div id="header-carousel" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" style="height: 380px;">
+                            <img class="img-fluid" src="view/images/carousel-1.jpg" alt="carousel-1">
+                            <div class="carousel-caption d-none d-md-block">
+                                <div class="p-3" style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                    <h4 class="text-uppercase text-light font-weight-large mb-3">10% off when booking</h4>
+                                    <h3 class="display-2 font-weight-bold mb-4 text-light">Diverse Menu</h3>
+                                    <a href="#" class="btn btn-light py-2 px-3">Booking Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item" style="height: 380px;">
+                            <img class="img-fluid" src="view/images/carousel-2.jpg" alt="carousel-2">
+                            <div class="carousel-caption d-none d-md-block">
+                                <div class="p-3 text-light" style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
+                                    <h4 class="text-uppercase font-weight-large mb-3 text-light">10% off when booking</h4>
+                                    <h3 class="display-2 font-weight-bold mb-4">Resonable Price</h3>
+                                    <a href="#" class="btn btn-light py-2 px-3">Booking Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#header-carousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+                <!-- Carousel End-->
+            </div>
+        </div>
+    </div>
+
+    <!-- Featured Start -->
+    <div class="container-fluid pt-5">
+        <div class="row px-xl-5 pb-3">
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
+                    <h1 class="fa fa-check text-primary m-0 mr-3"></h1>
+                    <h5 class="font-weight-semi-bold m-0">Quality Product</h5>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
+                    <h1 class="fa fa-shipping-fast text-primary m-0 mr-2"></h1>
+                    <h5 class="font-weight-semi-bold m-0">Free Shipping</h5>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
+                    <h1 class="fas fa-exchange-alt text-primary m-0 mr-3"></h1>
+                    <h5 class="font-weight-semi-bold m-0">14-Day Return</h5>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
+                    <h1 class="fa fa-phone-volume text-primary m-0 mr-3"></h1>
+                    <h5 class="font-weight-semi-bold m-0">24/7 Support</h5>
                 </div>
             </div>
         </div>
     </div>
+    <!-- Featured End -->
+
+
+    <!-- Categories Start -->
+    <div class="container-fluid pt-5">
+        <div class="row px-xl-5 pb-3">
+            <div class="col-lg-4 col-md-6 pb-1">
+                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
+                    <p class="text-right">15 Products</p>
+                    <a href="" class="cat-img position-relative overflow-hidden mb-3">
+                        <img class="img-fluid" src="img/cat-1.jpg" alt="">
+                    </a>
+                    <h5 class="font-weight-semi-bold m-0">Men's dresses</h5>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 pb-1">
+                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
+                    <p class="text-right">15 Products</p>
+                    <a href="" class="cat-img position-relative overflow-hidden mb-3">
+                        <img class="img-fluid" src="img/cat-2.jpg" alt="">
+                    </a>
+                    <h5 class="font-weight-semi-bold m-0">Women's dresses</h5>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 pb-1">
+                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
+                    <p class="text-right">15 Products</p>
+                    <a href="" class="cat-img position-relative overflow-hidden mb-3">
+                        <img class="img-fluid" src="img/cat-3.jpg" alt="">
+                    </a>
+                    <h5 class="font-weight-semi-bold m-0">Baby's dresses</h5>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 pb-1">
+                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
+                    <p class="text-right">15 Products</p>
+                    <a href="" class="cat-img position-relative overflow-hidden mb-3">
+                        <img class="img-fluid" src="img/cat-4.jpg" alt="">
+                    </a>
+                    <h5 class="font-weight-semi-bold m-0">Accerssories</h5>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 pb-1">
+                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
+                    <p class="text-right">15 Products</p>
+                    <a href="" class="cat-img position-relative overflow-hidden mb-3">
+                        <img class="img-fluid" src="img/cat-5.jpg" alt="">
+                    </a>
+                    <h5 class="font-weight-semi-bold m-0">Bags</h5>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 pb-1">
+                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
+                    <p class="text-right">15 Products</p>
+                    <a href="" class="cat-img position-relative overflow-hidden mb-3">
+                        <img class="img-fluid" src="img/cat-6.jpg" alt="">
+                    </a>
+                    <h5 class="font-weight-semi-bold m-0">Shoes</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Categories End -->
+
     <!-- ======= Scripts ====== -->
     <script src="view/script/user_navbar.js"></script>
 </body>

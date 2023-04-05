@@ -1,25 +1,3 @@
-<script>
-    //function for display multiple item carousel
-    function carousel() {
-        const items = document.querySelectorAll(".carousel-item");
-
-                items.forEach((el) => {
-                    const minPerSlide = 4
-                    let next = el.nextElementSibling
-                    for (var i=1; i<minPerSlide; i++) {
-                        if (!next) {
-                            // wrap carousel by using first child
-                            next = items[0]
-                            
-                        }
-                        let cloneChild = next.cloneNode(true)
-                        el.appendChild(cloneChild.children[0])
-                        next = next.nextElementSibling
-                    }
-                })
-    }
-</script>
-
 <!-- starter content -->
 <link rel="stylesheet" type="text/css" href="view/css/UI_user/starter.css">
 <div class="starter-content">

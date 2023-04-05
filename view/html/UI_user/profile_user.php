@@ -111,7 +111,6 @@
                                 <a class="list-group-item list-group-item-action" data-toggle="list" href="#cart">Giỏ hàng</a>
                                 <a class="list-group-item list-group-item-action" data-toggle="list" href="#bill">Đơn mua</a>
                             </div>
-                            
                         </div>
                     </div>
                     <div class="col-md-9 mt-2">

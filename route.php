@@ -1,6 +1,6 @@
 <?php
     //list of controllers and action
-    $controllers = array('guest' => ['home_page', 'login', 'signup', 'menu', 'getDiscount', 'login_manager'],
+    $controllers = array('guest' => ['home_page', 'login', 'signup', 'login_manager'],
                          'user' => ['home_page_user', 'signup', 'login', 'logout', 'profile_user'],
                          'manager' => ['home_page_manager', 'manage_employee', 'login', 'logout', 'delete_employee', 'edit_employee'],
                          'employee');
@@ -9,7 +9,6 @@
         $controller = 'user';
         $action = 'error';
     }
-
     //execute action
     include_once('control/' . $controller . '_controller.php');
     $klass = $controller . 'Controller';
