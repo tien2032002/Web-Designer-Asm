@@ -15,6 +15,26 @@
     <script src="view/bootstrap/js/bootstrap.min.js"></script>
     <script src="view/jquery/jquery-3.6.4.js"></script>
     <script>
+    //function for display multiple item carousel
+    function carousel() {
+        const items = document.querySelectorAll(".carousel-item");
+                items.forEach((el) => {
+                    const minPerSlide = 4
+                    let next = el.nextElementSibling
+                    for (var i=1; i<minPerSlide; i++) {
+                        if (!next) {
+                            // wrap carousel by using first child
+                            next = items[0]
+                            
+                        }
+                        let cloneChild = next.cloneNode(true)
+                        el.appendChild(cloneChild.children[0])
+                        next = next.nextElementSibling
+                    }
+                })
+    }
+    </script>
+    <script>
         //get content using ajax
         function getMainContent(link) {
             $.ajax({
@@ -28,10 +48,12 @@
                 dataType: "html",
                 success: function( strData ){
                     document.getElementById("mainContent").innerHTML = strData;
+                    carousel()
                 }
             });
         }
     </script>
+
 </head>
 <body onload='getMainContent("index.php?controller=guest&action=getDiscount")'>
     <div class="container-fluid">
@@ -81,7 +103,7 @@
                 </a>
                 <nav class="collapse show navbar" id="navbar-vertical" style="margin-top: -9px;">
                     <div class="navbar-nav w-100">
-                        <a onclick="getMainContent('index.php?controller=guest&action=menu&type=starter'); carousel();" class="nav-item nav-link border">Khai Vị</a>
+                        <a onclick="getMainContent('index.php?controller=guest&action=menu&type=starter');" class="nav-item nav-link border">Khai Vị</a>
                         <a href="#" class="nav-item nav-link border">Món Chính</a>
                         <a href="#" class="nav-item nav-link border">Tráng Miệng</a>
                         <a href="#" class="nav-item nav-link border">Đồ Ngọt</a>

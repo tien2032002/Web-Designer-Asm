@@ -31,6 +31,7 @@
                     document.getElementById("mainContent").innerHTML = strData;
                     const items = document.querySelectorAll(".carousel-item");
 
+                    //display carousel
                     items.forEach((el) => {
                         const minPerSlide = 4
                         let next = el.nextElementSibling
