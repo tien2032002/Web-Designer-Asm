@@ -168,7 +168,7 @@
                                                 }
                                             ?>
                                         </p>
-                                        <div class="form-group mt-3">
+                                        <!-- <div class="form-group mt-3">
                                             <label for="role" style="font-weight: 700;">ĐĂNG NHẬP DÀNH CHO</label><br>
                                             <div class="form-check-inline mt-2">
                                                 <label>
@@ -180,7 +180,7 @@
                                                     <input type="radio" class="form-check-input" name="role" value="employee" required> Employee
                                                 </label>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     <button type="submit" class="btn btn-danger mt-4" 
                                             style="min-width: 13%; border-radius: 0;">
                                             Đăng Nhập

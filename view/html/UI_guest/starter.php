@@ -107,7 +107,6 @@
             <span class="visually-hidden">Next</span>
         </button>
 
-        <script>carousel()</script>
     </div>
 
     <!-- stater menu -->
@@ -375,6 +374,6 @@
         </div>
     <!-- end starter menu -->
     <script src="view/script/starter.js"></script>
-    <script>carousel()</script>
+    
 </div>
 <!-- end starter content -->
