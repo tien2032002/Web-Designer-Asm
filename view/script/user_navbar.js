@@ -10,9 +10,9 @@ $(document).ready(function() {
 });
     
 
-  // $('.navbar-toggler').click(function(){
-  //     $('#navbarCollapse').toggleClass('show');
-  // });
+/* $('.navbar-toggler').click(function(){
+    $('#navbarCollapse').toggleClass('show');
+}); */
 
 
 const navbar=document.getElementById("navbarCollapse");
