@@ -9,8 +9,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
      <!--  style -->
-    <link rel="stylesheet" type="text/css" href="view/css/UI_user/style_navbar_homepage.css">
+    <link rel="stylesheet" type="text/css" href="view/css/UI_user/navbar_homepage.css">
     <link rel="stylesheet" type="text/css" href="view/css/UI_user/style_login.css">
+    <link rel="stylesheet" type="text/css" href="view/css/UI_user/cart2.css">
     <link rel="stylesheet" type="text/css" href="view/bootstrap/css/bootstrap.min.css">
     <!-- ======= Scripts ====== -->
     <script src="view/bootstrap/js/bootstrap.min.js"></script>
@@ -22,10 +23,10 @@
         if (!isset($loginErr)) $loginErr='first';
     ?>
     <div class="container-fluid">
-        <div class="row align-items-center py-3 pd_mobile" style="background-color: #f2f2f2;">
+        <div class="row align-items-center" style="background-color: #f2f2f2; height:80px;">
             <div class="col-lg-3 d-none d-lg-block px-5">
                 <a href="index.php?controller=guest&action=home_page">
-                    <img src="view/images/logo.jpg" style="width: 70%;" alt="logo">
+                    <img src="view/images/logo.jpg" style="width: 150px;" alt="logo">
                 </a>
             </div>
             <div class="col-lg-9">
@@ -43,14 +44,26 @@
                       </form>
                     </div>
                     <div class="col-tablet-3 col-mobile-5 navbar_ic d-flex justify-content-end">
-                      <a href="" class="btn border btn-outline-secondary" style="margin-right: 1%; border-radius: 0;">
-                        <i class="fas fa-heart"></i>
-                        <span class="badge">0</span>
-                      </a>
-                      <a href="" class="btn border btn-outline-secondary" style="margin-right: 1%; border-radius: 0;">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span class="badge">0</span>
-                      </a>
+                        <a href="" class="btn border btn-outline-secondary" style="margin-right: 1%; border-radius: 0;">
+                            <i class="fas fa-heart"></i>
+                            <span class="badge">0</span>
+                        </a>
+                        <!-- Cart Popup Start -->
+                        <div class="d-flex justify-content-end" onmouseover="showCartPopup()" onmouseout="hideCartPopup()">
+                            <a
+                                href="#" class="btn border btn-outline-secondary" 
+                                style="margin-right: 1%; border-radius: 0;">
+                                <div class="d-flex justify-content-end mt-1">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <span class="badge">0</span>
+                                </div>
+                            </a>
+                            <div id="popup"></div>
+                            <div id="cart-popup" class="p-3">
+                                <div class="alert-cart">Chưa Có Sản Phẩm</div>
+                            </div> 
+                        </div>
+                        <!-- Cart Popup End -->
                     </div>
                 </div>
             </div>
@@ -197,6 +210,6 @@
     </footer>
     <!-- ======= Scripts ====== -->
     <script src="view/script/user_navbar.js"></script>
-    <script src="view/script/login_form.js"></script>
+    <script src="view/script/cart.js"></script>
 </body>
 </html>
