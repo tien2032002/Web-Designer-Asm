@@ -75,7 +75,7 @@
 
 /* reponsive */
 
-/* @media (max-width: 767px) {
+@media (max-width: 767px) {
     .carousel-inner .carousel-item > div {
         display: none;
     }
@@ -88,7 +88,7 @@
 .carousel-inner .carousel-item-next,
 .carousel-inner .carousel-item-prev {
     display: flex;
-} */
+}
 
 /* medium and up screens */
 @media (min-width: 768px) {

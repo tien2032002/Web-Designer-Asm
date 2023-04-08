@@ -191,11 +191,11 @@
                                 <h6 class="card-title">Món ăn được ưa thích</h6>
                                 <div id="recipeCarousel" class="carousel slide " data-bs-ride="carousel">
                                     <div class="carousel-inner" role="listbox">
-                                        <div id='carosel-1' class="carousel-item active ">
+                                        <div id='carosel-1' class="carousel-item active carousel-menu">
                                             <div class="col-md-3">
                                                 <div class="card ">
                                                     <div class="card-img">
-                                                        <img src="/view/images/starter-1.jpg" class="img-fluid rounded h-100 object-fit-cover">
+                                                        <img src="view\images\starter\starter-1.jpg" class="img-fluid rounded h-100 object-fit-cover">
                                                     </div>
                                                     <div class="card-img-overlay gradient-overlay text-light d-flex flex-column justify-content-end ">
                                                         <h6>Gỏi cuốn</h6>
@@ -205,11 +205,11 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="carousel-item">
+                                        <div class="carousel-item carousel-menu">
                                             <div class="col-md-3">
                                                 <div class="card">
                                                     <div class="card-img">
-                                                        <img src="/view/images/starter-2.jpg" class="img-fluid rounded">
+                                                        <img src="view\images\starter\starter-2.jpg" class="img-fluid rounded">
                                                     </div>
                                                     <div class="card-img-overlay gradient-overlay text-light d-flex  flex-column justify-content-end">
                                                         <h6>Gỏi cá hồi</h6>
@@ -218,11 +218,11 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="carousel-item">
+                                        <div class="carousel-item carousel-menu">
                                             <div class="col-md-3">
                                                 <div class="card">
                                                     <div class="card-img">
-                                                        <img src="/view/images/starter-3.jpg" class="img-fluid rounded object-fit-fill">
+                                                        <img src="view\images\starter\starter-3.jpg" class="img-fluid rounded object-fit-fill">
                                                     </div>
                                                     <div class="card-img-overlay gradient-overlay text-light d-flex  flex-column justify-content-end ">
                                                         <h6>Gỏi tôm</h6>
@@ -231,11 +231,11 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="carousel-item">
+                                        <div class="carousel-item carousel-menu">
                                             <div class="col-md-3">
                                                 <div class="card">
                                                     <div class="card-img">
-                                                        <img src="/view/images/starter-4.jpg" class="img-fluid rounded">
+                                                        <img src="view\images\starter\starter-4.jpg" class="img-fluid rounded">
                                                     </div>
                                                     <div class="card-img-overlay gradient-overlay text-light d-flex flex-column justify-content-end">
                                                         <h6>Súp cua</h6>
@@ -244,11 +244,11 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="carousel-item">
+                                        <div class="carousel-item carousel-menu">
                                             <div class="col-md-3">
                                                 <div class="card">
                                                     <div class="card-img">
-                                                        <img src="/view/images/starter-5.jpg" class="img-fluid rounded">
+                                                        <img src="view\images\starter\starter-5.jpg" class="img-fluid rounded">
                                                     </div>
                                                     <div class="card-img-overlay gradient-overlay text-light d-flex flex-column justify-content-end">
                                                         <h6>Salad</h6>
@@ -257,11 +257,11 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="carousel-item">
+                                        <div class="carousel-item carousel-menu">
                                             <div class="col-md-3">
                                                 <div class="card">
                                                     <div class="card-img">
-                                                        <img src="/view/images/starter-6.jpg" class="img-fluid rounded">
+                                                        <img src="view\images\starter\starter-6.jpg" class="img-fluid rounded">
                                                     </div>
                                                     <div class="card-img-overlay gradient-overlay text-light d-flex flex-column justify-content-end">
                                                         <h6>Bánh Bacon cuộn</h6>
@@ -283,7 +283,24 @@
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                     <span class="visually-hidden">Next</span>
                                 </button>
+                                <script>
+                                    const items = document.querySelectorAll(".carousel-menu");
 
+                                    items.forEach((el) => {
+                                        const minPerSlide = 4
+                                        let next = el.nextElementSibling
+                                        for (var i=1; i<minPerSlide; i++) {
+                                            if (!next) {
+                                                // wrap carousel by using first child
+                                                next = items[0]
+                                                console.log([el])
+                                            }
+                                            let cloneChild = next.cloneNode(true)
+                                            el.appendChild(cloneChild.children[0])
+                                            next = next.nextElementSibling
+                                        }
+                                    })
+                                </script>
                             </div>
 
                             <!-- stater menu -->
