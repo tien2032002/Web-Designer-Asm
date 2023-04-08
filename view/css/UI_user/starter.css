@@ -16,30 +16,30 @@
 
 /* menu css */
 
-#menu{
+.menu{
   padding:10px;
   margin-top: 10px;
-  min-height: 1000px;
+  
 }
 
-#menu .menu__item{
+.menu .menu__item{
   margin-bottom: 10px;
-  width: 23%;
+  width: 32%;
   height: 304px;
   padding-bottom: 0px;
 }
 
-#menu .menu__item .item-img{
-  height: 100px;
+.menu .menu__item .item-img{
+  height: 200px;
   border-radius: 5px;
   object-fit: cover;
 }
 
-#menu .menu__item .item-description{
+.menu .menu__item .item-description{
   height: 50px;
 }
 
-#menu .menu__item .item-description,
+.menu .menu__item .item-description,
 .menu__item .item-review{
   margin: 6px 10px 0px 10px;
   border-bottom: solid 1px #CCC;
