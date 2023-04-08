@@ -184,7 +184,9 @@
                     </div>
                     <!-- Tab Khai Vi -->
                     <div class="tab-pane" id="tab1">
-                        123
+                        <?php
+                            include('view\html\UI_guest\starter.php');
+                        ?>
                     </div>
                     <!-- Tab Mon Chinh -->
                     <div class="tab-pane" id="tab2">456</div>
