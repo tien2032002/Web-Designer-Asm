@@ -1,7 +1,7 @@
 <?php
     //list of controllers and action
-    $controllers = array('guest' => ['home_page', 'login', 'signup', 'menu', 'getDiscount', 'login_manager'],
-                         'user' => ['home_page_user', 'signup', 'login', 'logout'],
+    $controllers = array('guest' => ['home_page', 'login', 'signup', 'login_manager'],
+                         'user' => ['home_page_user', 'signup', 'login', 'logout', 'profile_user'],
                          'manager' => ['home_page_manager', 'manage_employee', 'login', 'logout', 'add_employee', 'delete_employee', 'update_employee'],
                          'employee');
     //if controller or action not in above list, go to error page
@@ -9,7 +9,6 @@
         $controller = 'user';
         $action = 'error';
     }
-
     //execute action
     include_once('control/' . $controller . '_controller.php');
     $klass = $controller . 'Controller';

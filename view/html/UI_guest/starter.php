@@ -1,4 +1,3 @@
-
 <!-- starter content -->
 <link rel="stylesheet" type="text/css" href="view/css/UI_user/starter.css">
 <div class="starter-content">
