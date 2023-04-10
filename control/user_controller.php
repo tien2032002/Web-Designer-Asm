@@ -78,9 +78,9 @@
             //check session
             //if dont have session, display error and exit
             session_start();
-            if (isset($_SESSION['phone'])) {
+            if (isset($_SESSION['userObj'])) {
                 include("model/customer_db.php");
-                $data = array("userObj" => getCustomerByPhone($_SESSION['phone']));
+                $data = array("userObj" => $_SESSION['userObj']);
                 $this->render("view/html/UI_user/home_page_user", $data);
             }
             else {
@@ -98,7 +98,54 @@
 
          //display profile user
         function profile_user(){
-            $this->render('view/html/UI_user/profile_user');
+            session_start();
+            if(isset($_SESSION['userObj'])){
+                $this->render('view/html/UI_user/profile_user');
+            }
+            
+        }
+
+        function dish_list() {
+            include("model\product_db.php");
+            session_start();
+            if (isset($_SESSION['userObj'])) {
+                $data = array ('productList' => getProductList($_GET['type']),
+                           'type' => $_GET['type']);
+                $this->render('view\html\UI_user\dish_list', $data);
+            }
+            else header('index.php?controller=guest&action=dish_list');
+        }
+
+        function dish_detail() {
+            include("model\product_db.php");
+            session_start();
+            if (isset($_SESSION['userObj'])) {
+                $getProductObj = getProductById($_GET['id']);
+                if ($getProductObj == 'invalid id') echo 'wrong id';
+                else {
+                    $data = array('productObj' => $getProductObj,
+                                'relatedProduct' => get3RandomProduct(json_decode($getProductObj)->type, $_GET['id']));
+                    $this->render('view\html\UI_user\dish_detail', $data);
+                }
+            }
+        }
+
+        function menu() {
+            include("model\product_db.php");
+            session_start();
+            if (isset($_SESSION['userObj'])) {
+                $data = array('menuList' => getMenuList());
+                $this->render('view\html\UI_user\menu_user', $data);
+            }
+            else header('index.php?guest=user&action=menu');
+        }
+
+        function change_info() {
+            include('model\customer_db.php');
+            session_start();
+            $changeErr = (checkChangeInfo());
+            changeInfor($changeErr);
+            $this->render('view\html\UI_user\profile_user', $changeErr);
         }
     }
 ?>

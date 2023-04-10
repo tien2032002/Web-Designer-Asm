@@ -45,7 +45,7 @@
                     <div class="col-md-9 mt-2">
                         <div class="tab-content">
                             <!-- Tab Profile -->
-                            <?php include 'component/profile_user_tab'; ?>
+                            <?php include 'component/user_profile.php'; ?>
                             <!-- Tab Giỏ Hàng -->
                             <div class="tab-pane" id="cart">Đây là Tab giỏ hàng</div>
                             <!-- Tab Đơn Mua -->
@@ -57,6 +57,7 @@
         </div>
     </div>
     <!-- ======= Scripts ====== -->
+
     <script>
         $('#myList a').on('click', function () {
             $(this).tab('show')

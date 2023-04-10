@@ -17,6 +17,42 @@
     <script src="view/bootstrap/js/bootstrap.min.js"></script>
     <script src="view/jquery/jquery-3.6.4.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function loadXMLDoc(link, id)
+        {
+            $.ajax({
+                // The link we are accessing.
+                url: link,
+                    
+                // The type of request.
+                type: "get",
+                    
+                // The type of data that is getting returned.
+                dataType: "html",
+
+                success: function( strData ){
+                    document.getElementById(id).innerHTML = strData;
+                    // console.log("do")
+                    const items = document.querySelectorAll(".carousel-menu");
+
+                    items.forEach((el) => {
+                        const minPerSlide = 4
+                        let next = el.nextElementSibling
+                        for (var i=1; i<minPerSlide; i++) {
+                            if (!next) {
+                                // wrap carousel by using first child
+                                next = items[0]
+                                console.log([el])
+                            }
+                            let cloneChild = next.cloneNode(true)
+                            el.appendChild(cloneChild.children[0])
+                            next = next.nextElementSibling
+                        }
+                    })
+                }
+            });
+        }
+    </script>
 </head>
 <body>
     <?php
@@ -86,18 +122,34 @@
                     </div>
                     <!-- Tab Khai Vi -->
                     <div class="tab-pane" id="tab1">
-                        <?php
-                            include('view\html\UI_guest\starter.php');
-                        ?>
+                        <script>
+                            loadXMLDoc('index.php?controller=guest&action=dish_list&type=starter', 'tab1');
+                        </script>
                     </div>
                     <!-- Tab Mon Chinh -->
-                    <div class="tab-pane" id="tab2">456</div>
+                    <div class="tab-pane" id="tab2">
+                    <script>
+                            loadXMLDoc('index.php?controller=guest&action=dish_list&type=main', 'tab2');
+                    </script>
+                    </div>
                     <!-- Tab Trang Mieng -->
-                    <div class="tab-pane" id="tab3">789</div>
+                    <div class="tab-pane" id="tab3">
+                        <script>
+                            loadXMLDoc('index.php?controller=guest&action=dish_list&type=dessert', 'tab3');
+                        </script>
+                    </div>
                     <!-- Tab Do Ngot -->
-                    <div class="tab-pane" id="tab4">123</div>
+                    <div class="tab-pane" id="tab4">
+                        <script>
+                            loadXMLDoc('index.php?controller=guest&action=dish_list&type=sweet', 'tab4');
+                        </script>
+                    </div>
                     <!-- Tab Nuoc Uong -->
-                    <div class="tab-pane" id="tab5">456</div>
+                    <div class="tab-pane" id="tab5">
+                        <script>
+                            loadXMLDoc('index.php?controller=guest&action=dish_list&type=drink', 'tab5');
+                        </script>
+                    </div>
                 </div>
                 <!-- Tab Content End -->
             </div>

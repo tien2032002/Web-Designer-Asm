@@ -112,40 +112,46 @@
                     <!-- Tab HomePage -->
                     <div class="tab-pane active">
                         <!-- Carousel Start -->
-                        <?php include 'component/carousel.php'; ?>
-                        
+                        <?php include 'component/carousel.php'; ?>    
                         <!-- Carousel End-->
                     </div>
                     <!-- Tab Khai Vi -->
                     <div class="tab-pane" id="tab1">
                         <script>
                             loadXMLDoc('index.php?controller=guest&action=dish_list&type=starter', 'tab1');
+                            loadXMLDoc('index.php?controller=guest&action=dish_list&type=main', 'tab2');
                         </script>
-                        <!--  -->
                     </div>
                     <!-- Tab Mon Chinh -->
                     <div class="tab-pane" id="tab2">
                     <script>
-                            /* loadXMLDoc('index.php?controller=guest&action=dish_list&type=main', 'tab2'); */
+                            loadXMLDoc('index.php?controller=guest&action=dish_list&type=main', 'tab2');
                     </script>
                     </div>
                     <!-- Tab Trang Mieng -->
                     <div class="tab-pane" id="tab3">
-                        <!-- <script>
+                        <script>
                             loadXMLDoc('index.php?controller=guest&action=dish_list&type=dessert', 'tab3');
-                        </script> -->
+                        </script>
                     </div>
                     <!-- Tab Do Ngot -->
                     <div class="tab-pane" id="tab4">
-                        <!-- <script>
+                        <script>
                             loadXMLDoc('index.php?controller=guest&action=dish_list&type=sweet', 'tab4');
-                        </script> -->
+                        </script>
                     </div>
                     <!-- Tab Nuoc Uong -->
                     <div class="tab-pane" id="tab5">
-                        <!-- <script>
+                        <script>
                             loadXMLDoc('index.php?controller=guest&action=dish_list&type=drink', 'tab5');
-                        </script> -->
+                        </script>
+                    </div>
+
+                    <!-- Tab menu -->
+                    <div class="tab-pane" id="tab6">
+                        <script>
+                            loadXMLDoc('index.php?controller=guest&action=menu', 'tab6');
+                        </script>
                     </div>
                 </div>
                 <!-- Tab Content End -->

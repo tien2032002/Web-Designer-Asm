@@ -11,25 +11,23 @@
     </button>
     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
         <div class="navbar-nav">
-            <a href="index.php?controller=user&action=home_page_user" 
-            class="nav-item nav-link <?php echo $page=='home_page_user'?'active':'' ?>">Trang Chủ</a>
-            <a href="#" class="nav-item nav-link">Thực Đơn</a>
+            <a href="index.php?controller=user&action=home_page_user" class="nav-item nav-link active">Trang Chủ</a>
+            <a href="index.php?controller=user&action=menu" class="nav-item nav-link">Thực Đơn</a>
             <a href="#" class="nav-item nav-link">Đặt Bàn</a>
             <a href="#" class="nav-item nav-link">Tin Tức</a>
         </div>
         <div class="navbar-nav ml-auto nav_main">
             <div>
-                <a href="index.php?controller=user&action=profile_user" 
-                class="nav-item nav-link <?php echo $page=='profile_user'?'active':'' ?>">
+                <a href="index.php?controller=user&action=profile_user" class="nav-item nav-link">
                     <div style="display: inline-block;">
                         <div style="display: inline-block; margin-right: 10px;">
-                            <img src="view/images/avt_user.jpg" 
+                            <img src="<?php echo $userObj->image?>.jpg" 
                                 style="width: 30px; height: 30px; border-radius: 50%; 
                                         object-fit: cover; margin-bottom: 3px;" 
                                 alt="avatar">
                         </div>
                         <div style="display: inline-block; font-weight: 500; margin-top: 7px;">
-                            Chào, MinhLee
+                            Chào, <?php echo $userObj->name;?>
                         </div>
                     </div>
                 </a>
