@@ -1,6 +1,6 @@
 function carousel (){
     // console.log("do")
-    const items = document.querySelectorAll(".carousel-item");
+    const items = document.querySelectorAll(".carousel-menu");
 
     items.forEach((el) => {
         const minPerSlide = 4
@@ -9,12 +9,12 @@ function carousel (){
             if (!next) {
                 // wrap carousel by using first child
                 next = items[0]
-                // console.log([el])
+                console.log([el])
             }
             let cloneChild = next.cloneNode(true)
             el.appendChild(cloneChild.children[0])
             next = next.nextElementSibling
         }
     })
-
 }
+carousel();

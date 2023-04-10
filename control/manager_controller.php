@@ -58,7 +58,6 @@
             include_once('model/employee_db.php');
             $employeeList = getEmployeeList();
             $data = array ("employeeList" => $employeeList);
-            
             $this->render('view/html/UI_manager/manage_employee', $data);
         }
 

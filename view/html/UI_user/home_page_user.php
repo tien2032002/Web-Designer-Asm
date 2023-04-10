@@ -23,100 +23,14 @@
     //decode json
         $userObj = json_decode($userObj);
     ?>
-    <div class="container-fluid">
-        <div class="row align-items-center" style="background-color: #f2f2f2;  height:80px;">
-            <div class="col-lg-3 d-none d-lg-block px-5">
-                <a href="index.php?controller=user&action=home_page_user">
-                    <img src="view/images/logo.jpg" style="width: 150px;" alt="logo">
-                </a>
-            </div>
-            <div class="col-lg-9">
-                <div class="row">
-                    <div class="col-tablet-7 col-mobile-5">
-                      <form class="form-inline" style="margin-right: 1%;">
-                        <div class="input-group">
-                          <input type="text" class="form-control" placeholder="Search for products" style="border-radius: 0;">
-                          <div class="input-group-append">
-                            <button class="btn border btn-outline-secondary" type="button">
-                              <i class="fa fa-search"></i>
-                            </button>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                    <div class="col-tablet-3 col-mobile-5 navbar_ic d-flex justify-content-end">
-                        <a href="#" class="btn border btn-outline-secondary" style="margin-right: 1%; border-radius: 0;">
-                            <i class="fas fa-heart"></i>
-                            <span class="badge">0</span>
-                        </a>
-                        <!-- Cart Popup Start -->
-                        <div class="d-flex justify-content-end" onmouseover="showCartPopup()" onmouseout="hideCartPopup()">
-                            <a
-                                href="#" class="btn border btn-outline-secondary" 
-                                style="margin-right: 1%; border-radius: 0;">
-                                <div class="d-flex justify-content-end mt-1">
-                                    <i class="fas fa-shopping-cart"></i>
-                                    <span class="badge">0</span>
-                                </div>
-                            </a>
-                            <div id="popup"></div>
-                            <div id="cart-popup" class="p-3">
-                                <ul class="list-group">
-                                    <li class="list-group-item d-flex align-items-center">
-                                        <img src="https://beptueu.vn/hinhanh/tintuc/top-15-hinh-anh-mon-an-ngon-viet-nam-khien-ban-khong-the-roi-mat-1.jpg"
-                                                alt="products">
-                                        <div class="inline-block">
-                                            <div class="name-item">Bánh Mì Đặc Biệt</div>
-                                            <div class="quantity-item">SL: 1</div>
-                                        </div>
-                                        <div class="price-item">30.000đ</div>
-                                    </li>
-                                    <li class="list-group-item d-flex align-items-center">
-                                        <img src="https://cdnimg.vietnamplus.vn/uploaded/ngtnnn/2022_07_27/2707banhxeo.jpg"
-                                                alt="products">
-                                        <div class="inline-block">
-                                            <div class="name-item">Bánh Xèo Tôm Thịt</div>
-                                            <div class="quantity-item">SL: 1</div>
-                                        </div>
-                                        <div class="price-item">40.000đ</div>
-                                    </li>
-                                    <li class="list-group-item d-flex align-items-center">
-                                        <img src="https://lavenderstudio.com.vn/wp-content/uploads/2017/03/chup-san-pham.jpg"
-                                                alt="products">
-                                        <div class="inline-block">
-                                            <div class="name-item">Shushi Cá Hồi</div>
-                                            <div class="quantity-item">SL: 1</div>
-                                        </div>
-                                        <div class="price-item">130.000đ</div>
-                                    </li>
-                                    <li class="list-group-item d-flex align-items-center">
-                                        <img src="https://chuphinhmenu.com/wp-content/uploads/2019/05/chup-hinh-mon-an-menu-nha-hang-quan-2-2019.jpg"
-                                                alt="products">
-                                        <div class="inline-block">
-                                            <div class="name-item">Cơm Chiên Hải Sản</div>
-                                            <div class="quantity-item">SL: 1</div>
-                                        </div>
-                                        <div class="price-item">60.000đ</div>
-                                    </li>
-                                </ul>
-                                <hr>
-                                <div class="d-flex justify-content-between">
-                                    <div style="font-weight:500;">Tổng cộng: 
-                                        <span class="price-item">260.000đ<span>
-                                    </div>
-                                    <a href="#"><div class="cart-btn">Xem Giỏ Hàng</div></a>
-                                </div>
-                            </div> 
-                        </div>
-                        <!-- Cart Popup End -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- Topbar Start -->
+    <?php include 'component/topbar.php'; ?>
+    <!-- Topbar End -->
     
+    <!-- Main Start -->
     <div class="container-fluid">
         <div class="row border-top px-3">
+            <!-- Sidebar Large Start -->
             <div class="col-lg-3 d-none d-lg-block navbar_left">
                 <a class="btn d-flex align-items-center justify-content-between" 
                     data-toggle="collapse" href="#navbar-vertical" 
@@ -134,51 +48,12 @@
                     </div>
                 </nav>
             </div>
+            <!-- Sidebar Large End -->
+
             <div class="col-lg-9">
                 <!-- Navbar Start -->
-                <nav class="navbar navbar-expand-lg bg-light navbar-light p-2" style="height: 62px;">
-                    <a href="index.php?controller=user&action=home_page_user" class="d-block d-lg-none">
-                        <img src="view/images/logo.jpg" style="width: 100px;" alt="logo">
-                    </a>
-                    <button type="button" 
-                            class="navbar-toggler" 
-                            data-toggle="collapse" 
-                            data-target="#navbarCollapse"
-                            style="border-radius: 0;">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                        <div class="navbar-nav">
-                            <a href="index.php?controller=user&action=home_page_user" class="nav-item nav-link active">Trang Chủ</a>
-                            <a href="#" class="nav-item nav-link">Thực Đơn</a>
-                            <a href="#" class="nav-item nav-link">Đặt Bàn</a>
-                            <a href="#" class="nav-item nav-link">Tin Tức</a>
-                        </div>
-                        <div class="navbar-nav ml-auto nav_main">
-                            <div>
-                                <a href="index.php?controller=user&action=profile_user" class="nav-item nav-link">
-                                    <div style="display: inline-block;">
-                                        <div style="display: inline-block; margin-right: 10px;">
-                                            <img src="<?php echo $userObj->avatar?>" 
-                                                style="width: 30px; height: 30px; border-radius: 50%; 
-                                                        object-fit: cover; margin-bottom: 3px;" 
-                                                alt="avatar">
-                                        </div>
-                                        <div style="display: inline-block; font-weight: 500; margin-top: 7px;">
-                                            Chào, <?php echo $userObj->name;?>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div>
-                                <a href="index.php?controller=user&action=logout" class="nav-item nav-link">
-                                    <i class="bi bi-box-arrow-right text-dark"></i>
-                                    Đăng xuất
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </nav>
+                <?php $page = 'home_page_user';
+                include 'component/navbar.php'; ?>
                 <!-- Navbar End -->
 
                 <!-- Sidebar None Large Start -->
@@ -201,47 +76,19 @@
                 </div>
                 <!-- Sidebar None Large Start -->
 
+                <!-- Tab Content Start -->
                 <div class="tab-content">
                     <!-- Tab HomePage -->
                     <div class="tab-pane active">
                         <!-- Carousel Start -->
-                        <div id="header-carousel" class="carousel slide" data-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active" style="height: 380px;">
-                                    <img class="img-fluid" src="view/images/carousel-1.jpg" alt="carousel-1">
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <div class="p-3" style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
-                                            <h4 class="text-uppercase text-light font-weight-large mb-3">10% off when booking</h4>
-                                            <h3 class="display-2 font-weight-bold mb-4 text-light">Diverse Menu</h3>
-                                            <a href="#" class="btn btn-light py-2 px-3">Booking Now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="carousel-item" style="height: 380px;">
-                                    <img class="img-fluid" src="view/images/carousel-2.jpg" alt="carousel-2">
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <div class="p-3 text-light" style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
-                                            <h4 class="text-uppercase font-weight-large mb-3 text-light">10% off when booking</h4>
-                                            <h3 class="display-2 font-weight-bold mb-4">Resonable Price</h3>
-                                            <a href="#" class="btn btn-light py-2 px-3">Booking Now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#header-carousel" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
-                        </div>
+                        <?php include 'View/html/UI_guest/component/carousel.php'; ?>
                         <!-- Carousel End-->
                     </div>
                     <!-- Tab Khai Vi -->
                     <div class="tab-pane" id="tab1">
-                        123
+                        <?php
+                          /*   include('view\html\UI_guest\starter.php'); */
+                        ?>
                     </div>
                     <!-- Tab Mon Chinh -->
                     <div class="tab-pane" id="tab2">456</div>
@@ -252,9 +99,11 @@
                     <!-- Tab Nuoc Uong -->
                     <div class="tab-pane" id="tab5">456</div>
                 </div>
+                <!-- Tab Content End -->
             </div>
         </div>
     </div>
+    <!-- Main End -->
 
     <!-- Featured Start -->
     <div class="container-fluid pt-5">

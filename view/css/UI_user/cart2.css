@@ -38,7 +38,8 @@
     position: absolute;
     background-color: rgba(0, 0, 0, 0);
     width: 66px;
-    height: 50px;
+    top:57px;
+    height: 10px;
 }
 
 .quantity-item{

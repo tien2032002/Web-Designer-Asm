@@ -20,5 +20,13 @@
         function signup() {
             $this->render('view\html\UI_guest\signup');
         }
+
+        function dish_list() {
+            include("model\product_db.php");
+            $data = array ('productList' => getProductList($_GET['type']),
+                           'type' => $_GET['type']);
+            $this->render('view\html\UI_guest\dish_list', $data);
+
+        }
     }
 ?>
