@@ -27,7 +27,7 @@
         }
       }
       //get content using ajax
-      function getMainContent(link, elementID) {
+      /* function getMainContent(link, elementID) {
           $.ajax({
               // The link we are accessing.
               url: link,
@@ -42,7 +42,7 @@
                   carousel()
               }
           });
-      }
+      } */
     </script>
 
 </head>
@@ -112,7 +112,7 @@
 
     <!-- ======= Scripts ====== -->
     <script src="view/script/employee_table.js"></script>
-    
+
     <?php
       if (isset($errResultAdd)) echo '
       <script>

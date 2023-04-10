@@ -1,0 +1,16 @@
+.product-item{
+    border: 1px solid rgba(0, 0, 0, 0.288);
+}
+.product-item a{
+    color: black;
+    font-weight: 500;
+}
+.product-item a:hover{
+    color: rgb(224, 60, 1);
+}
+.product-item div.d-flex.justify-content-between{
+    border-top: 1px solid rgba(0, 0, 0, 0.288);
+}
+.product-item .card-body{
+    font-weight: 500;
+}
