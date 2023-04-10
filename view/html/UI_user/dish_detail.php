@@ -56,7 +56,9 @@
 <body>
     <?php
     //decode json
-        $userObj = json_decode($userObj);
+        $userObj = json_decode($_SESSION['userObj']);
+        $productObj = json_decode($productObj);
+        $relatedProduct = json_decode($relatedProduct);
     ?>
     <div class="container-fluid">
         <div class="row align-items-center py-3 pd_mobile" style="background-color: #f2f2f2;">
@@ -129,7 +131,7 @@
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav">
                             <a href="index.php?controller=user&action=home_page_user" class="nav-item nav-link active">Trang Chủ</a>
-                            <a href="index.php?controller=user&action=menu" class="nav-item nav-link">Thực Đơn</a>
+                            <a href="#" class="nav-item nav-link">Thực Đơn</a>
                             <a href="#" class="nav-item nav-link">Đặt Bàn</a>
                             <a href="#" class="nav-item nav-link">Tin Tức</a>
                         </div>
@@ -183,40 +185,212 @@
                 <div class="tab-content">
                     <!-- Tab HomePage -->
                     <div class="tab-pane active">
-                        <!-- Carousel Start -->
-                        <div id="header-carousel" class="carousel slide" data-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active" style="height: 380px;">
-                                    <img class="img-fluid" src="view/images/carousel-1.jpg" alt="carousel-1">
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <div class="p-3" style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
-                                            <h4 class="text-uppercase text-light font-weight-large mb-3">10% off when booking</h4>
-                                            <h3 class="display-2 font-weight-bold mb-4 text-light">Diverse Menu</h3>
-                                            <a href="#" class="btn btn-light py-2 px-3">Booking Now</a>
+                        <!-- starter content -->
+                        <link rel="stylesheet" type="text/css" href="view\css\UI_user\starter.css">
+                        <link rel="stylesheet" type="text/css" href="view\css\UI_user\detail.css">
+                        <div class="starter-content">
+                            <!-- starter breadcrum -->
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#">Thực đơn</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">
+                                    <?php
+                                        switch ($productObj->type) {
+                                            case 'starter': 
+                                                echo 'Khai vị';
+                                                break;
+                                            case 'main':
+                                                echo 'Món chính';
+                                                break;
+                                            case 'dessert':
+                                                echo 'Tráng miệng';
+                                                break;
+                                            default: 
+                                                echo 'Undefine';
+                                                break;
+                                        }
+                                    ?>
+                                    </li>
+                                </ol>
+                            </nav>
+
+
+                            <!-- begin: dish detail -->
+                            <div class="card menu">
+                                <div class="row">
+                                    <div class="col-md-auto">
+                                        <img src="<?php echo $productObj->image ?>" alt="" style="width: 500px; height: 300px;">
+                                    </div>
+                                    <div class="col">
+                                        <!-- dish name -->
+                                        <h2 class="card-title mb-0">
+                                            <?php
+                                                echo $productObj->name;
+                                            ?>
+                                        </h2>
+                                        <div class="subheader">
+                                            <?php
+                                                switch ($productObj->type) {
+                                                    case 'starter': 
+                                                        echo 'Món khai vị';
+                                                        break;
+                                                    case 'main':
+                                                        echo 'Món chính';
+                                                        break;
+                                                    case 'dessert':
+                                                        echo 'Món tráng miệng';
+                                                        break;
+                                                    default: 
+                                                        echo 'Undefine';
+                                                        break;
+                                                }
+                                            ?>
+                                        </div>
+                                        <h2 class="mb-0"> <?php echo $productObj->price ?> VND</h2>
+
+                                        <!-- dish description -->
+                                        <p>
+                                            <?php echo $productObj->description ?>
+                                        </p>
+                                        <!-- form -->
+                                        <form action="">
+                                            <input type="number" class="btn btn-outline-dark">
+                                            <input type="submit" class="btn btn-outline-dark" value="Add to cart">
+                                        </form>
+
+                                        <!-- comment, link, share button -->
+                                        <div class="d-flex mt-3 justify-content-between" >
+                                            <div class="btn btn-light" style="width: 30%">
+                                                <i class="bi bi-hand-thumbs-up"></i>
+                                                Thích
+                                            </div>
+                                            <div class="btn btn-light" style="width: 33%">
+                                                <i class="bi bi-chat"></i>
+                                                Bình luận
+                                            </div>
+                                            <div class="btn btn-light" style="width: 30%">
+                                                <i class="bi bi-share"></i>
+                                                Chia sẻ
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="carousel-item" style="height: 380px;">
-                                    <img class="img-fluid" src="view/images/carousel-2.jpg" alt="carousel-2">
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <div class="p-3 text-light" style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
-                                            <h4 class="text-uppercase font-weight-large mb-3 text-light">10% off when booking</h4>
-                                            <h3 class="display-2 font-weight-bold mb-4">Resonable Price</h3>
-                                            <a href="#" class="btn btn-light py-2 px-3">Booking Now</a>
-                                        </div>
-                                    </div>
+                                    <div class="w-100"></div>
+                                    
                                 </div>
                             </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#header-carousel" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
+                            <!-- end: dish detail -->
+
+                            <!-- begin: comment section -->
+                            <div class="card menu">
+                                <div class="d-flex text-decoration-none">
+                                    <div class="comment-quantity"><bold>25</bold></div>
+                                    <div class="comment-quantity"><small> bình luận</small></div>
+
+                                    <div class="comment-quantity ms-5"><bold>85</bold></div>
+                                    <div class="comment-quantity"><small> lượt thích</small></div>
+                                </div>
+                                <hr style="height:1px;border-width:0;color:gray;background-color:gray">
+                                <!--begin: user comment -->
+                                <div class="item-review">
+                                    
+                                    <div class="d-flex">
+                                        <img src="view\images\user\user2.jpg" alt="" class="user-img">
+                                        <div class="ms-3">
+                                            <div class="user-name"><bold>Ayhed<bold/> </div>
+                                            <div>
+                                                <bold>via Web<bold/>
+                                                <i class="bi bi-globe-americas"></i>
+                                                4/7/2023 4:03PM
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="user-comment">
+                                        Nước chấm đậm đà, cuốn sạch sẽ, vừa lạ miệng vừa ngon
+                                    </div> 
+                                    <hr style="height:1px;border-width:0;color:gray;background-color:gray">        
+                                </div>
+                                <!--end: user comment -->
+
+                                <!--begin: user comment -->
+                                <div class="item-review">
+                                    
+                                    <div class="d-flex">
+                                        <img src="view\images\user\user3.jpg" alt="" class="user-img">
+                                        <div class="ms-3">
+                                            <div class="user-name"><bold>Ayaya<bold/> </div>
+                                            <div>
+                                                <bold>via Web<bold/>
+                                                <i class="bi bi-globe-americas"></i>
+                                                11/7/2022 4:03PM
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="user-comment">
+                                        Giá cả hợp lí, hương vị hài hòa. Rất hài lòng
+                                    </div> 
+                                    <hr style="height:1px;border-width:0;color:gray;background-color:gray">        
+                                </div>
+                                <!--end: user comment -->
+
+                                <a href="" style="text-decoration:none;">Xem thêm bình luận</a>
+                            </div>
+                            <!-- end: comment section -->
+
+                            <!-- begin: recommend dish -->
+                            <div class="card menu">
+                                <h2 class="mb-0">CÓ THỂ BẠN SẼ THÍCH</h2>
+                                <!-- begin: recomend dish list -->
+                                
+                                <div class="d-flex justify-content-around flex-wrap">
+                                    
+                                    <?php
+                                        foreach($relatedProduct as $product) {
+                                            $product = json_decode($product);
+                                            echo '
+                                            <!-- begin: first dish -->
+                                            <div class="menu__item card">
+                                                <img src="'.$product->image.'" alt="" class="item-img">
+                                                <div class="item-description">
+                                                    <!-- dish name -->
+                                                    <h6 class="item-name">'.$product->name.'</h6>
+                                                    <!-- price -->
+                                                    <h6 class="item-price text-secondary"><small>'.$product->price.'đ</small></h6>
+                                                </div>
+        
+                                                <div class="item-comment-count d-flex justify-content-around align-items-center">
+        
+                                                    <a href="#" class="d-flex text-decoration-none">
+                                                        <i class="bi bi-chat"></i>
+                                                        <div class="comment-quantity"><small>25</small></div>
+                                                    </a>
+                                                    <!-- view detail btn -->
+                                                    <a href="index.php?controller=guest&action=dish_detail&id='.$product->id.'" class="btn btn-outline-dark btn-sm mt-1 ">
+                                                        <i class="bi bi-eye-fill"></i>
+                                                        View detail
+                                                    </a>
+                                                    <!-- order btn -->
+                                                    <a href="#" class="btn btn-outline-dark btn-sm mt-1 ">
+                                                        <i class="bi bi-cart3"></i>
+                                                        Order Now
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <!-- end: first dish -->
+                                            ';
+                                        }
+                                    ?>
+                                    
+                                </div>
+                                <!-- end: recomend dish list -->
+                            </div>
+                            <!-- end: recommend dish -->
+                            
+                            <script src="view/script/starter.js"></script>
+
                         </div>
-                        <!-- Carousel End-->
+                        <!-- end starter content -->
                     </div>
                     <!-- Tab Khai Vi -->
                     <div class="tab-pane" id="tab1">
