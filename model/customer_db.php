@@ -19,8 +19,7 @@
         $phoneObj = mysqli_fetch_object($resultPhone);
         if ($phoneObj->password != $password) return "passwordErr";
         session_start();
-        $_SESSION['phone'] = $_POST['phone'];
-        $_SESSION['name'] = $phoneObj->name;
+        $_SESSION['userObj'] = json_encode($phoneObj);
         return "good";
     }
 
@@ -30,6 +29,14 @@
         $resultPhone = mysqli_query($con, $searchPhone);
         return json_encode(mysqli_fetch_object($resultPhone));
         
+    }
+
+    function getCustomerById($id) {
+        require('model/db.php');
+        $searchId = "SELECT * FROM customers WHERE id = '$id'";
+        $resultId = mysqli_query($con, $searchId);
+        if (mysqli_num_rows($resultId) == 0) return 'invalid id';
+        return json_encode(mysqli_fetch_object($resultId));
     }
 
     function getName($phone) {
@@ -102,8 +109,117 @@
         require_once("../model/db.php");
     }
 
-    function changeInfor(){
-        //change customer's information
-        require_once("../model/db.php");
+    function changeInfor($checkErr){
+        include('model\db.php');
+        $curID = $_GET['id'];
+        extract($checkErr);
+        if ($uploadErr == 'good') {
+            $target_dir    = "view/images/user/";
+            $target_file   = $target_dir . 'user' . $_GET['id'] . '.png';
+            move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file);
+        }
+
+        if ($nameErr == 'good'){
+            $name = $_POST['name'];
+            mysqli_query($con, "UPDATE customers
+                        SET name='$name'
+                        WHERE id=$curID");
+        }
+
+        if ($addressErr == 'good'){
+            $address = $_POST['address'];
+            mysqli_query($con, "UPDATE customers
+                        SET address='$address'
+                        WHERE id=$curID");
+        }
+
+        if ($phoneErr == 'good'){
+            $phone = $_POST['phone'];
+            mysqli_query($con, "UPDATE customers
+                        SET phone='$phone'
+                        WHERE id=$curID");
+        }
+
+        if ($emailErr == 'good'){
+            $email = $_POST['email'];
+            mysqli_query($con, "UPDATE customers
+                        SET email='$email'
+                        WHERE id=$curID");
+        }
+
+        if ($passwordErr == 'good'){
+            $password = $_POST['newPassword'];
+            mysqli_query($con, "UPDATE customers
+                        SET password='$password'
+                        WHERE id=$curID");
+        }
+
+        $gender = $_POST['gender'];
+        mysqli_query($con, "UPDATE customers
+                            SET gender='$gender'
+                            WHERE id=$curID");
+
+        $_SESSION['userObj'] = getCustomerById($_GET['id']);
+    }
+
+    function checkChangeInfo() {
+        $uploadErr = 'not update';
+        if ($_FILES["avatar"]['name'] != ''){
+            var_dump($_FILES["avatar"]);
+            //change avatar
+            //check if file upload is image or not
+            $check = getimagesize($_FILES["avatar"]["tmp_name"]);
+            if($check == false) {
+                $uploadErr = 'notImage';
+            }
+
+            else {
+                $uploadErr = 'good';
+            }
+        }
+
+        //check name
+        if (strlen($_POST['name']) < 2 || strlen($_POST['name']) > 30) $nameErr = 'length';
+        else $nameErr = 'good';
+
+        if (strlen($_POST['address']) < 2 || strlen($_POST['address']) > 30) $addressErr = 'length';
+        else $addressErr = 'good';
+
+        include('model/db.php');
+
+        if (strlen($_POST['phone']) < 8 || strlen($_POST['phone']) > 16) $phoneErr='length';
+        else {
+            $phone = $_POST['phone'];
+            $searchPhone = "SELECT * FROM customers WHERE phone = '$phone'";
+            $resultPhone = mysqli_query($con, $searchPhone);
+            if (mysqli_num_rows($resultPhone) != 0) $phoneErr = 'hasUsed';
+            else $phoneErr = 'good';
+        }
+
+        //check email
+        if (strlen($_POST['email']) == 0) $emailErr='missing';
+        else {
+            $email = $_POST['email'];
+            $searchEmail = "SELECT * FROM customers WHERE email = '$email'";
+            $resultEmail = mysqli_query($con, $searchEmail);
+            if (mysqli_num_rows($resultEmail) != 0) $emailErr = 'hasUsed';
+            else $emailErr = 'good';
+        }
+        $passwordErr = 'not update';
+        if(strlen($_POST['oldPassword']) != 0) {
+            $userObj = json_decode($_SESSION['userObj']);
+            if ($userObj->password != $_POST['oldPassword']) $passwordErr = 'wrong old password';
+            else {
+                if ($_POST['newPassword'] != $_POST['newPassword2']) $passwordErr = 'wrong confirm password';
+                else $passwordErr = 'good';
+            }
+        }
+        $resultErr = array('uploadErr' => $uploadErr,
+                           'nameErr' => $nameErr,
+                           'addressErr' => $addressErr,
+                           'phoneErr' => $phoneErr,
+                           'emailErr' => $emailErr,
+                           'passwordErr' => $passwordErr);     
+        return $resultErr;          
     }
 ?>

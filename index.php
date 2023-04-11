@@ -10,7 +10,7 @@
         } else {
           $action = 'index';
         }
-    }
+      }
     else { 
         $controller = 'guest';
         $action = 'home_page';
