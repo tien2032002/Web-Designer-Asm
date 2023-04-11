@@ -1,3 +1,4 @@
+<?php $userObj = $_GET['userObj']; ?>
 <div class="tab-pane active" id="profile">
     <form method='post' action='index.php?controller=user&action=change_info&id=<?php echo $userObj->id ?>' enctype="multipart/form-data">
         <div class="card p-4">

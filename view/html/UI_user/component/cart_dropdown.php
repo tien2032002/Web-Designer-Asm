@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-end" onmouseover="showCartPopup()" onmouseout="hideCartPopup()">
     <a
-        href="#" class="btn border btn-outline-secondary" 
+        href="index.php?controller=user&action=view_cart" class="btn border btn-outline-secondary" 
         style="margin-right: 1%; border-radius: 0;">
         <div class="d-flex justify-content-end mt-1">
             <i class="fas fa-shopping-cart"></i>
@@ -52,7 +52,7 @@
             <div style="font-weight:500;">Tổng cộng: 
                 <span class="price-item">260.000đ<span>
             </div>
-            <a href="#"><div class="cart-btn">Xem Giỏ Hàng</div></a>
+            <a href="index.php?controller=user&action=view_cart"><div class="cart-btn">Xem Giỏ Hàng</div></a>
         </div>
     </div> 
 </div>

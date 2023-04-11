@@ -100,7 +100,8 @@
         function profile_user(){
             session_start();
             if(isset($_SESSION['userObj'])){
-                $this->render('view/html/UI_user/profile_user');
+                $data = array("userObj" => $_SESSION['userObj']);
+                $this->render('view/html/UI_user/profile_user', $data);
             }
             
         }

@@ -184,7 +184,7 @@
             }
         ?>
         </div>
-    <script src="view/script/starter.js"></script>
+  <!--   <script src="view/script/starter.js"></script> -->
     
 </div>
 <!-- end starter content -->

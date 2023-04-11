@@ -30,7 +30,7 @@
                     <!-- Cart Popup Start -->
                     <div class="d-flex justify-content-end" onmouseover="showCartPopup()" onmouseout="hideCartPopup()">
                         <a
-                            href="#" class="btn border btn-outline-secondary" 
+                            href="index.php?controller=user&action=login" class="btn border btn-outline-secondary" 
                             style="margin-right: 1%; border-radius: 0;">
                             <div class="d-flex justify-content-end mt-1">
                                 <i class="fas fa-shopping-cart"></i>
