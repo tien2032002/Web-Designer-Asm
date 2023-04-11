@@ -73,6 +73,13 @@
   height: 6px;
 }
 
+.back-to-top {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  display: none;
+}
+
 /* reponsive */
 
 @media (max-width: 767px) {

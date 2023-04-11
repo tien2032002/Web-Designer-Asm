@@ -343,7 +343,156 @@
     </div>
     <!-- Categories End -->
 
+    <!-- begin:footer -->
+    <div class="container-fluid" style="background-color: #dae0e5;">
+        <div class="row p-5">
+            <!-- begin: restaurant summary -->
+            <div class="col">
+                <div class="h2" >
+                    <img class="border border-light p-2" src="view\images\utensils-solid.svg" style="width: 50px" alt="restaurantIcon">
+                    Restaurant
+                </div>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing
+                    elit. Aenean commodo ligula eget dolor. Aenean mass
+                    a. Cum sociis natoque penatibus et magnis dis partu
+                    rient montes, nascetur ridiculus mus.
+                </p>
+                <ul class = "list-unstyled">
+                    <li class="d-flex ">
+                        <i style="color: #b38b91" class="bi bi-geo-alt me-2"></i>
+                        <p>6 Đ. Ngô Quyền, Vĩnh Ninh</p>
+                    </li>
+                    <li class="d-flex">
+                        <i style="color: #b38b91" class="bi bi-envelope-fill me-2"></i>
+                        <p>Wanmin@restaurant.com</p>
+                    </li>
+                    <li class="d-flex">
+                        <i style="color: #b38b91" class="bi bi-telephone-fill me-2"></i>
+                        <p>+012 345 6789</p>
+                    </li>
+                </ul>
+            </div>
+            <!-- end: restaurant summary -->
+
+            <!-- begin: quick link -->
+            <div class="col ms-4 mt-2">
+                <h5>Quick links</h5>
+
+                <!-- begin: list of links -->
+                <ul class = "list-unstyled">
+                    <li class="mt-2">
+                        <a style="text-decoration: none;" class="link-dark" href="">
+                            <i class="bi bi-caret-right-fill"></i>
+                            Home
+                        </a>
+                    </li>
+                    <li class="mt-2">
+                        <a style="text-decoration: none;" class="link-dark" href="">
+                            <i class="bi bi-caret-right-fill"></i>    
+                            Menu
+                        </a>
+                    </li>
+                    <li class="mt-2">
+                        <a style="text-decoration: none;" class="link-dark" href="">
+                            <i class="bi bi-caret-right-fill"></i>
+                            Cart
+                        </a>
+                    </li>
+                    <li class="mt-2">
+                        <a style="text-decoration: none;" class="link-dark" href="">
+                            <i class="bi bi-caret-right-fill"></i>
+                            Checkout
+                        </a>
+                    </li>
+                    <li class="mt-2">
+                        <a style="text-decoration: none;" class="link-dark" href="">
+                            <i class="bi bi-caret-right-fill"></i>    
+                            Contact Us
+                        </a>
+                    </li>
+                </ul>
+                <!-- begin: end of links -->
+            </div>
+            <!-- end: quick link -->
+
+            <!-- begin: quick link -->
+            <div class="col mt-2">
+                <h5>Quick links</h5>
+
+                <!-- begin: list of links -->
+                <ul class = "list-unstyled">
+                    <li class="mt-2">
+                        <a style="text-decoration: none;" class="link-dark" href="">
+                            <i class="bi bi-caret-right-fill"></i>
+                            Home
+                        </a>
+                    </li>
+                    <li class="mt-2">
+                        <a style="text-decoration: none;" class="link-dark" href="">
+                            <i class="bi bi-caret-right-fill"></i>    
+                            Menu
+                        </a>
+                    </li>
+                    <li class="mt-2">
+                        <a style="text-decoration: none;" class="link-dark" href="">
+                            <i class="bi bi-caret-right-fill"></i>
+                            Cart
+                        </a>
+                    </li>
+                    <li class="mt-2">
+                        <a style="text-decoration: none;" class="link-dark" href="">
+                            <i class="bi bi-caret-right-fill"></i>
+                            Checkout
+                        </a>
+                    </li>
+                    <li class="mt-2">
+                        <a style="text-decoration: none;" class="link-dark" href="">
+                            <i class="bi bi-caret-right-fill"></i>    
+                            Contact Us
+                        </a>
+                    </li>
+                </ul>
+                <!-- begin: end of links -->
+            </div>
+            <!-- end: quick link -->
+
+            <!-- begin: form -->
+            <div class="col mt-2">
+                <h5>Newsletter</h5>
+                <form action="">
+                    <input class="mt-3 border-0 p-3 w-100" type="text" placeholder="Your Name">
+                    <input class="mt-3 border-0 p-3 w-100" type="text" placeholder="Your Email">
+                    <input class="mt-3 border-0 p-3 w-100" type="submit" style="background-color: #b38b91" value="Subcribe Now">
+                </form>
+            </div>
+            <!-- end: form  -->
+        </div>
+    </div>
+    <!-- end:footer -->
+    <a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top" role="button">
+        <i class="fas fa-chevron-up">
+        </i>
+    </a>
     <!-- ======= Scripts ====== -->
+    <script>
+        $(document).ready(function(){
+            $(window).scroll(function () {
+                    if ($(this).scrollTop() > 50) {
+                        $('#back-to-top').fadeIn();
+                    } else {
+                        $('#back-to-top').fadeOut();
+                    }
+                });
+                // scroll body to 0px on click
+                $('#back-to-top').click(function () {
+                    $('body,html').animate({
+                        scrollTop: 0
+                    }, 400);
+                    return false;
+                });
+        });
+    </script>
     <!-- <script src="view/script/user_navbar.js"></script> -->
 
 </body>
