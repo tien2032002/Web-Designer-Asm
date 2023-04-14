@@ -11,23 +11,27 @@
     <div id="cart-popup" class="p-3 text-center">
         <ul class="list-group">
         <?php 
-            $cartList = json_decode($_COOKIE['cartArr'], true);
-            include_once('model\product_db.php');
             $totalPrice = 0;
-            foreach($cartList as $productID => $productQuantity) {
-                $productObj = json_decode(getProductById($productID));
-                $totalPrice = $totalPrice + (int)$productObj->price*(int)$productQuantity;
-                echo '
-                <li class="list-group-item d-flex align-items-center">
-                    <img src="'.$productObj->image.'"
-                            alt="products">
-                    <div class="inline-block">
-                        <div class="name-item">'.$productObj->name.'</div>
-                        <div class="quantity-item">SL: '.$productQuantity.'</div>
-                    </div>
-                    <div class="price-item">'.number_format($productObj->price, 0, ',' , '.').'đ</div>
-                </li>
-                ';
+            if (!isset($_COOKIE['cartArr'])) echo 'Chưa có sản phẩm trong giỏ hàng!';
+            else {
+                $cartList = json_decode($_COOKIE['cartArr'], true);
+                include_once('model\product_db.php');
+                
+                foreach($cartList as $productID => $productQuantity) {
+                    $productObj = json_decode(getProductById($productID));
+                    $totalPrice = $totalPrice + (int)$productObj->price*(int)$productQuantity;
+                    echo '
+                    <li class="list-group-item d-flex align-items-center">
+                        <img src="'.$productObj->image.'"
+                                alt="products">
+                        <div class="inline-block">
+                            <div class="name-item">'.$productObj->name.'</div>
+                            <div class="quantity-item">SL: '.$productQuantity.'</div>
+                        </div>
+                        <div class="price-item">'.number_format($productObj->price, 0, ',' , '.').'đ</div>
+                    </li>
+                    ';
+                }
             }
         ?>
         </ul>

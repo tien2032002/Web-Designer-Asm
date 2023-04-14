@@ -18,6 +18,41 @@
     <!-- ======= Scripts ====== -->
     <script src="view/bootstrap/js/bootstrap.min.js"></script>
     <script src="view/jquery/jquery-3.6.4.js"></script>
+    <script>
+      function loadXMLDoc(link, id)
+        {
+            $.ajax({
+                // The link we are accessing.
+                url: link,
+                    
+                // The type of request.
+                type: "get",
+                    
+                // The type of data that is getting returned.
+                dataType: "html",
+
+                success: function( strData ){
+                    document.getElementById(id).innerHTML = strData;
+                    console.log("do")
+                    const items = document.querySelectorAll(".carousel-menu");
+
+                    items.forEach((el) => {
+                        const minPerSlide = 4
+                        let next = el.nextElementSibling
+                        for (var i=1; i<minPerSlide; i++) {
+                            if (!next) {
+                                // wrap carousel by using first child
+                                next = items[0]
+                            }
+                            let cloneChild = next.cloneNode(true)
+                            el.appendChild(cloneChild.children[0])
+                            next = next.nextElementSibling
+                        }
+                    })
+                }
+            });
+        }
+    </script>
 </head>
 <body>
   
@@ -41,9 +76,9 @@
                   <div class="col-md-3 mt-2">
                       <div class="card">
                           <div class="list-group" id="myList">
-                              <a class="list-group-item active" href="#" data-url="/profile_user_tab">Hồ sơ</a>
-                              <a class="list-group-item" href="#" data-url="view/html/UI_user/component/cart_tab.php">Giỏ hàng</a>
-                              <a class="list-group-item" href="#" data-url="#">Đơn mua</a>
+                              <a class="list-group-item active" id='profile' href="#" data-url="/profile_user_tab">Hồ sơ</a>
+                              <a class="list-group-item " id='cart' href="#" data-url="/cart_tab">Giỏ hàng</a>
+                              <a class="list-group-item" id='bill' href="#" data-url="#">Đơn mua</a>
                           </div>
                       </div>
                   </div>
@@ -76,6 +111,32 @@
           return false;
         });
       });
+
+      function changeQuantity(element) {
+        var priceElement = document.querySelector('#price' + '.' + element.className)
+        var totalElement = document.querySelector('#total' + '.' + element.className)
+        var totalBillElement = document.querySelector('.total_bill')
+        totalElement.innerText = ((parseInt(element.value) * parseInt(priceElement.innerText))*1000).toLocaleString('en-US') + 'đ'
+        var total = 0;
+        document.querySelectorAll('#total').forEach((totalElement) => {
+          total+=parseInt(totalElement.innerText)
+        })
+        totalBillElement.innerText = (total*1000).toLocaleString('en-US') + 'đ'
+        var xmlLink = 'index.php?controller=user&action=addToCart&productID=' + element.className.substr(10) + '&productQuantity=' + element.value.toString()
+        loadXMLDoc(xmlLink, 'cart_drop')
+      }
+
+      function changeTab(tabName = 'profile'){
+        tabElements = document.querySelectorAll('.list-group-item');
+        tabElements.forEach((tab) => {
+          tab.className = 'list-group-item';
+        })
+        document.getElementById(tabName).className = 'list-group-item active'
+      }
+
+      <?php
+        if (isset($active)) echo 'changeTab("'.$active.'")';
+      ?>
     </script>
 </body>
 </html>

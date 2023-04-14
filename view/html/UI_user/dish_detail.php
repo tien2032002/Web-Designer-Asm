@@ -252,12 +252,21 @@
                                         <p>
                                             <?php echo $productObj->description ?>
                                         </p>
+                                        <!-- function to handle add to cart -->
+                                        
                                         <!-- form -->
                                         <form action="">
-                                            <input type="number" class="btn btn-outline-dark">
-                                            <input type="submit" class="btn btn-outline-dark" value="Add to cart">
+                                            <input type="number" class="btn btn-outline-dark" value='0' name='quantity' id='quantity'>
+                                            <input type="submit" class="btn btn-outline-dark" value="Add to cart" onclick='addToCart()'>
                                         </form>
-
+                                        <script>
+                                            function addToCart() {
+                                                quantityInput = document.getElementById('quantity');
+                                                xmlLink = 'index.php?controller=user&action=addToCart&productID=<?php echo $productObj->id?>&productQuantity=' + quantityInput.value.toString();
+                                                loadXMLDoc(xmlLink, 'cart_drop');
+                                                console.log(xmlLink);
+                                            }
+                                        </script>
                                         <!-- comment, link, share button -->
                                         <div class="d-flex mt-3 justify-content-between" >
                                             <div class="btn btn-light" style="width: 30%">

@@ -169,7 +169,7 @@
                                 Chi tiết
                             </a>
                             <!-- order btn -->
-                            <a onclick="loadXMLDoc(\'index.php?controller=user&action=addToCart&productID='.$product->id.'&productQuantity=1\', \'cart_drop\');" class="btn btn-outline-dark btn-sm mt-1 ">
+                            <a onclick="loadXMLDoc(\'index.php?controller=user&action=addToCart&productID='.$product->id.'\', \'cart_drop\');" class="btn btn-outline-dark btn-sm mt-1 ">
                                 <i class="bi bi-cart3"></i>
                                 Thêm vào giỏ
                             </a>

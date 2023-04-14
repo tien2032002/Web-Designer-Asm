@@ -173,34 +173,50 @@
         }
 
         function addToCart() {
-            
             if (isset($_SESSION['role']) && $_SESSION['role'] == 'user') {
-                if (isset($_GET['productID']) && isset($_GET['productQuantity'])) {
+                if (isset($_GET['productID'])) {
                     if (!isset($_COOKIE['cartArr'])) {
                         //if cookie dont have variable cartArr yet
                         //create a array
                         //and save product id & product quantity
                         //change that array to json and save to cookie
                         $cart = array();
-                        $cart[(int)$_GET['productID']] = (int)$_GET['productQuantity'];
+                        if (!isset($_GET['productQuantity'])) $cart[(int)$_GET['productID']] = 1;
+                        else $cart[(int)$_GET['productID']] = (int)$_GET['productQuantity'];
                         setcookie('cartArr', json_encode($cart), time() + (86400*7));
 
                     }
                     else {
+
                         //if exist cookie,
                         //add new element to array
                         //if product id already exist
                         //add product quantity
-
+                        
                         $cart = json_decode($_COOKIE['cartArr'], true);
-                        if (isset($cart[$_GET['productID']])) $cart[$_GET['productID']] = (int)$cart[$_GET['productID']] + (int)$_GET['productQuantity'];
-                        else $cart[$_GET['productID']] = $_GET['productQuantity'];
+                        if (isset($_GET['productQuantity'])) $cart[$_GET['productID']] = (int)$_GET['productQuantity'];
+                        else $cart[$_GET['productID']] = (int)$cart[$_GET['productID']] + 1;
                         setcookie('cartArr', json_encode($cart), time() + (86400*7));
                     }
                 }
                 header("Location: index.php?controller=user&action=cart_dropdown");
             }
             else header('Location: /error');
+        }
+
+        function view_cart() {
+            include_once('model\customer_db.php');
+            if (!isset($_SESSION)) session_start();
+            if(isset($_SESSION['role']) && $_SESSION['role'] == 'user'){
+                $data = array("userObj" => getCustomerById($_SESSION['id']),
+                              'active' => 'cart');
+                $this->render('view/html/UI_user/profile_user', $data);
+            }
+            else header("Location: /error");
+        }
+
+        function cart_tab() {
+            $this->render('view\html\UI_user\component\cart_tab');
         }
     }
 ?>
