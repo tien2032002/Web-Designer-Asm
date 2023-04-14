@@ -81,7 +81,6 @@
             //check session
             //if dont have session, display error and exit
             if(!isset($_SESSION)) session_start();
-            var_dump($_SESSION);
             if (isset($_SESSION['role']) && $_SESSION['role'] == 'user') {
                 include("model/customer_db.php");
                 $data = array("userObj" => getCustomerById($_SESSION['id']));
@@ -135,13 +134,15 @@
 
         function dish_detail() {
             include("model\product_db.php");
-            session_start();
-            if (isset($_SESSION['userObj'])) {
+            include('model\customer_db.php');
+            if (!isset($_SESSION)) session_start();
+            if (isset($_SESSION['role']) && $_SESSION['role'] == 'user') {
                 $getProductObj = getProductById($_GET['id']);
-                if ($getProductObj == 'invalid id') echo 'wrong id';
+                if ($getProductObj == 'invalid id') echo header("Location: /error");
                 else {
                     $data = array('productObj' => $getProductObj,
-                                'relatedProduct' => get3RandomProduct(json_decode($getProductObj)->type, $_GET['id']));
+                                'relatedProduct' => get3RandomProduct(json_decode($getProductObj)->type, $_GET['id']),
+                                'userObj' => getCustomerById($_SESSION['id']));
                     $this->render('view\html\UI_user\dish_detail', $data);
                 }
             }
@@ -165,6 +166,41 @@
             $changeErr = (checkChangeInfo());
             changeInfor($changeErr);
             $this->render('view\html\UI_user\profile_user', $changeErr);
+        }
+
+        function cart_dropdown() {
+            $this->render('view\html\UI_user\component\cart_dropdown');
+        }
+
+        function addToCart() {
+            
+            if (isset($_SESSION['role']) && $_SESSION['role'] == 'user') {
+                if (isset($_GET['productID']) && isset($_GET['productQuantity'])) {
+                    if (!isset($_COOKIE['cartArr'])) {
+                        //if cookie dont have variable cartArr yet
+                        //create a array
+                        //and save product id & product quantity
+                        //change that array to json and save to cookie
+                        $cart = array();
+                        $cart[(int)$_GET['productID']] = (int)$_GET['productQuantity'];
+                        setcookie('cartArr', json_encode($cart), time() + (86400*7));
+
+                    }
+                    else {
+                        //if exist cookie,
+                        //add new element to array
+                        //if product id already exist
+                        //add product quantity
+
+                        $cart = json_decode($_COOKIE['cartArr'], true);
+                        if (isset($cart[$_GET['productID']])) $cart[$_GET['productID']] = (int)$cart[$_GET['productID']] + (int)$_GET['productQuantity'];
+                        else $cart[$_GET['productID']] = $_GET['productQuantity'];
+                        setcookie('cartArr', json_encode($cart), time() + (86400*7));
+                    }
+                }
+                header("Location: index.php?controller=user&action=cart_dropdown");
+            }
+            else header('Location: /error');
         }
     }
 ?>

@@ -32,7 +32,7 @@
 
                 success: function( strData ){
                     document.getElementById(id).innerHTML = strData;
-                    // console.log("do")
+                    console.log("do")
                     const items = document.querySelectorAll(".carousel-menu");
 
                     items.forEach((el) => {
@@ -42,7 +42,6 @@
                             if (!next) {
                                 // wrap carousel by using first child
                                 next = items[0]
-                                console.log([el])
                             }
                             let cloneChild = next.cloneNode(true)
                             el.appendChild(cloneChild.children[0])

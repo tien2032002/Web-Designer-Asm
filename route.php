@@ -2,7 +2,7 @@
     //list of controllers and action
     $controllers = array('guest' => ['home_page', 'login', 'signup', 'login_manager', 'dish_list', 'dish_detail', 'menu'],
                          'user' => ['home_page_user', 'signup', 'login', 'logout', 'profile_user', 'dish_list', 'dish_detail',
-                                    'menu', 'change_info', 'profile_user_tab'],
+                                    'menu', 'change_info', 'profile_user_tab', 'cart_dropdown', "addToCart"],
                          'manager' => ['home_page_manager', 'manage_employee', 'login', 'logout', 'add_employee',
                                        'delete_employee', 'update_employee'],
                          'employee');

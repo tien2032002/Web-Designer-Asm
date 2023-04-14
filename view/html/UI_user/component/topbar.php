@@ -25,7 +25,11 @@
                         <span class="badge">0</span>
                     </a>
                     <!-- Cart Popup Start -->
-                    <?php include 'cart_dropdown.php'; ?>
+                    <div id="cart_drop">
+                        <script>
+                            loadXMLDoc('index.php?controller=user&action=cart_dropdown', 'cart_drop');
+                        </script>
+                    </div>
                     <!-- Cart Popup End -->
                 </div>
             </div>

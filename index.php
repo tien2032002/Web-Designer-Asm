@@ -60,6 +60,5 @@
           break;
       }
     }
-    echo $controller;
       require_once('route.php');
 ?>

@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-end" onmouseover="showCartPopup()" onmouseout="hideCartPopup()">
     <a
-        href="index.php?controller=user&action=view_cart" class="btn border btn-outline-secondary" 
+        href="/view_cart" class="btn border btn-outline-secondary" 
         style="margin-right: 1%; border-radius: 0;">
         <div class="d-flex justify-content-end mt-1">
             <i class="fas fa-shopping-cart"></i>
@@ -8,8 +8,37 @@
         </div>
     </a>
     <div id="popup"></div>
-    <div id="cart-popup" class="p-3">
+    <div id="cart-popup" class="p-3 text-center">
         <ul class="list-group">
+        <?php 
+            $cartList = json_decode($_COOKIE['cartArr'], true);
+            include_once('model\product_db.php');
+            $totalPrice = 0;
+            foreach($cartList as $productID => $productQuantity) {
+                $productObj = json_decode(getProductById($productID));
+                $totalPrice = $totalPrice + (int)$productObj->price*(int)$productQuantity;
+                echo '
+                <li class="list-group-item d-flex align-items-center">
+                    <img src="'.$productObj->image.'"
+                            alt="products">
+                    <div class="inline-block">
+                        <div class="name-item">'.$productObj->name.'</div>
+                        <div class="quantity-item">SL: '.$productQuantity.'</div>
+                    </div>
+                    <div class="price-item">'.number_format($productObj->price, 0, ',' , '.').'đ</div>
+                </li>
+                ';
+            }
+        ?>
+        </ul>
+        <hr>
+        <div class="d-flex justify-content-between">
+            <div style="font-weight:500;">Tổng cộng: 
+                <span class="price-item"><?php echo number_format($totalPrice, 0, ',' , '.'); ?><span>
+            </div>
+            <a href="/view_cart"><div class="cart-btn">Xem Giỏ Hàng</div></a>
+        </div>
+        <!-- <ul class="list-group">
             <li class="list-group-item d-flex align-items-center">
                 <img src="https://beptueu.vn/hinhanh/tintuc/top-15-hinh-anh-mon-an-ngon-viet-nam-khien-ban-khong-the-roi-mat-1.jpg"
                         alt="products">
@@ -52,7 +81,7 @@
             <div style="font-weight:500;">Tổng cộng: 
                 <span class="price-item">260.000đ<span>
             </div>
-            <a href="index.php?controller=user&action=view_cart"><div class="cart-btn">Xem Giỏ Hàng</div></a>
-        </div>
+            <a href="/view_cart"><div class="cart-btn">Xem Giỏ Hàng</div></a>
+        </div> -->
     </div> 
 </div>

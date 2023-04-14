@@ -56,7 +56,7 @@
 <body>
     <?php
     //decode json
-        $userObj = json_decode($_SESSION['userObj']);
+        $userObj = json_decode($userObj);
         $productObj = json_decode($productObj);
         $relatedProduct = json_decode($relatedProduct);
     ?>
@@ -118,7 +118,7 @@
             <div class="col-lg-9">
                 <!-- Navbar Start -->
                 <nav class="navbar navbar-expand-lg bg-light navbar-light p-2" style="height: 62px;">
-                    <a href="index.php?controller=user&action=home_page_user" class="d-block d-lg-none">
+                    <a href="/home_page_user" class="d-block d-lg-none">
                         <img src="view/images/logo.jpg" style="width: 100px;" alt="logo">
                     </a>
                     <button type="button" 
@@ -130,14 +130,14 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav">
-                            <a href="index.php?controller=user&action=home_page_user" class="nav-item nav-link active">Trang Chủ</a>
+                            <a href="/home_page_user" class="nav-item nav-link active">Trang Chủ</a>
                             <a href="#" class="nav-item nav-link">Thực Đơn</a>
                             <a href="#" class="nav-item nav-link">Đặt Bàn</a>
                             <a href="#" class="nav-item nav-link">Tin Tức</a>
                         </div>
                         <div class="navbar-nav ml-auto nav_main">
                             <div>
-                                <a href="index.php?controller=user&action=profile_user" class="nav-item nav-link">
+                                <a href="/profile_user" class="nav-item nav-link">
                                     <div style="display: inline-block;">
                                         <div style="display: inline-block; margin-right: 10px;">
                                             <img src="<?php echo $userObj->image?>.jpg" 
@@ -152,7 +152,7 @@
                                 </a>
                             </div>
                             <div>
-                                <a href="index.php?controller=user&action=logout" class="nav-item nav-link">
+                                <a href="/logout" class="nav-item nav-link">
                                     <i class="bi bi-box-arrow-right text-dark"></i>
                                     Đăng xuất
                                 </a>
@@ -366,7 +366,7 @@
                                                         <div class="comment-quantity"><small>25</small></div>
                                                     </a>
                                                     <!-- view detail btn -->
-                                                    <a href="index.php?controller=guest&action=dish_detail&id='.$product->id.'" class="btn btn-outline-dark btn-sm mt-1 ">
+                                                    <a href="dish-detail/'.UrlNormal($product->name).'/'.$product->id.'" class="btn btn-outline-dark btn-sm mt-1 ">
                                                         <i class="bi bi-eye-fill"></i>
                                                         View detail
                                                     </a>

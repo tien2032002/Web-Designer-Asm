@@ -12,6 +12,8 @@ RewriteRule ^.*$ - [L]
 
 RewriteRule ^error$ - [F]
 
+RewriteRule ^index.php?controller=(.+)&action=(.+)&productID=(.+)&productQuantity=([0-9]+) - [L]
+
 RewriteRule ^guest/(.+) index.php?controller=guest&action=$1 [NC,L]
 
 RewriteRule ^manager/(.+) index.php?controller=manager&action=$1 [NC,L]
