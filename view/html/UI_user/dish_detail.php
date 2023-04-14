@@ -63,7 +63,7 @@
     <div class="container-fluid">
         <div class="row align-items-center py-3 pd_mobile" style="background-color: #f2f2f2;">
             <div class="col-lg-3 d-none d-lg-block px-5">
-                <a href="index.php?controller=user&action=home_page_user">
+                <a href="/home_page_user">
                     <img src="view/images/logo.jpg" style="width: 70%;" alt="logo">
                 </a>
             </div>

@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row align-items-center" style="background-color: #f2f2f2; height:80px;">
         <div class="col-lg-3 d-none d-lg-block px-5">
-            <a href="index.php?controller=guest&action=home_page">
+            <a href="home_page">
                 <img src="view/images/logo.jpg" style="width: 150px;" alt="logo">
             </a>
         </div>
@@ -30,7 +30,7 @@
                     <!-- Cart Popup Start -->
                     <div class="d-flex justify-content-end" onmouseover="showCartPopup()" onmouseout="hideCartPopup()">
                         <a
-                            href="index.php?controller=user&action=login" class="btn border btn-outline-secondary" 
+                            href="login" class="btn border btn-outline-secondary" 
                             style="margin-right: 1%; border-radius: 0;">
                             <div class="d-flex justify-content-end mt-1">
                                 <i class="fas fa-shopping-cart"></i>

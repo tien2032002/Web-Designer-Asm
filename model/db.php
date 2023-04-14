@@ -2,9 +2,9 @@
 <?php
     $servername = "localhost";
 
-    $username_db = "minhle106";
-    $password_db = "123456";
-    $dbName = "database";
+    $username_db = "root";
+    $password_db = "";
+    $dbName = "restaurent";
 
     $con = new mysqli($servername, $username_db, $password_db, $dbName);
 

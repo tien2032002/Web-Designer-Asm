@@ -24,7 +24,8 @@
                 }
                 //login infomation correct => go to home page for user
                 else {
-                    header('Location: index.php?controller=user&action=home_page_user');
+
+                    header('Location: /home_page_user');
                 }
             }
             else {
@@ -55,8 +56,10 @@
                             addCustomer($_POST['firstName'], $_POST['lastName'],
                                         $_POST['phone'], $_POST['email'], 
                                         $_POST['password'], $_POST['password2']);
-                            session_start();
-                            $_SESSION['phone'] = $_POST['phone'];
+                            if (!isset($_SESSION)) session_start();
+                            //start session and save id & role
+                            $_SESSION['role'] = 'user';
+                            $_SESSION['id'] = getCustomerByPhone($_POST['phone'])->id;
                             header("Location: index.php?controller=user&action=home_page_user");
                        }
                        //if have error, go back to signup page and display warning
@@ -77,14 +80,15 @@
         function home_page_user() {
             //check session
             //if dont have session, display error and exit
-            session_start();
-            if (isset($_SESSION['userObj'])) {
+            if(!isset($_SESSION)) session_start();
+            var_dump($_SESSION);
+            if (isset($_SESSION['role']) && $_SESSION['role'] == 'user') {
                 include("model/customer_db.php");
-                $data = array("userObj" => $_SESSION['userObj']);
+                $data = array("userObj" => getCustomerById($_SESSION['id']));
                 $this->render("view/html/UI_user/home_page_user", $data);
             }
             else {
-                echo "error";
+                header('Location: /error');
                 exit;
             }
         }
@@ -96,20 +100,32 @@
             header("Location: index.php?controller=guest&action=home_page");
         }
 
+        //display profile user tab
+        function profile_user_tab() {
+            include_once('model\customer_db.php');
+            if (!isset($_SESSION)) session_start();
+            if(isset($_SESSION['role']) && $_SESSION['role'] == 'user'){
+                $data = array("userObj" => getCustomerById($_SESSION['id']));
+                $this->render('view\html\UI_user\component\profile_user_tab', $data);
+            }
+            else header("Location: /error");
+        }
+
          //display profile user
         function profile_user(){
-            session_start();
-            if(isset($_SESSION['userObj'])){
-                $data = array("userObj" => $_SESSION['userObj']);
+            include_once('model\customer_db.php');
+            if (!isset($_SESSION)) session_start();
+            if(isset($_SESSION['role']) && $_SESSION['role'] == 'user'){
+                $data = array("userObj" => getCustomerById($_SESSION['id']));
                 $this->render('view/html/UI_user/profile_user', $data);
             }
-            
+            else header("Location: /error");
         }
 
         function dish_list() {
             include("model\product_db.php");
-            session_start();
-            if (isset($_SESSION['userObj'])) {
+            if (!isset($_SESSION)) session_start();
+            if (isset($_SESSION['role']) && $_SESSION['role'] == 'user') {
                 $data = array ('productList' => getProductList($_GET['type']),
                            'type' => $_GET['type']);
                 $this->render('view\html\UI_user\dish_list', $data);
@@ -133,12 +149,14 @@
 
         function menu() {
             include("model\product_db.php");
-            session_start();
-            if (isset($_SESSION['userObj'])) {
-                $data = array('menuList' => getMenuList());
+            include("model\customer_db.php");
+            if (!isset($_SESSION)) session_start();
+            if (isset($_SESSION['role']) && $_SESSION['role'] == 'user') {
+                $data = array('menuList' => getMenuList(),
+                              'userObj' => getCustomerById($_SESSION['id']));
                 $this->render('view\html\UI_user\menu_user', $data);
             }
-            else header('index.php?guest=user&action=menu');
+            else header('/user/menu');
         }
 
         function change_info() {

@@ -1,6 +1,8 @@
-<?php $userObj = $_GET['userObj']; ?>
+<?php 
+    $userObj = json_decode($userObj); 
+?>
 <div class="tab-pane active" id="profile">
-    <form method='post' action='index.php?controller=user&action=change_info&id=<?php echo $userObj->id ?>' enctype="multipart/form-data">
+    <form method='post' action='/change_info/<?php echo $userObj->id ?>' enctype="multipart/form-data">
         <div class="card p-4">
             <div class="row">
                 <div class="col-md-3">

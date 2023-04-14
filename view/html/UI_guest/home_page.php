@@ -119,7 +119,6 @@
                     <div class="tab-pane" id="tab1">
                         <script>
                             loadXMLDoc('index.php?controller=guest&action=dish_list&type=starter', 'tab1');
-                            loadXMLDoc('index.php?controller=guest&action=dish_list&type=main', 'tab2');
                         </script>
                     </div>
                     <!-- Tab Mon Chinh -->

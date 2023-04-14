@@ -41,7 +41,7 @@
                   <div class="col-md-3 mt-2">
                       <div class="card">
                           <div class="list-group" id="myList">
-                              <a class="list-group-item active" href="#" data-url="view/html/UI_user/component/profile_user_tab.php">Hồ sơ</a>
+                              <a class="list-group-item active" href="#" data-url="/profile_user_tab">Hồ sơ</a>
                               <a class="list-group-item" href="#" data-url="view/html/UI_user/component/cart_tab.php">Giỏ hàng</a>
                               <a class="list-group-item" href="#" data-url="#">Đơn mua</a>
                           </div>

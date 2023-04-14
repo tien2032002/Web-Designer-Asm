@@ -3,7 +3,7 @@
         <div class="frame_login">
                 <h4 style="font-weight: 700;">LOGIN TO YOUR ACCOUNT</h4>
                 <h6 class="mt-3 text-muted text-white" style="font-weight: 500;">Enter your details to login</h6>
-                <form action="index.php?controller=user&action=login" method="post">
+                <form action="/user/login" method="post">
                     <div class="form-group mt-5">
                         <label for="phonenumber" style="font-weight: 700;">SỐ ĐIỆN THOẠI</label>
                         <div class="input-group">
@@ -69,7 +69,7 @@
                     </button>
                 </form>
                 <p class="mt-3 text-muted" style="font-weight: 400;">Bạn chưa có tài khoản?
-                    <a href="index.php?controller=guest&action=signup" style="color: rgb(247, 66, 66);font-weight: 500;">Đăng ký tại đây</a>
+                    <a href="/signup" style="color: rgb(247, 66, 66);font-weight: 500;">Đăng ký tại đây</a>
                 </p>
         </div>
     </div>

@@ -18,8 +18,7 @@
         if (mysqli_num_rows($resultPhone) == 0) return "phoneErr";
         $phoneObj = mysqli_fetch_object($resultPhone);
         if ($phoneObj->password != $password) return "passwordErr";
-        if ($phoneObj->is_admin==1) return "admin";
-        return "employee";
+        return $resultPhone;
     }
     
     function getEmpByID($id) {

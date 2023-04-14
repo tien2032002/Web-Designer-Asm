@@ -61,7 +61,7 @@
     <div class="container-fluid">
         <div class="row align-items-center py-3 pd_mobile" style="background-color: #f2f2f2;">
             <div class="col-lg-3 d-none d-lg-block px-5">
-                <a href="index.php?controller=guest&action=home_page">
+                <a href="/home_page">
                     <img src="view/images/logo.jpg" style="width: 70%;" alt="logo">
                 </a>
             </div>
@@ -119,7 +119,7 @@
             <div class="col-lg-9">
                 <!-- Navbar Start -->
                 <nav class="navbar navbar-expand-lg bg-light navbar-light p-2">
-                    <a href="index.php?controller=guest&action=home_page" class="d-block d-lg-none">
+                    <a href="/home_page" class="d-block d-lg-none">
                         <img src="view/images/logo.jpg" style="width: 100px;" alt="logo">
                     </a>
                     <button type="button" 
@@ -131,21 +131,21 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav">
-                            <a href="index.php?controller=guest&action=home_page" class="nav-item nav-link active">Trang Chủ</a>
+                            <a href="/home_page" class="nav-item nav-link active">Trang Chủ</a>
                             <a href="#" class="nav-item nav-link" >Thực Đơn</a>
                             <a href="#" class="nav-item nav-link">Đặt Bàn</a>
                             <a href="#" class="nav-item nav-link">Tin Tức</a>
-                            <a href="index.php?controller=manager&action=login" class="nav-item nav-link">Quản Trị Viên</a>
+                            <a href="/login" class="nav-item nav-link">Quản Trị Viên</a>
                         </div>
                         <div class="navbar-nav ml-auto nav_main">
                             <div>
-                                <a href="index.php?controller=user&action=login" class="nav-item nav-link">
+                                <a href="/login" class="nav-item nav-link">
                                     <i class="bi bi-person text-dark"></i>
                                     Đăng Nhập
                                 </a>
                             </div>
                             <div>
-                                <a href="index.php?controller=user&action=signup" class="nav-item nav-link">
+                                <a href="/signup" class="nav-item nav-link">
                                     <i class="bi bi-person-plus text-dark"></i>
                                     Đăng Ký
                                 </a>
@@ -286,7 +286,7 @@
                                 <div class="item-review">
                                     
                                     <div class="d-flex">
-                                        <img src="view\images\user\user2.webp" alt="" class="user-img">
+                                        <img src="view\images\user\user2.jpg" alt="" class="user-img">
                                         <div class="ms-3">
                                             <div class="user-name"><bold>Ayhed<bold/> </div>
                                             <div>
@@ -358,7 +358,7 @@
                                                         <div class="comment-quantity"><small>25</small></div>
                                                     </a>
                                                     <!-- view detail btn -->
-                                                    <a href="index.php?controller=guest&action=dish_detail&id='.$product->id.'" class="btn btn-outline-dark btn-sm mt-1 ">
+                                                    <a href="dish-detail/'.UrlNormal($product->name).'/'.$product->id.'" class="btn btn-outline-dark btn-sm mt-1 ">
                                                         <i class="bi bi-eye-fill"></i>
                                                         View detail
                                                     </a>

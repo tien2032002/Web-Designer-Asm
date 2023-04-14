@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row align-items-center" style="background-color: #f2f2f2;  height:80px;">
         <div class="col-lg-3 d-none d-lg-block px-5">
-            <a href="index.php?controller=user&action=home_page_user">
+            <a href="/home_page_user">
                 <img src="view/images/logo.jpg" style="width: 150px;" alt="logo">
             </a>
         </div>

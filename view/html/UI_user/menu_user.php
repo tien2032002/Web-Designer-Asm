@@ -56,7 +56,7 @@
 <body>
     <?php
     //decode json
-        $userObj = json_decode($_SESSION['userObj']);
+        $userObj = json_decode($userObj);
         $menuList = json_decode($menuList);
     ?>
     <div class="container-fluid">

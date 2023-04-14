@@ -23,7 +23,7 @@
 
         function dish_list() {
             include("model\product_db.php");
-            session_start();
+            if (!isset($_SESSION)) session_start();
             if (!isset($_SESSION['userObj'])) {
                 $data = array ('productList' => getProductList($_GET['type']),
                            'type' => $_GET['type']);
@@ -35,7 +35,7 @@
 
         function dish_detail() {
             include("model\product_db.php");
-            session_start();
+            if (!isset($_SESSION)) session_start();
             
             if (!isset($_SESSION['userObj'])) {
                 $getProductObj = getProductById($_GET['id']);
@@ -51,7 +51,7 @@
 
         function menu() {
             include('model\product_db.php');
-            session_start();
+            if (!isset($_SESSION)) session_start();
             if (!isset($_SESSION['userObj'])) {
                 $data = array('menuList' => getMenuList());
                 $this->render('view\html\UI_guest\menu', $data);
