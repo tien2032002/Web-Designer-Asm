@@ -1,7 +1,7 @@
 <div id="header-carousel" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active" style="height: 380px;">
-            <img class="img-fluid" src="view/images/carousel-1.jpg" alt="carousel-1">
+            <img class="img-fluid" src="view/images/carousel-1.jpg" style="width:100%; object-fit:cover" alt="carousel-1">
             <div class="carousel-caption d-none d-md-block">
                 <div class="p-3" style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
                     <h4 class="text-uppercase text-light font-weight-large mb-3">10% off when booking</h4>
@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="carousel-item" style="height: 380px;">
-            <img class="img-fluid" src="view/images/carousel-2.jpg" alt="carousel-2">
+            <img class="img-fluid" src="view/images/carousel-2.jpg" style="width:100%; object-fit:cover"  alt="carousel-2">
             <div class="carousel-caption d-none d-md-block">
                 <div class="p-3 text-light" style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
                     <h4 class="text-uppercase font-weight-large mb-3 text-light">10% off when booking</h4>

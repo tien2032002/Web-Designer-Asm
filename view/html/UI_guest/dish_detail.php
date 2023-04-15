@@ -1,16 +1,26 @@
+<?php
+    $productObj = json_decode($productObj);
+    $relatedProduct = json_decode($relatedProduct);
+?>
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home page</title>
+    <title><?php echo $productObj->name ?></title>
+    <meta name="description" content="<?php echo $productObj->description ?>">
+    <meta name="keywords" content="Disfrutar, Restaurent, quận 10, thành phố HCM, <?php echo $productObj->name ?>">
+    <meta name="author" content="Nelele">
     <!-- ======= Styles ====== -->
       <!--  icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
      <!--  style -->
-    <link rel="stylesheet" type="text/css" href="view/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="view/css/UI_user/style_navbar_homepage.css">
+     <link rel="stylesheet" type="text/css" href="view/bootstrap/css/bootstrap.min.css"> 
+    <link rel="stylesheet" type="text/css" href="view/css/UI_user/navbar_homepage.css">
+    <link rel="stylesheet" type="text/css" href="view/css/UI_user/cart2.css">
+    <link rel="stylesheet" type="text/css" href="view/css/UI_user/product.css">
     <!-- ======= Scripts ====== -->
     <script src="view/bootstrap/js/bootstrap.min.js"></script>
     <script src="view/jquery/jquery-3.6.4.js"></script>
@@ -53,10 +63,6 @@
     </script>
 </head>
 <body>
-    <?php
-        $productObj = json_decode($productObj);
-        $relatedProduct = json_decode($relatedProduct);
-    ?>
     <!-- Topbar Start -->
     <div class="container-fluid">
         <div class="row align-items-center py-3 pd_mobile" style="background-color: #f2f2f2;">

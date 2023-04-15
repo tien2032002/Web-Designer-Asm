@@ -3,14 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home page</title>
+    <title>DISFRUTAR - Thực đơn</title>
+    <meta name="description" content="Disfrutar-Nơi hội tụ tinh hoa ẩm thực. Thực đơn phong phú, đa dạng. Không gian thoáng đãng, rộng rãi. Phục vụ tận tình, chu đáo. Địa chỉ: 268 Lý Thường Kiệt, Phường 14, Quận 10, Thành phố Hồ Chí Minh. Đặt bàn ngay!">
+    <meta name="keywords" content="Disfrutar, Restaurent, quận 10, thành phố HCM">
+    <meta name="author" content="Nelele">
     <!-- ======= Styles ====== -->
       <!--  icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
      <!--  style -->
-    <link rel="stylesheet" type="text/css" href="view/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="view/css/UI_user/style_navbar_homepage.css">
+     <link rel="stylesheet" type="text/css" href="view/bootstrap/css/bootstrap.min.css"> 
+    <link rel="stylesheet" type="text/css" href="view/css/UI_user/navbar_homepage.css">
+    <link rel="stylesheet" type="text/css" href="view/css/UI_user/cart2.css">
+    <link rel="stylesheet" type="text/css" href="view/css/UI_user/product.css">
     <!-- ======= Scripts ====== -->
     <script src="view/bootstrap/js/bootstrap.min.js"></script>
     <script src="view/jquery/jquery-3.6.4.js"></script>
@@ -57,41 +62,7 @@
         $menuList = json_decode($menuList);
     ?>
     <!-- Topbar Start -->
-    <div class="container-fluid">
-        <div class="row align-items-center py-3 pd_mobile" style="background-color: #f2f2f2;">
-            <div class="col-lg-3 d-none d-lg-block px-5">
-                <a href="/home_page">
-                    <img src="view/images/logo.jpg" style="width: 70%;" alt="logo">
-                </a>
-            </div>
-            <div class="col-lg-9">
-                <div class="row">
-                    <div class="col-tablet-7 col-mobile-5">
-                      <form class="form-inline" style="margin-right: 1%;">
-                        <div class="input-group">
-                          <input type="text" class="form-control" placeholder="Search for products" style="border-radius: 0;">
-                          <div class="input-group-append">
-                            <button class="btn border btn-outline-secondary" type="button">
-                              <i class="fa fa-search"></i>
-                            </button>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                    <div class="col-tablet-3 col-mobile-5 navbar_ic d-flex justify-content-end">
-                      <a href="#" class="btn border btn-outline-secondary" style="margin-right: 1%; border-radius: 0;">
-                        <i class="fas fa-heart"></i>
-                        <span class="badge">0</span>
-                      </a>
-                      <a href="#" class="btn border btn-outline-secondary" style="margin-right: 1%; border-radius: 0;">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span class="badge">0</span>
-                      </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <?php include 'component/topbar.php'; ?>
     <!-- Topbar End -->
 
     <div class="container-fluid">
@@ -117,41 +88,8 @@
             <!-- Sidebar Large End -->
             <div class="col-lg-9">
                 <!-- Navbar Start -->
-                <nav class="navbar navbar-expand-lg bg-light navbar-light p-2">
-                    <a href="/home_page" class="d-block d-lg-none">
-                        <img src="view/images/logo.jpg" style="width: 100px;" alt="logo">
-                    </a>
-                    <button type="button" 
-                            class="navbar-toggler" 
-                            data-toggle="collapse" 
-                            data-target="#navbarCollapse"
-                            style="border-radius: 0;">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                        <div class="navbar-nav">
-                            <a href="/home_page" class="nav-item nav-link active">Trang Chủ</a>
-                            <a href="/menu" class="nav-item nav-link" >Thực Đơn</a>
-                            <a href="#" class="nav-item nav-link">Đặt Bàn</a>
-                            <a href="#" class="nav-item nav-link">Tin Tức</a>
-                            <a href="/login_manager" class="nav-item nav-link">Quản Trị Viên</a>
-                        </div>
-                        <div class="navbar-nav ml-auto nav_main">
-                            <div>
-                                <a href="/login" class="nav-item nav-link">
-                                    <i class="bi bi-person text-dark"></i>
-                                    Đăng Nhập
-                                </a>
-                            </div>
-                            <div>
-                                <a href="/signup" class="nav-item nav-link">
-                                    <i class="bi bi-person-plus text-dark"></i>
-                                    Đăng Ký
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </nav>
+                <?php $page = 'home_page';
+                include 'component/navbar.php'; ?>
                 <!-- Navbar End -->
 
                 <!-- Sidebar None Large Start -->
@@ -199,24 +137,20 @@
                                                         <!-- dish name -->
                                                         <h6 class="item-name">'.$starter->name.'</h6>
                                                         <!-- price -->
-                                                        <h6 class="item-price text-secondary"><small>'.$starter->price.'đ</small></h6>
+                                                        <h6 class="item-price text-secondary"><small>'.number_format($starter->price,0,".",",").'đ</small></h6>
                                                     </div>
 
                                                     <div class="item-comment-count d-flex justify-content-around align-items-center">
 
-                                                        <a href="#" class="d-flex text-decoration-none">
-                                                            <i class="bi bi-chat"></i>
-                                                            <div class="comment-quantity"><small>25</small></div>
-                                                        </a>
                                                         <!-- view detail btn -->
                                                         <a href="dish-detail/'.UrlNormal($starter->name).'/'.$starter->id.'" class="btn btn-outline-dark btn-sm mt-1 ">
                                                             <i class="bi bi-eye-fill"></i>
-                                                            View detail
+                                                            Xem chi tiết
                                                         </a>
                                                         <!-- order btn -->
-                                                        <a href="#" class="btn btn-outline-dark btn-sm mt-1 ">
+                                                        <a href="/login" class="btn btn-outline-dark btn-sm mt-1 ">
                                                             <i class="bi bi-cart3"></i>
-                                                            Order Now
+                                                            Thêm vào giỏ
                                                         </a>
                                                     </div>
                                                 </div>
@@ -233,7 +167,7 @@
                                 <div class="d-flex justify-content-end">
                                     <a href="" style="text-decoration: none;">
                                         <i class="bi bi-eye-fill"></i>
-                                        View more
+                                        Xem thêm
                                     </a>
                                 </div>
                             </div>
@@ -257,24 +191,20 @@
                                                         <!-- dish name -->
                                                         <h6 class="item-name">'.$main->name.'</h6>
                                                         <!-- price -->
-                                                        <h6 class="item-price text-secondary"><small>'.$main->price.'đ</small></h6>
+                                                        <h6 class="item-price text-secondary"><small>'.number_format($starter->price,0,".",",").'đ</small></h6>
                                                     </div>
 
                                                     <div class="item-comment-count d-flex justify-content-around align-items-center">
 
-                                                        <a href="#" class="d-flex text-decoration-none">
-                                                            <i class="bi bi-chat"></i>
-                                                            <div class="comment-quantity"><small>25</small></div>
-                                                        </a>
                                                         <!-- view detail btn -->
                                                         <a href="index.php?controller=guest&action=dish_detail&id='.$main->id.'" class="btn btn-outline-dark btn-sm mt-1 ">
                                                             <i class="bi bi-eye-fill"></i>
-                                                            View detail
+                                                            Xem chi tiết
                                                         </a>
                                                         <!-- order btn -->
                                                         <a href="#" class="btn btn-outline-dark btn-sm mt-1 ">
                                                             <i class="bi bi-cart3"></i>
-                                                            Order Now
+                                                            Thêm vào giỏ
                                                         </a>
                                                     </div>
                                                 </div>
@@ -283,6 +213,13 @@
                                         }
                                         
                                     ?>
+                                     
+                                </div>
+                                <div class="d-flex justify-content-end">
+                                    <a href="" style="text-decoration: none;">
+                                        <i class="bi bi-eye-fill"></i>
+                                        Xem thêm
+                                    </a>
                                 </div>
                             </div>
 
@@ -304,24 +241,19 @@
                                                         <!-- dish name -->
                                                         <h6 class="item-name">'.$dessert->name.'</h6>
                                                         <!-- price -->
-                                                        <h6 class="item-price text-secondary"><small>'.$dessert->price.'đ</small></h6>
+                                                        <h6 class="item-price text-secondary"><small>'.number_format($starter->price,0,".",",").'đ</small></h6>
                                                     </div>
 
                                                     <div class="item-comment-count d-flex justify-content-around align-items-center">
-
-                                                        <a href="#" class="d-flex text-decoration-none">
-                                                            <i class="bi bi-chat"></i>
-                                                            <div class="comment-quantity"><small>25</small></div>
-                                                        </a>
                                                         <!-- view detail btn -->
                                                         <a href="index.php?controller=guest&action=dish_detail&id='.$dessert->id.'" class="btn btn-outline-dark btn-sm mt-1 ">
                                                             <i class="bi bi-eye-fill"></i>
-                                                            View detail
+                                                            Xem chi tiết
                                                         </a>
                                                         <!-- order btn -->
                                                         <a href="#" class="btn btn-outline-dark btn-sm mt-1 ">
                                                             <i class="bi bi-cart3"></i>
-                                                            Order Now
+                                                            Thêm vào giỏ
                                                         </a>
                                                     </div>
                                                 </div>
@@ -335,7 +267,7 @@
                                 <div class="d-flex justify-content-end">
                                     <a href="" style="text-decoration: none;">
                                         <i class="bi bi-eye-fill"></i>
-                                        View more
+                                        Xem thêm
                                     </a>
                                 </div>
                             </div>

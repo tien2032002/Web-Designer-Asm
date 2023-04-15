@@ -2,8 +2,11 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="Disfrutar-Nơi hội tụ tinh hoa ẩm thực. Top 10 nhà hàng được yêu thích nhất TPHCM. Thực đơn phong phú, đa dạng. Không gian thoáng đãng, rộng rãi. Phục vụ tận tình, chu đáo. Địa chỉ: 268 Lý Thường Kiệt, Phường 14, Quận 10, Thành phố Hồ Chí Minh. Đặt bàn ngay!">
+    <meta name="keywords" content="Disfrutar, Restaurent, quận 10, thành phố HCM, top 10">
+    <meta name="author" content="Nelele">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home page</title>
+    <title>DISFRUTAR</title>
     <!-- ======= Styles ====== -->
       <!--  icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />

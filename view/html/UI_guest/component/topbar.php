@@ -39,7 +39,7 @@
                         </a>
                         <div id="popup"></div>
                         <div id="cart-popup" class="p-3">
-                            <div class="alert-cart">Chưa Có Sản Phẩm</div>
+                            <div class="alert-cart">Bạn phải đăng nhập<br>mới có thể sử dụng tính năng giỏ hàng!</div>
                         </div> 
                     </div>
                     <!-- Cart Popup End -->

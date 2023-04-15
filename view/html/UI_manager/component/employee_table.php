@@ -37,7 +37,7 @@
                                     <h5>Chỉnh sửa thông tin nhân viên</h5>
                                     </div>
                                     <div class="modal-body">
-                                    <form method="POST" action="index.php?controller=manager&action=update_employee&curID='.$employee->id.'" id="updateEmployee'.$employee->id.'">
+                                    <form method="POST" action="index.php?controller=manager&action=update_employee&ID='.$employee->id.'" id="updateEmployee'.$employee->id.'">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
@@ -199,12 +199,12 @@
                                                     <label for="gender" style="font-weight: 500;">GIỚI TÍNH</label><br>
                                                     <div class="form-check-inline mt-1">
                                                         <label>
-                                                            <input type="radio" class="form-check-input" name="gender" value="nam" required ';if ($employee->gender=='nam') echo 'checked'; echo '>Nam
+                                                            <input type="radio" class="form-check-input" name="gender" value="Nam" required ';if ($employee->gender=='Nam') echo 'checked'; echo '>Nam
                                                         </label>
                                                     </div>
                                                     <div class="form-check-inline">
                                                         <label>
-                                                            <input type="radio" class="form-check-input" name="gender" value="nữ" required ';if ($employee->gender=='nữ') echo 'checked'; echo '>Nữ
+                                                            <input type="radio" class="form-check-input" name="gender" value="Nữ" required ';if ($employee->gender=='Nữ') echo 'checked'; echo '>Nữ
                                                         </label>
                                                     </div>
                                                 </div>
@@ -264,7 +264,7 @@
                 <h5>Thêm thông tin nhân viên</h5>
             </div>
             <div class="modal-body">
-            <form id='addEmployee' method="POST" action="index.php?controller=manager&action=add_employee">
+            <form id='addEmployee' method="POST" action="/add_employee">
                 <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">

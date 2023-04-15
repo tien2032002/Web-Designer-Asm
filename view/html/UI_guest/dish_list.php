@@ -160,17 +160,17 @@
                             <!-- dish name -->
                             <h6 class="item-name">'.$product->name.'</h6>
                             <!-- price -->
-                            <h6 class="item-price text-secondary"><small>'.$product->price.'đ</small></h6>
+                            <h6 class="item-price text-secondary"><small>'.number_format($product->price,0,".",",").'đ</small></h6>
                         </div>
 
                         <div class="item-comment-count d-flex justify-content-around align-items-center">
                             <!-- view detail btn -->
                             <a href="dish-detail/'.UrlNormal($product->name).'/'.$product->id.'" class="btn btn-outline-dark btn-sm mt-1 ">
                                 <i class="fas fa-eye"></i>
-                                Chi tiết
+                                Xem chi tiết
                             </a>
                             <!-- order btn -->
-                            <a href="#" class="btn btn-outline-dark btn-sm mt-1 ">
+                            <a href="/login" class="btn btn-outline-dark btn-sm mt-1 ">
                                 <i class="fas fa-shopping-cart"></i>
                                 Thêm vào giỏ
                             </a>

@@ -1,10 +1,19 @@
 
+<?php
+    //decode json
+        $userObj = json_decode($userObj);
+        $productObj = json_decode($productObj);
+        $relatedProduct = json_decode($relatedProduct);
+    ?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home page</title>
+    <title><?php echo $productObj->name; ?></title>
+    <meta name="description" content="Disfrutar-Nơi hội tụ tinh hoa ẩm thực. Thực đơn phong phú, đa dạng. Không gian thoáng đãng, rộng rãi. Phục vụ tận tình, chu đáo. Địa chỉ: 268 Lý Thường Kiệt, Phường 14, Quận 10, Thành phố Hồ Chí Minh. Đặt bàn ngay!">
+    <meta name="keywords" content="Disfrutar, Restaurent, quận 10, thành phố HCM">
+    <meta name="author" content="Nelele">
     <!-- ======= Styles ====== -->
       <!--  icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
@@ -54,12 +63,7 @@
     </script>
 </head>
 <body>
-    <?php
-    //decode json
-        $userObj = json_decode($userObj);
-        $productObj = json_decode($productObj);
-        $relatedProduct = json_decode($relatedProduct);
-    ?>
+
     <div class="container-fluid">
         <div class="row align-items-center py-3 pd_mobile" style="background-color: #f2f2f2;">
             <div class="col-lg-3 d-none d-lg-block px-5">
