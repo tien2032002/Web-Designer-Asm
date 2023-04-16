@@ -58,5 +58,9 @@
             }
             else header('index.php?controller=user&action=menu');
         }
+
+        function news() {
+            $this->render('view\html\UI_guest\news');
+        }
     }
 ?>
