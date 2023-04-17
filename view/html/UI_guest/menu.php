@@ -16,6 +16,7 @@
     <link rel="stylesheet" type="text/css" href="view/css/UI_user/navbar_homepage.css">
     <link rel="stylesheet" type="text/css" href="view/css/UI_user/cart2.css">
     <link rel="stylesheet" type="text/css" href="view/css/UI_user/product.css">
+    <link rel="stylesheet prefetch" href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css">
     <!-- ======= Scripts ====== -->
     <script src="view/bootstrap/js/bootstrap.min.js"></script>
     <script src="view/jquery/jquery-3.6.4.js"></script>
@@ -133,22 +134,41 @@
                                                 <!-- begin: first starter dish -->
                                                 <div class="menu__item card">
                                                     <img src="'.$starter->image.'" alt="" class="item-img">
-                                                    <div class="item-description">
-                                                        <!-- dish name -->
-                                                        <h6 class="item-name">'.$starter->name.'</h6>
-                                                        <!-- price -->
-                                                        <h6 class="item-price text-secondary"><small>'.number_format($starter->price,0,".",",").'đ</small></h6>
+                                                    <div class="item-description d-flex justify-content-between">
+                                                        <div style="width: 50%">
+                                                            <!-- dish name -->
+                                                            <h6 class="item-name">'.$starter->name.'</h6>
+                                                            <!-- price -->
+                                                            <h6 class="item-price text-secondary"><small>'.number_format($starter->price,0,".",",").'đ</small></h6>
+                                                        </div>
+                                                        <!-- begin: star rating -->
+                                                        <div class="stars">
+                                                            <form action="">
+                                                                <input class="star star-5" id="star-5" type="radio" name="star"/>
+                                                                <label class="star star-5" for="star-5"></label>
+                                                                <input class="star star-4" id="star-4" type="radio" name="star"/>
+                                                                <label class="star star-4" for="star-4"></label>
+                                                                <input class="star star-3" id="star-3" type="radio" name="star"/>
+                                                                <label class="star star-3" for="star-3"></label>
+                                                                <input class="star star-2" id="star-2" type="radio" name="star"/>
+                                                                <label class="star star-2" for="star-2"></label>
+                                                                <input class="star star-1" id="star-1" type="radio" name="star"/>
+                                                                <label class="star star-1" for="star-1"></label>
+                                                            </form>
+                                                        </div>
+                                                        <!-- end: star rating -->
                                                     </div>
+
 
                                                     <div class="item-comment-count d-flex justify-content-around align-items-center">
 
                                                         <!-- view detail btn -->
-                                                        <a href="dish-detail/'.UrlNormal($starter->name).'/'.$starter->id.'" class="btn btn-outline-dark btn-sm mt-1 ">
+                                                        <a href="dish-detail/'.UrlNormal($starter->name).'/'.$starter->id.'" class="btn btn-override btn-outline-dark btn-sm mt-1 ">
                                                             <i class="bi bi-eye-fill"></i>
                                                             Xem chi tiết
                                                         </a>
                                                         <!-- order btn -->
-                                                        <a href="/login" class="btn btn-outline-dark btn-sm mt-1 ">
+                                                        <a href="/login" class="btn btn-override btn-outline-dark btn-sm mt-1 ">
                                                             <i class="bi bi-cart3"></i>
                                                             Thêm vào giỏ
                                                         </a>
@@ -165,7 +185,7 @@
                                 </div>
 
                                 <div class="d-flex justify-content-end">
-                                    <a href="" style="text-decoration: none;">
+                                    <a href="" style="text-decoration: none; color: #905e65">
                                         <i class="bi bi-eye-fill"></i>
                                         Xem thêm
                                     </a>
@@ -187,22 +207,40 @@
                                                 <!-- begin: first starter dish -->
                                                 <div class="menu__item card">
                                                     <img src="'.$main->image.'" alt="" class="item-img">
-                                                    <div class="item-description">
-                                                        <!-- dish name -->
-                                                        <h6 class="item-name">'.$main->name.'</h6>
-                                                        <!-- price -->
-                                                        <h6 class="item-price text-secondary"><small>'.number_format($starter->price,0,".",",").'đ</small></h6>
+                                                    <div class="item-description d-flex justify-content-between">
+                                                        <div style="width: 50%">
+                                                            <!-- dish name -->
+                                                            <h6 class="item-name">'.$main->name.'</h6>
+                                                            <!-- price -->
+                                                            <h6 class="item-price text-secondary"><small>'.number_format($starter->price,0,".",",").'đ</small></h6>
+                                                        </div>
+                                                        <!-- begin: star rating -->
+                                                        <div class="stars">
+                                                            <form action="">
+                                                                <input class="star star-5" id="star-5" type="radio" name="star"/>
+                                                                <label class="star star-5" for="star-5"></label>
+                                                                <input class="star star-4" id="star-4" type="radio" name="star"/>
+                                                                <label class="star star-4" for="star-4"></label>
+                                                                <input class="star star-3" id="star-3" type="radio" name="star"/>
+                                                                <label class="star star-3" for="star-3"></label>
+                                                                <input class="star star-2" id="star-2" type="radio" name="star"/>
+                                                                <label class="star star-2" for="star-2"></label>
+                                                                <input class="star star-1" id="star-1" type="radio" name="star"/>
+                                                                <label class="star star-1" for="star-1"></label>
+                                                            </form>
+                                                        </div>
+                                                        <!-- end: star rating -->                                                        
                                                     </div>
 
                                                     <div class="item-comment-count d-flex justify-content-around align-items-center">
 
                                                         <!-- view detail btn -->
-                                                        <a href="index.php?controller=guest&action=dish_detail&id='.$main->id.'" class="btn btn-outline-dark btn-sm mt-1 ">
+                                                        <a href="index.php?controller=guest&action=dish_detail&id='.$main->id.'" class="btn btn-override btn-outline-dark btn-sm mt-1 ">
                                                             <i class="bi bi-eye-fill"></i>
                                                             Xem chi tiết
                                                         </a>
                                                         <!-- order btn -->
-                                                        <a href="#" class="btn btn-outline-dark btn-sm mt-1 ">
+                                                        <a href="#" class="btn btn-override btn-outline-dark btn-sm mt-1 ">
                                                             <i class="bi bi-cart3"></i>
                                                             Thêm vào giỏ
                                                         </a>
@@ -216,7 +254,7 @@
                                      
                                 </div>
                                 <div class="d-flex justify-content-end">
-                                    <a href="" style="text-decoration: none;">
+                                    <a href="" style="text-decoration: none; color: #905e65">
                                         <i class="bi bi-eye-fill"></i>
                                         Xem thêm
                                     </a>
@@ -237,21 +275,39 @@
                                                 <!-- begin: first starter dish -->
                                                 <div class="menu__item card">
                                                     <img src="'.$dessert->image.'" alt="" class="item-img">
-                                                    <div class="item-description">
-                                                        <!-- dish name -->
-                                                        <h6 class="item-name">'.$dessert->name.'</h6>
-                                                        <!-- price -->
-                                                        <h6 class="item-price text-secondary"><small>'.number_format($starter->price,0,".",",").'đ</small></h6>
+                                                    <div class="item-description d-flex justify-content-between">
+                                                        <div style="width: 50%">
+                                                            <!-- dish name -->
+                                                            <h6 class="item-name">'.$dessert->name.'</h6>
+                                                            <!-- price -->
+                                                            <h6 class="item-price text-secondary"><small>'.number_format($starter->price,0,".",",").'đ</small></h6>
+                                                        </div>
+                                                        <!-- begin: star rating -->
+                                                        <div class="stars">
+                                                            <form action="">
+                                                                <input class="star star-5" id="star-5" type="radio" name="star"/>
+                                                                <label class="star star-5" for="star-5"></label>
+                                                                <input class="star star-4" id="star-4" type="radio" name="star"/>
+                                                                <label class="star star-4" for="star-4"></label>
+                                                                <input class="star star-3" id="star-3" type="radio" name="star"/>
+                                                                <label class="star star-3" for="star-3"></label>
+                                                                <input class="star star-2" id="star-2" type="radio" name="star"/>
+                                                                <label class="star star-2" for="star-2"></label>
+                                                                <input class="star star-1" id="star-1" type="radio" name="star"/>
+                                                                <label class="star star-1" for="star-1"></label>
+                                                            </form>
+                                                        </div>
+                                                        <!-- end: star rating -->                                                            
                                                     </div>
 
                                                     <div class="item-comment-count d-flex justify-content-around align-items-center">
                                                         <!-- view detail btn -->
-                                                        <a href="index.php?controller=guest&action=dish_detail&id='.$dessert->id.'" class="btn btn-outline-dark btn-sm mt-1 ">
+                                                        <a href="index.php?controller=guest&action=dish_detail&id='.$dessert->id.'" class="btn btn-override btn-outlineoverride btn-outline-dark btn-sm mt-1 ">
                                                             <i class="bi bi-eye-fill"></i>
                                                             Xem chi tiết
                                                         </a>
                                                         <!-- order btn -->
-                                                        <a href="#" class="btn btn-outline-dark btn-sm mt-1 ">
+                                                        <a href="#" class="btn btn-override btn-outline-dark btn-sm mt-1 ">
                                                             <i class="bi bi-cart3"></i>
                                                             Thêm vào giỏ
                                                         </a>
@@ -265,7 +321,7 @@
                                 </div>
 
                                 <div class="d-flex justify-content-end">
-                                    <a href="" style="text-decoration: none;">
+                                    <a href="" style="text-decoration: none; color: #905e65">
                                         <i class="bi bi-eye-fill"></i>
                                         Xem thêm
                                     </a>
@@ -414,6 +470,15 @@
 
     <!-- ======= Scripts ====== -->
     <!-- <script src="view/script/user_navbar.js"></script> -->
-
+    <script>
+        const stars = document.querySelectorAll(".stars i");
+        stars.forEach((star,index1) => {
+            star.addEventListener("click", () =>{
+                stars.forEach((star,index2) => {    
+                    index1 >= index2 ? star.classList.add("active"):star.classList.remove("active");
+                });
+            });
+        });
+    </script>
 </body>
 </html>
