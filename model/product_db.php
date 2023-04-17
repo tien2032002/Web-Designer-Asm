@@ -14,5 +14,7 @@
         require_once('db.php');
     }
 
-
+    function getProductList($type) {
+        //get list of products with 
+    }
 ?>

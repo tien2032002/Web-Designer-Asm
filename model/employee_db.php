@@ -18,11 +18,8 @@
         if (mysqli_num_rows($resultPhone) == 0) return "phoneErr";
         $phoneObj = mysqli_fetch_object($resultPhone);
         if ($phoneObj->password != $password) return "passwordErr";
-        session_start();
-        $_SESSION['phone'] = $_POST['phone'];
-        $_SESSION['name'] = $phoneObj->name;
-        $_SESSION['is_admin'] = $phoneObj->is_admin;
-        return "good";
+        if ($phoneObj->is_admin==1) return "admin";
+        return "employee";
     }
 
 

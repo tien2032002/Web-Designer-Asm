@@ -1,6 +1,4 @@
 <?php
-    // include_once ("model/db.php");
-    // include_once ("control/auth.php");
     require('model/db.php');
 
     if (isset($_GET['controller'])) {
@@ -11,7 +9,7 @@
           $action = 'index';
         }
       } else {
-        $controller = 'user';
+        $controller = 'guest';
         $action = 'home_page';
       }
       require_once('route.php');

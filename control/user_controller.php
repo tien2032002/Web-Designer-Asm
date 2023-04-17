@@ -9,7 +9,6 @@
         
         //login form
         function login() {
-
             //if user has filled login form
             if (isset($_POST['phone']) && isset($_POST['password'])) {
                 
@@ -21,7 +20,7 @@
                 //if login infomation not correct, redirect to login page with error code
                 if ($checkLogin!='good') {
                     $data = array('loginErr' => $checkLogin);
-                    $this->render('view/html/UI_user/login', $data);
+                    $this->render('view/html/UI_guest/login', $data);
                 }
                 //login infomation correct => go to home page for user
                 else {
@@ -30,7 +29,8 @@
             }
             else {
                 $data = array('loginErr' => 'first');
-                $this->render('view/html/UI_user/login', $data);
+                echo "dp";
+                $this->render('view/html/UI_guest/login', $data);
             }
         }
 
@@ -53,7 +53,6 @@
                                         $_POST['password'], $_POST['password2']);
                             session_start();
                             $_SESSION['phone'] = $_POST['phone'];
-                            $_SESSION['name'] = $_POST['firstName']. ' ' .$_POST['lastName'];
                             header("Location: index.php?controller=user&action=home_page_user");
                        }
 
@@ -71,12 +70,23 @@
         }
 
         function home_page_user() {
-            $this->render('view/html/UI_user/home_page_user');
+            session_start();
+            if (isset($_SESSION['phone'])) {
+                include("model/customer_db.php");
+                $data = array("userObj" => getCustomerByPhone($_SESSION['phone']));
+                $this->render("view/html/UI_user/home_page_user", $data);
+            }
+            else {
+                echo "error";
+                exit;
+            }
         }
 
         function logout() {
+            session_start();
             session_destroy();
             header("Location: index.php?controller=user&action=home_page");
         }
+
     }
 ?>

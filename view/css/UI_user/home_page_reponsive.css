@@ -1,0 +1,32 @@
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {  
+
+}
+
+/*Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+    .show{
+        z-index: 2;
+        background-color: #F8F9FA;
+    }
+    #navbarCollapse{
+        padding: 0;
+    }
+    .navbar-nav .nav-link,
+    .nav_main>div{
+        border-top: solid 1px rgba(204, 204, 204,0.5);
+    }
+
+    .nav_main>div{
+        margin: 0;
+    }
+
+    .navbar-toggler{
+        margin-bottom: 14px;
+    }
+}
+
+/*  Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+
+}
