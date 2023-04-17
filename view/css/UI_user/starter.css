@@ -73,6 +73,21 @@
   height: 6px;
 }
 
+.back-to-top {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  display: none;
+}
+
+.page-link-active{
+  color: #fff !important;
+  background-color: #f38f91 !important;
+}
+
+.pink-color{
+  color: #b38b91;
+}
 /* reponsive */
 
 @media (max-width: 767px) {

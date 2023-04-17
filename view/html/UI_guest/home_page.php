@@ -194,8 +194,10 @@
     <!-- Featured End -->
 
 
+
     <!-- ======= Scripts ====== -->
     <script src="view/script/user_navbar.js"></script>
     <script src="view/script/cart.js"></script>
+
 </body>
 </html>
