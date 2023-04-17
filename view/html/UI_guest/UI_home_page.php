@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -7,12 +6,13 @@
     <title>Home page</title>
     <!-- ======= Styles ====== -->
       <!--  icon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
      <!--  style -->
-    <link rel="stylesheet" type="text/css" href="view/css/UI_user/navbar_homepage.css">
-    <link rel="stylesheet" type="text/css" href="view/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="view/css/UI_user/cart2.css">
+    <link rel="stylesheet" type="text/css" href="view/bootstrap/css/bootstrap.min.css"> 
+    <link rel="stylesheet" type="text/css" href="view/css/UI_user/sidebar.css">
+    <link rel="stylesheet" type="text/css" href="view/css/UI_user/UI_home_page.css">
+    <link rel="stylesheet" type="text/css" href="view/css/UI_user/product.css">
     <!-- ======= Scripts ====== -->
     <script src="view/bootstrap/js/bootstrap.min.js"></script>
     <script src="view/jquery/jquery-3.6.4.js"></script>
@@ -55,12 +55,8 @@
     </script>
 </head>
 <body>
-    <?php
-    //decode json
-        $userObj = json_decode($userObj);
-    ?>
     <!-- Topbar Start -->
-    <?php include 'component/topbar.php'; ?>
+        <?php include 'component/topbar.php'; ?>
     <!-- Topbar End -->
     
     <!-- Main Start -->
@@ -70,12 +66,12 @@
             <div class="col-lg-3 d-none d-lg-block navbar_left">
                 <a class="btn d-flex align-items-center justify-content-between" 
                     data-toggle="collapse" href="#navbar-vertical" 
-                    style="height: 65px; padding: 0 30px;">
+                    style="height: 60px; padding: 0 30px;">
                     <h6 class="m-0">Danh Mục Món Ăn</h6>
                     <i class="fa fa-angle-down text-dark"></i>
                 </a>
                 <nav class="collapse show navbar" id="navbar-vertical" style="margin-top: -9px;">
-                    <div class="list-group w-100" id="myList">
+                    <div class="list-group w-100">
                         <a class="list-group-item list-group-item-action" data-toggle="list" href="#tab1">Khai vị</a>
                         <a class="list-group-item list-group-item-action" data-toggle="list" href="#tab2">Món Chính</a>
                         <a class="list-group-item list-group-item-action" data-toggle="list" href="#tab3">Tráng Miệng</a>
@@ -85,10 +81,9 @@
                 </nav>
             </div>
             <!-- Sidebar Large End -->
-
             <div class="col-lg-9">
                 <!-- Navbar Start -->
-                <?php $page = 'home_page_user';
+                <?php $page = 'home_page';
                 include 'component/navbar.php'; ?>
                 <!-- Navbar End -->
 
@@ -117,13 +112,14 @@
                     <!-- Tab HomePage -->
                     <div class="tab-pane active">
                         <!-- Carousel Start -->
-                        <?php include 'View/html/UI_guest/component/carousel.php'; ?>
+                        <?php include 'component/carousel.php'; ?>    
                         <!-- Carousel End-->
                     </div>
                     <!-- Tab Khai Vi -->
                     <div class="tab-pane" id="tab1">
                         <script>
                             loadXMLDoc('index.php?controller=guest&action=dish_list&type=starter', 'tab1');
+                            loadXMLDoc('index.php?controller=guest&action=dish_list&type=main', 'tab2');
                         </script>
                     </div>
                     <!-- Tab Mon Chinh -->
@@ -148,6 +144,13 @@
                     <div class="tab-pane" id="tab5">
                         <script>
                             loadXMLDoc('index.php?controller=guest&action=dish_list&type=drink', 'tab5');
+                        </script>
+                    </div>
+
+                    <!-- Tab menu -->
+                    <div class="tab-pane" id="tab6">
+                        <script>
+                            loadXMLDoc('index.php?controller=guest&action=menu', 'tab6');
                         </script>
                     </div>
                 </div>
@@ -187,9 +190,10 @@
         </div>
     </div>
     <!-- Featured End -->
-    
+
+
     <!-- ======= Scripts ====== -->
-    <script src="view/script/user_navbar.js"></script>
+    <script src="view/script/sidebar.js"></script>
     <script src="view/script/cart.js"></script>
 </body>
 </html>

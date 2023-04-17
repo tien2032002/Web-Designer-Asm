@@ -3,22 +3,22 @@
     class guestController extends baseController {
         //display home page UI for guest
         function home_page() {
-            $this->render("view/html/UI_guest/home_page");
+            $this->render("view/html/UI_guest/UI_home_page");
         }
 
         //display login UI for guest
         function login() {
-            $this->render("view\html\UI_guest\login");
+            $this->render("view\html\UI_guest\UI_login");
         }
 
         //display login UI for manager
         function login_manager() {
-            $this->render("view\html\UI_guest\login_manager");
+            $this->render("view\html\UI_guest\UI_login_QTV");
         }
 
         //display signup UI
         function signup() {
-            $this->render('view\html\UI_guest\signup');
+            $this->render('view\html\UI_guest\UI_signup');
         }
 
         function dish_list() {

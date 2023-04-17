@@ -13,7 +13,7 @@
                 exit;
             }
             else
-            $this->render('view/html/UI_manager/manager');
+            $this->render('view/html/UI_manager/UI_manager');
         }
         
         //login form
@@ -44,12 +44,12 @@
                 //if login information is not correct => go to login employee page
                 else {
                     $data = array('loginErr' => $checkLoginManager);
-                    $this->render('view\html\UI_guest\login_manager', $data);
+                    $this->render('view\html\UI_guest\UI_login_QTV', $data);
                 }
             }
             else {
                 $data = array('loginErr' => 'first');
-                $this->render('view/html/UI_guest/login_manager', $data);
+                $this->render('view/html/UI_guest/UI_login_QTV', $data);
             }
         }
 

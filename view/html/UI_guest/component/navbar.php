@@ -14,8 +14,8 @@
             <a href="index.php?controller=guest&action=home_page" 
             class="nav-item nav-link <?php echo $page=='home_page'?'active':''; ?>">Trang Chủ</a>
             <a href="#" class="nav-item nav-link" >Thực Đơn</a>
-            <a href="#" class="nav-item nav-link">Đặt Bàn</a>
             <a href="#" class="nav-item nav-link">Tin Tức</a>
+            <a href="#" class="nav-item nav-link">Liên Hệ</a>
             <a href="index.php?controller=manager&action=login" 
             class="nav-item nav-link <?php echo $page=='login_manager'?'active':''; ?>">Quản Trị Viên</a>
         </div>

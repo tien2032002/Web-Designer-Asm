@@ -13,8 +13,8 @@
         <div class="navbar-nav">
             <a href="index.php?controller=user&action=home_page_user" class="nav-item nav-link active">Trang Chủ</a>
             <a href="index.php?controller=user&action=menu" class="nav-item nav-link">Thực Đơn</a>
-            <a href="#" class="nav-item nav-link">Đặt Bàn</a>
             <a href="#" class="nav-item nav-link">Tin Tức</a>
+            <a href="#" class="nav-item nav-link">Liên Hệ</a>
         </div>
         <div class="navbar-nav ml-auto nav_main">
             <div>

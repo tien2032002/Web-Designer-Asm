@@ -1,0 +1,27 @@
+.navbar_left .btn{
+    background-color: rgb(179, 139, 145);
+    border-radius: 0;
+}
+.navbar_left .btn:hover{
+    background-color: rgb(165, 115, 122);
+}
+.navbar-nav .nav-item.nav-link{
+    font-weight: 500;
+    color: black;
+}
+.list-group .list-group-item{
+    padding-left: 30px;
+    font-weight: 500;
+    color: black;
+}
+.collapse .list-group{
+    border-radius: 0;
+}
+.list-group .list-group-item:hover{
+    color: rgb(179, 139, 145);
+}
+.collapse .list-group-item.active{
+    background-color: white;
+    border-color: #dbd1d1;
+    color: rgb(179, 139, 145);
+}

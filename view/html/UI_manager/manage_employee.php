@@ -114,7 +114,7 @@
     <script src="view/script/employee_table.js"></script>
 
     <?php
-      if (isset($errResultAdd)) echo '
+      /*  if (isset($errResultAdd)) echo '
       <script>
         var myModal = new bootstrap.Modal(document.getElementById("confirm-add-modal"), {
           keyboard: false
@@ -130,7 +130,7 @@
         })
         myModal.show();
       </script>
-      ';
+      ';  */
     ?>
     
 </body>

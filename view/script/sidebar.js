@@ -1,5 +1,4 @@
 $(document).ready(function() {
-    
     $('a[data-toggle="collapse"]').click(function() {
       
       var navbar = $($(this).attr('href'));

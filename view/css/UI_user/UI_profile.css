@@ -1,6 +1,3 @@
-div.card{
-    border-radius: 0;
-}
 .custom-file-input::-webkit-file-upload-button {
     color: white;
     background-color: rgb(209, 164, 170);
@@ -20,15 +17,17 @@ div.card{
     font-size: 0.8rem;
     height: 2.5em;
 }
+div > div.list-group{
+    border-radius: 0;
+}
 div .list-group-item{
-    border: 0;
-    border-radius:0px;
+    border-radius: 0px;
     border-bottom: 1px solid;
     border-color: #ebdede;
     font-weight: 500;
 }
-div .list-group-item:last-child{
-    border-bottom: 0;
+div .list-group-item:hover{
+    color: rgb(211, 142, 152);
 }
 div .list-group-item.active{
     background-color: rgb(218, 195, 198);
