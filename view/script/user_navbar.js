@@ -8,17 +8,3 @@ $(document).ready(function() {
       return false;
     });
 });
-    
-
-/* $('.navbar-toggler').click(function(){
-    $('#navbarCollapse').toggleClass('show');
-}); */
-
-
-const navbar=document.getElementById("navbarCollapse");
-console.log(navbar);
-const navbarButton = document.getElementById("navbarButton");
-console.log(navbarButton);
-navbarButton.addEventListener('click',function(){
-  navbar.toggleClass('show');
-});

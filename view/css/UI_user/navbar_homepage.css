@@ -39,9 +39,6 @@
         flex: 0 0 auto;
         width: 100%;
     }
-    .pd_mobile{
-        margin: 0;
-    }
 }
 @media (min-width: 768px) {
     .row .col-tablet-1{
@@ -119,15 +116,15 @@
     font-weight: 500;
     color: black;
 }
-.list-group{
+.collapse .list-group{
     border-radius: 0;
 }
 .list-group .list-group-item:hover{
     color: rgb(179, 139, 145);
 }
-.list-group-item.active{
+.collapse .list-group-item.active{
     background-color: white;
-    border-color: white;
+    border-color: #dbd1d1;
     color: rgb(179, 139, 145);
 }
 /* ======================= Navbar main ====================== */

@@ -24,7 +24,8 @@
                 }
                 //login infomation correct => go to home page for user
                 else {
-                    header('Location: index.php?controller=user&action=home_page_user');
+
+                    header('Location: /home_page_user');
                 }
             }
             else {
@@ -55,8 +56,10 @@
                             addCustomer($_POST['firstName'], $_POST['lastName'],
                                         $_POST['phone'], $_POST['email'], 
                                         $_POST['password'], $_POST['password2']);
-                            session_start();
-                            $_SESSION['phone'] = $_POST['phone'];
+                            if (!isset($_SESSION)) session_start();
+                            //start session and save id & role
+                            $_SESSION['role'] = 'user';
+                            $_SESSION['id'] = getCustomerByPhone($_POST['phone'])->id;
                             header("Location: index.php?controller=user&action=home_page_user");
                        }
                        //if have error, go back to signup page and display warning
@@ -77,14 +80,14 @@
         function home_page_user() {
             //check session
             //if dont have session, display error and exit
-            session_start();
-            if (isset($_SESSION['userObj'])) {
+            if(!isset($_SESSION)) session_start();
+            if (isset($_SESSION['role']) && $_SESSION['role'] == 'user') {
                 include("model/customer_db.php");
-                $data = array("userObj" => $_SESSION['userObj']);
+                $data = array("userObj" => getCustomerById($_SESSION['id']));
                 $this->render("view/html/UI_user/home_page_user", $data);
             }
             else {
-                echo "error";
+                header('Location: /error');
                 exit;
             }
         }
@@ -96,19 +99,32 @@
             header("Location: index.php?controller=guest&action=home_page");
         }
 
+        //display profile user tab
+        function profile_user_tab() {
+            include_once('model\customer_db.php');
+            if (!isset($_SESSION)) session_start();
+            if(isset($_SESSION['role']) && $_SESSION['role'] == 'user'){
+                $data = array("userObj" => getCustomerById($_SESSION['id']));
+                $this->render('view\html\UI_user\component\profile_user_tab', $data);
+            }
+            else header("Location: /error");
+        }
+
          //display profile user
         function profile_user(){
-            session_start();
-            if(isset($_SESSION['userObj'])){
-                $this->render('view/html/UI_user/profile_user');
+            include_once('model\customer_db.php');
+            if (!isset($_SESSION)) session_start();
+            if(isset($_SESSION['role']) && $_SESSION['role'] == 'user'){
+                $data = array("userObj" => getCustomerById($_SESSION['id']));
+                $this->render('view/html/UI_user/profile_user', $data);
             }
-            
+            else header("Location: /error");
         }
 
         function dish_list() {
             include("model\product_db.php");
-            session_start();
-            if (isset($_SESSION['userObj'])) {
+            if (!isset($_SESSION)) session_start();
+            if (isset($_SESSION['role']) && $_SESSION['role'] == 'user') {
                 $data = array ('productList' => getProductList($_GET['type']),
                            'type' => $_GET['type']);
                 $this->render('view\html\UI_user\dish_list', $data);
@@ -118,13 +134,15 @@
 
         function dish_detail() {
             include("model\product_db.php");
-            session_start();
-            if (isset($_SESSION['userObj'])) {
+            include('model\customer_db.php');
+            if (!isset($_SESSION)) session_start();
+            if (isset($_SESSION['role']) && $_SESSION['role'] == 'user') {
                 $getProductObj = getProductById($_GET['id']);
-                if ($getProductObj == 'invalid id') echo 'wrong id';
+                if ($getProductObj == 'invalid id') echo header("Location: /error");
                 else {
                     $data = array('productObj' => $getProductObj,
-                                'relatedProduct' => get3RandomProduct(json_decode($getProductObj)->type, $_GET['id']));
+                                'relatedProduct' => get3RandomProduct(json_decode($getProductObj)->type, $_GET['id']),
+                                'userObj' => getCustomerById($_SESSION['id']));
                     $this->render('view\html\UI_user\dish_detail', $data);
                 }
             }
@@ -132,12 +150,14 @@
 
         function menu() {
             include("model\product_db.php");
-            session_start();
-            if (isset($_SESSION['userObj'])) {
-                $data = array('menuList' => getMenuList());
+            include("model\customer_db.php");
+            if (!isset($_SESSION)) session_start();
+            if (isset($_SESSION['role']) && $_SESSION['role'] == 'user') {
+                $data = array('menuList' => getMenuList(),
+                              'userObj' => getCustomerById($_SESSION['id']));
                 $this->render('view\html\UI_user\menu_user', $data);
             }
-            else header('index.php?guest=user&action=menu');
+            else header('/user/menu');
         }
 
         function change_info() {
@@ -146,6 +166,57 @@
             $changeErr = (checkChangeInfo());
             changeInfor($changeErr);
             $this->render('view\html\UI_user\profile_user', $changeErr);
+        }
+
+        function cart_dropdown() {
+            $this->render('view\html\UI_user\component\cart_dropdown');
+        }
+
+        function addToCart() {
+            if (isset($_SESSION['role']) && $_SESSION['role'] == 'user') {
+                if (isset($_GET['productID'])) {
+                    if (!isset($_COOKIE['cartArr'])) {
+                        //if cookie dont have variable cartArr yet
+                        //create a array
+                        //and save product id & product quantity
+                        //change that array to json and save to cookie
+                        $cart = array();
+                        if (!isset($_GET['productQuantity'])) $cart[(int)$_GET['productID']] = 1;
+                        else $cart[(int)$_GET['productID']] = (int)$_GET['productQuantity'];
+                        setcookie('cartArr', json_encode($cart), time() + (86400*7));
+
+                    }
+                    else {
+
+                        //if exist cookie,
+                        //add new element to array
+                        //if product id already exist
+                        //add product quantity
+                        
+                        $cart = json_decode($_COOKIE['cartArr'], true);
+                        if (isset($_GET['productQuantity'])) $cart[$_GET['productID']] = (int)$_GET['productQuantity'];
+                        else $cart[$_GET['productID']] = (int)$cart[$_GET['productID']] + 1;
+                        setcookie('cartArr', json_encode($cart), time() + (86400*7));
+                    }
+                }
+                header("Location: index.php?controller=user&action=cart_dropdown");
+            }
+            else header('Location: /error');
+        }
+
+        function view_cart() {
+            include_once('model\customer_db.php');
+            if (!isset($_SESSION)) session_start();
+            if(isset($_SESSION['role']) && $_SESSION['role'] == 'user'){
+                $data = array("userObj" => getCustomerById($_SESSION['id']),
+                              'active' => 'cart');
+                $this->render('view/html/UI_user/profile_user', $data);
+            }
+            else header("Location: /error");
+        }
+
+        function cart_tab() {
+            $this->render('view\html\UI_user\component\cart_tab');
         }
     }
 ?>

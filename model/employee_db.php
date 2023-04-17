@@ -18,8 +18,12 @@
         if (mysqli_num_rows($resultPhone) == 0) return "phoneErr";
         $phoneObj = mysqli_fetch_object($resultPhone);
         if ($phoneObj->password != $password) return "passwordErr";
-        if ($phoneObj->is_admin==1) return "admin";
-        return "employee";
+        //login success
+        if (!isset($_SESSION)) session_start();
+        if ($phoneObj->is_admin == 0) $_SESSION['role'] = 'employee';
+        else $_SESSION['role'] = 'manager';
+        $_SESSION['id'] = $phoneObj->id;
+        return 'good';
     }
     
     function getEmpByID($id) {

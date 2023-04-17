@@ -163,19 +163,15 @@
 
                         <div class="item-comment-count d-flex justify-content-around align-items-center">
 
-                            <a href="#" class="d-flex text-decoration-none">
-                                <i class="bi bi-chat"></i>
-                                <div class="comment-quantity"><small>25</small></div>
-                            </a>
                             <!-- view detail btn -->
-                            <a href="index.php?controller=guest&action=dish_detail&id='.$product->id.'" class="btn btn-outline-dark btn-sm mt-1 ">
+                            <a href="dish-detail/'.UrlNormal($product->name).'/'.$product->id.'" class="btn btn-outline-dark btn-sm mt-1 ">
                                 <i class="bi bi-eye-fill"></i>
-                                View detail
+                                Chi tiết
                             </a>
                             <!-- order btn -->
-                            <a href="#" class="btn btn-outline-dark btn-sm mt-1 ">
+                            <a onclick="loadXMLDoc(\'index.php?controller=user&action=addToCart&productID='.$product->id.'\', \'cart_drop\');" class="btn btn-outline-dark btn-sm mt-1 ">
                                 <i class="bi bi-cart3"></i>
-                                Order Now
+                                Thêm vào giỏ
                             </a>
                         </div>
                     </div>
@@ -184,7 +180,7 @@
             }
         ?>
         </div>
-    <script src="view/script/starter.js"></script>
+  <!--   <script src="view/script/starter.js"></script> -->
     
 </div>
 <!-- end starter content -->

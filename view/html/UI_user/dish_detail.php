@@ -1,10 +1,19 @@
 
+<?php
+    //decode json
+        $userObj = json_decode($userObj);
+        $productObj = json_decode($productObj);
+        $relatedProduct = json_decode($relatedProduct);
+    ?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home page</title>
+    <title><?php echo $productObj->name; ?></title>
+    <meta name="description" content="Disfrutar-Nơi hội tụ tinh hoa ẩm thực. Thực đơn phong phú, đa dạng. Không gian thoáng đãng, rộng rãi. Phục vụ tận tình, chu đáo. Địa chỉ: 268 Lý Thường Kiệt, Phường 14, Quận 10, Thành phố Hồ Chí Minh. Đặt bàn ngay!">
+    <meta name="keywords" content="Disfrutar, Restaurent, quận 10, thành phố HCM">
+    <meta name="author" content="Nelele">
     <!-- ======= Styles ====== -->
       <!--  icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
@@ -54,16 +63,11 @@
     </script>
 </head>
 <body>
-    <?php
-    //decode json
-        $userObj = json_decode($_SESSION['userObj']);
-        $productObj = json_decode($productObj);
-        $relatedProduct = json_decode($relatedProduct);
-    ?>
+
     <div class="container-fluid">
         <div class="row align-items-center py-3 pd_mobile" style="background-color: #f2f2f2;">
             <div class="col-lg-3 d-none d-lg-block px-5">
-                <a href="index.php?controller=user&action=home_page_user">
+                <a href="/home_page_user">
                     <img src="view/images/logo.jpg" style="width: 70%;" alt="logo">
                 </a>
             </div>
@@ -118,7 +122,7 @@
             <div class="col-lg-9">
                 <!-- Navbar Start -->
                 <nav class="navbar navbar-expand-lg bg-light navbar-light p-2" style="height: 62px;">
-                    <a href="index.php?controller=user&action=home_page_user" class="d-block d-lg-none">
+                    <a href="/home_page_user" class="d-block d-lg-none">
                         <img src="view/images/logo.jpg" style="width: 100px;" alt="logo">
                     </a>
                     <button type="button" 
@@ -130,14 +134,14 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav">
-                            <a href="index.php?controller=user&action=home_page_user" class="nav-item nav-link active">Trang Chủ</a>
+                            <a href="/home_page_user" class="nav-item nav-link active">Trang Chủ</a>
                             <a href="#" class="nav-item nav-link">Thực Đơn</a>
                             <a href="#" class="nav-item nav-link">Đặt Bàn</a>
                             <a href="#" class="nav-item nav-link">Tin Tức</a>
                         </div>
                         <div class="navbar-nav ml-auto nav_main">
                             <div>
-                                <a href="index.php?controller=user&action=profile_user" class="nav-item nav-link">
+                                <a href="/profile_user" class="nav-item nav-link">
                                     <div style="display: inline-block;">
                                         <div style="display: inline-block; margin-right: 10px;">
                                             <img src="<?php echo $userObj->image?>.jpg" 
@@ -152,7 +156,7 @@
                                 </a>
                             </div>
                             <div>
-                                <a href="index.php?controller=user&action=logout" class="nav-item nav-link">
+                                <a href="/logout" class="nav-item nav-link">
                                     <i class="bi bi-box-arrow-right text-dark"></i>
                                     Đăng xuất
                                 </a>
@@ -252,12 +256,21 @@
                                         <p>
                                             <?php echo $productObj->description ?>
                                         </p>
+                                        <!-- function to handle add to cart -->
+                                        
                                         <!-- form -->
                                         <form action="">
-                                            <input type="number" class="btn btn-outline-dark">
-                                            <input type="submit" class="btn btn-outline-dark" value="Add to cart">
+                                            <input type="number" class="btn btn-outline-dark" value='0' name='quantity' id='quantity'>
+                                            <input type="submit" class="btn btn-outline-dark" value="Add to cart" onclick='addToCart()'>
                                         </form>
-
+                                        <script>
+                                            function addToCart() {
+                                                quantityInput = document.getElementById('quantity');
+                                                xmlLink = 'index.php?controller=user&action=addToCart&productID=<?php echo $productObj->id?>&productQuantity=' + quantityInput.value.toString();
+                                                loadXMLDoc(xmlLink, 'cart_drop');
+                                                console.log(xmlLink);
+                                            }
+                                        </script>
                                         <!-- comment, link, share button -->
                                         <div class="d-flex mt-3 justify-content-between" >
                                             <div class="btn btn-light" style="width: 30%">
@@ -366,7 +379,7 @@
                                                         <div class="comment-quantity"><small>25</small></div>
                                                     </a>
                                                     <!-- view detail btn -->
-                                                    <a href="index.php?controller=guest&action=dish_detail&id='.$product->id.'" class="btn btn-outline-dark btn-sm mt-1 ">
+                                                    <a href="dish-detail/'.UrlNormal($product->name).'/'.$product->id.'" class="btn btn-outline-dark btn-sm mt-1 ">
                                                         <i class="bi bi-eye-fill"></i>
                                                         View detail
                                                     </a>

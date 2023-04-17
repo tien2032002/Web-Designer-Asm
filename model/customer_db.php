@@ -18,8 +18,9 @@
         if (mysqli_num_rows($resultPhone) == 0) return "phoneErr";
         $phoneObj = mysqli_fetch_object($resultPhone);
         if ($phoneObj->password != $password) return "passwordErr";
-        session_start();
-        $_SESSION['userObj'] = json_encode($phoneObj);
+        if(!isset($_SESSION)) session_start();
+        $_SESSION['role'] = 'user';
+        $_SESSION['id'] = $phoneObj->id;
         return "good";
     }
 

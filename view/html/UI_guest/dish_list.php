@@ -147,8 +147,10 @@
         <div class="d-flex justify-content-around flex-wrap">
         <?php
             $productList = json_decode($productList);
+            $i = 0;
             foreach($productList as $product) {
                 $product = json_decode($product);
+
                 echo '
                 <!-- dish list -->
                     <!-- begin: first starter dish -->
@@ -158,24 +160,19 @@
                             <!-- dish name -->
                             <h6 class="item-name">'.$product->name.'</h6>
                             <!-- price -->
-                            <h6 class="item-price text-secondary"><small>'.$product->price.'đ</small></h6>
+                            <h6 class="item-price text-secondary"><small>'.number_format($product->price,0,".",",").'đ</small></h6>
                         </div>
 
                         <div class="item-comment-count d-flex justify-content-around align-items-center">
-
-                            <a href="#" class="d-flex text-decoration-none">
-                                <i class="bi bi-chat"></i>
-                                <div class="comment-quantity"><small>25</small></div>
-                            </a>
                             <!-- view detail btn -->
-                            <a href="index.php?controller=guest&action=dish_detail&id='.$product->id.'" class="btn btn-outline-dark btn-sm mt-1 ">
-                                <i class="bi bi-eye-fill"></i>
-                                View detail
+                            <a href="dish-detail/'.UrlNormal($product->name).'/'.$product->id.'" class="btn btn-outline-dark btn-sm mt-1 ">
+                                <i class="fas fa-eye"></i>
+                                Xem chi tiết
                             </a>
                             <!-- order btn -->
-                            <a href="#" class="btn btn-outline-dark btn-sm mt-1 ">
-                                <i class="bi bi-cart3"></i>
-                                Order Now
+                            <a href="/login" class="btn btn-outline-dark btn-sm mt-1 ">
+                                <i class="fas fa-shopping-cart"></i>
+                                Thêm vào giỏ
                             </a>
                         </div>
                     </div>
