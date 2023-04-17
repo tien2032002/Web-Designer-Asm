@@ -86,7 +86,11 @@
 }
 
 .pink-color{
-  color: #b38b91;
+  color: #f38f91;
+}
+
+.bg-pink-color{
+  background-color: #f38f91;
 }
 /* reponsive */
 
