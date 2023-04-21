@@ -4,7 +4,7 @@
 
         //home page for guest (not login yet)
         function home_page() {
-            $this->render('view/html/UI_user/home_page');
+            $this->render('view/html/UI_user/UI_home_page');
         }
         
         //login form
@@ -20,7 +20,7 @@
                 //if login infomation not correct, redirect to login page with error code
                 if ($checkLogin!='good') {
                     $data = array('loginErr' => $checkLogin);
-                    $this->render('view/html/UI_guest/login', $data);
+                    $this->render('view/html/UI_guest/UI_login', $data);
                 }
                 //login infomation correct => go to home page for user
                 else {
@@ -31,7 +31,7 @@
             else {
                 //if not filled form yet
                 $data = array('loginErr' => 'first');
-                $this->render('view/html/UI_guest/login', $data);
+                $this->render('view/html/UI_guest/UI_login', $data);
             }
         }
 
@@ -63,7 +63,7 @@
                             header("Location: index.php?controller=user&action=home_page_user");
                        }
                        //if have error, go back to signup page and display warning
-                    else $this->render('view/html/UI_guest/signup', $errArr);
+                    else $this->render('view/html/UI_guest/UI_signup', $errArr);
             }
             else {
                 $errArr = array('firstNameErr' => 'first',
@@ -72,7 +72,7 @@
                 'emailErr' => 'first',
                 'passwordErr' => 'first',
                 'password2Err' => 'first');
-                $this->render('view/html/UI_guest/signup', $errArr);
+                $this->render('view/html/UI_guest/UI_signup', $errArr);
             }
         }
 
@@ -83,8 +83,8 @@
             if(!isset($_SESSION)) session_start();
             if (isset($_SESSION['role']) && $_SESSION['role'] == 'user') {
                 include("model/customer_db.php");
-                $data = array("userObj" => getCustomerById($_SESSION['id']));
-                $this->render("view/html/UI_user/home_page_user", $data);
+                $data = array("userObj" => $_SESSION['userObj']);
+                $this->render("view/html/UI_user/UI_home_page_user", $data);
             }
             else {
                 header('Location: /error');
@@ -112,11 +112,10 @@
 
          //display profile user
         function profile_user(){
-            include_once('model\customer_db.php');
-            if (!isset($_SESSION)) session_start();
-            if(isset($_SESSION['role']) && $_SESSION['role'] == 'user'){
-                $data = array("userObj" => getCustomerById($_SESSION['id']));
-                $this->render('view/html/UI_user/profile_user', $data);
+            session_start();
+            if(isset($_SESSION['userObj'])){
+                $data = array("userObj" => $_SESSION['userObj']);
+                $this->render('view/html/UI_user/UI_profile_user', $data);
             }
             else header("Location: /error");
         }
@@ -165,7 +164,7 @@
             session_start();
             $changeErr = (checkChangeInfo());
             changeInfor($changeErr);
-            $this->render('view\html\UI_user\profile_user', $changeErr);
+            $this->render('view\html\UI_user\UI_profile_user', $changeErr);
         }
 
         function cart_dropdown() {

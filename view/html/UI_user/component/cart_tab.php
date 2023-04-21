@@ -1,5 +1,52 @@
+<style>
+    @media screen and (min-width: 320px){
+        .text-item{
+            font-size: 13px;
+        }
+        .text-header-cart{
+            font-size: 13px;
+        }
+        #form_quantity{
+            width: 40px;
+        }
+    }
+    @media screen and (min-width: 576px){
+        .text-item{
+            font-size: 15px;
+        }
+        .text-header-cart{
+            font-size: 15px;
+        }
+        #form_quantity{
+            width: 50px;
+        }
 
-<div class="row cart_tab">
+    }
+    @media screen and (min-width: 768px){
+        .text-header-cart{
+            font-size: 16px;
+        }
+        #form_quantity{
+            width: 60px;
+        }
+
+    }
+
+    a div.cart-btn-tab{
+        color: white;
+        border: 1px solid rgb(224, 60, 1);
+        background-color: rgb(224, 60, 1);
+        padding: 5px;
+    }
+    .price-item-tab{
+        color: rgba(224, 60, 1, 0.781);
+        font-weight: 500;
+        margin-left: auto;
+        font-size: 20px;
+    }
+
+</style>
+<div class="row">
     <div class="col">
         <div class="table-responsive">
             <table class="table">

@@ -5,7 +5,7 @@
                                     'menu', 'change_info', 'profile_user_tab', 'cart_dropdown', "addToCart", 'view_cart', 'cart_tab'],
                          'manager' => ['home_page_manager', 'manage_employee', 'login', 'logout', 'add_employee',
                                        'delete_employee', 'update_employee'],
-                         'employee');
+                         'employee' => ['home_page_employee']);
     //if controller or action not in above list, go to error page
     if (!array_key_exists($controller, $controllers) || !in_array($action, $controllers[$controller])) {
         $controller = 'user';

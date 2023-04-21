@@ -13,10 +13,10 @@
         <div class="navbar-nav">
             <a href="/home_page" 
             class="nav-item nav-link <?php echo $page=='home_page'?'active':''; ?>">Trang Chủ</a>
-            <a href="/guest/menu" class="nav-item nav-link" >Thực Đơn</a>
-            <a href="#" class="nav-item nav-link">Đặt Bàn</a>
+            <a href="#" class="nav-item nav-link" >Thực Đơn</a>
             <a href="#" class="nav-item nav-link">Tin Tức</a>
-            <a href="/login_manager" 
+            <a href="#" class="nav-item nav-link">Liên Hệ</a>
+            <a href="index.php?controller=manager&action=login" 
             class="nav-item nav-link <?php echo $page=='login_manager'?'active':''; ?>">Quản Trị Viên</a>
         </div>
         <div class="navbar-nav ml-auto nav_main">
