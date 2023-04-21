@@ -21,6 +21,7 @@
     <link rel="stylesheet" type="text/css" href="view/css/UI_user/navbar_homepage.css">
     <link rel="stylesheet" type="text/css" href="view/css/UI_user/cart2.css">
     <link rel="stylesheet" type="text/css" href="view/css/UI_user/product.css">
+    <link rel="stylesheet prefetch" href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css">
     <!-- ======= Scripts ====== -->
     <script src="view/bootstrap/js/bootstrap.min.js"></script>
     <script src="view/jquery/jquery-3.6.4.js"></script>
@@ -256,27 +257,83 @@
                                             <input type="submit" class="btn btn-outline-dark" value="Add to cart">
                                         </form>
 
-                                        <!-- comment, link, share button -->
-                                        <div class="d-flex mt-3 justify-content-between" >
-                                            <div class="btn btn-light" style="width: 30%">
-                                                <i class="bi bi-hand-thumbs-up"></i>
-                                                Thích
-                                            </div>
-                                            <div class="btn btn-light" style="width: 33%">
-                                                <i class="bi bi-chat"></i>
-                                                Bình luận
-                                            </div>
-                                            <div class="btn btn-light" style="width: 30%">
-                                                <i class="bi bi-share"></i>
-                                                Chia sẻ
-                                            </div>
-                                        </div>
+                                        
+                                        
                                     </div>
                                     <div class="w-100"></div>
                                     
                                 </div>
                             </div>
                             <!-- end: dish detail -->
+
+                            <!-- begin: star rating -->
+                            <div class="d-flex flex-row justify-content-between">
+                                <!-- begin: star rating form-->
+                                <div class=" card menu stars" style="width: 39%">
+                                    <form action="">
+                                        <input class="star star-5" id="star-5" type="radio" name="star"/>
+                                        <label class="star star-5" for="star-5"></label>
+                                        <input class="star star-4" id="star-4" type="radio" name="star"/>
+                                        <label class="star star-4" for="star-4"></label>
+                                        <input class="star star-3" id="star-3" type="radio" name="star"/>
+                                        <label class="star star-3" for="star-3"></label>
+                                        <input class="star star-2" id="star-2" type="radio" name="star"/>
+                                        <label class="star star-2" for="star-2"></label>
+                                        <input class="star star-1" id="star-1" type="radio" name="star"/>
+                                        <label class="star star-1" for="star-1"></label><br>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Để lại đánh giá của bạn"></textarea>
+                                        <input type="submit" class="btn btn-outline-dark btn-override mt-2">
+                                    </form>
+                                </div>
+                                <!-- end: star rating form -->
+
+                                <div class="card menu d-flex flex-row justify-content-between" style="width: 60%">
+                                    <!-- begin: -->
+                                    <div style="width: 26%" class="ps-2" >
+                                        <h3 class="pink-color">3.8 <i class="bi bi-star-fill"></i></h3>
+                                        <p class="mb-0">1.345</p>
+                                        <p>đã đánh giá</p>
+                                    </div>
+                                    <!-- end: -->
+                                    
+                                    <!-- begin: star rating progress -->
+                                    <div style="width: 74%" >
+                                        <h6>Điểm xếp hạng</h6>
+                                        <div class="row">
+                                            <div class="col-1">5</div>
+                                            <div class="progress col-10 p-0" style="height: 24px;">
+                                                <div class="progress-bar bg-pink-color" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <div class="col-1">4</div>
+                                            <div class="progress col-10 p-0" style="height: 24px;">
+                                                <div class="progress-bar bg-pink-color" role="progressbar" style="width: 5%" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <div class="col-1">3</div>
+                                            <div class="progress col-10 p-0" style="height: 24px;">
+                                                <div class="progress-bar bg-pink-color" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <div class="col-1">2</div>
+                                            <div class="progress col-10 p-0" style="height: 24px;">
+                                                <div class="progress-bar bg-pink-color" role="progressbar" style="width: 5%" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <div class="col-1">1</div>
+                                            <div class="progress col-10 p-0" style="height: 24px;">
+                                                <div class="progress-bar bg-pink-color" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end: star rating progress -->
+                                </div>
+                            </div>
+                            <!-- end: star rating -->
 
                             <!-- begin: comment section -->
                             <div class="card menu">
@@ -332,7 +389,15 @@
                                 </div>
                                 <!--end: user comment -->
 
-                                <a href="" style="text-decoration:none;">Xem thêm bình luận</a>
+                                <nav aria-label="Page navigation" class="d-flex justify-content-end">
+                                    <ul class="pagination">
+                                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                    </ul>
+                                </nav>
                             </div>
                             <!-- end: comment section -->
 
