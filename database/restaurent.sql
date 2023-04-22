@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `bills` (
   `id` int(11) NOT NULL,
-  `order_id` int(11) NOT NULL,
+  `table_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
   `price` int(11) NOT NULL
@@ -144,28 +144,21 @@ INSERT INTO `feedback` (`id`, `product_id`, `customer_id`, `stars`, `comment`) V
 --
 DELIMITER $$
 CREATE TRIGGER `update_product_rating` AFTER INSERT ON `feedback` FOR EACH ROW BEGIN
+  -- Cập nhật số sao trung bình của sản phẩm trong bảng products
   UPDATE `products`
   SET `rating` = (SELECT AVG(`stars`) FROM `feedback` WHERE `product_id` = NEW.`product_id`)
   WHERE `id` = NEW.`product_id`;
 END
 $$
 DELIMITER ;
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `orders`
---
-
-CREATE TABLE `orders` (
-  `id` int(11) NOT NULL,
-  `employee_id` int(11) NOT NULL,
-  `customer_id` int(11) NOT NULL,
-  `price` int(11) NOT NULL,
-  `order_date` date NOT NULL,
-  `status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
+DELIMITER $$
+CREATE TRIGGER `update_product_rating_on_update` AFTER UPDATE ON `feedback` FOR EACH ROW BEGIN
+  UPDATE `products`
+  SET `rating` = (SELECT AVG(`stars`) FROM `feedback` WHERE `product_id` = NEW.`product_id`)
+  WHERE `id` = NEW.`product_id`;
+END
+$$
+DELIMITER ;
 -- --------------------------------------------------------
 
 --
@@ -226,9 +219,14 @@ INSERT INTO `products` (`id`, `name`, `type`, `description`, `image`, `price`, `
 
 CREATE TABLE `tables` (
   `id` int(11) NOT NULL,
-  `order_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
-  `satus` int(11) NOT NULL
+  `customer_name` varchar(50) NOT NULL,
+  `customer_phone` varchar(20) NOT NULL,
+  `customer_email` varchar(100) NOT NULL,
+  `reservation_date` date NOT NULL,
+  `time` time NOT NULL,
+  `number_of_guests` int(2) NOT NULL,
+  `status` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -240,7 +238,7 @@ CREATE TABLE `tables` (
 --
 ALTER TABLE `bills`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `bills_ibfk_1` (`order_id`),
+  ADD KEY `bills_ibfk_1` (`table_id`),
   ADD KEY `bills_ibfk_2` (`product_id`);
 
 --
@@ -264,14 +262,8 @@ ALTER TABLE `feedback`
   ADD KEY `comments_ibfk_2` (`product_id`);
 
 --
--- Chỉ mục cho bảng `orders`
---
-ALTER TABLE `orders`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `cus_id` (`customer_id`),
-  ADD KEY `empl_id` (`employee_id`);
 
---
+
 -- Chỉ mục cho bảng `products`
 --
 ALTER TABLE `products`
@@ -282,9 +274,7 @@ ALTER TABLE `products`
 --
 ALTER TABLE `tables`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `tables_ibfk_1` (`customer_id`),
-  ADD KEY `tables_ibfk_2` (`order_id`);
-
+  ADD KEY `tables_ibfk_1` (`customer_id`);
 --
 -- AUTO_INCREMENT cho các bảng đã đổ
 --
@@ -314,12 +304,6 @@ ALTER TABLE `feedback`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `orders`
---
-ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT cho bảng `products`
 --
 ALTER TABLE `products`
@@ -339,7 +323,7 @@ ALTER TABLE `tables`
 -- Các ràng buộc cho bảng `bills`
 --
 ALTER TABLE `bills`
-  ADD CONSTRAINT `bills_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `employees` (`id`),
+  ADD CONSTRAINT `bills_ibfk_1` FOREIGN KEY (`table_id`) REFERENCES `employees` (`id`),
   ADD CONSTRAINT `bills_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
 
 --
@@ -349,19 +333,12 @@ ALTER TABLE `feedback`
   ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`),
   ADD CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
 
---
--- Các ràng buộc cho bảng `orders`
---
-ALTER TABLE `orders`
-  ADD CONSTRAINT `cus_id` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`),
-  ADD CONSTRAINT `empl_id` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`);
 
 --
 -- Các ràng buộc cho bảng `tables`
 --
 ALTER TABLE `tables`
-  ADD CONSTRAINT `tables_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`),
-  ADD CONSTRAINT `tables_ibfk_2` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`);
+  ADD CONSTRAINT `tables_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
