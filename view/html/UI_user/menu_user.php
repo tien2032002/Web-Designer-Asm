@@ -12,6 +12,7 @@
      <!--  style -->
     <link rel="stylesheet" type="text/css" href="view/css/UI_user/style_navbar_homepage.css">
     <link rel="stylesheet" type="text/css" href="view/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="view/css/UI_user/sidebar.css">
     <!-- ======= Scripts ====== -->
     <script src="view/bootstrap/js/bootstrap.min.js"></script>
     <script src="view/jquery/jquery-3.6.4.js"></script>
@@ -59,41 +60,7 @@
         $userObj = json_decode($userObj);
         $menuList = json_decode($menuList);
     ?>
-    <div class="container-fluid">
-        <div class="row align-items-center py-3 pd_mobile" style="background-color: #f2f2f2;">
-            <div class="col-lg-3 d-none d-lg-block px-5">
-                <a href="index.php?controller=user&action=home_page_user">
-                    <img src="view/images/logo.jpg" style="width: 70%;" alt="logo">
-                </a>
-            </div>
-            <div class="col-lg-9">
-                <div class="row">
-                    <div class="col-tablet-7 col-mobile-5">
-                      <form class="form-inline" style="margin-right: 1%;">
-                        <div class="input-group">
-                          <input type="text" class="form-control" placeholder="Search for products" style="border-radius: 0;">
-                          <div class="input-group-append">
-                            <button class="btn border btn-outline-secondary" type="button">
-                              <i class="fa fa-search"></i>
-                            </button>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                    <div class="col-tablet-3 col-mobile-5 navbar_ic d-flex justify-content-end">
-                      <a href="#" class="btn border btn-outline-secondary" style="margin-right: 1%; border-radius: 0;">
-                        <i class="fas fa-heart"></i>
-                        <span class="badge">0</span>
-                      </a>
-                      <a href="" class="btn border btn-outline-secondary" style="margin-right: 1%; border-radius: 0;">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span class="badge">0</span>
-                      </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <?php include 'component/topbar.php'; ?>
     
     <div class="container-fluid">
         <div class="row border-top px-3">
@@ -129,14 +96,14 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav">
-                            <a href="index.php?controller=user&action=home_page_user" class="nav-item nav-link active">Trang Chủ</a>
-                            <a href="index.php?controller=user&action=menu" class="nav-item nav-link">Thực Đơn</a>
+                            <a href="/home_page_user" class="nav-item nav-link active">Trang Chủ</a>
+                            <a href="/menu" class="nav-item nav-link">Thực Đơn</a>
                             <a href="#" class="nav-item nav-link">Đặt Bàn</a>
                             <a href="#" class="nav-item nav-link">Tin Tức</a>
                         </div>
                         <div class="navbar-nav ml-auto nav_main">
                             <div>
-                                <a href="index.php?controller=user&action=profile_user" class="nav-item nav-link">
+                                <a href="/profile_user" class="nav-item nav-link">
                                     <div style="display: inline-block;">
                                         <div style="display: inline-block; margin-right: 10px;">
                                             <img src="<?php echo $userObj->image?>.jpg" 
@@ -151,7 +118,7 @@
                                 </a>
                             </div>
                             <div>
-                                <a href="index.php?controller=user&action=logout" class="nav-item nav-link">
+                                <a href="/logout" class="nav-item nav-link">
                                     <i class="bi bi-box-arrow-right text-dark"></i>
                                     Đăng xuất
                                 </a>
@@ -200,31 +167,35 @@
                                             $starter = json_decode($starter);
 
                                             echo '
-                                                <!-- begin: first starter dish -->
-                                                <div class="menu__item card">
-                                                    <img src="'.$starter->image.'" alt="" class="item-img">
-                                                    <div class="item-description">
+                                            <!-- begin: first starter dish -->
+                                            <div class="menu__item card">
+                                                <img src="'.$starter->image.'" alt="" class="item-img" loading="lazy">
+                                                <div class="item-description d-flex justify-content-between">
+                                                    <div style="width: 50%">
                                                         <!-- dish name -->
                                                         <h6 class="item-name">'.$starter->name.'</h6>
                                                         <!-- price -->
-                                                        <h6 class="item-price text-secondary"><small>'.$starter->price.'đ</small></h6>
+                                                        <h6 class="item-price text-secondary"><small>'.number_format($starter->price,0,".",",").'đ</small></h6>
                                                     </div>
-
-                                                    <div class="item-comment-count d-flex justify-content-around align-items-center">
-
-                                                        <!-- view detail btn -->
-                                                        <a href="index.php?controller=guest&action=dish_detail&id='.$starter->id.'" class="btn btn-outline-dark btn-sm mt-1 ">
-                                                            <i class="bi bi-eye-fill"></i>
-                                                            Chi tiết
-                                                        </a>
-                                                        <!-- order btn -->
-                                                        <a href="" class="btn btn-outline-dark btn-sm mt-1 ">
-                                                            <i class="bi bi-cart3"></i>
-                                                            Thêm vào giỏ
-                                                        </a>
-                                                    </div>
+                                                    <h3 class=""> '.number_format($starter->rating, 1,".",",").' <i class=" pink-color bi bi-star-fill"></i></h3>
                                                 </div>
-                                                <!-- begin: end starter dish -->
+
+
+                                                <div class="item-comment-count d-flex justify-content-around align-items-center">
+
+                                                    <!-- view detail btn -->
+                                                    <a href="dish-detail/'.UrlNormal($starter->name).'/'.$starter->id.'" class="btn btn-override btn-outline-dark btn-sm mt-1 ">
+                                                        <i class="bi bi-eye-fill"></i>
+                                                        Xem chi tiết
+                                                    </a>
+                                                    <!-- order btn -->
+                                                    <a href="/login" class="btn btn-override btn-outline-dark btn-sm mt-1 ">
+                                                        <i class="bi bi-cart3"></i>
+                                                        Thêm vào giỏ
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <!-- begin: end starter dish -->
                                             ';
                                         }
                                         
@@ -254,35 +225,35 @@
                                         foreach ($mainList as $main){
                                             $main = json_decode($main);
                                             echo '
-                                                <!-- begin: first starter dish -->
-                                                <div class="menu__item card">
-                                                    <img src="'.$main->image.'" alt="" class="item-img">
-                                                    <div class="item-description">
+                                            <!-- begin: first starter dish -->
+                                            <div class="menu__item card">
+                                                <img src="'.$main->image.'" alt="" class="item-img" loading="lazy">
+                                                <div class="item-description d-flex justify-content-between">
+                                                    <div style="width: 50%">
                                                         <!-- dish name -->
                                                         <h6 class="item-name">'.$main->name.'</h6>
                                                         <!-- price -->
-                                                        <h6 class="item-price text-secondary"><small>'.$main->price.'đ</small></h6>
+                                                        <h6 class="item-price text-secondary"><small>'.number_format($main->price,0,".",",").'đ</small></h6>
                                                     </div>
-
-                                                    <div class="item-comment-count d-flex justify-content-around align-items-center">
-
-                                                        <a href="#" class="d-flex text-decoration-none">
-                                                            <i class="bi bi-chat"></i>
-                                                            <div class="comment-quantity"><small>25</small></div>
-                                                        </a>
-                                                        <!-- view detail btn -->
-                                                        <a href="index.php?controller=guest&action=dish_detail&id='.$main->id.'" class="btn btn-outline-dark btn-sm mt-1 ">
-                                                            <i class="bi bi-eye-fill"></i>
-                                                            View detail
-                                                        </a>
-                                                        <!-- order btn -->
-                                                        <a href="#" class="btn btn-outline-dark btn-sm mt-1 ">
-                                                            <i class="bi bi-cart3"></i>
-                                                            Order Now
-                                                        </a>
-                                                    </div>
+                                                    <h3 class=""> '.number_format($main->rating, 1,".",",").' <i class=" pink-color bi bi-star-fill"></i></h3>
                                                 </div>
-                                                <!-- begin: end starter dish -->
+
+
+                                                <div class="item-comment-count d-flex justify-content-around align-items-center">
+
+                                                    <!-- view detail btn -->
+                                                    <a href="dish-detail/'.UrlNormal($main->name).'/'.$main->id.'" class="btn btn-override btn-outline-dark btn-sm mt-1 ">
+                                                        <i class="bi bi-eye-fill"></i>
+                                                        Xem chi tiết
+                                                    </a>
+                                                    <!-- order btn -->
+                                                    <a href="/login" class="btn btn-override btn-outline-dark btn-sm mt-1 ">
+                                                        <i class="bi bi-cart3"></i>
+                                                        Thêm vào giỏ
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <!-- begin: end starter dish -->
                                             ';
                                         }
                                         
@@ -301,35 +272,35 @@
                                         foreach ($dessertList as $dessert){
                                             $dessert = json_decode($dessert);
                                             echo '
-                                                <!-- begin: first starter dish -->
-                                                <div class="menu__item card">
-                                                    <img src="'.$dessert->image.'" alt="" class="item-img">
-                                                    <div class="item-description">
+                                            <!-- begin: first starter dish -->
+                                            <div class="menu__item card">
+                                                <img src="'.$dessert->image.'" alt="" class="item-img" loading="lazy">
+                                                <div class="item-description d-flex justify-content-between">
+                                                    <div style="width: 50%">
                                                         <!-- dish name -->
                                                         <h6 class="item-name">'.$dessert->name.'</h6>
                                                         <!-- price -->
-                                                        <h6 class="item-price text-secondary"><small>'.$dessert->price.'đ</small></h6>
+                                                        <h6 class="item-price text-secondary"><small>'.number_format($dessert->price,0,".",",").'đ</small></h6>
                                                     </div>
-
-                                                    <div class="item-comment-count d-flex justify-content-around align-items-center">
-
-                                                        <a href="#" class="d-flex text-decoration-none">
-                                                            <i class="bi bi-chat"></i>
-                                                            <div class="comment-quantity"><small>25</small></div>
-                                                        </a>
-                                                        <!-- view detail btn -->
-                                                        <a href="index.php?controller=guest&action=dish_detail&id='.$dessert->id.'" class="btn btn-outline-dark btn-sm mt-1 ">
-                                                            <i class="bi bi-eye-fill"></i>
-                                                            View detail
-                                                        </a>
-                                                        <!-- order btn -->
-                                                        <a href="#" class="btn btn-outline-dark btn-sm mt-1 ">
-                                                            <i class="bi bi-cart3"></i>
-                                                            Order Now
-                                                        </a>
-                                                    </div>
+                                                    <h3 class=""> '.number_format($dessert->rating, 1,".",",").' <i class=" pink-color bi bi-star-fill"></i></h3>
                                                 </div>
-                                                <!-- begin: end starter dish -->
+
+
+                                                <div class="item-comment-count d-flex justify-content-around align-items-center">
+
+                                                    <!-- view detail btn -->
+                                                    <a href="dish-detail/'.UrlNormal($dessert->name).'/'.$dessert->id.'" class="btn btn-override btn-outline-dark btn-sm mt-1 ">
+                                                        <i class="bi bi-eye-fill"></i>
+                                                        Xem chi tiết
+                                                    </a>
+                                                    <!-- order btn -->
+                                                    <a href="/login" class="btn btn-override btn-outline-dark btn-sm mt-1 ">
+                                                        <i class="bi bi-cart3"></i>
+                                                        Thêm vào giỏ
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <!-- begin: end starter dish -->
                                             ';
                                         }
                                         
@@ -478,5 +449,6 @@
     
     <!-- ======= Scripts ====== -->
     <script src="view/script/user_navbar.js"></script>
+    <script src="view/script/cart.js"></script>
 </body>
 </html>

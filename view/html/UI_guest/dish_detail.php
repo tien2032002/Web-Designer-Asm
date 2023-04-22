@@ -21,6 +21,7 @@
     <link rel="stylesheet" type="text/css" href="view/css/UI_user/navbar_homepage.css">
     <link rel="stylesheet" type="text/css" href="view/css/UI_user/cart2.css">
     <link rel="stylesheet" type="text/css" href="view/css/UI_user/product.css">
+    <link rel="stylesheet" type="text/css" href="view/css/UI_user/sidebar.css">
     <link rel="stylesheet prefetch" href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css">
     <!-- ======= Scripts ====== -->
     <script src="view/bootstrap/js/bootstrap.min.js"></script>
@@ -65,41 +66,7 @@
 </head>
 <body>
     <!-- Topbar Start -->
-    <div class="container-fluid">
-        <div class="row align-items-center py-3 pd_mobile" style="background-color: #f2f2f2;">
-            <div class="col-lg-3 d-none d-lg-block px-5">
-                <a href="/home_page">
-                    <img src="view/images/logo.jpg" style="width: 70%;" alt="logo">
-                </a>
-            </div>
-            <div class="col-lg-9">
-                <div class="row">
-                    <div class="col-tablet-7 col-mobile-5">
-                      <form class="form-inline" style="margin-right: 1%;">
-                        <div class="input-group">
-                          <input type="text" class="form-control" placeholder="Search for products" style="border-radius: 0;">
-                          <div class="input-group-append">
-                            <button class="btn border btn-outline-secondary" type="button">
-                              <i class="fa fa-search"></i>
-                            </button>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                    <div class="col-tablet-3 col-mobile-5 navbar_ic d-flex justify-content-end">
-                      <a href="#" class="btn border btn-outline-secondary" style="margin-right: 1%; border-radius: 0;">
-                        <i class="fas fa-heart"></i>
-                        <span class="badge">0</span>
-                      </a>
-                      <a href="#" class="btn border btn-outline-secondary" style="margin-right: 1%; border-radius: 0;">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span class="badge">0</span>
-                      </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <?php include 'component/topbar.php'; ?>
     <!-- Topbar End -->
 
     <div class="container-fluid">
@@ -125,41 +92,8 @@
             <!-- Sidebar Large End -->
             <div class="col-lg-9">
                 <!-- Navbar Start -->
-                <nav class="navbar navbar-expand-lg bg-light navbar-light p-2">
-                    <a href="/home_page" class="d-block d-lg-none">
-                        <img src="view/images/logo.jpg" style="width: 100px;" alt="logo">
-                    </a>
-                    <button type="button" 
-                            class="navbar-toggler" 
-                            data-toggle="collapse" 
-                            data-target="#navbarCollapse"
-                            style="border-radius: 0;">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                        <div class="navbar-nav">
-                            <a href="/home_page" class="nav-item nav-link active">Trang Chủ</a>
-                            <a href="#" class="nav-item nav-link" >Thực Đơn</a>
-                            <a href="#" class="nav-item nav-link">Đặt Bàn</a>
-                            <a href="#" class="nav-item nav-link">Tin Tức</a>
-                            <a href="/login" class="nav-item nav-link">Quản Trị Viên</a>
-                        </div>
-                        <div class="navbar-nav ml-auto nav_main">
-                            <div>
-                                <a href="/login" class="nav-item nav-link">
-                                    <i class="bi bi-person text-dark"></i>
-                                    Đăng Nhập
-                                </a>
-                            </div>
-                            <div>
-                                <a href="/signup" class="nav-item nav-link">
-                                    <i class="bi bi-person-plus text-dark"></i>
-                                    Đăng Ký
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </nav>
+                <?php $page = 'home_page';
+                include 'component/navbar.php'; ?>
                 <!-- Navbar End -->
 
                 <!-- Sidebar None Large Start -->
@@ -245,7 +179,7 @@
                                                 }
                                             ?>
                                         </div>
-                                        <h2 class="mb-0"> <?php echo $productObj->price ?> VND</h2>
+                                        <h2 class="mb-0"> <?php echo number_format($productObj->price,0,".",",") ?> VND</h2>
 
                                         <!-- dish description -->
                                         <p>
@@ -253,8 +187,8 @@
                                         </p>
                                         <!-- form -->
                                         <form action="">
-                                            <input type="number" class="btn btn-outline-dark">
-                                            <input type="submit" class="btn btn-outline-dark" value="Add to cart">
+                                            <input type="number" class="btn btn-outline-dark btn-override">
+                                            <input type="submit" class="btn btn-outline-dark btn-override" value="Add to cart">
                                         </form>
 
                                         
@@ -270,7 +204,7 @@
                             <div class="d-flex flex-row justify-content-between">
                                 <!-- begin: star rating form-->
                                 <div class=" card menu stars" style="width: 39%">
-                                    <form action="">
+                                    <form action="/login">
                                         <input class="star star-5" id="star-5" type="radio" name="star"/>
                                         <label class="star star-5" for="star-5"></label>
                                         <input class="star star-4" id="star-4" type="radio" name="star"/>

@@ -1,5 +1,6 @@
 <?php 
     $userObj = json_decode($userObj); 
+    extract($_SESSION['changeErr']);
 ?>
 <div class="tab-pane active" id="profile">
     <form method='post' action='/change_info/<?php echo $userObj->id ?>' enctype="multipart/form-data">

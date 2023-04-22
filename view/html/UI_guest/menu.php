@@ -16,6 +16,7 @@
     <link rel="stylesheet" type="text/css" href="view/css/UI_user/navbar_homepage.css">
     <link rel="stylesheet" type="text/css" href="view/css/UI_user/cart2.css">
     <link rel="stylesheet" type="text/css" href="view/css/UI_user/product.css">
+    <link rel="stylesheet" type="text/css" href="view/css/UI_user/sidebar.css">
     <link rel="stylesheet prefetch" href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css">
     <!-- ======= Scripts ====== -->
     <script src="view/bootstrap/js/bootstrap.min.js"></script>
@@ -189,34 +190,35 @@
                                         foreach ($mainList as $main){
                                             $main = json_decode($main);
                                             echo '
-                                                <!-- begin: first starter dish -->
-                                                <div class="menu__item card">
-                                                    <img src="'.$main->image.'" alt="" class="item-img">
-                                                    <div class="item-description d-flex justify-content-between">
-                                                        <div style="width: 50%">
-                                                            <!-- dish name -->
-                                                            <h6 class="item-name">'.$main->name.'</h6>
-                                                            <!-- price -->
-                                                            <h6 class="item-price text-secondary"><small>'.number_format($starter->price,0,".",",").'đ</small></h6>
-                                                        </div>
-                                                        <h3 class=""> 4.9 <i class=" pink-color bi bi-star-fill"></i></h3>                                                    
+                                            <!-- begin: first starter dish -->
+                                            <div class="menu__item card">
+                                                <img src="'.$main->image.'" alt="" class="item-img">
+                                                <div class="item-description d-flex justify-content-between">
+                                                    <div style="width: 50%">
+                                                        <!-- dish name -->
+                                                        <h6 class="item-name">'.$main->name.'</h6>
+                                                        <!-- price -->
+                                                        <h6 class="item-price text-secondary"><small>'.number_format($main->price,0,".",",").'đ</small></h6>
                                                     </div>
-
-                                                    <div class="item-comment-count d-flex justify-content-around align-items-center">
-
-                                                        <!-- view detail btn -->
-                                                        <a href="index.php?controller=guest&action=dish_detail&id='.$main->id.'" class="btn btn-override btn-outline-dark btn-sm mt-1 ">
-                                                            <i class="bi bi-eye-fill"></i>
-                                                            Xem chi tiết
-                                                        </a>
-                                                        <!-- order btn -->
-                                                        <a href="#" class="btn btn-override btn-outline-dark btn-sm mt-1 ">
-                                                            <i class="bi bi-cart3"></i>
-                                                            Thêm vào giỏ
-                                                        </a>
-                                                    </div>
+                                                    <h3 class=""> 4.9 <i class=" pink-color bi bi-star-fill"></i></h3>
                                                 </div>
-                                                <!-- begin: end starter dish -->
+
+
+                                                <div class="item-comment-count d-flex justify-content-around align-items-center">
+
+                                                    <!-- view detail btn -->
+                                                    <a href="dish-detail/'.UrlNormal($main->name).'/'.$main->id.'" class="btn btn-override btn-outline-dark btn-sm mt-1 ">
+                                                        <i class="bi bi-eye-fill"></i>
+                                                        Xem chi tiết
+                                                    </a>
+                                                    <!-- order btn -->
+                                                    <a href="/login" class="btn btn-override btn-outline-dark btn-sm mt-1 ">
+                                                        <i class="bi bi-cart3"></i>
+                                                        Thêm vào giỏ
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <!-- begin: end starter dish -->
                                             ';
                                         }
                                         

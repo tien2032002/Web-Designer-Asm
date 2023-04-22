@@ -60,7 +60,7 @@
                             //start session and save id & role
                             $_SESSION['role'] = 'user';
                             $_SESSION['id'] = getCustomerByPhone($_POST['phone'])->id;
-                            header("Location: index.php?controller=user&action=home_page_user");
+                            header("Location: /home_page_user");
                        }
                        //if have error, go back to signup page and display warning
                     else $this->render('view/html/UI_guest/UI_signup', $errArr);
@@ -83,7 +83,7 @@
             if(!isset($_SESSION)) session_start();
             if (isset($_SESSION['role']) && $_SESSION['role'] == 'user') {
                 include("model/customer_db.php");
-                $data = array("userObj" => $_SESSION['userObj']);
+                $data = array("userObj" => getCustomerById($_SESSION['id']));
                 $this->render("view/html/UI_user/UI_home_page_user", $data);
             }
             else {
@@ -96,7 +96,7 @@
             //logout, destroy session and go to home page for guest
             session_start();
             session_destroy();
-            header("Location: index.php?controller=guest&action=home_page");
+            header("Location: /home_page");
         }
 
         //display profile user tab
@@ -112,9 +112,10 @@
 
          //display profile user
         function profile_user(){
-            session_start();
-            if(isset($_SESSION['userObj'])){
-                $data = array("userObj" => $_SESSION['userObj']);
+            include('model\customer_db.php');
+            if (!isset($_SESSION)) session_start();
+            if(isset($_SESSION['role']) && $_SESSION['role'] == 'user'){
+                $data = array("userObj" => getCustomerById($_SESSION['id']));
                 $this->render('view/html/UI_user/UI_profile_user', $data);
             }
             else header("Location: /error");
@@ -128,7 +129,7 @@
                            'type' => $_GET['type']);
                 $this->render('view\html\UI_user\dish_list', $data);
             }
-            else header('index.php?controller=guest&action=dish_list');
+            else header('/dish_list');
         }
 
         function dish_detail() {
@@ -141,10 +142,13 @@
                 else {
                     $data = array('productObj' => $getProductObj,
                                 'relatedProduct' => get3RandomProduct(json_decode($getProductObj)->type, $_GET['id']),
-                                'userObj' => getCustomerById($_SESSION['id']));
+                                'userObj' => getCustomerById($_SESSION['id']),
+                                'userReview' => getReview($_SESSION['id'], $_GET['id']),
+                                'star' => getStar($_GET['id']));
                     $this->render('view\html\UI_user\dish_detail', $data);
                 }
             }
+            else header('/dish_detail');
         }
 
         function menu() {
@@ -161,10 +165,16 @@
 
         function change_info() {
             include('model\customer_db.php');
-            session_start();
-            $changeErr = (checkChangeInfo());
-            changeInfor($changeErr);
-            $this->render('view\html\UI_user\UI_profile_user', $changeErr);
+            if (!isset($_SESSION)) session_start();
+            if(isset($_SESSION['role']) && $_SESSION['role'] == 'user'){
+                $changeErr = (checkChangeInfo());
+                changeInfor($changeErr);
+                $_SESSION['changeErr'] = $changeErr;
+                $data = array("userObj" => getCustomerById($_SESSION['id']),
+                              'changeErr' => $changeErr);
+                $this->render('view/html/UI_user/UI_profile_user', $data);
+            }
+            else header("Location: /error");
         }
 
         function cart_dropdown() {
@@ -209,13 +219,28 @@
             if(isset($_SESSION['role']) && $_SESSION['role'] == 'user'){
                 $data = array("userObj" => getCustomerById($_SESSION['id']),
                               'active' => 'cart');
-                $this->render('view/html/UI_user/profile_user', $data);
+                $this->render('view\html\UI_user\UI_profile_user', $data);
             }
             else header("Location: /error");
         }
 
         function cart_tab() {
             $this->render('view\html\UI_user\component\cart_tab');
+        }
+
+        function rate() {
+            include('model\product_db.php');
+            $product = json_decode(getProductById($_GET['id']));
+            if (getReview($_SESSION['id'], $_GET['id']) == 'notReviewed') addRating((int)$_GET['id'], (int)$_SESSION['id'], (int)$_POST['star'], $_POST['comment']);
+            else  updateRating((int)$_GET['id'], (int)$_SESSION['id'], (int)$_POST['star'], $_POST['comment']);
+            header("Location: dish-detail/".UrlNormal($product->name)."/".$product->id);
+        }
+
+        function comment() {
+            include('model\product_db.php');
+            $commentList = getFeedback($_GET['id'], $_GET['page']);
+            $data = array('commentList' => $commentList);
+            $this->render('view\html\UI_user\component\comment', $data);
         }
     }
 ?>

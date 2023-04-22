@@ -70,6 +70,61 @@
         else return json_encode($resultProduct->fetch_object());
     }
 
+    function getReview($customerID, $productID) {
+        require('model/db.php');
+        $reviewResult = mysqli_query($con, "SELECT * FROM feedback WHERE product_id='$productID' AND customer_id='$customerID' ");
+        if(mysqli_num_rows($reviewResult) == 0) return 'notReviewed';
+        else return json_encode($reviewResult->fetch_object());
+    }
+
+    function getStar($productID){
+        require('model/db.php');
+        $productID = (int)$productID;
+        $resultStar = array('total' => mysqli_num_rows(mysqli_query($con, "SELECT * FROM feedback WHERE product_id=$productID")),
+                            'one' => mysqli_num_rows(mysqli_query($con, "SELECT * FROM feedback WHERE product_id=$productID AND stars=1")),
+                            'two' => mysqli_num_rows(mysqli_query($con, "SELECT * FROM feedback WHERE product_id=$productID AND stars=2")),
+                            'three' => mysqli_num_rows(mysqli_query($con, "SELECT * FROM feedback WHERE product_id=$productID AND stars=3")),
+                            'four' => mysqli_num_rows(mysqli_query($con, "SELECT * FROM feedback WHERE product_id=$productID AND stars=4")),
+                            'five' => mysqli_num_rows(mysqli_query($con, "SELECT * FROM feedback WHERE product_id=$productID AND stars=5")));
+        return json_encode($resultStar);
+    }
+
+    function addRating($productID, $customerID, $stars, $comment){
+        require('model/db.php');
+        echo "INSERT INTO feedback(product_id, customer_id, stars, comment)
+        VALUES ($productID, $customerID, $stars, $comment)";
+        $addRating = mysqli_query($con, "INSERT INTO feedback(product_id, customer_id, stars, comment)
+                                         VALUES ($productID, $customerID, $stars, '$comment')");
+        return TRUE;
+    }
+
+    function updateRating($productID, $customerID, $stars, $comment) {
+        require('model/db.php');
+        $addRating = mysqli_query($con, "UPDATE feedback
+                                         SET stars=$stars, comment='$comment'
+                                         WHERE product_id=$productID AND customer_id=$customerID");
+        return TRUE;
+    }
+
+    function getFeedback($productID, $page){
+        require('model/db.php');
+        require('model\customer_db.php');
+        $offset = ($page - 1) * 5;
+        $getFeedback = "SELECT * FROM feedback WHERE product_id=$productID limit 5 offset $offset";
+        $feedbackResult = mysqli_query($con, $getFeedback);
+        $commentArray = array();
+        while($row = $feedbackResult->fetch_object()) {
+            $userObj = json_decode(getCustomerById($_SESSION['id']));
+            $commentObj = array();
+            $commentObj['name'] = $userObj->name;
+            $commentObj['avatar'] = $userObj->image;
+            $commentObj['star'] = $row->stars;
+            $commentObj['comment'] = $row->comment;
+            $commentArray[] = $commentObj;
+        }
+        return $commentArray;
+    }
+
     function getFavouriteProductList($type) {
         
     }

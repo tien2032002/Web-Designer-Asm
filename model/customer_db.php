@@ -32,6 +32,12 @@
         
     }
 
+    function getCustomerAvatar($id){
+        $customer = getCustomerById($id);
+        return array('name' => $customer->name,
+                     'avatar' => $customer->image);
+    }
+
     function getCustomerById($id) {
         require('model/db.php');
         $searchId = "SELECT * FROM customers WHERE id = '$id'";
@@ -160,10 +166,10 @@
                             SET gender='$gender'
                             WHERE id=$curID");
 
-        $_SESSION['userObj'] = getCustomerById($_GET['id']);
     }
 
     function checkChangeInfo() {
+        $userObj = json_decode(getCustomerById($_SESSION['id']));
         $uploadErr = 'not update';
         if ($_FILES["avatar"]['name'] != ''){
             var_dump($_FILES["avatar"]);
@@ -180,15 +186,18 @@
         }
 
         //check name
-        if (strlen($_POST['name']) < 2 || strlen($_POST['name']) > 30) $nameErr = 'length';
+        if ($userObj->name == $_POST['name']) $nameErr = 'not change';
+        else if (strlen($_POST['name']) < 2 || strlen($_POST['name']) > 30) $nameErr = 'length';
         else $nameErr = 'good';
 
-        if (strlen($_POST['address']) < 2 || strlen($_POST['address']) > 30) $addressErr = 'length';
+        if ($userObj->address == $_POST['address']) $addressErr = 'not change';
+        else if (strlen($_POST['address']) < 2 || strlen($_POST['address']) > 30) $addressErr = 'length';
         else $addressErr = 'good';
 
         include('model/db.php');
 
-        if (strlen($_POST['phone']) < 8 || strlen($_POST['phone']) > 16) $phoneErr='length';
+        if ($userObj->phone == $_POST['phone']) $phoneErr = 'not change';
+        else if (strlen($_POST['phone']) < 8 || strlen($_POST['phone']) > 16) $phoneErr='length';
         else {
             $phone = $_POST['phone'];
             $searchPhone = "SELECT * FROM customers WHERE phone = '$phone'";
@@ -198,7 +207,8 @@
         }
 
         //check email
-        if (strlen($_POST['email']) == 0) $emailErr='missing';
+        if ($userObj->email == $_POST['email']) $emailErr = 'not change';
+        else if (strlen($_POST['email']) == 0) $emailErr='missing';
         else {
             $email = $_POST['email'];
             $searchEmail = "SELECT * FROM customers WHERE email = '$email'";
@@ -223,4 +233,6 @@
                            'passwordErr' => $passwordErr);     
         return $resultErr;          
     }
+
+    
 ?>

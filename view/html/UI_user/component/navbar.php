@@ -11,8 +11,8 @@
     </button>
     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
         <div class="navbar-nav">
-            <a href="index.php?controller=user&action=home_page_user" class="nav-item nav-link active">Trang Chủ</a>
-            <a href="index.php?controller=user&action=menu" class="nav-item nav-link">Thực Đơn</a>
+            <a href="/home_page_user" class="nav-item nav-link active">Trang Chủ</a>
+            <a href="/menu" class="nav-item nav-link">Thực Đơn</a>
             <a href="#" class="nav-item nav-link">Tin Tức</a>
             <a href="#" class="nav-item nav-link">Liên Hệ</a>
         </div>

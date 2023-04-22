@@ -151,31 +151,35 @@
                 $product = json_decode($product);
                 echo '
                 <!-- dish list -->
-                    <!-- begin: first starter dish -->
-                    <div class="menu__item card">
-                        <img src="'.$product->image.'" alt="" class="item-img">
-                        <div class="item-description">
+                <!-- begin: first starter dish -->
+                <div class="menu__item card">
+                    <img src="'.$product->image.'" alt="" class="item-img" loading="lazy">
+                    <div class="item-description d-flex justify-content-between">
+                        <div style="width: 50%">
                             <!-- dish name -->
                             <h6 class="item-name">'.$product->name.'</h6>
                             <!-- price -->
-                            <h6 class="item-price text-secondary"><small>'.$product->price.'đ</small></h6>
+                            <h6 class="item-price text-secondary"><small>'.number_format($product->price,0,".",",").'đ</small></h6>
                         </div>
-
-                        <div class="item-comment-count d-flex justify-content-around align-items-center">
-
-                            <!-- view detail btn -->
-                            <a href="dish-detail/'.UrlNormal($product->name).'/'.$product->id.'" class="btn btn-outline-dark btn-sm mt-1 ">
-                                <i class="bi bi-eye-fill"></i>
-                                Chi tiết
-                            </a>
-                            <!-- order btn -->
-                            <a onclick="loadXMLDoc(\'index.php?controller=user&action=addToCart&productID='.$product->id.'\', \'cart_drop\');" class="btn btn-outline-dark btn-sm mt-1 ">
-                                <i class="bi bi-cart3"></i>
-                                Thêm vào giỏ
-                            </a>
-                        </div>
+                        <h3 class=""> '.number_format($product->rating, 1,".",",").' <i class=" pink-color bi bi-star-fill"></i></h3>
                     </div>
-                    <!-- begin: end starter dish -->
+
+
+                    <div class="item-comment-count d-flex justify-content-around align-items-center">
+
+                        <!-- view detail btn -->
+                        <a href="dish-detail/'.UrlNormal($product->name).'/'.$product->id.'" class="btn btn-override btn-outline-dark btn-sm mt-1 ">
+                            <i class="bi bi-eye-fill"></i>
+                            Xem chi tiết
+                        </a>
+                        <!-- order btn -->
+                        <a href="/login" class="btn btn-override btn-outline-dark btn-sm mt-1 ">
+                            <i class="bi bi-cart3"></i>
+                            Thêm vào giỏ
+                        </a>
+                    </div>
+                </div>
+                <!-- begin: end starter dish -->
                 ';
             }
         ?>

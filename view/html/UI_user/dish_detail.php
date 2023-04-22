@@ -20,14 +20,20 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
      <!--  style -->
     <link rel="stylesheet" type="text/css" href="view/css/UI_user/style_navbar_homepage.css">
+    <link rel="stylesheet" href="view/css/UI_user/sidebar.css">
     <link rel="stylesheet" type="text/css" href="view/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet prefetch" href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="view/css/UI_user/product.css">
     <!-- ======= Scripts ====== -->
     <script src="view/bootstrap/js/bootstrap.min.js"></script>
     <script src="view/jquery/jquery-3.6.4.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script>
+        var cmtPage = 1;
+        var endCmt = 0;
         function loadXMLDoc(link, id)
         {
+            console.log(link)
             $.ajax({
                 // The link we are accessing.
                 url: link,
@@ -50,7 +56,7 @@
                             if (!next) {
                                 // wrap carousel by using first child
                                 next = items[0]
-                                console.log([el])
+                                // console.log([el])
                             }
                             let cloneChild = next.cloneNode(true)
                             el.appendChild(cloneChild.children[0])
@@ -60,45 +66,40 @@
                 }
             });
         }
+
+        function loadMore(link, id)
+        {
+            console.log(link)
+            $.ajax({
+                // The link we are accessing.
+                url: link,
+                    
+                // The type of request.
+                type: "get",
+                    
+                // The type of data that is getting returned.
+                dataType: "html",
+
+                success: function( strData ){
+                    console.log(strData)
+                    if (strData.includes("div")) cmtPage +=1
+                    else if (endCmt == 0){
+                        strData = 'Không còn bình luận nào khác!'
+                        endCmt = 1;
+                    }
+                    document.getElementById(id).innerHTML += strData;
+                    
+                }
+            });
+        }
     </script>
 </head>
 <body>
 
-    <div class="container-fluid">
-        <div class="row align-items-center py-3 pd_mobile" style="background-color: #f2f2f2;">
-            <div class="col-lg-3 d-none d-lg-block px-5">
-                <a href="/home_page_user">
-                    <img src="view/images/logo.jpg" style="width: 70%;" alt="logo">
-                </a>
-            </div>
-            <div class="col-lg-9">
-                <div class="row">
-                    <div class="col-tablet-7 col-mobile-5">
-                      <form class="form-inline" style="margin-right: 1%;">
-                        <div class="input-group">
-                          <input type="text" class="form-control" placeholder="Search for products" style="border-radius: 0;">
-                          <div class="input-group-append">
-                            <button class="btn border btn-outline-secondary" type="button">
-                              <i class="fa fa-search"></i>
-                            </button>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                    <div class="col-tablet-3 col-mobile-5 navbar_ic d-flex justify-content-end">
-                      <a href="#" class="btn border btn-outline-secondary" style="margin-right: 1%; border-radius: 0;">
-                        <i class="fas fa-heart"></i>
-                        <span class="badge">0</span>
-                      </a>
-                      <a href="" class="btn border btn-outline-secondary" style="margin-right: 1%; border-radius: 0;">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span class="badge">0</span>
-                      </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<?php include 'component/topbar.php'; 
+    $star = json_decode($star);
+    if ($userReview != 'notReviewed') $userReview = json_decode($userReview);
+?>
     
     <div class="container-fluid">
         <div class="row border-top px-3">
@@ -144,7 +145,7 @@
                                 <a href="/profile_user" class="nav-item nav-link">
                                     <div style="display: inline-block;">
                                         <div style="display: inline-block; margin-right: 10px;">
-                                            <img src="<?php echo $userObj->image?>.jpg" 
+                                            <img src="<?php echo $userObj->image?>.jpg"  
                                                 style="width: 30px; height: 30px; border-radius: 50%; 
                                                         object-fit: cover; margin-bottom: 3px;" 
                                                 alt="avatar">
@@ -223,7 +224,7 @@
                             <div class="card menu">
                                 <div class="row">
                                     <div class="col-md-auto">
-                                        <img src="<?php echo $productObj->image ?>" alt="" style="width: 500px; height: 300px;">
+                                        <img src="<?php echo $productObj->image ?>" alt="" style="width: 500px; height: 300px;" loading="lazy">
                                     </div>
                                     <div class="col">
                                         <!-- dish name -->
@@ -250,18 +251,18 @@
                                                 }
                                             ?>
                                         </div>
-                                        <h2 class="mb-0"> <?php echo $productObj->price ?> VND</h2>
+                                        <h2 class="mb-0"> <?php echo number_format($productObj->price,0,".",",") ?> VND</h2>
 
                                         <!-- dish description -->
                                         <p>
-                                            <?php echo $productObj->description ?>
+                                            <?php echo $productObj->description;?>
                                         </p>
                                         <!-- function to handle add to cart -->
                                         
                                         <!-- form -->
                                         <form action="">
-                                            <input type="number" class="btn btn-outline-dark" value='0' name='quantity' id='quantity'>
-                                            <input type="submit" class="btn btn-outline-dark" value="Add to cart" onclick='addToCart()'>
+                                            <input type="number" class="btn btn-outline-dark btn-override" value='0' name='quantity' id='quantity'>
+                                            <input type="submit" class="btn btn-outline-dark btn-override" value="Add to cart" onclick='addToCart()'>
                                         </form>
                                         <script>
                                             function addToCart() {
@@ -272,83 +273,107 @@
                                             }
                                         </script>
                                         <!-- comment, link, share button -->
-                                        <div class="d-flex mt-3 justify-content-between" >
-                                            <div class="btn btn-light" style="width: 30%">
-                                                <i class="bi bi-hand-thumbs-up"></i>
-                                                Thích
-                                            </div>
-                                            <div class="btn btn-light" style="width: 33%">
-                                                <i class="bi bi-chat"></i>
-                                                Bình luận
-                                            </div>
-                                            <div class="btn btn-light" style="width: 30%">
-                                                <i class="bi bi-share"></i>
-                                                Chia sẻ
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="w-100"></div>
                                     
                                 </div>
                             </div>
                             <!-- end: dish detail -->
+                            
+                            <!-- begin: star rating -->
+                            <div class="d-flex flex-row justify-content-between">
+                                <!-- begin: star rating form-->
+                                <div class=" card menu stars" style="width: 39%">
+                                    <form action="/rate&id=<?php echo $productObj->id?>" method="POST">
+                                        <input class="star star-5" id="star-5" type="radio" name="star" value='5' 
+                                        <?php
+                                            if ($userReview != 'notReviewed' && (int)($userReview->stars) == 5) echo 'checked' 
+                                        ?>/>
+                                        <label class="star star-5" for="star-5"></label>
+                                        <input class="star star-4" id="star-4" type="radio" name="star" value='4'
+                                        <?php
+                                            if ($userReview != 'notReviewed' && (int)($userReview->stars) == 4) echo 'checked' 
+                                        ?>/>
+                                        <label class="star star-4" for="star-4"></label>
+                                        <input class="star star-3" id="star-3" type="radio" name="star" value='3'
+                                        <?php
+                                            if ($userReview != 'notReviewed' && (int)($userReview->stars) == 3) echo 'checked' 
+                                        ?>/>
+                                        <label class="star star-3" for="star-3"></label>
+                                        <input class="star star-2" id="star-2" type="radio" name="star" value='2'
+                                        <?php
+                                            if ($userReview != 'notReviewed' && (int)($userReview->stars) == 2) echo 'checked' 
+                                        ?>/>
+                                        <label class="star star-2" for="star-2"></label>
+                                        <input class="star star-1" id="star-1" type="radio" name="star" value='1'
+                                        <?php
+                                            if ($userReview != 'notReviewed' && (int)($userReview->stars) == 1) echo 'checked' 
+                                        ?>/>
+                                        <label class="star star-1" for="star-1"></label><br>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name='comment' placeholder="Để lại đánh giá của bạn"><?php
+                                            if ($userReview != 'notReviewed') echo $userReview->comment;?></textarea>
+                                        <input type="submit" class="btn btn-outline-dark btn-override mt-2">
+                                    </form>
+                                </div>
+                                <!-- end: star rating form -->
+
+                                <div class="card menu d-flex flex-row justify-content-between" style="width: 60%">
+                                    <!-- begin: -->
+                                    <div style="width: 26%" class="ps-2" >
+                                        <h3 class="pink-color"><?php echo number_format($productObj->rating,1,".",",")?> <i class="bi bi-star-fill"></i></h3>
+                                        <p class="mb-0"><?php echo number_format($star->total,0,".",",")?></p>
+                                        <p>đã đánh giá</p>
+                                    </div>
+                                    <!-- end: -->
+                                    
+                                    <!-- begin: star rating progress -->
+                                    <div style="width: 74%" >
+                                        <h6>Điểm xếp hạng</h6>
+                                        <div class="row">
+                                            <div class="col-1">5</div>
+                                            <div class="progress col-10 p-0" style="height: 24px;">
+                                                <div class="progress-bar bg-pink-color" role="progressbar" style="width: <?php if($star->total!=0) echo $star->five/$star->total*100; else echo 0;?>%" aria-valuenow="<?php if($star->total!=0) echo $star->five/$star->total*100; else echo 0;?>" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <div class="col-1">4</div>
+                                            <div class="progress col-10 p-0" style="height: 24px;">
+                                                <div class="progress-bar bg-pink-color" role="progressbar" style="width: <?php if($star->total!=0) echo $star->four/$star->total*100; else echo 0;?>%" aria-valuenow="<?php if($star->total!=0) echo $star->four/$star->total*100; else echo 0;?>" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <div class="col-1">3</div>
+                                            <div class="progress col-10 p-0" style="height: 24px;">
+                                                <div class="progress-bar bg-pink-color" role="progressbar" style="width: <?php if($star->total!=0) echo $star->three/$star->total*100; else echo 0;?>%" aria-valuenow="<?php if($star->total!=0) echo $star->three/$star->total*100; else echo 0;?>" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <div class="col-1">2</div>
+                                            <div class="progress col-10 p-0" style="height: 24px;">
+                                                <div class="progress-bar bg-pink-color" role="progressbar" style="width: <?php if($star->total!=0) echo $star->two/$star->total*100; else echo 0;?>%" aria-valuenow="<?php if($star->total!=0) echo $star->two/$star->total*100; else echo 0;?>" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <div class="col-1">1</div>
+                                            <div class="progress col-10 p-0" style="height: 24px;">
+                                                <div class="progress-bar bg-pink-color" role="progressbar" style="width: <?php if($star->total!=0) echo $star->one/$star->total*100; else echo 0;?>%" aria-valuenow="<?php if($star->total!=0) echo $star->one/$star->total*100; else echo 0;?>" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end: star rating progress -->
+                                </div>
+                            </div>
+                            <!-- end: star rating -->
 
                             <!-- begin: comment section -->
-                            <div class="card menu">
-                                <div class="d-flex text-decoration-none">
-                                    <div class="comment-quantity"><bold>25</bold></div>
-                                    <div class="comment-quantity"><small> bình luận</small></div>
-
-                                    <div class="comment-quantity ms-5"><bold>85</bold></div>
-                                    <div class="comment-quantity"><small> lượt thích</small></div>
-                                </div>
-                                <hr style="height:1px;border-width:0;color:gray;background-color:gray">
-                                <!--begin: user comment -->
-                                <div class="item-review">
-                                    
-                                    <div class="d-flex">
-                                        <img src="view\images\user\user2.jpg" alt="" class="user-img">
-                                        <div class="ms-3">
-                                            <div class="user-name"><bold>Ayhed<bold/> </div>
-                                            <div>
-                                                <bold>via Web<bold/>
-                                                <i class="bi bi-globe-americas"></i>
-                                                4/7/2023 4:03PM
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="user-comment">
-                                        Nước chấm đậm đà, cuốn sạch sẽ, vừa lạ miệng vừa ngon
-                                    </div> 
-                                    <hr style="height:1px;border-width:0;color:gray;background-color:gray">        
-                                </div>
-                                <!--end: user comment -->
-
-                                <!--begin: user comment -->
-                                <div class="item-review">
-                                    
-                                    <div class="d-flex">
-                                        <img src="view\images\user\user3.jpg" alt="" class="user-img">
-                                        <div class="ms-3">
-                                            <div class="user-name"><bold>Ayaya<bold/> </div>
-                                            <div>
-                                                <bold>via Web<bold/>
-                                                <i class="bi bi-globe-americas"></i>
-                                                11/7/2022 4:03PM
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="user-comment">
-                                        Giá cả hợp lí, hương vị hài hòa. Rất hài lòng
-                                    </div> 
-                                    <hr style="height:1px;border-width:0;color:gray;background-color:gray">        
-                                </div>
-                                <!--end: user comment -->
-
-                                <a href="" style="text-decoration:none;">Xem thêm bình luận</a>
+                            <div class="card menu" id='comment'>
+                                <script>
+                                    console.log(cmtPage)
+                                    loadMore('/comment?id=<?php echo $productObj->id ?>' + '&page=' + cmtPage.toString(), 'comment');
+                                </script>
+                                
                             </div>
+                            <button class="btn btn-outline-dark btn-override mt-2" onclick="loadMore('/comment?id=<?php echo $productObj->id ?>' + '&page=' + cmtPage.toString(), 'comment')" style="text-decoration:none;">Xem thêm bình luận</button>
                             <!-- end: comment section -->
 
                             <!-- begin: recommend dish -->
@@ -535,5 +560,6 @@
     
     <!-- ======= Scripts ====== -->
     <script src="view/script/user_navbar.js"></script>
+    <script src="view/script/cart.js"></script>
 </body>
 </html>
