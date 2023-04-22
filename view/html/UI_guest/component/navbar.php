@@ -14,7 +14,7 @@
             <a href="/home_page" 
             class="nav-item nav-link <?php echo $page=='home_page'?'active':''; ?>">Trang Chủ</a>
             <a href="/menu" class="nav-item nav-link" >Thực Đơn</a>
-            <a href="#" class="nav-item nav-link">Tin Tức</a>
+            <a href="/news" class="nav-item nav-link">Tin Tức</a>
             <a href="#" class="nav-item nav-link">Liên Hệ</a>
             <a href="/login_manager" 
             class="nav-item nav-link <?php echo $page=='login_manager'?'active':''; ?>">Quản Trị Viên</a>

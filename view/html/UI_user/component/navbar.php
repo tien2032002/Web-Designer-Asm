@@ -13,7 +13,7 @@
         <div class="navbar-nav">
             <a href="/home_page_user" class="nav-item nav-link active">Trang Chủ</a>
             <a href="/menu" class="nav-item nav-link">Thực Đơn</a>
-            <a href="#" class="nav-item nav-link">Tin Tức</a>
+            <a href="/news" class="nav-item nav-link">Tin Tức</a>
             <a href="#" class="nav-item nav-link">Liên Hệ</a>
         </div>
         <div class="navbar-nav ml-auto nav_main">

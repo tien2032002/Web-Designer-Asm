@@ -236,11 +236,16 @@
             header("Location: dish-detail/".UrlNormal($product->name)."/".$product->id);
         }
 
+
         function comment() {
             include('model\product_db.php');
             $commentList = getFeedback($_GET['id'], $_GET['page']);
             $data = array('commentList' => $commentList);
             $this->render('view\html\UI_user\component\comment', $data);
+        }
+
+        function news() {
+            $this->render('view\html\UI_guest\news');
         }
     }
 ?>
