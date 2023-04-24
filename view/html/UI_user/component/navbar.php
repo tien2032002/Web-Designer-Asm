@@ -32,7 +32,7 @@
                     </div>
                 </a>
             </div>
-            <div>
+            <div class="d-flex align-items-center">
                 <a href="/logout" class="nav-item nav-link">
                     <i class="bi bi-box-arrow-right text-dark"></i>
                     Đăng xuất

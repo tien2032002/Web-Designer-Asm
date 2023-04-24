@@ -123,7 +123,7 @@
                             <input type="text" class="form-control" placeholder="Search for products" style="border-radius: 0;"
                             id="searchKey" onkeyup="getSearchResult()" onfocus="showSearchResult()">
                             <div class="input-group-append">
-                                <button class="btn border btn-outline-secondary" type="button">
+                                <button class="btn border btn-outline-secondary" style="height:100%"type="button">
                                     <i class="fa fa-search"></i>
                                 </button>
                             </div>
@@ -169,14 +169,15 @@
                     </form>
                 </div>
                 <div class="col-tablet-3 col-mobile-5 navbar_ic d-flex justify-content-end">
-                    <button type="button" class="btn border btn-outline-secondary"
+                    <button type="button" class="btn border btn-outline-secondary" 
                         data-toggle="modal" data-target="#exampleModal"
-                        style="margin-right: 1%; border-radius: 0;">
-                        <div class="d-flex justify-content-end">
-                            <i class="bi bi-calendar-plus me-2"></i>
+                        style="margin-right: 1%; border-radius: 0; height: calc(100% - 15px);">
+                        <div class="d-flex justify-content-end align-items-center">
+                            <i class="bi bi-calendar-plus me-2" ></i>
                             <span style="font-weight: 500; color: black">Đặt Bàn</span>
                         </div>
                     </button>
+                    
                     <!-- Modal -->
                     <?php include 'modal_booking.php'; ?>
                     <!-- Modal -->
