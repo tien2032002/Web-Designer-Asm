@@ -173,7 +173,7 @@
                             Xem chi tiết
                         </a>
                         <!-- order btn -->
-                        <a href="/login" class="btn btn-override btn-outline-dark btn-sm mt-1 ">
+                        <a onclick="loadXMLDoc(\'addToCart?productID='.$product->id.'\', \'cart_drop\');" class="btn btn-override btn-outline-dark btn-sm mt-1 ">
                             <i class="bi bi-cart3"></i>
                             Thêm vào giỏ
                         </a>

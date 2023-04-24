@@ -62,5 +62,21 @@
         function news() {
             $this->render('view\html\UI_guest\news');
         }
+
+        function reserve() {
+            include_once('model\table_db.php');
+            if ($_POST['date'] == '') $_POST['date'] = date("Y-m-d");
+            if ($_POST['quantity'] == '') $_POST['quantity'] = 4;
+            $errList = checkReserve($_POST['name'], $_POST['phone'], $_POST['email'], $_POST['date'], $_POST['time'], $_POST['quantity']);
+
+            if($errList['nameErr'] == 'good' && $errList['emailErr'] == 'good' && $errList['phoneErr'] == 'good') {
+                reserve_table($_POST['name'], $_POST['phone'], $_POST['email'], $_POST['date'], $_POST['time'], $_POST['quantity']);
+                header('Location: /home_page');
+            }
+            else {
+                $this->render('view\html\UI_guest\UI_home_page', $errList);
+            }
+        }
+
     }
 ?>

@@ -15,17 +15,22 @@
         <h5 class="modal-title" id="exampleModalLabel">Thông Tin Đặt Bàn</h5>
       </div>
       <div class="modal-body">
-            <form action='#' method='post'>
+            <form action='/reserve' method='post' id='reserveForm'>
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label for="lastName" style="font-weight: 700;">TÊN</label>
+                            <label for="name" style="font-weight: 700;">TÊN</label>
                             <div class="input-group">
                                 <input type="text" class="form-control mt-3" 
                                         id="lastname" style="border-radius: 0;" 
-                                        placeholder="Enter your last name"
-                                        name="lastName">
+                                        placeholder="Enter your name"
+                                        name="name">
                             </div>
+                            <p class='text-danger'>
+                                <?php
+                                    if (isset($nameErr) && $nameErr == 'invalid') echo "Tên không hợp lệ!"
+                                ?>
+                            </p>
                         </div>
                         <div class="form-group mt-3">
                             <label for="email" style="font-weight: 700;">EMAIL</label>
@@ -35,12 +40,17 @@
                                         placeholder="Enter your email"
                                         name="email">
                             </div>
+                            <p class='text-danger'>
+                                <?php
+                                    if (isset($emailErr) && $emailErr == 'invalid') echo "Email không hợp lệ!"
+                                ?>
+                            </p>
                         </div> 
                         <div class="form-group mt-3">
-                            <label for="bookingTime" style="font-weight: 700;">GIỜ ĐẶT BÀN</label>
+                            <label for="time" style="font-weight: 700;">GIỜ ĐẶT BÀN</label>
                             <div class="input-group">
-                                <select name="bookingTime" class="form-control mt-3"  
-                                        style="border-radius: 0;" id="bookingTime">
+                                <select name="time" class="form-control mt-3"  
+                                        style="border-radius: 0;" id="time">
                                     <option value="10:00">10:00</option>
                                     <option value="11:00">11:00</option>
                                     <option value="12:00">12:00</option>
@@ -68,14 +78,19 @@
                                         placeholder="Enter your phone number"
                                         name="phone">
                             </div>
+                            <p class='text-danger'>
+                                <?php
+                                    if (isset($phoneErr) && $phoneErr == 'invalid') echo "Số điện thoại không hợp lệ!"
+                                ?>
+                            </p>
                         </div>
                         <div class="form-group mt-3">
-                            <label for="bookingDate" style="font-weight: 700;">NGÀY ĐẶT BÀN</label>
+                            <label for="date" style="font-weight: 700;">NGÀY ĐẶT BÀN</label>
                             <div class="input-group">
                                 <input type="date" class="form-control mt-3" 
-                                        id="bookingDate" style="border-radius: 0;"
+                                        id="date" style="border-radius: 0;"
                                         min="2023-04-14"
-                                        name="bookingDate" >
+                                        name="date" >
                             </div>
                         </div>
                         <div class="form-group mt-3">
@@ -93,8 +108,13 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-cancel" data-dismiss="modal">Hủy</button>
-        <button type="button" class="btn btn-booking">Đặt Bàn</button>
+        <button type="button" class="btn btn-booking" onclick='document.getElementById("reserveForm").submit()'>Đặt Bàn</button>
       </div>
     </div>
   </div>
 </div>
+<script>
+    <?php
+        if (isset($nameErr)) echo "$('#exampleModal').modal('show')";
+    ?>
+</script>

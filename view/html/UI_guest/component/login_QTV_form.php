@@ -3,7 +3,7 @@
         <div class="frame_login">
                 <h4 style="font-weight: 700;">ĐĂNG NHẬP VỚI TƯ CÁCH QUẢN TRỊ VIÊN</h4>
                 <h6 class="mt-3 text-muted text-white" style="font-weight: 500;">Enter your details to login</h6>
-                <form action='index.php?controller=employee&action=home_page_employee' method='post'>
+                <form action='manager/login' method='post'>
                     <div class="form-group mt-5">
                         <label for="phonenumber" style="font-weight: 700;">SỐ ĐIỆN THOẠI</label>
                         <div class="input-group">

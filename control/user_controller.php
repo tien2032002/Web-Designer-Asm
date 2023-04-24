@@ -225,7 +225,9 @@
         }
 
         function cart_tab() {
-            $this->render('view\html\UI_user\component\cart_tab');
+            include('model\table_db.php');
+            $data = array("have_table" => check_confirm_table($_SESSION['id']));
+            $this->render('view\html\UI_user\component\cart_tab', $data);
         }
 
         function rate() {
@@ -246,6 +248,35 @@
 
         function news() {
             $this->render('view\html\UI_guest\news');
+        }
+
+        function reserve() {
+            include_once('model\table_db.php');
+            include_once('model\customer_db.php');
+            $userObj = json_decode(getCustomerById($_SESSION['id']));
+            if ($_POST['date'] == '') $_POST['date'] = date("Y-m-d");
+            if ($_POST['quantity'] == '') $_POST['quantity'] = 4;
+            reserve_table($userObj->name, $userObj->phone, $userObj->email, $_POST['date'], $_POST['time'], $_POST['quantity']);
+            header("Location: home_page_user");
+        }
+
+        function order() {
+            include('model\order_db.php');
+            include('model\table_db.php');
+            include('model\product_db.php');
+            if (!check_confirm_table($_SESSION['id'])) header("Location: /error");
+            else {
+                $tableId = get_table_id($_SESSION['id']);
+                $orderList = json_decode($_COOKIE['cartArr']);
+                foreach($orderList as $productId => $quantity){
+                    $productObj = json_decode(getProductById($productId));
+                    add_order($tableId, $productId, $quantity, $productObj->price * $quantity, "request");
+                }
+                setcookie('cartArr', '', time() - (86400*7));
+                header('Location: /menu');
+            }
+            
+            
         }
     }
 ?>

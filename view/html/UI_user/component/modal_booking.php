@@ -15,16 +15,16 @@
         <h5 class="modal-title" id="exampleModalLabel">Thông Tin Đặt Bàn</h5>
       </div>
       <div class="modal-body">
-            <form action='#' method='post'>
+            <form action='/reserve' method='post' id='reserveForm'>
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group mt-3">
-                            <label for="bookingDate" style="font-weight: 700;">NGÀY ĐẶT BÀN</label>
+                            <label for="date" style="font-weight: 700;">NGÀY ĐẶT BÀN</label>
                             <div class="input-group">
                                 <input type="date" class="form-control mt-3" 
-                                        id="bookingDate" style="border-radius: 0;"
+                                        id="date" style="border-radius: 0;"
                                         min="2023-04-14"
-                                        name="bookingDate" >
+                                        name="date" >
                             </div>
                         </div>
                         <div class="form-group mt-3">
@@ -39,10 +39,10 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group mt-3">
-                            <label for="bookingTime" style="font-weight: 700;">GIỜ ĐẶT BÀN</label>
+                            <label for="time" style="font-weight: 700;">GIỜ ĐẶT BÀN</label>
                             <div class="input-group">
-                                <select name="bookingTime" class="form-control mt-3"  
-                                        style="border-radius: 0;" id="bookingTime">
+                                <select name="time" class="form-control mt-3"  
+                                        style="border-radius: 0;" id="time">
                                     <option value="10:00">10:00</option>
                                     <option value="11:00">11:00</option>
                                     <option value="12:00">12:00</option>
@@ -66,7 +66,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-cancel" data-dismiss="modal">Hủy</button>
-        <button type="button" class="btn btn-booking">Đặt Bàn</button>
+        <button type="button" class="btn btn-booking" onclick="$('#reserveForm').submit()">Đặt Bàn</button>
       </div>
     </div>
   </div>

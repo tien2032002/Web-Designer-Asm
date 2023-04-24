@@ -136,6 +136,15 @@
         margin-right: 10px;
         width: 20%;
     }
+    .searchBar{
+        display: none;
+        width: 100%;     
+        position: absolute;
+        top: 100%;
+        z-index:99;
+        background-color: #fff;
+        border: solid 1px #ccc;
+    }
 
     #popup{
         z-index: 0;
@@ -177,6 +186,8 @@
         font-weight: 500;
         color: rgb(224, 60, 1);
     }
+
+    
 </style>
 <div class="container-fluid">
     <div class="row align-items-center" style="background-color: #f2f2f2; height:80px;">
@@ -188,16 +199,36 @@
         <div class="col-lg-9">
             <div class="row">
                 <div class="col-tablet-7 col-mobile-5">
-                <form class="form-inline" style="margin-right: 1%;">
-                    <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for products" style="border-radius: 0;">
-                    <div class="input-group-append">
-                        <button class="btn border btn-outline-secondary" type="button">
-                        <i class="fa fa-search"></i>
-                        </button>
-                    </div>
-                    </div>
-                </form>
+                    <form class="form-inline " style="margin-right: 1%;">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search for products" style="border-radius: 0;">
+                            <div class="input-group-append">
+                                <button class="btn border btn-outline-secondary" type="button" style="height: 100%">
+                                <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                            <div class="searchBar">
+                                <!-- begin: search results -->
+                                <div class="d-flex align-items-center justify-content-between p-2">
+                                    <div class="d-flex" style="height: 50px">
+                                        <img src="view\images\dessert\dessert-1.jpg" alt="" style="width: auto; height: 100%">
+                                        <div class="ms-2">
+                                            <h6>Gỏi cuốn</h6>
+                                            <p>Món khai vị</p>
+                                        </div>
+                                    </div>
+                                    <div class="font-weight-bold text-danger">
+                                        7.000Đ
+                                    </div>
+                                </div>
+                                <hr class="m-0">
+                                <!-- end: search results -->
+                                <a href="" style="text-decoration: none" class="d-flex justify-content-center text-danger">Xem thêm kết quả</a>
+                            </div>
+                        </div>
+                        
+                    </form>
+                
                 </div>
                 <div class="col-tablet-3 col-mobile-5 navbar_ic d-flex justify-content-end">
                     <button type="button" class="btn border btn-outline-secondary"

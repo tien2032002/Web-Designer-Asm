@@ -9,11 +9,12 @@
             //if not, display error and exit
             if (!isset($_SESSION)) session_start();
             if (isset($_SESSION['role']) && $_SESSION['role'] == 'manager') {
-                $this->render('view/html/UI_manager/manager');
+                $this->render('view\html\UI_manager\UI_manager');
             }
             else
-            $this->render('view/html/UI_manager/UI_manager');
+                header("Location: /error");
         }
+
         
         //login form
         function login() {
@@ -26,7 +27,7 @@
                 //check login infomation
                 $checkLoginManager = checkLogin($_POST['phone'], $_POST['password']);
 
-                if ($checkLoginManager = 'good') {
+                if ($checkLoginManager == 'good') {
                     if ($_SESSION['role'] == 'employee') header("Location: /home_page_employee");
                     else if ($_SESSION['role'] == 'manager') header("Location: /home_page_manager");
                 }

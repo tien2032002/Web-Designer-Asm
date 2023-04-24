@@ -18,6 +18,8 @@ RewriteRule ^guest/(.+) index.php?controller=guest&action=$1 [NC,L]
 
 RewriteRule ^manager/(.+) index.php?controller=manager&action=$1 [NC,L]
 
+RewriteRule ^employee/(.+) index.php?controller=employee&action=$1 [NC,L]
+
 RewriteRule ^user/(.+) index.php?controller=user&action=$1 [NC,L]
 
 RewriteRule ^employee/(.+) index.php?controller=employee&action=$1 [NC,L]

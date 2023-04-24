@@ -19,14 +19,14 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="d-flex">
+    <div class="d-flex">
         <!-- Sidebar Start -->
         <div class="sidebar sidebarwidth" id="sidebar">
             <div class="list-gr">
                 <div class="text-muted" id="navigation">Navigation</div>
-                <a class="list-gr-item active" href="#" data-url="view/html/UI_employee/component/confirm_table_tab.php">
+                <a class="list-gr-item active" href="#" data-url="confirm_table_tab">
                     <i class="fas fa-chevron-right text-muted me-2"></i> Xác Nhận Đặt Bàn</a>
-                <a class="list-gr-item" href="#" data-url="view/html/UI_employee/component/confirm_order_tab.php">
+                <a class="list-gr-item" href="#" data-url="/confirm_order_tab">
                     <i class="fas fa-chevron-right text-muted me-2"></i> Xác Nhận Đơn Hàng</a>
             </div>
         </div>
@@ -56,7 +56,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="index.php?controller=guest&action=home_page" class="nav-link me-2">
+                                <a href="/logout" class="nav-link me-2">
                                     <i class="bi bi-box-arrow-right me-1"></i>
                                     Đăng xuất
                                 </a>

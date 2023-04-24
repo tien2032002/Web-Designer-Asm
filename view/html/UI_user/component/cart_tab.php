@@ -106,7 +106,10 @@
                 <div style="font-weight:500; font-size:20px">Tổng cộng: 
                     <span class="price-item-tab total_bill"><?php echo number_format($totalPrice, 0, '.' , ','); ?>đ<span>
                 </div>
-                <a href="#" style="text-decoration:none;"><div class="cart-btn-tab">Xem Giỏ Hàng</div></a>
+                <?php
+                    if ($have_table) echo '<a href="/order" style="text-decoration:none;"><div class="cart-btn-tab">Gọi món</div></a>';
+                ?>
+                
             </div>
         </div>
     </div>

@@ -55,11 +55,16 @@
                 }
             });
         }
+        
+        
     </script>
+    
 </head>
 <body>
     <!-- Topbar Start -->
-        <?php include 'component/topbar.php'; ?>
+        <?php include 'component/topbar.php'; 
+            
+        ?>
     <!-- Topbar End -->
     
     <!-- Main Start -->

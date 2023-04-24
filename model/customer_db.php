@@ -122,7 +122,7 @@
         extract($checkErr);
         if ($uploadErr == 'good') {
             $target_dir    = "view/images/user/";
-            $target_file   = $target_dir . 'user' . $_GET['id'] . '.png';
+            $target_file   = $target_dir . 'user' . $_GET['id'] . '.jpg';
             move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file);
         }
 
