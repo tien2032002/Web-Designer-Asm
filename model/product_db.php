@@ -98,6 +98,16 @@
         return TRUE;
     }
 
+    function get_all_product_id(){
+        require('model/db.php');
+        $productId = mysqli_query($con, "SELECT id from products");
+        $resultArray = array();
+        while($row = $productId->fetch_object()){
+            $resultArray[] = $row->id;
+        }
+        return $resultArray;
+    }
+
     function updateRating($productID, $customerID, $stars, $comment) {
         require('model/db.php');
         $addRating = mysqli_query($con, "UPDATE feedback
@@ -114,7 +124,7 @@
         $feedbackResult = mysqli_query($con, $getFeedback);
         $commentArray = array();
         while($row = $feedbackResult->fetch_object()) {
-            $userObj = json_decode(getCustomerById($_SESSION['id']));
+            $userObj = json_decode(getCustomerById($row->customer_id));
             $commentObj = array();
             $commentObj['name'] = $userObj->name;
             $commentObj['avatar'] = $userObj->image;

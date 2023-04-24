@@ -17,7 +17,7 @@
                     </div>
                 </div>
                 
-                <div class="user-comment">
+                <div class="user-comment" style="margin-left: 65px;">
                     '.$comment['comment'].'
                 </div> 
                 <hr style="height:1px;border-width:0;color:gray;background-color:gray">        

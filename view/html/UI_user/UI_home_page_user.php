@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="view/css/UI_user/sidebar.css">
     <link rel="stylesheet" href="view/css/UI_user/UI_home_page.css">
     <link rel="stylesheet" type="text/css" href="view/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="view\css\UI_user\product.css">
+
     <!-- ======= Scripts ====== -->
     <script src="view/bootstrap/js/bootstrap.min.js"></script>
     <script src="view/jquery/jquery-3.6.4.js"></script>

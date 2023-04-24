@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="view/css/UI_user/UI_home_page.css">
     <link rel="stylesheet" type="text/css" href="view/css/UI_user/UI_profile.css">
     <link rel="stylesheet" type="text/css" href="view/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="view/css/UI_user/product.css">
 
     <!-- ======= Scripts ====== -->
     <script src="view/bootstrap/js/bootstrap.min.js"></script>

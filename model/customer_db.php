@@ -116,6 +116,16 @@
         require_once("../model/db.php");
     }
 
+    function get_all_customer_id(){
+        require('model/db.php');
+        $customerId = mysqli_query($con, "SELECT id from customers");
+        $resultArray = array();
+        while($row = $customerId->fetch_object()){
+            $resultArray[] = $row->id;
+        }
+        return $resultArray;
+    }
+
     function changeInfor($checkErr){
         include('model\db.php');
         $curID = $_GET['id'];

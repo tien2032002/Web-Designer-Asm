@@ -62,6 +62,28 @@
         return $billArray;
     }
 
+    function get_order_list($tableId) {
+        include('model\db.php');
+        include_once('model\product_db.php');
+        $bill = mysqli_query($con, "SELECT * FROM bills WHERE table_id=$tableId");
+        $billArray = array();
+        while($product = $bill->fetch_object()) {
+            $product->productObj = json_decode(getProductById($product->product_id));
+            $billArray[] = $product;
+        }
+        return $billArray;
+    }
+
+    function get_all_customer_table($customer_id) {
+        include('model\db.php');
+        $allCustomerTable = mysqli_query($con, "SELECT * FROM tables WHERE customer_id=$customer_id");
+        $tableArray = array();
+        while ($tableObj = $allCustomerTable->fetch_object()){
+            $tableArray[] = $tableObj;
+        }
+        return $tableArray;
+    }
+
     function get_inuse_table_list() {
         include('model\db.php');
         $inuseTable = mysqli_query($con, "SELECT * FROM tables WHERE status='in use'");

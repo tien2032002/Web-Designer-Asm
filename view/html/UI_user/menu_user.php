@@ -12,6 +12,8 @@
      <!--  style -->
     <link rel="stylesheet" type="text/css" href="view/css/UI_user/style_navbar_homepage.css">
     <link rel="stylesheet" type="text/css" href="view/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="view\css\UI_user\product.css">
+    
     <link rel="stylesheet" href="view/css/UI_user/sidebar.css">
     <!-- ======= Scripts ====== -->
     <script src="view/bootstrap/js/bootstrap.min.js"></script>

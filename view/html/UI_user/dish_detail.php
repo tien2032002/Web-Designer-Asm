@@ -197,7 +197,7 @@
                             <!-- starter breadcrum -->
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#">Thực đơn</a></li>
+                                    <li class="breadcrumb-item"><a style="text-decoration: none; color: #B38B91; font-weight: 500;" href="/menu">Thực đơn</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">
                                     <?php
                                         switch ($productObj->type) {
@@ -387,35 +387,35 @@
                                         foreach($relatedProduct as $product) {
                                             $product = json_decode($product);
                                             echo '
-                                            <!-- begin: first dish -->
+                                            <!-- begin: first starter dish -->
                                             <div class="menu__item card">
-                                                <img src="'.$product->image.'" alt="" class="item-img">
-                                                <div class="item-description">
-                                                    <!-- dish name -->
-                                                    <h6 class="item-name">'.$product->name.'</h6>
-                                                    <!-- price -->
-                                                    <h6 class="item-price text-secondary"><small>'.$product->price.'đ</small></h6>
+                                                <img src="'.$product->image.'" alt="" class="item-img" loading="lazy">
+                                                <div class="item-description d-flex justify-content-between">
+                                                    <div style="width: 50%">
+                                                        <!-- dish name -->
+                                                        <h6 class="item-name">'.$product->name.'</h6>
+                                                        <!-- price -->
+                                                        <h6 class="item-price text-secondary"><small>'.number_format($product->price,0,".",",").'đ</small></h6>
+                                                    </div>
+                                                    <h3 class=""> '.number_format($product->rating, 1,".",",").' <i class=" pink-color bi bi-star-fill"></i></h3>
                                                 </div>
-        
+
+
                                                 <div class="item-comment-count d-flex justify-content-around align-items-center">
-        
-                                                    <a href="#" class="d-flex text-decoration-none">
-                                                        <i class="bi bi-chat"></i>
-                                                        <div class="comment-quantity"><small>25</small></div>
-                                                    </a>
+
                                                     <!-- view detail btn -->
-                                                    <a href="dish-detail/'.UrlNormal($product->name).'/'.$product->id.'" class="btn btn-outline-dark btn-sm mt-1 ">
+                                                    <a href="dish-detail/'.UrlNormal($product->name).'/'.$product->id.'" class="btn btn-override btn-outline-dark btn-sm mt-1 ">
                                                         <i class="bi bi-eye-fill"></i>
-                                                        View detail
+                                                        Xem chi tiết
                                                     </a>
                                                     <!-- order btn -->
-                                                    <a href="#" class="btn btn-outline-dark btn-sm mt-1 ">
+                                                    <a onclick="loadXMLDoc(\'addToCart?productID='.$product->id.'\', \'cart_drop\');" class="btn btn-override btn-outline-dark btn-sm mt-1 ">
                                                         <i class="bi bi-cart3"></i>
-                                                        Order Now
+                                                        Thêm vào giỏ
                                                     </a>
                                                 </div>
                                             </div>
-                                            <!-- end: first dish -->
+                                            <!-- begin: end starter dish -->
                                             ';
                                         }
                                     ?>

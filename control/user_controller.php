@@ -288,7 +288,14 @@
         }
 
         function history() {
-            $this->render('view\html\UI_user\component\history_tab');
+            include('model\order_db.php');
+            include('model\table_db.php');
+            $tableList = get_all_customer_table($_SESSION['id']);
+            foreach($tableList as $table) {
+                $table->orderList = get_order_list($table->id);
+            }
+            $data = array("tableList" => $tableList);
+            $this->render('view\html\UI_user\component\history_tab', $data);
         }
     }
 ?>
