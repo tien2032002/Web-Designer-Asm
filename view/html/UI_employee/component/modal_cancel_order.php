@@ -1,4 +1,4 @@
-<div class="modal fade" id="modal_cancel_order" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="modal_cancel_order<?php echo $table->id?>" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -9,7 +9,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-dark" data-dismiss="modal">Hủy</button>
-        <button type="button" class="btn btn-secondary">Xác Nhận</button>
+        <a href="cancel_order?tableId=<?php echo $table->id; ?>"><button type="button" class="btn btn-secondary">Xác Nhận</button></a>
       </div>
     </div>
   </div>

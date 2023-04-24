@@ -59,5 +59,28 @@
             cancel_bill_db($_GET['billId']);
             header("Location: confirm_order_tab");
         }
+
+        function search_result() {
+            include("model\product_db.php");
+            $data = array("searchResult" => search($_GET['pattern']),
+                          'tableId' => $_GET['tableId']);
+            $this->render('view\html\UI_employee\component\search_result', $data);
+        }
+
+        function add_food(){
+            include('model\order_db.php');
+            include_once('model\product_db.php');
+            $productObj = json_decode(getProductById($_POST['food']));
+            add_order($_GET['tableId'], $_POST['food'], $_POST['quantity_food'], $productObj->price * $_POST['quantity_food'], 'request');
+            header("Location: home_page_employee");
+        }
+
+        function cancel_order(){
+            include('model\order_db.php');
+            include_once("model/table_db.php");
+            cancel_order($_GET['tableId']);
+            cancel_table($_GET['tableId']);
+            header("Location: home_page_employee");
+        }
     }
 ?>

@@ -114,6 +114,49 @@
             });
         }); 
     </script>
+    <script>
+        //with each id searchkey, search, and food, add table id to define each form and modal search
+        //so when call function to show, hide or get search result, we need to add parameter table id
+        
+        function getSearchResult(id) {
+            var searchPatternElement = document.getElementById('searchKey' + id.toString())
+            console.log('searchKey' + id.toString())
+            var link = "/search_result?pattern=" + searchPatternElement.value + "&tableId=" +id.toString()
+            console.log(link)
+            $.ajax({
+                // The link we are accessing.
+                url: link,
+                    
+                // The type of request.
+                type: "get",
+                    
+                // The type of data that is getting returned.
+                dataType: "html",
+
+                success: function( strData ){
+                    console.log(strData)
+                    document.getElementById("search" + id.toString()).innerHTML = strData;
+                    // console.log("do")
+
+                }
+            });
+        }
+
+        function getProductId(id, tableId) {
+        document.getElementById('food' + tableId.toString()).value=id;
+        hideSearchResult(tableId)
+        }
+
+        function showSearchResult(id) {
+            var searchElement = document.getElementById('search' + id.toString())
+            searchElement.className = "searchBarDisplayResult d-block"
+        }
+
+        function hideSearchResult(id){
+            var searchElement = document.getElementById('search' + id.toString())
+            searchElement.className = "searchBarDisplayResult d-none"
+        }
+    </script>
    
 </body>
 </html>

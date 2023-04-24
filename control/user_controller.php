@@ -282,5 +282,13 @@
             $data = array("searchResult" => search($_GET['pattern']));
             $this->render('view\html\UI_guest\component\search_result', $data);
         }
+
+        function contact_page() {
+            $this->render('view\html\UI_guest\contact_page');
+        }
+
+        function history() {
+            $this->render('view\html\UI_user\component\history_tab');
+        }
     }
 ?>

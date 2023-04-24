@@ -1,5 +1,5 @@
 <?php
-    function add_order($table_id, $product_id, $quantity, $price, $status) {
+    function add_order($table_id, $product_id, $quantity, $price, $status='request') {
         //add order to database
         require('model\db.php');
         mysqli_query($con, "INSERT INTO bills (table_id, product_id, quantity, price, status)
@@ -20,9 +20,12 @@
                             WHERE id=$billId");
     }
 
-    function deleteOrder() {
+    function cancel_order($tableId) {
         //delete order to database
-        require('db.php');
+        include('model\db.php');
+        mysqli_query($con, "UPDATE bills 
+                            SET status='canceled'
+                            WHERE table_id=$tableId AND status='request'");
     }
 
     function updateOrder() {
@@ -30,5 +33,8 @@
         require('db.php');
     }
 
-
+    function get_history($customerId) {
+        require('db.php');
+        
+    }
 ?>

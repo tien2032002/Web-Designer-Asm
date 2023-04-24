@@ -106,4 +106,10 @@
                             SET status='paid'
                             WHERE id=$tableId");
     }
+    function cancel_table($tableId) {
+        include('model\db.php');
+        mysqli_query($con, "UPDATE tables 
+                            SET status='canceled'
+                            WHERE id=$tableId");
+    }
 ?>

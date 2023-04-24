@@ -56,19 +56,17 @@
     </script>
 </head>
 <body>
-    <header>
         <!-- Topbar Start -->
-        <?php include 'component/topbar.php'; ?>
+        <?php include ("view/html/UI_guest/component/topbar.php"); ?>
         <!-- Topbar End -->
         
         <!-- Navbar Start -->
         <?php $page = 'home_page_user';
         include 'component/navbar.php'; ?>
         <!-- Navbar End -->
-    </header>
     
    <section class="parallax">
-        <h2 id="text">Liên hệ</h2>
+        <h2 id="text" style="color: #635A5B;">Liên hệ</h2>
         
         <img id="mountain-img" src="view\images\contact\mountain.png" alt="">
         <img id="sun" src="view\images\contact\sun.png" alt="">

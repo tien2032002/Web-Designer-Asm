@@ -18,31 +18,20 @@
         <h5 class="modal-title">Xác Nhận Thêm Món</h5>
       </div>
       <div class="modal-body">
-        <form class='searchBar'>
+        <form class='searchBar' method='POST' action="/add_food?tableId=<?php echo $table->id?>" id="add_food_<?php echo $table->id?>">
             <div class="form-group input-group">
-              <input type="text" class="form-control " placeholder="Search for products" style="border-radius: 0;">
+              <input type="text" class="form-control " placeholder="Search for products" style="border-radius: 0;"
+              id="searchKey<?php echo $table->id?>" onkeyup="getSearchResult(<?php echo $table->id?>)" onfocus="showSearchResult(<?php echo $table->id?>)">
               <div class="input-group-append">
                   <button class="btn border btn-outline-secondary " type="button" style="border-radius: 0; height: 100%" >
                     <i class="fa fa-search"></i>
                   </button>
               </div>
-              <div class="searchBarDisplayResult">
+              <div class="searchBarDisplayResult" id="search<?php echo $table->id?>">
                 <!-- begin: search results -->
-                <div class="d-flex align-items-center justify-content-between p-2">
-                    <div class="d-flex" style="height: 50px">
-                        <img src="view\images\dessert\dessert-1.jpg" alt="" style="width: auto; height: 100%">
-                        <div class="ms-2">
-                            <h6>Gỏi cuốn</h6>
-                            <p>Món khai vị</p>
-                        </div>
-                    </div>
-                    <div class="font-weight-bold text-danger">
-                        7.000Đ
-                    </div>
-                </div>
-                <hr class="m-0">
+                
+                
                 <!-- end: search results -->
-                <a href="" style="text-decoration: none" class="d-flex justify-content-center text-danger">Xem thêm kết quả</a>
               </div>
             </div>
             <div class="row">
@@ -51,7 +40,7 @@
                     <label for="food" style="font-weight: 700;">MÃ MÓN ĂN</label>
                     <div class="input-group">
                         <input type="text" min="1" class="form-control mt-1" 
-                                id="food" style="border-radius: 0;"
+                                id="food<?php echo $table->id?>" style="border-radius: 0;"
                                 placeholder="Enter your ID food"
                                 name="food">
                     </div>
@@ -62,8 +51,8 @@
                     <label for="quantity_food" style="font-weight: 700;">SỐ LƯỢNG</label>
                     <div class="input-group">
                         <input type="number" min="1" class="form-control mt-1" 
-                                id="quantity_food" style="border-radius: 0;"
-                                placeholder="Enter your quantity"
+                                id="quantity_food<?php echo $table->id?>" style="border-radius: 0;"
+                                placeholder="Enter your quantity" value="1"
                                 name="quantity_food">
                     </div>
                 </div>
@@ -73,7 +62,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-dark" data-dismiss="modal">Hủy</button>
-        <button type="button" class="btn btn-primary">Thêm</button>
+        <button type="button" class="btn btn-primary" onclick="document.getElementById('add_food_<?php echo $table->id?>').submit()">Thêm</button>
       </div>
     </div>
   </div>
