@@ -201,29 +201,48 @@
                 <div class="col-tablet-7 col-mobile-5">
                     <form class="form-inline " style="margin-right: 1%;">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for products" style="border-radius: 0;">
+                            <input type="text" class="form-control" placeholder="Search for products" style="border-radius: 0;" id="searchKey" 
+                            onkeyup="getSearchResult()" onfocus="showSearchResult()">
                             <div class="input-group-append">
                                 <button class="btn border btn-outline-secondary" type="button" style="height: 100%">
                                 <i class="fa fa-search"></i>
                                 </button>
                             </div>
-                            <div class="searchBar">
-                                <!-- begin: search results -->
-                                <div class="d-flex align-items-center justify-content-between p-2">
-                                    <div class="d-flex" style="height: 50px">
-                                        <img src="view\images\dessert\dessert-1.jpg" alt="" style="width: auto; height: 100%">
-                                        <div class="ms-2">
-                                            <h6>Gỏi cuốn</h6>
-                                            <p>Món khai vị</p>
-                                        </div>
-                                    </div>
-                                    <div class="font-weight-bold text-danger">
-                                        7.000Đ
-                                    </div>
-                                </div>
-                                <hr class="m-0">
-                                <!-- end: search results -->
-                                <a href="" style="text-decoration: none" class="d-flex justify-content-center text-danger">Xem thêm kết quả</a>
+                            <div class="d-none searchBar" id="search" >
+                                <script>
+                                    var searchElement = document.getElementById('search')
+                                    var searchPatternElement = document.getElementById('searchKey')
+                                    console.log(document.getElementById('searchKey').value);
+                                    function getSearchResult() {
+                                        var link = "/search_result?pattern=" + searchPatternElement.value
+                                        console.log(link)
+                                        $.ajax({
+                                            // The link we are accessing.
+                                            url: link,
+                                                
+                                            // The type of request.
+                                            type: "get",
+                                                
+                                            // The type of data that is getting returned.
+                                            dataType: "html",
+
+                                            success: function( strData ){
+                                                console.log(strData)
+                                                document.getElementById("search").innerHTML = strData;
+                                                // console.log("do")
+
+                                            }
+                                        });
+                                    }
+
+                                    function showSearchResult() {
+                                        searchElement.className = "searchBar d-block"
+                                    }
+
+                                    function hideSearchResult(){
+                                        searchElement.className = "searchBar d-none"
+                                    }
+                                </script>
                             </div>
                         </div>
                         

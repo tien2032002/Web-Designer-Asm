@@ -84,6 +84,15 @@
             width: 100%;
         }
     }
+    .searchBar{
+        display: none;
+        width: 100%;     
+        position: absolute;
+        top: 100%;
+        z-index:99;
+        background-color: #fff;
+        border: solid 1px #ccc;
+    }
 
     .btn .badge{
         color: black;
@@ -110,14 +119,53 @@
             <div class="row">
                 <div class="col-tablet-7 col-mobile-5">
                     <form class="form-inline" style="margin-right: 1%;">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for products" style="border-radius: 0;">
-                        <div class="input-group-append">
-                        <button class="btn border btn-outline-secondary" type="button">
-                            <i class="fa fa-search"></i>
-                        </button>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search for products" style="border-radius: 0;"
+                            id="searchKey" onkeyup="getSearchResult()" onfocus="showSearchResult()">
+                            <div class="input-group-append">
+                                <button class="btn border btn-outline-secondary" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                            <div class="d-none searchBar" id="search" >
+                                <script>
+                                    var searchElement = document.getElementById('search')
+                                    var searchPatternElement = document.getElementById('searchKey')
+                                    console.log(document.getElementById('searchKey').value);
+                                    function getSearchResult() {
+                                        var link = "/search_result?pattern=" + searchPatternElement.value
+                                        console.log(link)
+                                        $.ajax({
+                                            // The link we are accessing.
+                                            url: link,
+                                                
+                                            // The type of request.
+                                            type: "get",
+                                                
+                                            // The type of data that is getting returned.
+                                            dataType: "html",
+
+                                            success: function( strData ){
+                                                console.log(strData)
+                                                document.getElementById("search").innerHTML = strData;
+                                                // console.log("do")
+
+                                            }
+                                        });
+                                    }
+
+                                    function showSearchResult() {
+                                        searchElement.className = "searchBar d-block"
+                                    }
+
+                                    function hideSearchResult(){
+                                        searchElement.className = "searchBar d-none"
+                                    }
+                                </script>
+                            </div>
+                            
                         </div>
-                    </div>
+                        
                     </form>
                 </div>
                 <div class="col-tablet-3 col-mobile-5 navbar_ic d-flex justify-content-end">

@@ -156,5 +156,41 @@
         return json_encode($arrayResult);
     }
 
+    function search($key) {
+        require('model/db.php');
+        $key = trim($key);
+        if ($key == '') return "not match";
+        $searchQuerryName = "SELECT * FROM products WHERE name like '%$key%'";
+        $keyWords = explode(' ', $key);
+ 
+        // $searchQuerryType = "SELECT * FROM products WHERE type like '%$key%'";
+        // $searchQuerryDesc = "SELECT * FROM products WHERE description like '%$key%'";
+        foreach($keyWords as $keyWord) {
+            $searchQuerryName .= " OR name LIKE '%" . $keyWord ."%'";
+            // $searchQuerryType .= " OR name LIKE '%" . $keyWord ."%'";
+            // $searchQuerryDesc .= " OR name LIKE '%" . $keyWord ."%'";
+        }
 
+        $searchQuerryName.=" ORDER BY (CASE WHEN name = '".$key."' THEN 1 WHEN name LIKE '%".$key."%' THEN 2 ELSE 3 END),name LIMIT 10";
+
+        $searchQuerryName = mysqli_query($con, $searchQuerryName);
+        // $searchQuerryType = mysqli_query($con, $searchQuerryType);
+        // $searchQuerryDesc = mysqli_query($con, $searchQuerryDesc);
+
+        $resultArray = array();
+
+        while($result = $searchQuerryName->fetch_object()) {
+            $resultArray[] = $result;
+        }
+
+        // while($result = $searchQuerryType->fetch_object()) {
+        //     $resultArray[] = $result;
+        // }
+
+        // while($result = $searchQuerryDesc->fetch_object()) {
+        //     $resultArray[] = $result;
+        // }
+
+        return $resultArray;
+    }
 ?>

@@ -233,6 +233,5 @@
                            'passwordErr' => $passwordErr);     
         return $resultErr;          
     }
-
     
 ?>

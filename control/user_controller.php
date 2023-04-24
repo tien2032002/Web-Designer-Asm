@@ -275,8 +275,12 @@
                 setcookie('cartArr', '', time() - (86400*7));
                 header('Location: /menu');
             }
-            
-            
+        }
+
+        function search_result() {
+            include("model\product_db.php");
+            $data = array("searchResult" => search($_GET['pattern']));
+            $this->render('view\html\UI_guest\component\search_result', $data);
         }
     }
 ?>
