@@ -116,14 +116,14 @@
             </a>
         </div>
         <div class="col-lg-9">
-            <div class="row">
+            <div class="row align-items-center">
                 <div class="col-tablet-7 col-mobile-5">
-                    <form class="form-inline" style="margin-right: 1%;">
-                        <div class="input-group">
+                    <form class="form-inline">
+                        <div class="input-group mt-3">
                             <input type="text" class="form-control" placeholder="Search for products" style="border-radius: 0;"
                             id="searchKey" onkeyup="getSearchResult()" onfocus="showSearchResult()">
                             <div class="input-group-append">
-                                <button class="btn border btn-outline-secondary" type="button">
+                                <button class="btn border btn-outline-secondary" type="button" style="height:100%">
                                     <i class="fa fa-search"></i>
                                 </button>
                             </div>
@@ -163,9 +163,7 @@
                                     }
                                 </script>
                             </div>
-                            
                         </div>
-                        
                     </form>
                 </div>
                 <div class="col-tablet-3 col-mobile-5 navbar_ic d-flex justify-content-end">
@@ -173,7 +171,7 @@
                         data-toggle="modal" data-target="#exampleModal"
                         style="margin-right: 1%; border-radius: 0;">
                         <div class="d-flex justify-content-end">
-                            <i class="bi bi-calendar-plus me-2"></i>
+                            <i class="bi bi-calendar-plus me-2 mt-1"></i>
                             <span style="font-weight: 500; color: black">Đặt Bàn</span>
                         </div>
                     </button>

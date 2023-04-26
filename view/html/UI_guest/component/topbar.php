@@ -197,9 +197,9 @@
             </a>
         </div>
         <div class="col-lg-9">
-            <div class="row">
+            <div class="row align-items-center">
                 <div class="col-tablet-7 col-mobile-5">
-                    <form class="form-inline " style="margin-right: 1%;">
+                    <form class="form-inline mt-3">
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Search for products" style="border-radius: 0;" id="searchKey" 
                             onkeyup="getSearchResult()" onfocus="showSearchResult()">
@@ -254,7 +254,7 @@
                         data-toggle="modal" data-target="#exampleModal"
                         style="margin-right: 1%; border-radius: 0;">
                         <div class="d-flex justify-content-end">
-                            <i class="bi bi-calendar-plus me-2"></i>
+                            <i class="bi bi-calendar-plus me-2 mt-1"></i>
                             <span style="font-weight: 500; color: black">Đặt Bàn</span>
                         </div>
                     </button>
