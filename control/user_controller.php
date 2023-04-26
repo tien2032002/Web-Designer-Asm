@@ -184,7 +184,7 @@
 
         function addToCart() {
             if (isset($_SESSION['role']) && $_SESSION['role'] == 'user') {
-                if (isset($_GET['productID'])) {
+                if (isset($_GET['productID']) && !(isset($_GET['productQuantity']) && (int)$_GET['productQuantity'] < 0)) {
                     if (!isset($_COOKIE['cartArr'])) {
                         //if cookie dont have variable cartArr yet
                         //create a array
@@ -192,7 +192,8 @@
                         //change that array to json and save to cookie
                         $cart = array();
                         if (!isset($_GET['productQuantity'])) $cart[(int)$_GET['productID']] = 1;
-                        else $cart[(int)$_GET['productID']] = (int)$_GET['productQuantity'];
+                        else 
+                            $cart[(int)$_GET['productID']] = (int)$_GET['productQuantity'];
                         setcookie('cartArr', json_encode($cart), time() + (86400*7));
 
                     }
