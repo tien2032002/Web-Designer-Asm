@@ -1,4 +1,5 @@
 <?php
+//generate random comment for products
     include('model\product_db.php');
     include('model\customer_db.php');
     $productId = get_all_product_id();
@@ -18,9 +19,11 @@
     for ($i = 0; $i<300 ;$i++) {
         $productIdSample = $productId[rand(0, count($productId)-1)];
         $customerIdSample = $customerId[rand(0, count($customerId)-1)];
-        $starSample = rand(1, 5);
+        $starSample = rand(3, 5);
         $commentSample = $commentArray[rand(0, count($commentArray)-1)];
         if (getReview($customerIdSample, $productIdSample) == 'notReviewed')
-            addRating($productId[rand(0, count($productId)-1)], $customerId[rand(0, count($customerId)-1)], rand(1, 5), $commentArray[rand(0, count($commentArray)-1)]);
+            addRating($productIdSample, $customerIdSample, $starSample, $commentSample);
+    
     }
+
 ?>

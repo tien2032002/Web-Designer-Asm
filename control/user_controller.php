@@ -126,7 +126,8 @@
             if (!isset($_SESSION)) session_start();
             if (isset($_SESSION['role']) && $_SESSION['role'] == 'user') {
                 $data = array ('productList' => getProductList($_GET['type']),
-                           'type' => $_GET['type']);
+                           'type' => $_GET['type'],
+                           'popularProducts' => getPopularProducts($_GET['type'], 6));
                 $this->render('view\html\UI_user\dish_list', $data);
             }
             else header('/dish_list');
@@ -183,7 +184,7 @@
 
         function addToCart() {
             if (isset($_SESSION['role']) && $_SESSION['role'] == 'user') {
-                if (isset($_GET['productID'])) {
+                if (isset($_GET['productID']) && !(isset($_GET['productQuantity']) && (int)$_GET['productQuantity'] < 0)) {
                     if (!isset($_COOKIE['cartArr'])) {
                         //if cookie dont have variable cartArr yet
                         //create a array
@@ -191,7 +192,8 @@
                         //change that array to json and save to cookie
                         $cart = array();
                         if (!isset($_GET['productQuantity'])) $cart[(int)$_GET['productID']] = 1;
-                        else $cart[(int)$_GET['productID']] = (int)$_GET['productQuantity'];
+                        else 
+                            $cart[(int)$_GET['productID']] = (int)$_GET['productQuantity'];
                         setcookie('cartArr', json_encode($cart), time() + (86400*7));
 
                     }
@@ -246,10 +248,6 @@
             $this->render('view\html\UI_user\component\comment', $data);
         }
 
-        function news() {
-            $this->render('view\html\UI_guest\news');
-        }
-
         function reserve() {
             include_once('model\table_db.php');
             include_once('model\customer_db.php');
@@ -284,7 +282,9 @@
         }
 
         function contact_page() {
-            $this->render('view\html\UI_guest\contact_page');
+            include_once('model/customer_db.php');
+            $data = array("userObj" => json_decode(getCustomerById($_SESSION['id'])));
+            $this->render('view\html\UI_user\contact_page', $data);
         }
 
         function history() {
@@ -296,6 +296,33 @@
             }
             $data = array("tableList" => $tableList);
             $this->render('view\html\UI_user\component\history_tab', $data);
+        }
+
+        function news() {
+            include("model/news_db.php");
+            include("model/customer_db.php");
+            $newsArray = get_news();
+            $data = array('newsArray' => $newsArray,
+                          "userObj" => getCustomerById($_SESSION['id']));
+            $this->render('view\html\UI_user\news', $data);
+        }
+
+        function tag() {
+            include("model/news_db.php");
+            include("model/customer_db.php");
+            $newsArray = get_news_by_tag($_GET['id']);
+            $data = array('newsArray' => $newsArray,
+                          "userObj" => getCustomerById($_SESSION['id']));
+            $this->render('view\html\UI_user\tag', $data);
+        }
+
+        function news_detail() {
+            include("model/news_db.php");
+            include("model/customer_db.php");
+            $newsObject = get_news_by_id($_GET['id']);
+            $data = array('newsObject' => $newsObject,
+                          "userObj" => getCustomerById($_SESSION['id']));
+            $this->render('view\html\UI_user\news_detail', $data);
         }
     }
 ?>

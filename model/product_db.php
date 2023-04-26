@@ -70,9 +70,20 @@
         else return json_encode($resultProduct->fetch_object());
     }
 
+    function getPopularProducts($type, $limit) {
+        require('model/db.php');
+        $popularProduct = "SELECT * FROM products WHERE type='$type' ORDER BY rating DESC LIMIT $limit";
+        $popularProduct = mysqli_query($con, $popularProduct);
+        $resultArray = array();
+        while ($row = $popularProduct->fetch_object()) {
+            $resultArray[] = $row;
+        }
+        return $resultArray;
+    }
+
     function getReview($customerID, $productID) {
         require('model/db.php');
-        $reviewResult = mysqli_query($con, "SELECT * FROM feedback WHERE product_id='$productID' AND customer_id='$customerID' ");
+        $reviewResult = mysqli_query($con, "SELECT * FROM feedback WHERE product_id=$productID AND customer_id=$customerID ");
         if(mysqli_num_rows($reviewResult) == 0) return 'notReviewed';
         else return json_encode($reviewResult->fetch_object());
     }

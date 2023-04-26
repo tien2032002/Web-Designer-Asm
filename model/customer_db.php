@@ -182,7 +182,6 @@
         $userObj = json_decode(getCustomerById($_SESSION['id']));
         $uploadErr = 'not update';
         if ($_FILES["avatar"]['name'] != ''){
-            var_dump($_FILES["avatar"]);
             //change avatar
             //check if file upload is image or not
             $check = getimagesize($_FILES["avatar"]["tmp_name"]);

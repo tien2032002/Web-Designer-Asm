@@ -4,10 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DISFRUTAR</title>
-    <meta name="description" content="Disfrutar-Nơi hội tụ tinh hoa ẩm thực. Top 10 nhà hàng được yêu thích nhất TPHCM. Thực đơn phong phú, đa dạng. Không gian thoáng đãng, rộng rãi. Phục vụ tận tình, chu đáo. Địa chỉ: 268 Lý Thường Kiệt, Phường 14, Quận 10, Thành phố Hồ Chí Minh. Đặt bàn ngay!">
-    <meta name="keywords" content="Disfrutar, Restaurent, quận 10, thành phố HCM, top 10">
-    <meta name="author" content="Nelele">
+    <title>Home page</title>
     <!-- ======= Styles ====== -->
       <!--  icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
@@ -118,12 +115,33 @@
 
                 <!-- Tab Content Start -->
                 <div class="tab-content">
-                    <!-- Tab HomePage -->
-                    <div class="tab-pane active">
-                        <!-- Carousel Start -->
-                        <?php include 'View/html/UI_guest/component/carousel.php'; ?>
-                        <!-- Carousel End-->
+                    <!-- begin: daily news -->
+                    <div class="card menu mt-4 mb-5">
+                        <h4 class="card-title">Bài viết nổi bật</h4>
+                            <!-- begin: article list -->
+                            <div class="d-flex justify-content-around flex-wrap">
+                            <?php
+                                $tagArray = array('1' => 'Món ngon mỗi ngày',
+                                                  '2' => 'Món ăn mùa xuân',
+                                                  '3' => 'Món ăn mùa hè',
+                                                  '4' => 'Món ăn mùa thu',
+                                                  '5' => 'Món ăn mùa đông');
+                                foreach($newsArray as $news) {
+                                    echo '<!-- begin: first article -->
+                                    <div class="menu__item card">
+                                        <img src="'.$news->thumnail.'" class="item-img">
+                                        <a href="/tag/'.UrlNormal($tagArray[$news->tag]).'/'.$news->tag.'" class="btn btn-outline-success ms-2 mt-2 p-1" style="max-width: 56%">'.$tagArray[$news->tag].'</a>
+                                        <a style="all: unset; cursor: pointer;" href="news-detail/'.UrlNormal($news->title).'/'.$news->id.'"><h5 class="item-name ms-2 mt-2">'.$news->title.'</h5></a>
+                                    </div>
+                                    <!-- end: first article -->';
+                                }
+                            ?>
+
+                        </div>
+                        <!-- end: article list -->
+
                     </div>
+                    <!-- end: daily news -->
                     <!-- Tab Khai Vi -->
                     <div class="tab-pane" id="tab1">
                         <script>
@@ -160,11 +178,37 @@
         </div>
     </div>
     <!-- Main End -->
-    <br>
 
-    <?php
-        include("view/html/UI_guest/component/footer.php");
-    ?>
+    <!-- Featured Start -->
+    <div class="container-fluid pt-5">
+        <div class="row px-xl-5 pb-3">
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
+                    <h1 class="fa fa-check text-primary m-0 mr-3"></h1>
+                    <h5 class="font-weight-semi-bold m-0">Quality Product</h5>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
+                    <h1 class="fa fa-shipping-fast text-primary m-0 mr-2"></h1>
+                    <h5 class="font-weight-semi-bold m-0">Free Shipping</h5>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
+                    <h1 class="fas fa-exchange-alt text-primary m-0 mr-3"></h1>
+                    <h5 class="font-weight-semi-bold m-0">14-Day Return</h5>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
+                    <h1 class="fa fa-phone-volume text-primary m-0 mr-3"></h1>
+                    <h5 class="font-weight-semi-bold m-0">24/7 Support</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Featured End -->
     
     <!-- ======= Scripts ====== -->
     <script src="view/script/user_navbar.js"></script>

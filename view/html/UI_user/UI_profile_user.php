@@ -18,7 +18,41 @@
     <script src="view/bootstrap/js/bootstrap.min.js"></script>
     <script src="view/jquery/jquery-3.6.4.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script>
+      function loadXMLDoc(link, id)
+        {
+            $.ajax({
+                // The link we are accessing.
+                url: link,
+                    
+                // The type of request.
+                type: "get",
+                    
+                // The type of data that is getting returned.
+                dataType: "html",
 
+                success: function( strData ){
+                    document.getElementById(id).innerHTML = strData;
+                    console.log("do")
+                    const items = document.querySelectorAll(".carousel-menu");
+
+                    items.forEach((el) => {
+                        const minPerSlide = 4
+                        let next = el.nextElementSibling
+                        for (var i=1; i<minPerSlide; i++) {
+                            if (!next) {
+                                // wrap carousel by using first child
+                                next = items[0]
+                            }
+                            let cloneChild = next.cloneNode(true)
+                            el.appendChild(cloneChild.children[0])
+                            next = next.nextElementSibling
+                        }
+                    })
+                }
+            });
+        }
+    </script>
 </head>
 <body>
   
@@ -78,6 +112,10 @@
       });
 
       function changeQuantity(element) {
+        if(element.value < 0) {
+          element.value = 0
+          changeQuantity(element)
+        }
         var priceElement = document.querySelector('#price' + '.' + element.className)
         var totalElement = document.querySelector('#total' + '.' + element.className)
         var totalBillElement = document.querySelector('.total_bill')
