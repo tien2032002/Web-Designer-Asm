@@ -283,7 +283,10 @@
 
         function contact_page() {
             include_once('model/customer_db.php');
-            $data = array("userObj" => json_decode(getCustomerById($_SESSION['id'])));
+            include("model\contact_db.php");
+            $data = array("userObj" => json_decode(getCustomerById($_SESSION['id'])),
+                            "contactArray" => get_all_contact(),
+                            "map" => get_map());
             $this->render('view\html\UI_user\contact_page', $data);
         }
 
@@ -323,6 +326,13 @@
             $data = array('newsObject' => $newsObject,
                           "userObj" => getCustomerById($_SESSION['id']));
             $this->render('view\html\UI_user\news_detail', $data);
+        }
+
+        function footer() {
+            include("model\contact_db.php");
+            $data = array("contactArray" => get_all_contact(),
+                          "map" => get_map());
+            $this->render("view/html/UI_guest/component/footer", $data);
         }
     }
 ?>

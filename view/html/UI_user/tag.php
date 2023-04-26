@@ -184,9 +184,27 @@
     </div>
     <!-- Main End -->
 
-    <?php
-        include("view/html/UI_guest/component/footer.php");
-    ?>
+    <div class="container-fluid" style="background-color: #dae0e5;" id="footer">
+        
+        </div>
+        <script>
+            $.ajax({
+                    // The link we are accessing.
+                    url: "/footer",
+                        
+                    // The type of request.
+                    type: "get",
+                        
+                    // The type of data that is getting returned.
+                    dataType: "html",
+    
+                    success: function( strData ){
+                        document.getElementById('footer').innerHTML = strData;
+                        console.log(document.getElementById(id).innerHTML)
+                    }
+                });
+        </script>
+        <!-- end:footer --> 
     
     <!-- ======= Scripts ====== -->
     <script src="view/script/user_navbar.js"></script>
