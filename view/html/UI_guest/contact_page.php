@@ -81,55 +81,37 @@
         <div class="col-4">
             <div class="h2" >
                 <img class="border border-light p-2" src="view\images\utensils-solid.svg" style="width: 50px" alt="restaurantIcon">
-                Restaurant
+                DISFRUTAR
             </div>
-            <p>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing
-                elit. Aenean commodo ligula eget dolor. Aenean mass
-                a. Cum sociis natoque penatibus et magnis dis partu
-                rient montes, nascetur ridiculus mus.
+            <p class="text-justify">
+                Disfrutar vinh dự được bình chọn top 10 nhà hàng được yêu thích nhất của Tp.HCM. <br>
+                Với đội ngũ đầu bếp tài năng được chọn lọc kỹ càng, sẽ phục vụ
+                cho thực khách những tuyệt phẩm ẩm thực từ khắp nơi trên thế giới. <br>
+                Thực khách không chỉ được thưởng thức những món ăn tuyệt hảo mà còn được trải
+                nghiệm không gian ẩm thực được lấy cảm hứng từ kiến trúc hoàng gia Tây Ban Nha
+                hứa hẹn sẽ đem lại cho thực khách những trải nghiệm không thể nào quên. <br>
             </p>
             <hr>
-            <!-- begin: contact methods -->
             <ul class = "list-unstyled">
-                <li class="d-flex align-items-center">
-                    <div style="width: 30px; height: 30px" class="d-flex justify-content-center align-items-center border rounded-circle me-2 p-1">
-                        <i style="color: #b38b91" class="bi bi-geo-alt"></i>
-                    </div>
-                    
-                    <p class="mb-0">6 Đ. Hoàng Sa, Vĩnh Ninh</p>
-                </li>
-
-                <li class="d-flex align-items-center mt-2">
-                    <div style="width: 30px; height: 30px" class="d-flex justify-content-center align-items-center border rounded-circle me-2 p-1">
-                        <i style="color: #b38b91" class="bi bi-envelope-fill"></i>
-                    </div>
-                    
-                    <p class="mb-0">Wanmin@restaurant.com</p>
-                </li>
-
-                <li class="d-flex align-items-center mt-2">
-                    <div style="width: 30px; height: 30px" class="d-flex justify-content-center align-items-center border rounded-circle me-2 p-1">
-                        <i style="color: #b38b91" class="bi bi-telephone-fill"></i>
-                    </div>
-                    
-                    <p class="mb-0">CSKH: +012 345 6789</p>
-                </li>
-
-                <li class="d-flex align-items-center mt-2">
-                    <div style="width: 30px; height: 30px" class="d-flex justify-content-center align-items-center border rounded-circle me-2 p-1">
-                        <i style="color: #b38b91" class="bi bi-facebook"></i>
-                    </div>
-                    
-                    <p class="mb-0">fanpage: www.facebook.com/wanminRestaurant</p>
-                </li>
+                <?php
+                    foreach($contactArray as $contact) {
+                        echo '
+                        <li class="d-flex align-items-center mt-2">
+                            <div style="width: 30px; height: 30px" class="d-flex justify-content-center align-items-center border rounded-circle me-2 p-1">
+                                <i style="color: #b38b91" class="'.$contact->icon.'"></i>
+                            </div>
+                            
+                            <p class="mb-0">'.$contact->link.'</p>
+                        </li>
+                        ';
+                    }
+                ?>
             </ul>
             <!-- end: contact methods -->
         </div>
         
-
         <div class="col-8 d-flex justify-content-center">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d27932.397705129646!2d106.64633329222451!3d10.801180934406508!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1zTmjDoCBow6BuZw!5e0!3m2!1svi!2s!4v1682214942487!5m2!1svi!2s" 
+            <iframe src="<?php echo $map->link; ?>" 
                 width="80%%" height="500" style="border:0;" 
                 allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
             </iframe>
@@ -148,9 +130,6 @@
         </div>
     </form>
     <!-- end: form -->
-    <?php
-        include('view\html\UI_guest\component\footer.php');
-    ?>
     
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>

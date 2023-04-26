@@ -97,7 +97,10 @@
         }
 
         function contact_page() {
-            $this->render('view\html\UI_guest\contact_page');
+            include("model\contact_db.php");
+            $data = array("contactArray" => get_all_contact(),
+                          "map" => get_map());
+            $this->render('view\html\UI_guest\contact_page', $data);
         }
 
         function tag() {
@@ -112,6 +115,13 @@
             $newsObject = get_news_by_id($_GET['id']);
             $data = array('newsObject' => $newsObject);
             $this->render('view\html\UI_guest\news_detail', $data);
+        }
+
+        function footer() {
+            include("model\contact_db.php");
+            $data = array("contactArray" => get_all_contact(),
+                          "map" => get_map());
+            $this->render("view/html/UI_guest/component/footer", $data);
         }
     }
 ?>

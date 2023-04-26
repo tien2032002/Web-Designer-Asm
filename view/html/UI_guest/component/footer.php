@@ -1,5 +1,4 @@
-<!-- begin:footer -->
-<div class="container-fluid" style="background-color: #dae0e5;">
+
         <div class="row p-5">
             <!-- begin: restaurant summary -->
             <div class="col">
@@ -16,18 +15,20 @@
                     hứa hẹn sẽ đem lại cho thực khách những trải nghiệm không thể nào quên. <br>
                 </p>
                 <ul class = "list-unstyled">
-                    <li class="d-flex ">
-                        <i style="color: #b38b91" class="bi bi-geo-alt me-2"></i>
-                        <p>6 Đ. Ngô Quyền, Vĩnh Ninh</p>
+                <?php
+                foreach($contactArray as $contact) {
+                    echo '
+                    <li class="d-flex align-items-center mt-2">
+                        <div style="width: 30px; height: 30px" class="d-flex justify-content-center align-items-center border rounded-circle me-2 p-1">
+                            <i style="color: #b38b91" class="'.$contact->icon.'"></i>
+                        </div>
+                        
+                        <p class="mb-0">'.$contact->link.'</p>
                     </li>
-                    <li class="d-flex">
-                        <i style="color: #b38b91" class="bi bi-envelope-fill me-2"></i>
-                        <p>Wanmin@restaurant.com</p>
-                    </li>
-                    <li class="d-flex">
-                        <i style="color: #b38b91" class="bi bi-telephone-fill me-2"></i>
-                        <p>+012 345 6789</p>
-                    </li>
+                    ';
+
+                }
+            ?>
                 </ul>
             </div>
             <!-- end: restaurant summary -->
@@ -73,5 +74,3 @@
             </div>
             <!-- end: form  -->
         </div>
-    </div>
-    <!-- end:footer -->
