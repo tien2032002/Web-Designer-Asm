@@ -1,3 +1,12 @@
+
+<style>
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+        margin-top: 1em;
+        padding-top: 0.1em;
+        padding-bottom: 0.1em;
+        font-size: 0.7em;
+    }
+</style>
 <div class="table-responsive">
     <table id="employee-table" class="table table-striped" >
         <thead>
