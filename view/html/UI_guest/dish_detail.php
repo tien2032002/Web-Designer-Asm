@@ -1,5 +1,6 @@
 <?php
     $productObj = json_decode($productObj);
+    $star = json_decode($star);
     $relatedProduct = json_decode($relatedProduct);
 ?>
 
@@ -28,6 +29,8 @@
     <script src="view/jquery/jquery-3.6.4.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script>
+        var cmtPage = 1;
+        var endCmt = 0;
         function loadXMLDoc(link, id)
         {
             $.ajax({
@@ -59,6 +62,32 @@
                             next = next.nextElementSibling
                         }
                     })
+                }
+            });
+        }
+
+        function loadMore(link, id)
+        {
+            console.log(link)
+            $.ajax({
+                // The link we are accessing.
+                url: link,
+                    
+                // The type of request.
+                type: "get",
+                    
+                // The type of data that is getting returned.
+                dataType: "html",
+
+                success: function( strData ){
+                    console.log(strData)
+                    if (strData.includes("div")) cmtPage +=1
+                    else if (endCmt == 0){
+                        strData = 'Không còn bình luận nào khác!'
+                        endCmt = 1;
+                    }
+                    document.getElementById(id).innerHTML += strData;
+                    
                 }
             });
         }
@@ -125,7 +154,7 @@
                             <!-- starter breadcrum -->
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#">Thực đơn</a></li>
+                                    <li class="breadcrumb-item"><a style="all: unset;" href="#">Thực đơn</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">
                                     <?php
                                         switch ($productObj->type) {
@@ -188,7 +217,7 @@
                                         <!-- form -->
                                         <form action="">
                                             <input type="number" class="btn btn-outline-dark btn-override">
-                                            <input type="submit" class="btn btn-outline-dark btn-override" value="Add to cart">
+                                            <input type="submit" class="btn btn-outline-dark btn-override" value="Thêm vào giỏ">
                                         </form>
 
                                         
@@ -204,7 +233,7 @@
                             <div class="d-flex flex-row justify-content-between">
                                 <!-- begin: star rating form-->
                                 <div class=" card menu stars" style="width: 39%">
-                                    <form action="/login">
+                                    <!-- <form action="/login">
                                         <input class="star star-5" id="star-5" type="radio" name="star"/>
                                         <label class="star star-5" for="star-5"></label>
                                         <input class="star star-4" id="star-4" type="radio" name="star"/>
@@ -217,15 +246,18 @@
                                         <label class="star star-1" for="star-1"></label><br>
                                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Để lại đánh giá của bạn"></textarea>
                                         <input type="submit" class="btn btn-outline-dark btn-override mt-2">
-                                    </form>
+                                    </form> -->
+                                    <p>Bạn phải đăng nhập mới sử dụng được tính năng đánh giá sản phẩm!</p>
+                                    <hr>
+                                    <a class='d-flex justify-content-center' href='login' style="all: unset"><button class='btn btn-outline-dark btn-override'>Đăng nhập ngay</button></a>
                                 </div>
                                 <!-- end: star rating form -->
 
                                 <div class="card menu d-flex flex-row justify-content-between" style="width: 60%">
                                     <!-- begin: -->
                                     <div style="width: 26%" class="ps-2" >
-                                        <h3 class="pink-color">3.8 <i class="bi bi-star-fill"></i></h3>
-                                        <p class="mb-0">1.345</p>
+                                        <h3 class="pink-color"><?php echo number_format($productObj->rating,1,".",",")?> <i class="bi bi-star-fill"></i></h3>
+                                        <p class="mb-0"><?php echo number_format($star->total,0,".",",")?></p>
                                         <p>đã đánh giá</p>
                                     </div>
                                     <!-- end: -->
@@ -236,31 +268,31 @@
                                         <div class="row">
                                             <div class="col-1">5</div>
                                             <div class="progress col-10 p-0" style="height: 24px;">
-                                                <div class="progress-bar bg-pink-color" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div class="progress-bar bg-pink-color" role="progressbar" style="width: <?php if($star->total!=0) echo $star->five/$star->total*100; else echo 0;?>%" aria-valuenow="<?php if($star->total!=0) echo $star->five/$star->total*100; else echo 0;?>" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </div>
                                         <div class="row mt-2">
                                             <div class="col-1">4</div>
                                             <div class="progress col-10 p-0" style="height: 24px;">
-                                                <div class="progress-bar bg-pink-color" role="progressbar" style="width: 5%" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div class="progress-bar bg-pink-color" role="progressbar" style="width: <?php if($star->total!=0) echo $star->four/$star->total*100; else echo 0;?>%" aria-valuenow="<?php if($star->total!=0) echo $star->four/$star->total*100; else echo 0;?>" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </div>
                                         <div class="row mt-2">
                                             <div class="col-1">3</div>
                                             <div class="progress col-10 p-0" style="height: 24px;">
-                                                <div class="progress-bar bg-pink-color" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div class="progress-bar bg-pink-color" role="progressbar" style="width: <?php if($star->total!=0) echo $star->three/$star->total*100; else echo 0;?>%" aria-valuenow="<?php if($star->total!=0) echo $star->three/$star->total*100; else echo 0;?>" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </div>
                                         <div class="row mt-2">
                                             <div class="col-1">2</div>
                                             <div class="progress col-10 p-0" style="height: 24px;">
-                                                <div class="progress-bar bg-pink-color" role="progressbar" style="width: 5%" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div class="progress-bar bg-pink-color" role="progressbar" style="width: <?php if($star->total!=0) echo $star->two/$star->total*100; else echo 0;?>%" aria-valuenow="<?php if($star->total!=0) echo $star->two/$star->total*100; else echo 0;?>" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </div>
                                         <div class="row mt-2">
                                             <div class="col-1">1</div>
                                             <div class="progress col-10 p-0" style="height: 24px;">
-                                                <div class="progress-bar bg-pink-color" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div class="progress-bar bg-pink-color" role="progressbar" style="width: <?php if($star->total!=0) echo $star->one/$star->total*100; else echo 0;?>%" aria-valuenow="<?php if($star->total!=0) echo $star->one/$star->total*100; else echo 0;?>" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -270,69 +302,14 @@
                             <!-- end: star rating -->
 
                             <!-- begin: comment section -->
-                            <div class="card menu">
-                                <div class="d-flex text-decoration-none">
-                                    <div class="comment-quantity"><bold>25</bold></div>
-                                    <div class="comment-quantity"><small> bình luận</small></div>
-
-                                    <div class="comment-quantity ms-5"><bold>85</bold></div>
-                                    <div class="comment-quantity"><small> lượt thích</small></div>
-                                </div>
-                                <hr style="height:1px;border-width:0;color:gray;background-color:gray">
-                                <!--begin: user comment -->
-                                <div class="item-review">
-                                    
-                                    <div class="d-flex">
-                                        <img src="view\images\user\user2.jpg" alt="" class="user-img">
-                                        <div class="ms-3">
-                                            <div class="user-name"><bold>Ayhed<bold/> </div>
-                                            <div>
-                                                <bold>via Web<bold/>
-                                                <i class="bi bi-globe-americas"></i>
-                                                4/7/2023 4:03PM
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="user-comment">
-                                        Nước chấm đậm đà, cuốn sạch sẽ, vừa lạ miệng vừa ngon
-                                    </div> 
-                                    <hr style="height:1px;border-width:0;color:gray;background-color:gray">        
-                                </div>
-                                <!--end: user comment -->
-
-                                <!--begin: user comment -->
-                                <div class="item-review">
-                                    
-                                    <div class="d-flex">
-                                        <img src="view\images\user\user3.jpg" alt="" class="user-img">
-                                        <div class="ms-3">
-                                            <div class="user-name"><bold>Ayaya<bold/> </div>
-                                            <div>
-                                                <bold>via Web<bold/>
-                                                <i class="bi bi-globe-americas"></i>
-                                                11/7/2022 4:03PM
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="user-comment">
-                                        Giá cả hợp lí, hương vị hài hòa. Rất hài lòng
-                                    </div> 
-                                    <hr style="height:1px;border-width:0;color:gray;background-color:gray">        
-                                </div>
-                                <!--end: user comment -->
-
-                                <nav aria-label="Page navigation" class="d-flex justify-content-end">
-                                    <ul class="pagination">
-                                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                    </ul>
-                                </nav>
+                            <div class="card menu" id='comment'>
+                                <script>
+                                    console.log(cmtPage)
+                                    loadMore('/comment?id=<?php echo $productObj->id ?>' + '&page=' + cmtPage.toString(), 'comment');
+                                </script>
+                                
                             </div>
+                            <button class="btn btn-outline-dark btn-override mt-2" onclick="loadMore('/comment?id=<?php echo $productObj->id ?>' + '&page=' + cmtPage.toString(), 'comment')" style="text-decoration:none;">Xem thêm bình luận</button>
                             <!-- end: comment section -->
 
                             <!-- begin: recommend dish -->
@@ -346,35 +323,35 @@
                                         foreach($relatedProduct as $product) {
                                             $product = json_decode($product);
                                             echo '
-                                            <!-- begin: first dish -->
+                                            <!-- begin: first starter dish -->
                                             <div class="menu__item card">
-                                                <img src="'.$product->image.'" alt="" class="item-img">
-                                                <div class="item-description">
-                                                    <!-- dish name -->
-                                                    <h6 class="item-name">'.$product->name.'</h6>
-                                                    <!-- price -->
-                                                    <h6 class="item-price text-secondary"><small>'.$product->price.'đ</small></h6>
+                                                <img src="'.$product->image.'" alt="" class="item-img" loading="lazy">
+                                                <div class="item-description d-flex justify-content-between">
+                                                    <div style="width: 50%">
+                                                        <!-- dish name -->
+                                                        <h6 class="item-name">'.$product->name.'</h6>
+                                                        <!-- price -->
+                                                        <h6 class="item-price text-secondary"><small>'.number_format($product->price,0,".",",").'đ</small></h6>
+                                                    </div>
+                                                    <h3 class=""> '.number_format($product->rating, 1,".",",").' <i class=" pink-color bi bi-star-fill"></i></h3>
                                                 </div>
-        
+
+
                                                 <div class="item-comment-count d-flex justify-content-around align-items-center">
-        
-                                                    <a href="#" class="d-flex text-decoration-none">
-                                                        <i class="bi bi-chat"></i>
-                                                        <div class="comment-quantity"><small>25</small></div>
-                                                    </a>
+
                                                     <!-- view detail btn -->
-                                                    <a href="dish-detail/'.UrlNormal($product->name).'/'.$product->id.'" class="btn btn-outline-dark btn-sm mt-1 ">
+                                                    <a href="dish-detail/'.UrlNormal($product->name).'/'.$product->id.'" class="btn btn-override btn-outline-dark btn-sm mt-1 ">
                                                         <i class="bi bi-eye-fill"></i>
-                                                        View detail
+                                                        Xem chi tiết
                                                     </a>
                                                     <!-- order btn -->
-                                                    <a href="#" class="btn btn-outline-dark btn-sm mt-1 ">
+                                                    <a href=\'login\'" class="btn btn-override btn-outline-dark btn-sm mt-1 ">
                                                         <i class="bi bi-cart3"></i>
-                                                        Order Now
+                                                        Thêm vào giỏ
                                                     </a>
                                                 </div>
                                             </div>
-                                            <!-- end: first dish -->
+                                            <!-- begin: end starter dish -->
                                             ';
                                         }
                                     ?>
@@ -424,101 +401,14 @@
         </div>
     </div>
 
-    <!-- Featured Start -->
-    <div class="container-fluid pt-5">
-        <div class="row px-xl-5 pb-3">
-            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-                <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
-                    <h1 class="fa fa-check text-primary m-0 mr-3"></h1>
-                    <h5 class="font-weight-semi-bold m-0">Quality Product</h5>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-                <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
-                    <h1 class="fa fa-shipping-fast text-primary m-0 mr-2"></h1>
-                    <h5 class="font-weight-semi-bold m-0">Free Shipping</h5>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-                <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
-                    <h1 class="fas fa-exchange-alt text-primary m-0 mr-3"></h1>
-                    <h5 class="font-weight-semi-bold m-0">14-Day Return</h5>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-                <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
-                    <h1 class="fa fa-phone-volume text-primary m-0 mr-3"></h1>
-                    <h5 class="font-weight-semi-bold m-0">24/7 Support</h5>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Featured End -->
-
-
-    <!-- Categories Start -->
-    <div class="container-fluid pt-5">
-        <div class="row px-xl-5 pb-3">
-            <div class="col-lg-4 col-md-6 pb-1">
-                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
-                    <p class="text-right">15 Products</p>
-                    <a href="" class="cat-img position-relative overflow-hidden mb-3">
-                        <img class="img-fluid" src="img/cat-1.jpg" alt="">
-                    </a>
-                    <h5 class="font-weight-semi-bold m-0">Men's dresses</h5>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 pb-1">
-                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
-                    <p class="text-right">15 Products</p>
-                    <a href="" class="cat-img position-relative overflow-hidden mb-3">
-                        <img class="img-fluid" src="img/cat-2.jpg" alt="">
-                    </a>
-                    <h5 class="font-weight-semi-bold m-0">Women's dresses</h5>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 pb-1">
-                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
-                    <p class="text-right">15 Products</p>
-                    <a href="" class="cat-img position-relative overflow-hidden mb-3">
-                        <img class="img-fluid" src="img/cat-3.jpg" alt="">
-                    </a>
-                    <h5 class="font-weight-semi-bold m-0">Baby's dresses</h5>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 pb-1">
-                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
-                    <p class="text-right">15 Products</p>
-                    <a href="" class="cat-img position-relative overflow-hidden mb-3">
-                        <img class="img-fluid" src="img/cat-4.jpg" alt="">
-                    </a>
-                    <h5 class="font-weight-semi-bold m-0">Accerssories</h5>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 pb-1">
-                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
-                    <p class="text-right">15 Products</p>
-                    <a href="" class="cat-img position-relative overflow-hidden mb-3">
-                        <img class="img-fluid" src="img/cat-5.jpg" alt="">
-                    </a>
-                    <h5 class="font-weight-semi-bold m-0">Bags</h5>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 pb-1">
-                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
-                    <p class="text-right">15 Products</p>
-                    <a href="" class="cat-img position-relative overflow-hidden mb-3">
-                        <img class="img-fluid" src="img/cat-6.jpg" alt="">
-                    </a>
-                    <h5 class="font-weight-semi-bold m-0">Shoes</h5>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Categories End -->
+    <br>
+    <?php
+        include('view\html\UI_guest\component\footer.php');
+    ?>
 
     <!-- ======= Scripts ====== -->
-    <!-- <script src="view/script/user_navbar.js"></script> -->
+    <script src="view/script/sidebar.js"></script>
+    <script src="view/script/cart.js"></script>
 
 </body>
 </html>

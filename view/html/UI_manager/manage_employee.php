@@ -85,6 +85,9 @@
                 <li class="nav-item">
                   <a class="nav-link" href="#">Doanh thu</a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Thêm bài viết</a>
+                </li>
               </ul>
             </div>
           </div>

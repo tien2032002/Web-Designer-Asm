@@ -104,5 +104,24 @@
             session_destroy();
             header("Location: /home_page");
         }
+
+        function add_news() {
+            $this->render('view\html\UI_manager\createNewArticle');
+        }
+
+        function save_news() {
+            include("model/news_db.php");
+            // var_dump([$_POST]);
+            // var_dump($_FILES);
+            //check news and return error
+            $saveNewsErr = check_save_news();
+            extract($saveNewsErr);
+            if ($uploadErr == 'good' && $titleErr != 'invalid' && $tagErr != 'invalid' && $contentErr != 'invalid'){
+                save_news_db();
+            }
+            $this->render('view\html\UI_manager\createNewArticle', $saveNewsErr);
+
+        }
+
     }
 ?>

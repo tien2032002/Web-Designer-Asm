@@ -47,6 +47,9 @@
               <li class="nav-item">
                 <a class="nav-link" href="#">Doanh thu</a>
               </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="add_news">Thêm bài viết</a>
+                </li>
             </ul>
           </div>
         </div>

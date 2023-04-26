@@ -4,7 +4,7 @@
     <!-- starter breadcrum -->
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Thực đơn</a></li>
+            <li class="breadcrumb-item">Thực đơn</li>
             <li class="breadcrumb-item active" aria-current="page">
                 <?php
                     switch ($type) {
@@ -31,85 +31,43 @@
         <h6 class="card-title">Món ăn được ưa thích</h6>
         <div id="recipeCarousel<?php echo $type; ?>" class="carousel slide " data-bs-ride="carousel">
             <div class="carousel-inner" role="listbox">
-                <div id='carosel-1' class="carousel-item active carousel-menu">
-                    <div class="col-md-3">
-                        <div class="card ">
-                            <div class="card-img">
-                                <img src="view\images\starter\starter-1.jpg" class="img-fluid rounded h-100 object-fit-cover">
+                <?php
+                    foreach($popularProducts as $index => $popularProduct) {
+                        if ($index == 0)
+                            echo '
+                            <div id="carosel-1" class="carousel-item active carousel-menu">
+                                <div class="col-md-3">
+                                    <div class="card ">
+                                        <div class="card-img">
+                                            <img src="'.$popularProduct->image.'" class="img-fluid rounded">
+                                        </div>
+                                        <div class="card-img-overlay gradient-overlay text-light d-flex flex-column justify-content-end ">
+                                            <h6>'.$popularProduct->name.'</h6>
+                                            <a href="dish-detail/'.UrlNormal($popularProduct->name).'/'.$popularProduct->id.'" class="btn btn-light btn-sm">Order Now</a>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="card-img-overlay gradient-overlay text-light d-flex flex-column justify-content-end ">
-                                <h6>Gỏi cuốn</h6>
-                                <a href="#" class="btn btn-light btn-sm">Order Now</a>
-                                
+                            ';
+                        else 
+                            echo '
+                            <div class="carousel-item carousel-menu">
+                                <div class="col-md-3">
+                                    <div class="card">
+                                        <div class="card-img">
+                                            <img src="'.$popularProduct->image.'" class="img-fluid rounded">
+                                        </div>
+                                        <div class="card-img-overlay gradient-overlay text-light d-flex  flex-column justify-content-end">
+                                            <h6>'.$popularProduct->name.'</h6>
+                                            <a href="dish-detail/'.UrlNormal($popularProduct->name).'/'.$popularProduct->id.'" class="btn btn-light btn-sm ">Order Now</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item carousel-menu">
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-img">
-                                <img src="view\images\starter\starter-2.jpg" class="img-fluid rounded">
-                            </div>
-                            <div class="card-img-overlay gradient-overlay text-light d-flex  flex-column justify-content-end">
-                                <h6>Gỏi cá hồi</h6>
-                                <a href="#" class="btn btn-light btn-sm ">Order Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item carousel-menu">
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-img">
-                                <img src="view\images\starter\starter-3.jpg" class="img-fluid rounded object-fit-fill">
-                            </div>
-                            <div class="card-img-overlay gradient-overlay text-light d-flex  flex-column justify-content-end ">
-                                <h6>Gỏi tôm</h6>
-                                <a href="#" class="btn btn-light btn-sm ">Order Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item carousel-menu">
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-img">
-                                <img src="view\images\starter\starter-4.jpg" class="img-fluid rounded">
-                            </div>
-                            <div class="card-img-overlay gradient-overlay text-light d-flex flex-column justify-content-end">
-                                <h6>Súp cua</h6>
-                                <a href="#" class="btn btn-light btn-sm ">Order Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item carousel-menu">
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-img">
-                                <img src="view\images\starter\starter-5.jpg" class="img-fluid rounded">
-                            </div>
-                            <div class="card-img-overlay gradient-overlay text-light d-flex flex-column justify-content-end">
-                                <h6>Salad</h6>
-                                <a href="#" class="btn btn-light btn-sm ">Order Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item carousel-menu">
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-img">
-                                <img src="view\images\starter\starter-6.jpg" class="img-fluid rounded">
-                            </div>
-                            <div class="card-img-overlay gradient-overlay text-light d-flex flex-column justify-content-end">
-                                <h6>Bánh Bacon cuộn</h6>
-                                <a href="#" class="btn btn-light btn-sm ">Order Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                            ';
+                    }
+                ?>
             </div>
 
         </div>
@@ -163,7 +121,7 @@
                             <!-- price -->
                             <h6 class="item-price text-secondary"><small>'.number_format($product->price,0,".",",").'đ</small></h6>
                         </div>
-                        <h3 class=""> 4.9 <i class=" pink-color bi bi-star-fill"></i></h3>
+                        <h3 class=""> '.number_format($product->rating, 1).' <i class=" pink-color bi bi-star-fill"></i></h3>
                     </div>
 
 

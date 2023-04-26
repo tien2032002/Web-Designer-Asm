@@ -86,6 +86,7 @@
                 include 'component/navbar.php'; ?>
                 <!-- Navbar End -->
 
+
                 <!-- Sidebar None Large Start -->
                 <div class="d-block d-lg-none navbar_left">
                     <a class="btn d-flex align-items-center justify-content-between" 
@@ -108,117 +109,32 @@
                     
                 <!-- begin: news   -->
                 <div class="tab-content">
-                    <!-- begin: seasoned dish news -->
-                    <div class="card menu mt-4">
-                        <h6 class="card-title">Món ăn theo mùa</h6>
-                        <!-- begin: article list -->
-                        <div class="d-flex justify-content-around flex-wrap">
-                            <!-- begin: first article -->
-                            <div class="menu__item card">
-                                <img src="view\images\dessert\dessert-1.jpg" alt="" class="item-img">
-                                <a href="#" class="btn btn-outline-success ms-2 mt-2 p-1" style="max-width: 56%">Món ăn mùa hè</a>
-                                <h6 class="item-name ms-2 mt-2">Chè trái cây chua ngọt cho mùa hè thanh mát</h6>
-                            </div>
-                            <!-- end: first article -->
-
-                            <!-- begin: second article -->
-                            <div class="menu__item card">
-                                <img src="view\images\main-course\main-course-7.jpg" alt="" class="item-img">
-                                <a href="#" class="btn btn-outline-success ms-2 mt-2 p-1" style="max-width: 56%">Món ăn mùa đông</a>
-                                <h6 class="item-name ms-2 mt-2">Cách làm khoai tây nghiền cực ngon cho ngày giáng sinh</h6>
-                            </div>
-                            <!-- end: second article -->
-
-                            <!-- begin: third article -->
-                            <div class="menu__item card">
-                                <img src="view\images\starter\starter-11.jpg" alt="" class="item-img">
-                                <a href="#" class="btn btn-outline-success ms-2 mt-2 p-1" style="max-width: 56%">Món ăn mùa xuân</a>
-                                <h6 class="item-name ms-2 mt-2">Đánh thức vị giác ngày xuân với gà sốt cay ngon bùng vị </h6>
-                            </div>
-                            <!-- end: third article -->
-                        </div>
-                        <!-- end: article list -->
-
-                        <a class="d-flex link-info justify-content-end" style="cursor:pointer; text-decoration:none">Xem thêm</a>
-                    </div>
-                    <!-- end: seasoned dish news -->
 
                     <!-- begin: daily news -->
                     <div class="card menu mt-4 mb-5">
-                        <h6 class="card-title">Món ngon mỗi ngày</h6>
-                        <!-- begin: article list -->
-                        <div class="d-flex justify-content-around flex-wrap">
-                            <!-- begin: first article -->
-                            <div class="menu__item card">
-                                <img src="view\images\dessert\dessert-1.jpg" alt="" class="item-img">
-                                <div class="ms-2 mt-2">
-                                    <a href="#" class="link-danger" style="text-decoration:none">Món tráng miệng</a>
-                                </div>
-                                <h6 class="item-name ms-2 mt-2">Chè trái cây chua ngọt cho mùa hè thanh mát</h6>
-                            </div>
-                            <!-- end: first article -->
+                        <h4 class="card-title">Bài viết nổi bật</h4>
+                            <!-- begin: article list -->
+                            <div class="d-flex justify-content-around flex-wrap">
+                            <?php
+                                $tagArray = array('1' => 'Món ngon mỗi ngày',
+                                                  '2' => 'Món ăn mùa xuân',
+                                                  '3' => 'Món ăn mùa hè',
+                                                  '4' => 'Món ăn mùa thu',
+                                                  '5' => 'Món ăn mùa đông');
+                                foreach($newsArray as $news) {
+                                    echo '<!-- begin: first article -->
+                                    <div class="menu__item card">
+                                        <img src="'.$news->thumnail.'" class="item-img">
+                                        <a href="/tag/'.UrlNormal($tagArray[$news->tag]).'/'.$news->tag.'" class="btn btn-outline-success ms-2 mt-2 p-1" style="max-width: 56%">'.$tagArray[$news->tag].'</a>
+                                        <a style="all: unset; cursor: pointer;" href="news-detail/'.UrlNormal($news->title).'/'.$news->id.'"><h5 class="item-name ms-2 mt-2">'.$news->title.'</h5></a>
+                                    </div>
+                                    <!-- end: first article -->';
+                                }
+                            ?>
 
-                            <!-- begin: second article -->
-                            <div class="menu__item card">
-                                <img src="view\images\main-course\main-course-7.jpg" alt="" class="item-img">
-                                <div class="ms-2 mt-2">
-                                    <a href="#" class="link-danger" style="text-decoration:none">Món chính</a>
-                                </div>
-                                <h6 class="item-name ms-2 mt-2">Cách làm khoai tây nghiền cực ngon cho ngày giáng sinh</h6>
-                            </div>
-                            <!-- end: second article -->
-
-                            <!-- begin: third article -->
-                            <div class="menu__item card">
-                                <img src="view\images\starter\starter-11.jpg" alt="" class="item-img">
-                                <div class="ms-2 mt-2">
-                                    <a href="#" class="link-danger" style="text-decoration:none">Món khai vị</a>
-                                </div>
-                                <h6 class="item-name ms-2 mt-2">Đánh thức vị giác ngày xuân với gà sốt cay ngon bùng vị </h6>
-                            </div>
-                            <!-- end: third article -->
-
-                            <!-- begin: fourth article -->
-                            <div class="menu__item card">
-                                <img src="view\images\dessert\dessert-4.jpg" alt="" class="item-img">
-                                <div class="ms-2 mt-2">
-                                    <a href="#" class="link-danger" style="text-decoration:none">Món tráng miệng</a>
-                                </div>
-                                <h6 class="item-name ms-2 mt-2">Cách nấu chè bột lọc ngon trong 3 bước, tại sao không thử?</h6>
-                            </div>
-                            <!-- end: fourth article -->
-
-                            <!-- begin: fifth article -->
-                            <div class="menu__item card">
-                                <img src="view\images\main-course\main-course-3.jpg" alt="" class="item-img">
-                                <div class="ms-2 mt-2">
-                                    <a href="#" class="link-danger" style="text-decoration:none">Món chính</a>
-                                </div>
-                                <h6 class="item-name ms-2 mt-2">Cách làm mỳ ý sốt bò bằm ngon đúng điệu</h6>
-                            </div>
-                            <!-- end: fifth article -->
-
-                            <!-- begin: sixth article -->
-                            <div class="menu__item card">
-                                <img src="view\images\starter\starter-11.jpg" alt="" class="item-img">
-                                <div class="ms-2 mt-2">
-                                    <a href="#" class="link-danger" style="text-decoration:none">Món khai vị</a>
-                                </div>
-                                <h6 class="item-name ms-2 mt-2">Bỏ túi ngay công thức salad giảm cân ngon mà hiệu quả </h6>
-                            </div>
-                            <!-- end: sixth article -->
                         </div>
                         <!-- end: article list -->
 
-                        <!-- begin: pagination -->
-                        <ul class="pagination justify-content-end me-1" >
-                            <li class="page-item"><a class="page-link pink-color"                  href="#">Previous</a></li>
-                            <li class="page-item"><a class="page-link pink-color page-link-active" href="#">1       </a></li>
-                            <li class="page-item"><a class="page-link pink-color"                  href="#">2       </a></li>
-                            <li class="page-item"><a class="page-link pink-color"                  href="#">3       </a></li>
-                            <li class="page-item"><a class="page-link pink-color"                  href="#">Next    </a></li>
-                        </ul>
-                        <!-- end: pagination -->
                     </div>
                     <!-- end: daily news -->
                 </div>
@@ -227,133 +143,10 @@
         </div>
     </div>
 
-    <!-- begin:footer -->
-    <div class="container-fluid" style="background-color: #dae0e5;">
-        <div class="row p-5">
-            <!-- begin: restaurant summary -->
-            <div class="col">
-                <div class="h2" >
-                    <img class="border border-light p-2" src="view\images\utensils-solid.svg" style="width: 50px" alt="restaurantIcon">
-                    Restaurant
-                </div>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing
-                    elit. Aenean commodo ligula eget dolor. Aenean mass
-                    a. Cum sociis natoque penatibus et magnis dis partu
-                    rient montes, nascetur ridiculus mus.
-                </p>
-                <ul class = "list-unstyled">
-                    <li class="d-flex ">
-                        <i style="color: #b38b91" class="bi bi-geo-alt me-2"></i>
-                        <p>6 Đ. Ngô Quyền, Vĩnh Ninh</p>
-                    </li>
-                    <li class="d-flex">
-                        <i style="color: #b38b91" class="bi bi-envelope-fill me-2"></i>
-                        <p>Wanmin@restaurant.com</p>
-                    </li>
-                    <li class="d-flex">
-                        <i style="color: #b38b91" class="bi bi-telephone-fill me-2"></i>
-                        <p>+012 345 6789</p>
-                    </li>
-                </ul>
-            </div>
-            <!-- end: restaurant summary -->
-
-            <!-- begin: quick link -->
-            <div class="col ms-4 mt-2">
-                <h5>Quick links</h5>
-
-                <!-- begin: list of links -->
-                <ul class = "list-unstyled">
-                    <li class="mt-2">
-                        <a style="text-decoration: none;" class="link-dark" href="">
-                            <i class="bi bi-caret-right-fill"></i>
-                            Home
-                        </a>
-                    </li>
-                    <li class="mt-2">
-                        <a style="text-decoration: none;" class="link-dark" href="">
-                            <i class="bi bi-caret-right-fill"></i>    
-                            Menu
-                        </a>
-                    </li>
-                    <li class="mt-2">
-                        <a style="text-decoration: none;" class="link-dark" href="">
-                            <i class="bi bi-caret-right-fill"></i>
-                            Cart
-                        </a>
-                    </li>
-                    <li class="mt-2">
-                        <a style="text-decoration: none;" class="link-dark" href="">
-                            <i class="bi bi-caret-right-fill"></i>
-                            Checkout
-                        </a>
-                    </li>
-                    <li class="mt-2">
-                        <a style="text-decoration: none;" class="link-dark" href="">
-                            <i class="bi bi-caret-right-fill"></i>    
-                            Contact Us
-                        </a>
-                    </li>
-                </ul>
-                <!-- begin: end of links -->
-            </div>
-            <!-- end: quick link -->
-
-            <!-- begin: quick link -->
-            <div class="col mt-2">
-                <h5>Quick links</h5>
-
-                <!-- begin: list of links -->
-                <ul class = "list-unstyled">
-                    <li class="mt-2">
-                        <a style="text-decoration: none;" class="link-dark" href="">
-                            <i class="bi bi-caret-right-fill"></i>
-                            Home
-                        </a>
-                    </li>
-                    <li class="mt-2">
-                        <a style="text-decoration: none;" class="link-dark" href="">
-                            <i class="bi bi-caret-right-fill"></i>    
-                            Menu
-                        </a>
-                    </li>
-                    <li class="mt-2">
-                        <a style="text-decoration: none;" class="link-dark" href="">
-                            <i class="bi bi-caret-right-fill"></i>
-                            Cart
-                        </a>
-                    </li>
-                    <li class="mt-2">
-                        <a style="text-decoration: none;" class="link-dark" href="">
-                            <i class="bi bi-caret-right-fill"></i>
-                            Checkout
-                        </a>
-                    </li>
-                    <li class="mt-2">
-                        <a style="text-decoration: none;" class="link-dark" href="">
-                            <i class="bi bi-caret-right-fill"></i>    
-                            Contact Us
-                        </a>
-                    </li>
-                </ul>
-                <!-- begin: end of links -->
-            </div>
-            <!-- end: quick link -->
-
-            <!-- begin: form -->
-            <div class="col mt-2">
-                <h5>Newsletter</h5>
-                <form action="">
-                    <input class="mt-3 border-0 p-3 w-100" type="text" placeholder="Your Name">
-                    <input class="mt-3 border-0 p-3 w-100" type="text" placeholder="Your Email">
-                    <input class="mt-3 border-0 p-3 w-100" type="submit" style="background-color: #b38b91" value="Subcribe Now">
-                </form>
-            </div>
-            <!-- end: form  -->
-        </div>
-    </div>
-    <!-- end:footer -->
+    <br>
+    <?php
+        include('view\html\UI_guest\component\footer.php');
+    ?>
     <a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top" role="button">
         <i class="fas fa-chevron-up">
         </i>

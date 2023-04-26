@@ -1,0 +1,77 @@
+<!-- begin:footer -->
+<div class="container-fluid" style="background-color: #dae0e5;">
+        <div class="row p-5">
+            <!-- begin: restaurant summary -->
+            <div class="col">
+                <div class="h2" >
+                    <img class="border border-light p-2" src="view\images\utensils-solid.svg" style="width: 50px" alt="restaurantIcon">
+                    DISFRUTAR
+                </div>
+                <p>
+                    Disfrutar vinh dự được bình chọn top 10 nhà hàng được yêu thích nhất của Tp.HCM. <br>
+                    Với đội ngũ đầu bếp tài năng được chọn lọc kỹ càng, sẽ phục vụ
+                    cho thực khách những tuyệt phẩm ẩm thực từ khắp nơi trên thế giới. <br>
+                    Thực khách không chỉ được thưởng thức những món ăn tuyệt hảo mà còn được trải
+                    nghiệm không gian ẩm thực được lấy cảm hứng từ kiến trúc hoàng gia Tây Ban Nha
+                    hứa hẹn sẽ đem lại cho thực khách những trải nghiệm không thể nào quên. <br>
+                </p>
+                <ul class = "list-unstyled">
+                    <li class="d-flex ">
+                        <i style="color: #b38b91" class="bi bi-geo-alt me-2"></i>
+                        <p>6 Đ. Ngô Quyền, Vĩnh Ninh</p>
+                    </li>
+                    <li class="d-flex">
+                        <i style="color: #b38b91" class="bi bi-envelope-fill me-2"></i>
+                        <p>Wanmin@restaurant.com</p>
+                    </li>
+                    <li class="d-flex">
+                        <i style="color: #b38b91" class="bi bi-telephone-fill me-2"></i>
+                        <p>+012 345 6789</p>
+                    </li>
+                </ul>
+            </div>
+            <!-- end: restaurant summary -->
+
+            <!-- begin: quick link -->
+            <div class="col ms-4 mt-2">
+                <h5>Quick links</h5>
+
+                <!-- begin: list of links -->
+                <ul class = "list-unstyled">
+                    <li class="mt-2">
+                        <a style="text-decoration: none;" class="link-dark" href="/">
+                            <i class="bi bi-caret-right-fill"></i>
+                            Trang chủ
+                        </a>
+                    </li>
+                    <li class="mt-2">
+                        <a style="text-decoration: none;" class="link-dark" href="/menu">
+                            <i class="bi bi-caret-right-fill"></i>    
+                            Thực đơn
+                        </a>
+                    </li>
+                    <li class="mt-2">
+                        <a style="text-decoration: none;" class="link-dark" href="contact_page">
+                            <i class="bi bi-caret-right-fill"></i>    
+                            Liên hệ
+                        </a>
+                    </li>
+                </ul>
+                <!-- begin: end of links -->
+            </div>
+            <!-- end: quick link -->
+
+            <!-- begin: form -->
+            <div class="col mt-2">
+                <h5>Theo dõi</h5>
+                <h7>Cung cấp thông tin liên lại để biết được những khuyến mãi sớm nhất từ chúng tôi</h7>
+                <form action="">
+                    <input class="mt-3 border-0 p-3 w-100" type="text" placeholder="Tên">
+                    <input class="mt-3 border-0 p-3 w-100" type="text" placeholder="Email">
+                    <input class="mt-3 border-0 p-3 w-100" type="submit" style="background-color: #b38b91" value="Theo dõi ngay">
+                </form>
+            </div>
+            <!-- end: form  -->
+        </div>
+    </div>
+    <!-- end:footer -->

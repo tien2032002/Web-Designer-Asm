@@ -4,10 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DISFRUTAR</title>
-    <meta name="description" content="Disfrutar-Nơi hội tụ tinh hoa ẩm thực. Top 10 nhà hàng được yêu thích nhất TPHCM. Thực đơn phong phú, đa dạng. Không gian thoáng đãng, rộng rãi. Phục vụ tận tình, chu đáo. Địa chỉ: 268 Lý Thường Kiệt, Phường 14, Quận 10, Thành phố Hồ Chí Minh. Đặt bàn ngay!">
-    <meta name="keywords" content="Disfrutar, Restaurent, quận 10, thành phố HCM, top 10">
-    <meta name="author" content="Nelele">
+    <title>Home page</title>
     <!-- ======= Styles ====== -->
       <!--  icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
@@ -120,9 +117,22 @@
                 <div class="tab-content">
                     <!-- Tab HomePage -->
                     <div class="tab-pane active">
-                        <!-- Carousel Start -->
-                        <?php include 'View/html/UI_guest/component/carousel.php'; ?>
-                        <!-- Carousel End-->
+                        <?php
+                            $tagArray = array('1' => 'Món ngon mỗi ngày',
+                            '2' => 'Món ăn mùa xuân',
+                            '3' => 'Món ăn mùa hè',
+                            '4' => 'Món ăn mùa thu',
+                            '5' => 'Món ăn mùa đông');
+                        ?>
+                        <!-- begin: daily news -->
+                        <div class="card menu mt-4 mb-5">
+                            <h4 class="card-title"><?php echo $newsObject->title;?></h4>
+                            <a href="/tag/<?php echo UrlNormal($tagArray[$newsObject->tag]).'/'.$newsObject->tag;?>" class="btn btn-outline-success btn-override" style="max-width: 15%"><?php echo $tagArray[$newsObject->tag]; ?></a>
+                            <?php
+                                echo $newsObject->content;
+                            ?>
+                        </div>
+                        <!-- end: daily news -->
                     </div>
                     <!-- Tab Khai Vi -->
                     <div class="tab-pane" id="tab1">
@@ -160,7 +170,6 @@
         </div>
     </div>
     <!-- Main End -->
-    <br>
 
     <?php
         include("view/html/UI_guest/component/footer.php");

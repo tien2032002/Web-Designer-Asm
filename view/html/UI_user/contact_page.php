@@ -57,12 +57,12 @@
 </head>
 <body>
         <!-- Topbar Start -->
-        <?php include ("view/html/UI_guest/component/topbar.php"); ?>
+        <?php include ("view/html/UI_user/component/topbar.php"); ?>
         <!-- Topbar End -->
         
         <!-- Navbar Start -->
         <?php $page = 'home_page_user';
-        include 'component/navbar.php'; ?>
+        include ('view\html\UI_user\component\navbar.php'); ?>
         <!-- Navbar End -->
     
    <section class="parallax">

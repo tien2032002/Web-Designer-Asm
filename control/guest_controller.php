@@ -26,11 +26,19 @@
             if (!isset($_SESSION)) session_start();
             if (!isset($_SESSION['userObj'])) {
                 $data = array ('productList' => getProductList($_GET['type']),
-                           'type' => $_GET['type']);
+                               'type' => $_GET['type'],
+                                'popularProducts' => getPopularProducts($_GET['type'], 6));
                 $this->render('view\html\UI_guest\dish_list', $data);
             }
             else header('Location: index.php?controller=user&action=dish_list&type='.$_GET['type']);
 
+        }
+
+        function comment() {
+            include('model\product_db.php');
+            $commentList = getFeedback($_GET['id'], $_GET['page']);
+            $data = array('commentList' => $commentList);
+            $this->render('view\html\UI_user\component\comment', $data);
         }
 
         function dish_detail() {
@@ -42,7 +50,8 @@
                 if ($getProductObj == 'invalid id') echo 'wrong id';
                 else {
                     $data = array('productObj' => $getProductObj,
-                                'relatedProduct' => get3RandomProduct(json_decode($getProductObj)->type, $_GET['id']));
+                                'relatedProduct' => get3RandomProduct(json_decode($getProductObj)->type, $_GET['id']),
+                                'star' => getStar($_GET['id']));
                     $this->render('view\html\UI_guest\dish_detail', $data);
                 }
             }
@@ -60,7 +69,10 @@
         }
 
         function news() {
-            $this->render('view\html\UI_guest\news');
+            include("model/news_db.php");
+            $newsArray = get_news();
+            $data = array('newsArray' => $newsArray);
+            $this->render('view\html\UI_guest\news', $data);
         }
 
         function reserve() {
@@ -86,6 +98,20 @@
 
         function contact_page() {
             $this->render('view\html\UI_guest\contact_page');
+        }
+
+        function tag() {
+            include("model/news_db.php");
+            $newsArray = get_news_by_tag($_GET['id']);
+            $data = array('newsArray' => $newsArray);
+            $this->render('view\html\UI_guest\tag', $data);
+        }
+
+        function news_detail() {
+            include("model/news_db.php");
+            $newsObject = get_news_by_id($_GET['id']);
+            $data = array('newsObject' => $newsObject);
+            $this->render('view\html\UI_guest\news_detail', $data);
         }
     }
 ?>
