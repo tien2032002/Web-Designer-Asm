@@ -214,5 +214,33 @@
             
             $this->render('view\html\UI_manager\component\thong_ke_tab', $data);
         }
+        function contact_tab() {
+            include("model\contact_db.php");
+            include("model/response_db.php");
+            $allContacts = get_all_contact();
+            $data = array("allContacts" => $allContacts,
+                          "responseList" => get_all_response());
+            $this->render("view\html\UI_manager\component\contact_tab", $data);
+        }
+
+        function add_contact() {
+            include("model\contact_db.php");
+            add_contact_db($_POST['platform'], $_POST['ic'], $_POST['link']);
+            header("Location: home_page_manager");
+        }
+
+        function delete_contact() {
+            include("model\contact_db.php");
+            delete_contact_db($_POST['platform']);
+            header("Location: home_page_manager");
+        }
+
+        function update_contact() {
+            include("model\contact_db.php");
+            update_contact_db($_POST['platform'], $_POST['ic'], $_POST['link']);
+            header("Location: home_page_manager");
+        }
     }
+
+
 ?>

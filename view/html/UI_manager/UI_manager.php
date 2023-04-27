@@ -55,6 +55,8 @@
                     <i class="fas fa-chevron-right text-muted me-2"></i>Quản Lý Nhân Viên</a>
                 <a id="tab5" class="list-gr-item" href="#" data-url="feedback_tab">
                     <i class="fas fa-chevron-right text-muted me-2"></i>Quản Lý Đánh Giá</a>
+                <a id="tab5" class="list-gr-item" href="#" data-url="contact_tab">
+                    <i class="fas fa-chevron-right text-muted me-2"></i>Quản Lý Liên Hệ</a>
             </div>
         </div>
         <!-- Sidebar End -->

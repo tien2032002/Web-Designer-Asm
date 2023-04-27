@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg bg-light navbar-light p-2" style="height: 62px;">
-    <a href="/home_page_user" class="d-block d-lg-none">
+    <a href="/" class="d-block d-lg-none">
         <img src="view/images/logo.jpg" style="width: 100px;" alt="logo">
     </a>
     <button type="button" 
@@ -11,7 +11,7 @@
     </button>
     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
         <div class="navbar-nav">
-            <a href="/home_page_user" class="nav-item nav-link active">Trang Chủ</a>
+            <a href="/" class="nav-item nav-link active">Trang Chủ</a>
             <a href="/menu" class="nav-item nav-link">Thực Đơn</a>
             <a href="/news" class="nav-item nav-link">Tin Tức</a>
             <a href="/contact_page" class="nav-item nav-link">Liên Hệ</a>

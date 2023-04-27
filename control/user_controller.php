@@ -334,5 +334,11 @@
                           "map" => get_map());
             $this->render("view/html/UI_guest/component/footer", $data);
         }
+
+        function save_response() {
+            include("model/response_db.php");
+            add_response($_POST['name'], $_POST['email'], $_POST['message']);
+            header("Location: /");
+        }
     }
 ?>

@@ -57,12 +57,12 @@
 </head>
 <body>
         <!-- Topbar Start -->
-        <?php include ("view/html/UI_user/component/topbar.php"); ?>
+        <?php include ("view/html/UI_guest/component/topbar.php"); ?>
         <!-- Topbar End -->
         
         <!-- Navbar Start -->
         <?php $page = 'home_page_user';
-        include ('view\html\UI_user\component\navbar.php'); ?>
+        include 'component/navbar.php'; ?>
         <!-- Navbar End -->
     
    <section class="parallax">
@@ -77,20 +77,34 @@
         <img id="cloud" src="view\images\contact\cloud.png" alt="">
    </section>
 
-    <section class="p-3 row bg-white">
-        <div class="col-4">
+   <section class="p-5 row bg-white">
+        <!-- begin: form -->
+        <div class="col mt-2">
+            <h5>LIÊN HỆ</h5>
+            <h7>Hãy gửi phản hồi đến chúng tôi để cải thiện chất lượng dịch vụ</h7>
+            <form action="save_response" method="POST">
+                <input class="mt-3 border-0 p-3 w-100" type="text" placeholder="Tên" name="name">
+                <input class="mt-3 border-0 p-3 w-100" type="text" placeholder="Email" name="email">
+                <input class="mt-3 border-0 p-3 w-100" type="text" placeholder="Lời nhắn" name="message">
+                <input class="mt-3 border-0 p-3 w-100" type="submit" style="background-color: #b38b91; font-weight: 500;" value="Gửi Phản Hồi">
+            </form>
+        </div>
+        <!-- end: form  -->
+        <div class="col-1"></div>
+        <div class="col-6 p-3">
             <div class="h2" >
                 <img class="border border-light p-2" src="view\images\utensils-solid.svg" style="width: 50px" alt="restaurantIcon">
-                Restaurant
+                DISFRUTAR
             </div>
-            <p>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing
-                elit. Aenean commodo ligula eget dolor. Aenean mass
-                a. Cum sociis natoque penatibus et magnis dis partu
-                rient montes, nascetur ridiculus mus.
+            <p class="text-justify">
+                Disfrutar vinh dự được bình chọn top 10 nhà hàng được yêu thích nhất của Tp.HCM. <br>
+                Với đội ngũ đầu bếp tài năng được chọn lọc kỹ càng, sẽ phục vụ
+                cho thực khách những tuyệt phẩm ẩm thực từ khắp nơi trên thế giới. <br>
+                Thực khách không chỉ được thưởng thức những món ăn tuyệt hảo mà còn được trải
+                nghiệm không gian ẩm thực được lấy cảm hứng từ kiến trúc hoàng gia Tây Ban Nha
+                hứa hẹn sẽ đem lại cho thực khách những trải nghiệm không thể nào quên. <br>
             </p>
             <hr>
-            <!-- begin: contact methods -->
             <ul class = "list-unstyled">
                 <?php
                     foreach($contactArray as $contact) {
@@ -108,27 +122,18 @@
             </ul>
             <!-- end: contact methods -->
         </div>
-        
-        <div class="col-8 d-flex justify-content-center">
+    </section>
+    <div class="row bg-white">
+        <h2 class="text-center mb-4">VỊ TRÍ NHÀ HÀNG</h2>
+        <div class="col-12 d-flex justify-content-center mb-5">
             <iframe src="<?php echo $map->link; ?>" 
-                width="80%%" height="500" style="border:0;" 
+                width="80%" height="500" style="border:0;" 
                 allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
             </iframe>
         </div>
+    </div>
         
-    </section>
-    <!-- begin: form  -->
-    <form class="row p-4 mb-0" style="background-color:#b38b91">
-        <div class="col d-flex align-items-center">
-            <h5 class="mb-0">Nhận thông tin khuyến mãi từ chúng tôi</h5>
-        </div>
-        <div class="input-group col">
-            <input type="email" class="form-control" placeholder="Email">
-            <input type="submit" class="btn btn-outline-light" value="Gửi">
-            
-        </div>
-    </form>
-    <!-- end: form -->
+    
 
     
 

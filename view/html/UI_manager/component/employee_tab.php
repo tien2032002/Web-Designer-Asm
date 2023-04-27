@@ -8,7 +8,7 @@
       }
     ?>
 
-      <div class="row">
+      <div class="row me-0 ms-2 mt-4" >
         <div class="col-md-12 mb-3">
             <div class="card">
             <div class="card-header">

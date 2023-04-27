@@ -192,7 +192,7 @@
 <div class="container-fluid">
     <div class="row align-items-center" style="background-color: #f2f2f2; height:80px;">
         <div class="col-lg-3 d-none d-lg-block px-5">
-            <a href="home_page">
+            <a href="/">
                 <img src="view/images/logo.jpg" style="width: 150px;" alt="logo">
             </a>
         </div>
