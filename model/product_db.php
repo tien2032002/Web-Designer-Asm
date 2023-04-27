@@ -1,17 +1,111 @@
 <?php
-    function addProduct() {
+    function addProduct($name, $type, $description, $price) {
         //add product to database
-        require_once('db.php');
+        include("model\db.php");
+        $target_dir    = "view/images/";
+        $target_file   = $target_dir . $_FILES["image"]['name'];
+        move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
+        mysqli_query($con, "INSERT INTO products (name, type, description, image, price, rating)
+                            VALUES ('$name', '$type', '$description', '$target_file', $price, 0)");
     }
 
-    function deleteProduct() {
+    function checkAddProduct($name, $type, $description, $price) {
+        if (strlen($name) == 0 ) $nameErr = 'missing';
+        else $nameErr = "good";
+
+        if (strlen($description) == 0 ) $descriptionErr = 'missing';
+        else $descriptionErr = "good";
+
+        if ($_FILES["image"]['name'] != ''){
+            //change avatar
+            //check if file upload is image or not
+            $check = getimagesize($_FILES["image"]["tmp_name"]);
+            if($check == false) {
+                $uploadErr = 'notImage';
+            }
+
+            else {
+                $uploadErr = 'good';
+            }
+        }
+        else $uploadErr = "missing";
+
+        if ($price <= 0 ) $priceErr = 'invalid';
+        else $priceErr = "good";
+
+        $checkAll = ($nameErr == "good" && $descriptionErr == "good" && $uploadErr == "good" && $priceErr == "good") ? 1 : 0;
+
+        $errArray = array('nameErr' => $nameErr,
+                          'descriptionErr' => $descriptionErr,
+                          'uploadErr' => $uploadErr,
+                          'priceErr' => $priceErr,
+                          'checkAll' => $checkAll);
+        return $errArray;
+    }
+
+    function deleteProduct($id) {
         //delete product to database
-        require_once('db.php');
+        include("model\db.php");
+        mysqli_query($con, "DELETE FROM products WHERE id=$id");
     }
 
-    function updateProduct() {
+    function updateProduct($curID, $name, $type, $description, $price, $errList) {
         //update product's information to database
-        require_once('db.php');
+        include("model\db.php");
+        if ($errList['nameErr'] == 'good') mysqli_query($con, "UPDATE products
+                                                               SET name='$name'
+                                                               WHERE id=$curID");
+        
+        if ($errList['descriptionErr'] == 'good') mysqli_query($con, "UPDATE products
+                                                               SET description='$description'
+                                                               WHERE id=$curID");
+
+        if ($errList['priceErr'] == 'good') mysqli_query($con, "UPDATE products
+                                                               SET price='$price'
+                                                               WHERE id=$curID");
+
+        if ($errList['uploadErr'] == 'good') {
+            $target_dir    = "view/images/";
+            $target_file   = $target_dir . $_FILES["image"]['name'];
+            move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
+            mysqli_query($con, "UPDATE products
+                                SET image='$target_file'
+                                WHERE id=$curID");
+        }
+    }
+
+    function checkUpdProduct($name, $type, $description, $price) {
+        if (strlen($name) == 0 ) $nameErr = 'missing';
+        else $nameErr = "good";
+
+        if (strlen($description) == 0 ) $descriptionErr = 'missing';
+        else $descriptionErr = "good";
+
+        if ($_FILES["image"]['name'] != ''){
+            //change avatar
+            //check if file upload is image or not
+            $check = getimagesize($_FILES["image"]["tmp_name"]);
+            if($check == false) {
+                $uploadErr = 'notImage';
+            }
+
+            else {
+                $uploadErr = 'good';
+            }
+        }
+        else $uploadErr = "not update";
+
+        if ($price <= 0 ) $priceErr = 'invalid';
+        else $priceErr = "good";
+
+        $checkAll = ($nameErr == "good" && $descriptionErr == "good" && ($uploadErr == "good" || $uploadErr == 'not update') && $priceErr == "good") ? 1 : 0;
+
+        $errArray = array('nameErr' => $nameErr,
+                          'descriptionErr' => $descriptionErr,
+                          'uploadErr' => $uploadErr,
+                          'priceErr' => $priceErr,
+                          'checkAll' => $checkAll);
+        return $errArray;
     }
 
     function getProductList($type) {
@@ -131,7 +225,7 @@
         require('model/db.php');
         require('model\customer_db.php');
         $offset = ($page - 1) * 5;
-        $getFeedback = "SELECT * FROM feedback WHERE product_id=$productID limit 5 offset $offset";
+        $getFeedback = "SELECT * FROM feedback WHERE product_id=$productID ORDER BY id DESC limit 5 offset $offset";
         $feedbackResult = mysqli_query($con, $getFeedback);
         $commentArray = array();
         while($row = $feedbackResult->fetch_object()) {
@@ -146,8 +240,15 @@
         return $commentArray;
     }
 
-    function getFavouriteProductList($type) {
-        
+    function get_all_product_object($page) {
+        $offset = ($page - 1) * 6;
+        require('model/db.php');
+        $productObject = mysqli_query($con, "SELECT * FROM products ORDER BY id DESC LIMIT 6 OFFSET $offset");
+        $productList = array();
+        while ($row = $productObject->fetch_object()) {
+            $productList[] = $row;
+        }
+        return $productList;
     }
 
     function get3Dishes($type) {
@@ -214,4 +315,43 @@
 
         return $resultArray;
     }
+
+    function get_all_feedback($page) {
+        require('model/db.php');
+        $offset = ($page - 1) * 5;
+        $feedback = mysqli_query($con, "SELECT * FROM feedback ORDER BY id DESC LIMIT 5 OFFSET $offset");
+        $feedbackList = array();
+        while ($row = $feedback->fetch_object()){
+            $feedbackList[] = $row;
+        }
+        return $feedbackList;
+    }
+
+    function delete_feedback($id) {
+        require('model/db.php');
+        mysqli_query($con, "DELETE FROM feedback WHERE id=$id");
+    }
+
+    function count_product() {
+        require('model/db.php');
+        $count = mysqli_query($con, "SELECT * FROM products");
+        return mysqli_num_rows($count);
+    }
+
+    function count_feedback() {
+        require('model/db.php');
+        $count = mysqli_query($con, "SELECT * FROM feedback");
+        return mysqli_num_rows($count);
+    }
+
+    function revenue() {
+        require('model/db.php');
+        $billList = mysqli_query($con, "SELECT * FROM bills WHERE status='paid'");
+        $sum = 0;
+        while($bill = $billList->fetch_object()) {
+            $sum+=$bill->price;
+        }
+        return $sum;
+    }
+
 ?>

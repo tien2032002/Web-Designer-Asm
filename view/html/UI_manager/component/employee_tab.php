@@ -38,7 +38,7 @@
       </script>
       ';
 
-      if (isset($_SESSION['errResultUpd'])) echo '
+      if (isset($_SESSION['errResultUpd']) && $_SESSION['errResultUpd']['checkAll'] == 0) echo '
       <script>
         console.log("show error")
         var myModal = new bootstrap.Modal(document.getElementById("confirm-edit-modal-'.$_SESSION['curID'].'"), {
@@ -50,7 +50,7 @@
 
       unset($_SESSION['errResultUpd']);
       unset($_SESSION['errResultAdd']);
-      unset($_SESSION['errResultUpd']);
+      unset($_SESSION['curID']);
 
     ?>
     

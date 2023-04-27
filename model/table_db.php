@@ -134,4 +134,21 @@
                             SET status='canceled'
                             WHERE id=$tableId");
     }
+
+    function count_table_paid() {
+        include('model\db.php');
+        $count = mysqli_query($con, "SELECT * FROM tables WHERE status='paid'");
+        return mysqli_num_rows($count);
+    }
+
+    function get_all_paid_table() {
+        include('model\db.php');
+        $allPaidTable = mysqli_query($con, "SELECT * FROM tables WHERE status='paid'");
+        $allPaidTableArray = array();
+        while ($row = $allPaidTable->fetch_object()) {
+            $allPaidTableArray[] = $row;
+        }
+
+        return $allPaidTableArray;
+    }
 ?>
