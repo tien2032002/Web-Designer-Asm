@@ -1,6 +1,6 @@
 <div class="row d-flex justify-content-center mt-4 me-4 ms-4">
     <div class="card text-dark">
-        <h4 class="mt-3 ms-3">Recent comments</h4>
+        <h4 class="mt-3 ms-3">Đánh Giá Mới Nhất</h4>
         <hr class="mt-0">
         <div class="card-body d-flex align-items-center justify-content-between">
             <div class="d-flex flex-start">

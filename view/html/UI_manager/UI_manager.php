@@ -29,11 +29,11 @@
         <div class="sidebar sidebarwidth" id="sidebar">
             <div class="list-gr">
                 <div class="text-muted" id="navigation">Navigation</div>
-                <a id="tab1" class="list-gr-item" href="#" data-url="view/html/UI_manager/component/thong_ke_tab.php">
+                <a id="tab1" class="list-gr-item active" href="#" data-url="view/html/UI_manager/component/thong_ke_tab.php">
                     <i class="fas fa-chevron-right text-muted me-2"></i>Thống Kê Chung</a>
                 <a id="tab2" class="list-gr-item" href="#" data-url="view/html/UI_manager/component/respone_tab.php">
                     <i class="fas fa-chevron-right text-muted me-2"></i>Thông Tin & Phản Hồi</a>
-                <a id="tab3" class="list-gr-item active" href="#" data-url="view/html/UI_manager/component/product_tab.php">
+                <a id="tab3" class="list-gr-item " href="#" data-url="view/html/UI_manager/component/product_tab.php">
                     <i class="fas fa-chevron-right text-muted me-2"></i>Quản Lý Sản Phẩm</a>
                 <a id="tab4" class="list-gr-item" href="#" data-url="/manage_employee">
                     <i class="fas fa-chevron-right text-muted me-2"></i>Quản Lý Nhân Viên</a>
