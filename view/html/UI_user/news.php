@@ -116,32 +116,33 @@
                 <!-- Tab Content Start -->
                 <div class="tab-content">
                     <!-- begin: daily news -->
-                    <div class="card menu mt-4 mb-5">
-                        <h4 class="card-title">Bài viết nổi bật</h4>
-                            <!-- begin: article list -->
-                            <div class="d-flex justify-content-around flex-wrap">
-                            <?php
-                                $tagArray = array('1' => 'Món ngon mỗi ngày',
-                                                  '2' => 'Món ăn mùa xuân',
-                                                  '3' => 'Món ăn mùa hè',
-                                                  '4' => 'Món ăn mùa thu',
-                                                  '5' => 'Món ăn mùa đông');
-                                foreach($newsArray as $news) {
-                                    echo '<!-- begin: first article -->
-                                    <div class="menu__item card">
-                                        <img src="'.$news->thumnail.'" class="item-img">
-                                        <a href="/tag/'.UrlNormal($tagArray[$news->tag]).'/'.$news->tag.'" class="btn btn-outline-success ms-2 mt-2 p-1" style="max-width: 56%">'.$tagArray[$news->tag].'</a>
-                                        <a style="all: unset; cursor: pointer;" href="news-detail/'.UrlNormal($news->title).'/'.$news->id.'"><h5 class="item-name ms-2 mt-2">'.$news->title.'</h5></a>
-                                    </div>
-                                    <!-- end: first article -->';
-                                }
-                            ?>
+                    <div class="tab-pane active">
+                        <div class="card menu mt-4 mb-5">
+                            <h4 class="card-title">Bài viết nổi bật</h4>
+                                <!-- begin: article list -->
+                                <div class="d-flex justify-content-around flex-wrap">
+                                <?php
+                                    $tagArray = array('1' => 'Món ngon mỗi ngày',
+                                                    '2' => 'Món ăn mùa xuân',
+                                                    '3' => 'Món ăn mùa hè',
+                                                    '4' => 'Món ăn mùa thu',
+                                                    '5' => 'Món ăn mùa đông');
+                                    foreach($newsArray as $news) {
+                                        echo '<!-- begin: first article -->
+                                        <div class="menu__item card">
+                                            <img src="'.$news->thumnail.'" class="item-img">
+                                            <a href="/tag/'.UrlNormal($tagArray[$news->tag]).'/'.$news->tag.'" class="btn btn-outline-success ms-2 mt-2 p-1" style="max-width: 56%">'.$tagArray[$news->tag].'</a>
+                                            <a style="all: unset; cursor: pointer;" href="news-detail/'.UrlNormal($news->title).'/'.$news->id.'"><h5 class="item-name ms-2 mt-2">'.$news->title.'</h5></a>
+                                        </div>
+                                        <!-- end: first article -->';
+                                    }
+                                ?>
 
+                            </div>
+                            <!-- end: article list -->
                         </div>
-                        <!-- end: article list -->
-
+                        <!-- end: daily news -->
                     </div>
-                    <!-- end: daily news -->
                     <!-- Tab Khai Vi -->
                     <div class="tab-pane" id="tab1">
                         <script>

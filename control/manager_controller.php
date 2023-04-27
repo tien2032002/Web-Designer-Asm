@@ -109,7 +109,7 @@
         }
 
         function add_news() {
-            $this->render('view\html\UI_manager\createNewArticle');
+            $this->render('view\html\UI_manager\component\respone_tab');
         }
 
         function save_news() {
@@ -118,11 +118,12 @@
             // var_dump($_FILES);
             //check news and return error
             $saveNewsErr = check_save_news();
+            $_SESSION['saveNewsErr'] = $saveNewsErr;
             extract($saveNewsErr);
             if ($uploadErr == 'good' && $titleErr != 'invalid' && $tagErr != 'invalid' && $contentErr != 'invalid'){
                 save_news_db();
             }
-            $this->render('view\html\UI_manager\createNewArticle', $saveNewsErr);
+            header("Location: home_page_manager");
 
         }
 

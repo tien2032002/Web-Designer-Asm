@@ -133,7 +133,11 @@
         if ($uploadErr == 'good') {
             $target_dir    = "view/images/user/";
             $target_file   = $target_dir . 'user' . $_GET['id'] . '.jpg';
+            $target_name = $target_dir . 'user' . $_GET['id'];
             move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file);
+            mysqli_query($con, "UPDATE customers
+                        SET image='$target_name'
+                        WHERE id=$curID");
         }
 
         if ($nameErr == 'good'){
@@ -227,7 +231,7 @@
         }
         $passwordErr = 'not update';
         if(strlen($_POST['oldPassword']) != 0) {
-            $userObj = json_decode($_SESSION['userObj']);
+            $userObj = json_decode(getCustomerById($_SESSION['id']));
             if ($userObj->password != $_POST['oldPassword']) $passwordErr = 'wrong old password';
             else {
                 if ($_POST['newPassword'] != $_POST['newPassword2']) $passwordErr = 'wrong confirm password';
