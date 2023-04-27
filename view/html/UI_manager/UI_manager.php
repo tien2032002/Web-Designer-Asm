@@ -45,11 +45,11 @@
         <div class="sidebar sidebarwidth" id="sidebar">
             <div class="list-gr">
                 <div class="text-muted" id="navigation">Navigation</div>
-                <a id="tab1" class="list-gr-item" href="#" data-url="view/html/UI_manager/component/statistical_tab">
+                <a id="tab1" class="list-gr-item active" href="#" data-url="view/html/UI_manager/component/statistical_tab.php">
                     <i class="fas fa-chevron-right text-muted me-2"></i>Thống Kê Chung</a>
                 <a id="tab2" class="list-gr-item" href="#" data-url="view/html/UI_manager/component/respone_tab.php">
                     <i class="fas fa-chevron-right text-muted me-2"></i>Thông Tin & Phản Hồi</a>
-                <a id="tab3" class="list-gr-item active" href="#" data-url="/manage_product?page=1">
+                <a id="tab3" class="list-gr-item" href="#" data-url="/manage_product?page=1">
                     <i class="fas fa-chevron-right text-muted me-2"></i>Quản Lý Sản Phẩm</a>
                 <a id="tab4" class="list-gr-item" href="#" data-url="/manage_employee">
                     <i class="fas fa-chevron-right text-muted me-2"></i>Quản Lý Nhân Viên</a>
@@ -285,15 +285,10 @@
                 
         }
         <?php
-<<<<<<< HEAD
-            if (isset($_SESSION['errResultUpd']) || isset($_SESSION['errResultAdd'])) echo "changeTab('tab4')";
-            if (isset($_SESSION['addProductErr']) || isset($_SESSION['updProductErr'])) echo "changeTab(tab3)";
-=======
             if (isset($_SESSION['errResultUpd']) || isset($_SESSION['errResultAdd'])) echo "changeTab('tab4');";
             else if (isset($_SESSION['addProductErr']) || isset($_SESSION['updProductErr'])) echo "changeTab('tab3');";
             else if (isset($_SESSION['saveNewsErr'])) echo "changeTab('tab2');";
             else echo "changeTab('tab1');";
->>>>>>> upstream/main
         ?>
     </script>
 </body>
