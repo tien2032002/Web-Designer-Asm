@@ -77,8 +77,18 @@
         <img id="cloud" src="view\images\contact\cloud.png" alt="">
    </section>
 
-    <section class="p-3 row bg-white">
-        <div class="col-4">
+    <section class="p-5 row bg-white">
+        <div class="col-5 mt-2 p-3">
+            <h2>LIÊN HỆ</h2>
+            <h6 class="text-muted">Hãy gửi phản hồi đến chúng tôi để cải thiện chất lượng dịch vụ</h6>
+            <form action="">
+                <input class="mt-3 border p-3 w-100" type="text" placeholder="Tên">
+                <input class="mt-3 border p-3 w-100" type="text" placeholder="Email">
+                <input class="mt-3 border p-3 w-100" type="text" placeholder="Lời nhắn">
+                <input class="mt-3 border p-3 w-100" type="submit" style="background-color: #b38b91; font-weight: 500;" value="Gửi Phản Hồi">
+            </form>
+        </div><div class="col-1"></div>
+        <div class="col-6 p-3">
             <div class="h2" >
                 <img class="border border-light p-2" src="view\images\utensils-solid.svg" style="width: 50px" alt="restaurantIcon">
                 DISFRUTAR
@@ -109,26 +119,18 @@
             </ul>
             <!-- end: contact methods -->
         </div>
-        
-        <div class="col-8 d-flex justify-content-center">
+    </section>
+    <div class="row bg-white">
+    <h2 class="text-center mb-4">VỊ TRÍ NHÀ HÀNG</h2>
+        <div class="col-12 d-flex justify-content-center mb-5">
             <iframe src="<?php echo $map->link; ?>" 
-                width="80%%" height="500" style="border:0;" 
+                width="80%" height="500" style="border:0;" 
                 allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
             </iframe>
         </div>
-        
-    </section>
+    <div>
     <!-- begin: form  -->
-    <form class="row p-4 mb-0" style="background-color:#b38b91">
-        <div class="col d-flex align-items-center">
-            <h5 class="mb-0">Nhận thông tin khuyến mãi từ chúng tôi</h5>
-        </div>
-        <div class="input-group col">
-            <input type="email" class="form-control" placeholder="Email">
-            <input type="submit" class="btn btn-outline-light" value="Gửi">
-            
-        </div>
-    </form>
+
     <!-- end: form -->
     
 

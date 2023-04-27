@@ -64,12 +64,13 @@
 
             <!-- begin: form -->
             <div class="col mt-2">
-                <h5>Theo dõi</h5>
-                <h7>Cung cấp thông tin liên lại để biết được những khuyến mãi sớm nhất từ chúng tôi</h7>
+                <h5>LIÊN HỆ</h5>
+                <h7>Hãy gửi phản hồi đến chúng tôi để cải thiện chất lượng dịch vụ</h7>
                 <form action="">
                     <input class="mt-3 border-0 p-3 w-100" type="text" placeholder="Tên">
                     <input class="mt-3 border-0 p-3 w-100" type="text" placeholder="Email">
-                    <input class="mt-3 border-0 p-3 w-100" type="submit" style="background-color: #b38b91" value="Theo dõi ngay">
+                    <input class="mt-3 border-0 p-3 w-100" type="text" placeholder="Lời nhắn">
+                    <input class="mt-3 border-0 p-3 w-100" type="submit" style="background-color: #b38b91; font-weight: 500;" value="Gửi Phản Hồi">
                 </form>
             </div>
             <!-- end: form  -->
