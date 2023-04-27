@@ -9,6 +9,9 @@
       <!--  icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="view/css/UI_employee/style_table_employee.css">
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
       <!-- style -->
     <link rel="stylesheet" type="text/css" href="view/bootstrap/css/bootstrap.css"/>
     <link rel="stylesheet" type="text/css" href="view/css/UI_manager/UI_manager.css"/>   
@@ -32,7 +35,7 @@
                     <i class="fas fa-chevron-right text-muted me-2"></i>Thông Tin & Phản Hồi</a>
                 <a id="tab3" class="list-gr-item active" href="#" data-url="view/html/UI_manager/component/product_tab.php">
                     <i class="fas fa-chevron-right text-muted me-2"></i>Quản Lý Sản Phẩm</a>
-                <a id="tab4" class="list-gr-item" href="#" data-url="view/html/UI_manager/component/employee_tab.php">
+                <a id="tab4" class="list-gr-item" href="#" data-url="/manage_employee">
                     <i class="fas fa-chevron-right text-muted me-2"></i>Quản Lý Nhân Viên</a>
                 <a id="tab5" class="list-gr-item" href="#" data-url="view/html/UI_manager/component/feedback_tab.php">
                     <i class="fas fa-chevron-right text-muted me-2"></i>Quản Lý Đánh Giá</a>
@@ -41,6 +44,9 @@
         <!-- Sidebar End -->
         <div class="main">
             <!-- NavBar Start -->
+            <?php
+                
+            ?>
             <nav class="navbar navbar-expand-md" style="background-color: white;">
                 <div class="container align-items-center">
                     <button class="toggle-btn ms-4" onclick="toggleSidebar()">
@@ -121,6 +127,25 @@
                 return false;
             });
         }); 
+
+        function changeTab(tabName){
+            console.log('change tab')
+            var url = $('#'+tabName).data('url');
+                var clickedTab = $('#'+tabName);
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    dataType: 'html',
+                    success: function(data) {
+                        $('#tab-content').html(data);
+                        $('a.list-gr-item').removeClass('active');
+                        clickedTab.addClass('active');
+                    }
+                });
+        }
+        <?php
+            if (isset($_SESSION['errResultUpd']) || isset($_SESSION['errResultAdd'])) echo "changeTab('tab4')";
+        ?>
     </script>
 </body>
 

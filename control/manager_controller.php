@@ -48,7 +48,7 @@
             include_once('model/employee_db.php');
             $employeeList = getEmployeeList();
             $data = array ("employeeList" => $employeeList);
-            $this->render('view/html/UI_manager/manage_employee', $data);
+            $this->render('view\html\UI_manager\component\employee_tab', $data);
         }
 
         function add_employee() {
@@ -60,12 +60,13 @@
                 $employeeList = getEmployeeList();
                 $data = array("errResultAdd" => $errResultAdd,
                               "employeeList" => $employeeList);
+                $_SESSION['errResultAdd'] = $errResultAdd;
                 if ($checkAll == 1) {
                     echo "good";
                     addEmployee($_POST['ID'], $_POST['name'], $_POST['CMND'], $_POST['email'], $_POST['phone'], $_POST['password'], $_POST['address'], $_POST['gender']);
                     header("Location: /manage_employee");
                 }
-                else $this->render('view\html\UI_manager\manage_employee', $data);
+                else header("Location: home_page_manager");
             }
             else header("Location: /error");
         }
@@ -81,12 +82,14 @@
                 $data = array("errResultUpd" => $errResultUpd,
                               "employeeList" => $employeeList,
                               "curID" => $_GET['ID']);
+                $_SESSION['errResultUpd'] = $errResultUpd;
+                $_SESSION['curID'] = $_GET['ID'];
                 if ($checkAll == 1) {
                     echo "good";
                     updateEmployee($_GET['ID'], $_POST['ID'], $_POST['name'], $_POST['CMND'], $_POST['email'], $_POST['phone'], $_POST['password'], $_POST['address'], $_POST['gender']);
                     header("Location: /manage_employee");
                 }
-                else $this->render('view\html\UI_manager\manage_employee', $data);
+                else header("Location: home_page_manager");
             }
             else header('Location: /error');
         }

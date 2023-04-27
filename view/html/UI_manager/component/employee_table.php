@@ -7,6 +7,7 @@
         font-size: 0.7em;
     }
 </style>
+
 <div class="table-responsive">
     <table id="employee-table" class="table table-striped" >
         <thead>
@@ -23,6 +24,8 @@
         </thead>
         <tbody>
             <?php
+                if (isset($_SESSION['errResultUpd'])) $_SESSION['errResultUpd'] = json_decode($_SESSION['errResultUpd']);
+                if(isset($_SESSION['errResultAdd'])) $_SESSION['errResultAdd'] = json_decode($_SESSION['errResultAdd']);
                 $employeeList = json_decode($employeeList);
                 foreach($employeeList as $employee) {
                     $employee = json_decode($employee);
@@ -55,8 +58,8 @@
                                                         placeholder="Enter ID" required value='.$employee->id.'>
                                                         <p class="text-danger">';
                                                     
-                                                    if (isset($errResultUpd))
-                                                    switch ($errResultUpd->idErrUpd) {
+                                                    if (isset($_SESSION['errResultUpd']) && $employee->id == $_SESSION['currID'])
+                                                    switch ($_SESSION['errResultUpd']->idErrUpd) {
                                                         case "duplicate": 
                                                         echo "ID đã được đăng ký!";
                                                         break;
@@ -77,8 +80,8 @@
                                                         placeholder="Enter name" required>
                                                         <p class="text-danger">';
                                                     
-                                                        if (isset($errResultUpd))
-                                                        switch ($errResultUpd->nameErrUpd) {
+                                                        if (isset($_SESSION['errResultUpd']) && $employee->id == $_SESSION['currID'])
+                                                        switch ($_SESSION['errResultUpd']->nameErrUpd) {
                                                         case "invalid": 
                                                             echo "Tên không hợp lệ";
                                                             break;
@@ -99,8 +102,8 @@
                                                         placeholder="Enter CMND" required>
                                                     <p class="text-danger">';
                                                 
-                                                    if (isset($errResultUpd))
-                                                    switch ($errResultUpd->cmndErrUpd) {
+                                                    if (isset($_SESSION['errResultUpd']) && $employee->id == $_SESSION['currID'])
+                                                    switch ($_SESSION['errResultUpd']->cmndErrUpd) {
                                                         case "invalid": 
                                                         echo "CMND không hợp lệ";
                                                         break;
@@ -119,8 +122,8 @@
                                                             placeholder="Enter email" required>
                                                     <p class="text-danger">';
                                         
-                                                    if (isset($errResultUpd))
-                                                    switch ($errResultUpd->emailErrUpd) {
+                                                    if (isset($_SESSION['errResultUpd']) && $employee->id == $_SESSION['currID'])
+                                                    switch ($_SESSION['errResultUpd']->emailErrUpd) {
                                                         case "duplicate": 
                                                         echo "Email đã được đăng ký!";
                                                         break;
@@ -144,8 +147,8 @@
                                                         placeholder="Enter phone number" required>
                                                     <p class="text-danger">';
                                     
-                                                    if (isset($errResultUdp))
-                                                    switch ($errResultUpd->phoneErrUpd) {
+                                                    if (isset($_SESSION['errResultUpd']) && $employee->id == $_SESSION['currID'])
+                                                    switch ($_SESSION['errResultUpd']->phoneErrUpd) {
                                                         case "duplicate": 
                                                         echo "Số điện thoại đã được đăng ký!";
                                                         break;
@@ -167,8 +170,8 @@
                                                             placeholder="Enter password" required>
                                                         <p class="text-danger">';
                                 
-                                                        if (isset($errResultUpd))
-                                                            switch ($errResultUpd->passwordErrUpd) {
+                                                        if (isset($_SESSION['errResultUpd']) && $employee->id == $_SESSION['curID'])
+                                                            switch ($_SESSION['errResultUpd']) {
                                                             case "invalid": 
                                                                 echo "Mật khẩu không hợp lệ";
                                                                 break;
@@ -190,8 +193,8 @@
                                                             placeholder="Enter address" required>
                                                         <p class="text-danger">';
                             
-                                                        if (isset($errResultUpd))
-                                                        switch ($errResultUpd->addressErrUpd) {
+                                                        if (isset($_SESSION['errResultUpd']) && $employee->id == $_SESSION['currID'])
+                                                        switch ($_SESSION['errResultUpd']->addressErrUpd) {
                                                             case "invalid": 
                                                             echo "Địa chỉ không hợp lệ";
                                                             break;
@@ -282,8 +285,8 @@
                             placeholder="Enter ID" required>
                     <p class='text-danger'>
                         <?php
-                        if (isset($errResultAdd))
-                        switch ($errResultAdd->idErrAdd) {
+                        if (isset($_SESSION['errResultAdd']))
+                        switch ($_SESSION['errResultAdd']->idErrAdd) {
                             case "duplicate": 
                             echo "ID đã được đăng ký!";
                             break;
@@ -303,8 +306,8 @@
                             placeholder="Enter name" required>
                             <p class='text-danger'>
                             <?php
-                            if (isset($errResultAdd))
-                                switch ($errResultAdd->nameErrAdd) {
+                            if (isset($_SESSION['errResultAdd']))
+                                switch ($_SESSION['errResultAdd']->nameErrAdd) {
                                 case "invalid": 
                                     echo "Tên không hợp lệ";
                                     break;
@@ -323,8 +326,8 @@
                             placeholder="Enter CMND" required>
                         <p class='text-danger'>
                         <?php
-                        if (isset($errResultAdd))
-                            switch ($errResultAdd->cmndErrAdd) {
+                        if (isset($_SESSION['errResultAdd']))
+                            switch ($_SESSION['errResultAdd']->cmndErrAdd) {
                             case "invalid": 
                                 echo "CMND không hợp lệ";
                                 break;
@@ -341,8 +344,8 @@
                             placeholder="Enter email" required>
                     <p class='text-danger'>
                         <?php
-                        if (isset($errResultAdd))
-                        switch ($errResultAdd->emailErrAdd) {
+                        if (isset($_SESSION['errResultAdd']))
+                        switch ($_SESSION['errResultAdd']->emailErrAdd) {
                             case "duplicate": 
                             echo "Email đã được đăng ký!";
                             break;
@@ -364,8 +367,8 @@
                             placeholder="Enter phone number" required>
                         <p class='text-danger'>
                             <?php
-                            if (isset($errResultAdd))
-                            switch ($errResultAdd->phoneErrAdd) {
+                            if (isset($_SESSION['errResultAdd']))
+                            switch ($_SESSION['errResultAdd']->phoneErrAdd) {
                                 case "duplicate": 
                                 echo "Số điện thoại đã được đăng ký!";
                                 break;
@@ -385,8 +388,8 @@
                                 placeholder="Enter password" required>
                         <p class='text-danger'>
                             <?php
-                            if (isset($errResultAdd))
-                            switch ($errResultAdd->passwordErrAdd) {
+                            if (isset($_SESSION['errResultAdd']))
+                            switch ($_SESSION['errResultAdd']->passwordErrAdd) {
                                 case "invalid": 
                                 echo "Mật khẩu không hợp lệ";
                                 break;
@@ -406,8 +409,8 @@
                                     placeholder="Enter address" required>
                             <p class='text-danger'>
                             <?php
-                            if (isset($errResultAdd))
-                                switch ($errResultAdd->addressErrAdd) {
+                            if (isset($_SESSION['errResultAdd']))
+                                switch ($_SESSION['errResultAdd']->addressErrAdd) {
                                 case "invalid": 
                                     echo "Địa chỉ không hợp lệ";
                                     break;
