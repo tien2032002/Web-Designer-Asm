@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 25, 2023 lúc 11:54 AM
+-- Thời gian đã tạo: Th4 27, 2023 lúc 07:51 PM
 -- Phiên bản máy phục vụ: 10.4.27-MariaDB
 -- Phiên bản PHP: 8.2.0
 
@@ -42,7 +42,42 @@ CREATE TABLE `bills` (
 
 INSERT INTO `bills` (`id`, `table_id`, `product_id`, `quantity`, `price`, `status`) VALUES
 (1, 3, 205, 1, 40000, 'canceled'),
-(2, 3, 308, 6, 90000, 'canceled');
+(2, 3, 308, 6, 90000, 'canceled'),
+(3, 4, 308, 10, 150000, 'paid'),
+(4, 5, 205, 5, 200000, 'paid'),
+(5, 5, 111, 3, 120000, 'paid'),
+(6, 5, 308, 2, 30000, 'paid'),
+(7, 6, 301, 1, 15000, 'canceled'),
+(8, 6, 102, 3, 90000, 'canceled'),
+(9, 7, 205, 1, 40000, 'paid'),
+(10, 7, 205, 1, 40000, 'paid'),
+(11, 8, 101, 8, 56000, 'request'),
+(12, 9, 101, 1, 7000, 'canceled'),
+(13, 9, 102, 1, 30000, 'request');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `contact`
+--
+
+CREATE TABLE `contact` (
+  `id` int(11) NOT NULL,
+  `platform` varchar(100) NOT NULL,
+  `icon` varchar(100) NOT NULL,
+  `link` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `contact`
+--
+
+INSERT INTO `contact` (`id`, `platform`, `icon`, `link`) VALUES
+(1, 'Địa chỉ', 'bi bi-geo-alt', '6 Đ. Hoàng Sa, Vĩnh Ninh'),
+(2, 'facebook', 'bi bi-youtube', 'gb.com'),
+(3, 'số điện thoại', 'bi bi-telephone', '+84 120443812'),
+(5, 'twitter', 'bi bi-twitter', 'twitter.com/disfruitar'),
+(7, 'map', 'none', 'https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d27932.397705129646!2d106.64633329222451!3d10.801180934406508!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1zTmjDoCBow6BuZw!5e0!3m2!1svi!2s!4v1682214942487!5m2!1svi!2s');
 
 -- --------------------------------------------------------
 
@@ -54,7 +89,7 @@ CREATE TABLE `customers` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `image` varchar(200) DEFAULT NULL,
+  `image` varchar(200) NOT NULL DEFAULT 'view\\images\\avt_user',
   `password` varchar(100) NOT NULL,
   `address` varchar(255) DEFAULT NULL,
   `phone` varchar(20) NOT NULL,
@@ -67,7 +102,7 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id`, `name`, `email`, `image`, `password`, `address`, `phone`, `gender`, `birthday`) VALUES
-(2, 'Ayhed', 'Ayhed@gmail.com', './view/images/user/user2', '12345678', 'Sume', '3401179729', 'nữ', '2000-04-07'),
+(2, 'Ayhed', 'Ayhed@gmail.com', './view/images/user/user2', '12345678', 'Sume', '3401179729', 'Nữ', '2000-04-07'),
 (3, 'Ayaya', 'Ayaya@gmail.com', './view/images/user/user3', '12345678', 'Ina', '6170195144', 'nữ', '2003-09-28'),
 (4, 'Ahuzak', 'Ahuzak@gmail.com', './view/images/user/user4', '12345678', 'Ina', '3936410514', 'nam', '2002-08-29'),
 (5, 'Koju Ara', 'KojuAra@gmail.com', './view/images/user/user5', '12345678', 'Ina', '7286437349', 'nữ', '2001-07-14'),
@@ -82,7 +117,8 @@ INSERT INTO `customers` (`id`, `name`, `email`, `image`, `password`, `address`, 
 (14, 'Ei', 'EiKute@gmail.com', './view/images/user/user6', '12345678', 'Ina', '5452257074', 'nữ', '2001-06-26'),
 (15, 'Mae Yiko', 'MaeYiko@gmail.com', './view/images/user/user7', '12345678', 'Ina', '3457223567', 'nữ', '2002-06-27'),
 (16, 'Leyan', 'Leyan@gmail.com', './view/images/user/user8', '12345678', 'Liyu', '4486777172', 'nữ', '2000-04-20'),
-(17, 'Shen Hee', 'Shenhee@gmail.com', './view/images/user/user9', '12345678', 'Liyu', '7068411795', 'nữ', '1999-03-10');
+(17, 'Shen Hee', 'Shenhee@gmail.com', './view/images/user/user9', '12345678', 'Liyu', '7068411795', 'nữ', '1999-03-10'),
+(18, 'Tien Nguyen Phuoc Bao', 'tien2@nguyen.com', 'view/images/user/user18', '12345678', 'Hà Nội', '745634527', 'Nam', NULL);
 
 -- --------------------------------------------------------
 
@@ -606,7 +642,6 @@ INSERT INTO `feedback` (`id`, `product_id`, `customer_id`, `stars`, `comment`) V
 (1917, 305, 13, 5, 'Thấy nhiều người khen ngon nên đặt ăn thử nhưng cũng thấy bình thường, không có gì đặc sắc lắm.'),
 (1918, 203, 10, 3, 'Đã đặt món này nhiều lần, lần nào cũng ngon. Sẽ tiếp tục ủng hộ quán ạ.'),
 (1919, 201, 4, 4, 'Ngon đậm đà ăn lại lần 2 vẫn ngon. Mọi người nên đặt thử nhé, quán phục vụ rất nhanh và nhiệt tình.'),
-(1920, 107, 15, 3, 'Đã đặt món này nhiều lần, lần nào cũng ngon. Sẽ tiếp tục ủng hộ quán ạ.'),
 (1921, 106, 6, 3, 'Đã đặt món này nhiều lần, lần nào cũng ngon. Sẽ tiếp tục ủng hộ quán ạ.'),
 (1922, 304, 11, 3, 'Đã đặt món này nhiều lần, lần nào cũng ngon. Sẽ tiếp tục ủng hộ quán ạ.'),
 (1923, 305, 10, 3, 'Đã đặt món này nhiều lần, lần nào cũng ngon. Sẽ tiếp tục ủng hộ quán ạ.'),
@@ -616,14 +651,7 @@ INSERT INTO `feedback` (`id`, `product_id`, `customer_id`, `stars`, `comment`) V
 (1927, 202, 15, 4, 'Mua nhiều lần rồi, lần nào cũng ngon. Nay rủ bạn bè ăn cùng. Ai cũng khen '),
 (1928, 206, 17, 5, 'Quán phục vụ chu đáo, món ăn bày biện đẹp mắt, hương vị hài hòa. Mình sẽ quay lại ủng hộ nữa.'),
 (1929, 305, 16, 3, 'So với mặt bằng chung thì giá hơi nhình hơn một tí nhưng tương xứng với chất lượng, 1 like'),
-(1930, 305, 4, 3, 'So với mặt bằng chung thì giá hơi nhình hơn một tí nhưng tương xứng với chất lượng, 1 like'),
-(1931, 309, 16, 3, 'Ngoài sức tưởng tượng, giá rẻ mà hương vị cũng ngon. Đặc biệt là quán cực kì sạch sẽ luôn. Nói chung sẽ quay lại nè.'),
-(1932, 308, 10, 5, 'Tưởng không ngon nhưng lại ngon không tưởng. Xứng đáng 10 điểm ❤'),
-(1933, 101, 11, 5, 'Quán phục vụ chu đáo, món ăn bày biện đẹp mắt, hương vị hài hòa. Mình sẽ quay lại ủng hộ nữa.'),
-(1934, 108, 13, 5, 'Quán phục vụ chu đáo, món ăn bày biện đẹp mắt, hương vị hài hòa. Mình sẽ quay lại ủng hộ nữa.'),
-(1935, 305, 5, 3, 'So với mặt bằng chung thì giá hơi nhình hơn một tí nhưng tương xứng với chất lượng, 1 like'),
-(1936, 102, 2, 4, 'Ngon đậm đà ăn lại lần 2 vẫn ngon. Mọi người nên đặt thử nhé, quán phục vụ rất nhanh và nhiệt tình.'),
-(1937, 102, 12, 4, 'Mua nhiều lần rồi, lần nào cũng ngon. Nay rủ bạn bè ăn cùng. Ai cũng khen ');
+(1930, 305, 4, 3, 'So với mặt bằng chung thì giá hơi nhình hơn một tí nhưng tương xứng với chất lượng, 1 like');
 
 --
 -- Bẫy `feedback`
@@ -659,6 +687,13 @@ CREATE TABLE `news` (
   `tag` int(11) NOT NULL,
   `content` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `news`
+--
+
+INSERT INTO `news` (`id`, `thumnail`, `title`, `tag`, `content`) VALUES
+(3, 'view/images/news/dessert-1.jpg', 'Chè trái cây chua ngọt cho mùa hè thanh mát', 3, '<p><strong>Ch&egrave; tr&aacute;i c&acirc;y chua ngọt</strong><br />\n<br />\nM&oacute;n ch&egrave; tr&aacute;i c&acirc;y chua ngọt c&oacute; đủ vị chua nhẹ của dứa ch&iacute;n, ngọt đậm của xo&agrave;i, vị t&aacute;o gi&ograve;n gi&ograve;n, thanh long đỏ vừa đẹp vừa m&aacute;t v&agrave; thơm m&ugrave;i chanh d&acirc;y sẽ rất hấp dẫn v&agrave; k&iacute;ch th&iacute;ch vị gi&aacute;c.</p>\n\n<p>&nbsp;</p>\n\n<p><img alt=\"{keywords}\" src=\"https://imgs.vietnamnet.vn/Images/2017/10/12/15/20171012152957-che-trai-cay-chua-ngot.jpg\" /></p>\n\n<p><br />\nNguy&ecirc;n liệu:<br />\n<br />\n- 1 tr&aacute;i t&aacute;o.<br />\n<br />\n- 1 tr&aacute;i xo&agrave;i.<br />\n<br />\n- 1/2 tr&aacute;i thanh long.<br />\n<br />\n- 1/2 tr&aacute;i thơm.<br />\n<br />\n- 20 tr&aacute;i chanh d&acirc;y.<br />\n<br />\n- 100g đường c&aacute;t trắng.<br />\n<br />\nC&aacute;ch thực hiện:<br />\n<br />\nT&aacute;o, xo&agrave;i, thơm, thanh long gọt vỏ, cắt hạt lựu.<br />\n<br />\nTrộn nước chanh d&acirc;y với nước s&ocirc;i để nguội v&agrave; đường th&agrave;nh hỗn hợp nước chanh d&acirc;y chua ngọt. Sau đ&oacute; đổ hỗn hợp vừa pha v&agrave;o c&aacute;c loại tr&aacute;i c&acirc;y đ&atilde; trộn ch&uacute;ng ta c&oacute; ngay m&oacute;n ch&egrave; hoa quả thơm ngon đẹp mắt rồi.<br />\n<br />\n<strong>Ch&egrave; tr&aacute;i c&acirc;y kiểu Đ&agrave;i Loan</strong><br />\n<br />\nCh&egrave; tr&aacute;i c&acirc;y kiểu Đ&agrave;i Loan l&agrave; m&oacute;n ch&egrave; lạ đang được giới trẻ săn đ&oacute;n rất nhiều. Ch&egrave; tr&aacute;i c&acirc;y kiểu Đ&agrave;i Loan mang đặc trưng ri&ecirc;ng bởi hương vị dẻo thơm của khoai c&ugrave;ng sữa dừa b&eacute;o ngậy.&nbsp;</p>\n\n<p>&nbsp;</p>\n\n<p><img alt=\"{keywords}\" src=\"https://imgs.vietnamnet.vn/Images/2017/10/12/15/20171012153035-che-trai-cay-dai-loan.jpg\" /></p>\n\n<p><br />\nNguy&ecirc;n liệu:<br />\n<br />\n- 150ml nước cốt dừa.<br />\n<br />\n- 40g đường c&aacute;t trắng.<br />\n<br />\n- 15ml sữa đặc.<br />\n<br />\n- 220g bột năng.<br />\n<br />\n- 1/2 tr&aacute;i dưa hấu.<br />\n<br />\n- 2 tr&aacute;i xo&agrave;i ch&iacute;n.<br />\n<br />\n- 1/2 tr&aacute;i dưa gang.<br />\n<br />\n- 200g khoai m&ocirc;n.<br />\n<br />\n- 200g khoai lang v&agrave;ng.<br />\n<br />\n- 100g khoai lang t&iacute;m.<br />\n<br />\nC&aacute;ch thực hiện:<br />\n<br />\nSơ chế bằng c&aacute;ch gọt vỏ khoai lang, khoai m&ocirc;n rồi cho v&agrave;o nồi hấp, sau đ&oacute; nghiền nhuyễn ch&uacute;ng. Sau đ&oacute; cho bột năng, đường c&aacute;t v&agrave; nước v&agrave;o nh&agrave;o cho đến khi th&agrave;nh một khối dẻo mịn.<br />\n<br />\nLăn bột th&agrave;nh những đoạn d&agrave;i rồi cắt th&agrave;nh những kh&uacute;c vừa. Sau đ&oacute;, luộc vi&ecirc;n khoai đến khi chuyển m&agrave;u trong v&agrave; nổi l&ecirc;n mặt nước th&igrave; vớt ra t&ocirc; đựng nước lọc.<br />\n<br />\nCho đường, nước lọc, sữa đặc, nước cốt dừa v&agrave;o t&ocirc; v&agrave; khuấy đều.<br />\n<br />\nDưa hấu, dưa gang, xo&agrave;i cắt hạt lựu sau đ&oacute; tr&igrave;nh b&agrave;y ra b&aacute;t c&ugrave;ng với vi&ecirc;n khoai dẻo v&agrave; đ&aacute; dăm. Cuối c&ugrave;ng, rưới hỗn hợp sữa dừa l&ecirc;n nữa l&agrave; ch&uacute;ng ta đ&atilde; ho&agrave;n th&agrave;nh m&oacute;n ch&egrave; tr&aacute;i c&acirc;y Đ&agrave;i Loan rồi đ&oacute;.<br />\n<br />\n<strong>Ch&egrave; thạch tr&aacute;i c&acirc;y pha l&ecirc;</strong><br />\n<br />\nVới sự kết hợp ho&agrave;n hảo giữa ch&egrave; bơ thơm mềm b&eacute;o với thạch tr&aacute;i c&acirc;y dẻo, lạnh đ&uacute;ng l&agrave; một sự lựa chọn tuyệt vời cho cả gia đ&igrave;nh.</p>\n\n<p>&nbsp;</p>\n\n<p><img alt=\"{keywords}\" src=\"https://imgs.vietnamnet.vn/Images/2017/10/12/15/20171012153056-che-thach-trai-cay-pha-le.jpg\" /></p>\n\n<p><br />\nNguy&ecirc;n liệu:<br />\n<br />\n- 200g bơ.<br />\n<br />\n- 150g nước cốt dừa.<br />\n<br />\n- 100ml sữa tươi.<br />\n<br />\n- 90g sữa đặc.<br />\n<br />\n- 1/4 muỗng vỏ chanh.<br />\n<br />\n- 4 l&aacute; gelatin.<br />\n<br />\n- 5 muỗng canh đường c&aacute;t trắng.<br />\n<br />\n- 1/2 muỗng bột rau c&acirc;u.<br />\n<br />\nC&aacute;ch thực hiện:<br />\n<br />\nL&agrave;m ch&egrave; bơ: Cắt đ&ocirc;i tr&aacute;i bơ, nạo lấy thịt cho v&agrave;o m&aacute;y xay nhuyễn.<br />\nNg&acirc;m gelatin với nước, vớt ra. Đun sữa tươi, nước cốt dừa, sữa đặc tr&ecirc;n bếp, cho gelatin v&agrave;o khuấy tan.<br />\n<br />\nBắc xuống cho bơ xay v&agrave;o, b&agrave;o &iacute;t vỏ chanh cho thơm v&agrave;o. Trộn đều v&agrave; cho ra khu&ocirc;n, giữ lạnh đến khi đ&ocirc;ng.<br />\n<br />\nL&agrave;m thạch pha l&ecirc;: Ho&agrave; bột rau c&acirc;u v&agrave; đường, đun nước s&ocirc;i. Từ từ cho bột rau c&acirc;u, đường v&agrave;o khuấy li&ecirc;n tục. Bắc nồi xuống để nguội. Cắt nhỏ c&aacute;c loại tr&aacute;i c&acirc;y y&ecirc;u th&iacute;ch v&agrave; tr&aacute;i c&acirc;y ra khu&ocirc;n, đổ thạch đ&atilde; nấu v&agrave;o, sau đ&oacute; đậy nắp khu&ocirc;n lại chờ đ&ocirc;ng.&nbsp;<br />\n<br />\nL&agrave;m nước dừa để chan: Đun nước cốt dừa v&agrave; sữa đặc tr&ecirc;n bếp với lửa nhỏ đến khi s&ocirc;i lăn tăn. Bắc xuống để nguội.<br />\n<br />\nLấy ch&egrave; bơ ra khỏi khu&ocirc;n, đặt vi&ecirc;n thạch th&ecirc;m nước đ&aacute; v&agrave; chan nước dừa l&agrave; bạn đ&atilde; ho&agrave;n th&agrave;nh m&oacute;n tr&aacute;ng miệng n&agrave;y.<br />\n<br />\nĐừng qu&ecirc;n những loại&nbsp;<a href=\"http://vietnamnet.vn/vn/doi-song/am-thuc/\">ch&egrave; tr&aacute;i c&acirc;y</a>&nbsp;trong của thực đơn ăn vặt gia đ&igrave;nh m&igrave;nh nh&eacute;, chắc chắn đ&acirc;y sẽ l&agrave;&nbsp;<a href=\"http://vietnamnet.vn/mon-ngon-moi-ngay-tag82712.html\" target=\"_blank\">m&oacute;n ngon</a>&nbsp;chinh phục bất cứ ai trong gia đ&igrave;nh bạn.</p>\n');
 
 -- --------------------------------------------------------
 
@@ -715,6 +750,27 @@ INSERT INTO `products` (`id`, `name`, `type`, `description`, `image`, `price`, `
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `response`
+--
+
+CREATE TABLE `response` (
+  `id` int(11) NOT NULL,
+  `name` text DEFAULT NULL,
+  `mail` text DEFAULT NULL,
+  `message` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `response`
+--
+
+INSERT INTO `response` (`id`, `name`, `mail`, `message`) VALUES
+(4, 'Nguyễn Tiến', 'tien@nguyen.com', 'abc'),
+(5, 'Nguyễn Tiến', 'tien@ajsdfh.com', 'abc');
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `tables`
 --
 
@@ -737,7 +793,13 @@ CREATE TABLE `tables` (
 
 INSERT INTO `tables` (`id`, `table_number`, `customer_id`, `customer_name`, `customer_phone`, `customer_email`, `reservation_date`, `time`, `number_of_guests`, `status`) VALUES
 (2, 7, NULL, 'Nguyễn Tiến', '339085759', 'tien@nguyen.com', '2023-04-25', '15:00:00', 4, 'canceled'),
-(3, 1, NULL, NULL, NULL, NULL, '2023-04-25', '04:32:12', 4, 'canceled');
+(3, 1, NULL, NULL, NULL, NULL, '2023-04-25', '04:32:12', 4, 'canceled'),
+(4, 1, NULL, NULL, NULL, NULL, '2023-04-27', '05:05:18', 4, 'paid'),
+(5, 1, NULL, NULL, NULL, NULL, '2023-04-27', '06:11:18', 4, 'paid'),
+(6, 1, NULL, NULL, NULL, NULL, '2023-04-27', '06:12:22', 4, 'canceled'),
+(7, 1, NULL, NULL, NULL, NULL, '2023-04-27', '09:20:24', 4, 'paid'),
+(8, 6, 2, 'Ayhed', '3401179729', 'Ayhed@gmail.com', '2023-04-27', '10:00:00', 4, 'in use'),
+(9, 1, 18, 'Tien Nguyen Phuoc Bao', '745634527', 'tien2@nguyen.com', '2023-04-27', '10:00:00', 4, 'in use');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -750,6 +812,12 @@ ALTER TABLE `bills`
   ADD PRIMARY KEY (`id`),
   ADD KEY `bills_ibfk_1` (`table_id`),
   ADD KEY `bills_ibfk_2` (`product_id`);
+
+--
+-- Chỉ mục cho bảng `contact`
+--
+ALTER TABLE `contact`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Chỉ mục cho bảng `customers`
@@ -784,6 +852,12 @@ ALTER TABLE `products`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Chỉ mục cho bảng `response`
+--
+ALTER TABLE `response`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Chỉ mục cho bảng `tables`
 --
 ALTER TABLE `tables`
@@ -798,13 +872,19 @@ ALTER TABLE `tables`
 -- AUTO_INCREMENT cho bảng `bills`
 --
 ALTER TABLE `bills`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT cho bảng `contact`
+--
+ALTER TABLE `contact`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT cho bảng `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT cho bảng `employees`
@@ -822,19 +902,25 @@ ALTER TABLE `feedback`
 -- AUTO_INCREMENT cho bảng `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=310;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=314;
+
+--
+-- AUTO_INCREMENT cho bảng `response`
+--
+ALTER TABLE `response`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `tables`
 --
 ALTER TABLE `tables`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
