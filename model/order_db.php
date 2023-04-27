@@ -37,4 +37,15 @@
         require('db.php');
         
     }
+
+    function get_paid_bill($tableId) {
+        include('model\db.php');
+        $billList = mysqli_query($con, "SELECT * FROM bills WHERE status='paid' and table_id=$tableId");
+        $paidBillArray = array();
+        while($bill = $billList->fetch_object()) {
+            $paidBillArray[] = $bill;
+        }
+
+        return $paidBillArray;
+    }
 ?>
