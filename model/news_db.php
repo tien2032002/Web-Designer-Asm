@@ -8,7 +8,7 @@
         $tag = $_POST['tag'];
         $content = $_POST['editor1'];
         mysqli_query($con, "INSERT INTO news (thumnail, title, tag, content)
-                            VALUE ('$target_file', '$title', '$tag', '$content')");
+                            VALUES ('$target_file', '$title', '$tag', '$content')");
     }
 
     function check_save_news(){
