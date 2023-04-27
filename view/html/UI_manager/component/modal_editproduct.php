@@ -17,7 +17,7 @@
                   <input type="file" class="custom-file-input mt-2" id="customFile" name='image'>
               <p class="text-danger">
                 <?php
-                  if($_SESSION['updProductErr']){
+                  if(isset($_SESSION['updProductErr'])){
                     switch ($_SESSION['updProductErr']['uploadErr']){
                       case "missing":
                         echo "Hãy thêm ảnh cho món ăn!";
@@ -38,7 +38,7 @@
                   placeholder="Nhập tên sản phẩm" required>
           <p class="text-danger">
             <?php
-              if($_SESSION['updProductErr']){
+                  if(isset($_SESSION['updProductErr'])){
                 switch ($_SESSION['updProductErr']['nameErr']){
                   case "missing":
                     echo "Hãy thêm tên cho món ăn!";
@@ -64,7 +64,7 @@
                   placeholder="Nhập giá sản phẩm" required>
           <p class="text-danger">
             <?php
-              if($_SESSION['updProductErr']){
+              if(isset($_SESSION['updProductErr'])){
                 switch ($_SESSION['updProductErr']['priceErr']){
                   case "invalid":
                     echo "Giá món ăn không hợp lệ!";
@@ -80,7 +80,7 @@
                   placeholder="Nhập mô tả cho sản phẩm" required><?php echo $product->description;?></textarea >
           <p class="text-danger">
             <?php
-              if($_SESSION['updProductErr']){
+              if(isset($_SESSION['updProductErr'])){
                 switch ($_SESSION['updProductErr']['descriptionErr']){
                   case "missing":
                     echo "Hãy nhập mô tả cho món ăn!";
@@ -100,4 +100,3 @@
     </div>
   </div>
 </div>
-

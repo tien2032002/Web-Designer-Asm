@@ -29,7 +29,7 @@
         <div class="sidebar sidebarwidth" id="sidebar">
             <div class="list-gr">
                 <div class="text-muted" id="navigation">Navigation</div>
-                <a id="tab1" class="list-gr-item" href="#" data-url="statistical_tab">
+                <a id="tab1" class="list-gr-item" href="#" data-url="view/html/UI_manager/component/statistical_tab">
                     <i class="fas fa-chevron-right text-muted me-2"></i>Thống Kê Chung</a>
                 <a id="tab2" class="list-gr-item" href="#" data-url="view/html/UI_manager/component/respone_tab.php">
                     <i class="fas fa-chevron-right text-muted me-2"></i>Thông Tin & Phản Hồi</a>
@@ -39,6 +39,8 @@
                     <i class="fas fa-chevron-right text-muted me-2"></i>Quản Lý Nhân Viên</a>
                 <a id="tab5" class="list-gr-item" href="#" data-url="feedback_tab">
                     <i class="fas fa-chevron-right text-muted me-2"></i>Quản Lý Đánh Giá</a>
+                <a id="tab6" class="list-gr-item" href="#" data-url="view/html/UI_manager/component/news_tab.php">
+                    <i class="fas fa-chevron-right text-muted me-2"></i>Quản Lý Bài Viết</a>
             </div>
         </div>
         <!-- Sidebar End -->
