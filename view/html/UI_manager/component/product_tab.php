@@ -107,6 +107,7 @@
       '; 
 
       unset($_SESSION['addProductErr']);
+      unset($_SESSION['updProductErr']);
       unset($_SESSION['errResultAdd']);
       unset($_SESSION['errResultUpd']);
 

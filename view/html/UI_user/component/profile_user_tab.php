@@ -134,8 +134,8 @@
                         <input type="password" class="form-control mt-2" id="password" placeholder="Nhập mật khẩu cũ" name='oldPassword'>
                         <p class='text-danger'>
                             <?php
-                                if (isset($emailErr))
-                                    switch ($emailErr) {
+                                if (isset($passwordErr))
+                                    switch ($passwordErr) {
                                         case 'wrong old password': 
                                             echo 'Sai mật khẩu cũ';
                                             break;

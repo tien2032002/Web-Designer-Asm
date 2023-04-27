@@ -7,18 +7,7 @@
         background-color: rgb(180, 52, 5);
         color: white;
     }
-    .activeDropImg {
-        border: 1px solid black;
-    }
 
-    .dropImageCss{
-
-        width: 100%;
-        height: 180px;
-        overflow: hidden;
-        background-size: cover;
-        background-position: center center;
-    }
 </style>
 <div class="modal fade" id="modal_addproduct" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -119,7 +108,7 @@
   </div>
 </div>
 
-<script>
+<!-- <script>
   // drag and drop thumbnail functions
   const dropZone = document.getElementById("dropZone");
     
@@ -184,4 +173,4 @@
             thumbnailElement.style.backgroundImage = null;
         }
     }
-</script>
+</script> -->
