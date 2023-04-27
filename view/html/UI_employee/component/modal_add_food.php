@@ -50,9 +50,9 @@
                 <div class="form-group mt-3">
                     <label for="quantity_food" style="font-weight: 700;">SỐ LƯỢNG</label>
                     <div class="input-group">
-                        <input type="number" min="1" class="form-control mt-1" 
+                        <input type="number" min="1" class="form-control mt-1" min=0
                                 id="quantity_food<?php echo $table->id?>" style="border-radius: 0;"
-                                placeholder="Enter your quantity" value="1"
+                                placeholder="Enter your quantity" value="1" onchange="debugZero(this)"
                                 name="quantity_food">
                     </div>
                 </div>
@@ -67,3 +67,9 @@
     </div>
   </div>
 </div>
+
+<script>
+  function debugZero(element) {
+    if (element.value < 0) element.value = 0;
+  }
+</script>

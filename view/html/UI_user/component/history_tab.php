@@ -5,7 +5,7 @@
     "dessert" => "Tráng miệng");
     $statusArray = array("request" => "Lên đơn",
                          "canceled" => "Hủy",
-                         "padi" => "Đã thanh toán");
+                         "paid" => "Đã thanh toán");
     if (count($tableList) == 0) echo "<h3 class='text-center'>Chưa có lịch sử mua hàng!</h3>";
     foreach($tableList as $table) {
         echo'
