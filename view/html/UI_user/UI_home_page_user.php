@@ -89,7 +89,6 @@
                 </nav>
             </div>
             <!-- Sidebar Large End -->
-
             <div class="col-lg-9">
                 <!-- Navbar Start -->
                 <?php $page = 'home_page_user';

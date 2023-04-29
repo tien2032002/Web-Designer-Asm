@@ -59,7 +59,8 @@
                             if (!isset($_SESSION)) session_start();
                             //start session and save id & role
                             $_SESSION['role'] = 'user';
-                            $_SESSION['id'] = getCustomerByPhone($_POST['phone'])->id;
+                            // echo $_POST['phone'];
+                            $_SESSION['id'] = json_decode(getCustomerByPhone($_POST['phone']))->id;
                             header("Location: /home_page_user");
                        }
                        //if have error, go back to signup page and display warning
@@ -184,13 +185,14 @@
 
         function addToCart() {
             if (isset($_SESSION['role']) && $_SESSION['role'] == 'user') {
-                if (isset($_GET['productID']) && !(isset($_GET['productQuantity']) && (int)$_GET['productQuantity'] < 0)) {
+                if (isset($_GET['productID'])) {
                     if (!isset($_COOKIE['cartArr'])) {
                         //if cookie dont have variable cartArr yet
                         //create a array
                         //and save product id & product quantity
                         //change that array to json and save to cookie
                         $cart = array();
+                        echo($_GET['productQuantity']);
                         if (!isset($_GET['productQuantity'])) $cart[(int)$_GET['productID']] = 1;
                         else 
                             $cart[(int)$_GET['productID']] = (int)$_GET['productQuantity'];

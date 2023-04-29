@@ -26,7 +26,7 @@
 
     function getCustomerByPhone($phone) {
         require('model/db.php');
-        $searchPhone = "SELECT * FROM customers WHERE phone = '$phone'";
+        $searchPhone = "SELECT * FROM customers WHERE phone='$phone'";
         $resultPhone = mysqli_query($con, $searchPhone);
         return json_encode(mysqli_fetch_object($resultPhone));
         

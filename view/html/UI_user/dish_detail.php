@@ -261,12 +261,12 @@
                                         
                                         <!-- form -->
                                         <form action="">
-                                            <input type="number" class="btn btn-outline-dark btn-override" value='0' name='quantity' id='quantity' onchange="debugZero(this)">
-                                            <input type="submit" class="btn btn-outline-dark btn-override" value="Add to cart" onclick='addToCart()'>
+                                            <input type="number" class="btn btn-outline-dark btn-override" value='0' name='quantity' id='quantity2' onchange="debugZero(this)">
+                                            <button class="btn btn-outline-dark btn-override" onclick='addToCart()'>Add to card</button>
                                         </form>
                                         <script>
                                             function addToCart() {
-                                                quantityInput = document.getElementById('quantity');
+                                                quantityInput = document.getElementById('quantity2');
                                                 xmlLink = 'index.php?controller=user&action=addToCart&productID=<?php echo $productObj->id?>&productQuantity=' + quantityInput.value.toString();
                                                 loadXMLDoc(xmlLink, 'cart_drop');
                                                 console.log(xmlLink);
@@ -468,9 +468,9 @@
     
     <!-- ======= Scripts ====== -->
     <script>
-    function debugZero(element) {
-        if (element.value < 0) element.value = 0;
-    }
+    // function debugZero(element) {
+    //     if (element.value < 0) element.value = 0;
+    // }
     </script>
     <script src="view/script/user_navbar.js"></script>
     <script src="view/script/cart.js"></script>

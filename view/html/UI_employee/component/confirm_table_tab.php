@@ -43,7 +43,7 @@
                             </form>
                         </div>
                         <div class="col-4">
-                            <div style="border-radius: 0;" class="btn btn-danger w-100 fw-bold">Hủy</div>
+                            <a href="cancel_order?tableId='.$table->id.'"><div style="border-radius: 0;" class="btn btn-danger w-100 fw-bold">Hủy</div></a>
                         </div>
                         <div class="col-4">
                             <div style="border-radius: 0;" class="btn btn-success w-100 fw-bold" onclick="$(\'#confirmTable'.$table->id.'\').submit()" >Xác Nhận</div>

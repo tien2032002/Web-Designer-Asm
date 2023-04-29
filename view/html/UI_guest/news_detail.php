@@ -119,7 +119,7 @@
                     <!-- begin: daily news -->
                     <div class="card menu mt-4 mb-5">
                         <h4 class="card-title"><?php echo $newsObject->title;?></h4>
-                        <a href="/tag/<?php echo UrlNormal($tagArray[$newsObject->tag]).'/'.$newsObject->tag;?>" class="btn btn-outline-success ms-2 mt-2 p-1" style="max-width: 15%"><?php echo $tagArray[$newsObject->tag]; ?></a>
+                        <a href="/tag/<?php echo UrlNormal($tagArray[$newsObject->tag]).'/'.$newsObject->tag;?>" class="btn btn-outline-success ms-2 mt-2 p-1" style="max-width%"><?php echo $tagArray[$newsObject->tag]; ?></a>
                         <?php
                             echo $newsObject->content;
                         ?>
